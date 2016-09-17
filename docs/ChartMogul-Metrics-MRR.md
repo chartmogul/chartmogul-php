@@ -14,6 +14,85 @@ ChartMogul\Metrics\MRR
 
 
 
+Properties
+----------
+
+
+### $date;
+
+    public  $date;
+
+
+
+
+
+* Visibility: **public**
+
+
+### $mrr;
+
+    public  $mrr;
+
+
+
+
+
+* Visibility: **public**
+
+
+### $mrr_new_business;
+
+    public  $mrr_new_business;
+
+
+
+
+
+* Visibility: **public**
+
+
+### $mrr_expansion;
+
+    public  $mrr_expansion;
+
+
+
+
+
+* Visibility: **public**
+
+
+### $mrr_contraction;
+
+    public  $mrr_contraction;
+
+
+
+
+
+* Visibility: **public**
+
+
+### $mrr_churn;
+
+    public  $mrr_churn;
+
+
+
+
+
+* Visibility: **public**
+
+
+### $mrr_reactivation;
+
+    public  $mrr_reactivation;
+
+
+
+
+
+* Visibility: **public**
 
 
 Methods

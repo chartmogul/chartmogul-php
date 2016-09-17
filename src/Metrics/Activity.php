@@ -5,6 +5,17 @@ namespace ChartMogul\Metrics;
 use ChartMogul\Resource\AbstractModel;
 use ChartMogul\Http\ClientInterface;
 
+/**
+ * @property-read string $id;
+ * @property-read string $description;
+ * @property-read string $type;
+ * @property-read string $date;
+ * @property-read string $activity_arr;
+ * @property-read string $activity_mrr;
+ * @property-read string $activity_mrr_movement;
+ * @property-read string $currency;
+ * @property-read string $currency_sign;
+ */
 class Activity extends AbstractModel {
 
     protected $id;

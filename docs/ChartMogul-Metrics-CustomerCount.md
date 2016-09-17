@@ -14,6 +14,30 @@ ChartMogul\Metrics\CustomerCount
 
 
 
+Properties
+----------
+
+
+### $data
+
+    public string $data
+
+
+
+
+
+* Visibility: **public**
+
+
+### $customers
+
+    public string $customers
+
+
+
+
+
+* Visibility: **public**
 
 
 Methods

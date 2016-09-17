@@ -5,6 +5,20 @@ namespace ChartMogul\Metrics;
 use ChartMogul\Resource\AbstractModel;
 use ChartMogul\Http\ClientInterface;
 
+/**
+ * @property-read string $id;
+ * @property-read string $plan;
+ * @property-read string $quantity;
+ * @property-read string $mrr;
+ * @property-read string $arr;
+ * @property-read string $status;
+ * @property-read string $billing_cycle;
+ * @property-read string $billing_cycle_count;
+ * @property-read string $start_date;
+ * @property-read string $end_date;
+ * @property-read string $currency;
+ * @property-read string $currency_sign;
+ */
 class Subscription extends AbstractModel {
 
     protected $id;

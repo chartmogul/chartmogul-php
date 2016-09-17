@@ -4,6 +4,9 @@ namespace ChartMogul\Import;
 
 use ChartMogul\Resource\AbstractResource;
 
+/**
+ * @property-read string $uuid
+ */
 class Customer extends AbstractResource
 {
 

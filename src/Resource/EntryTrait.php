@@ -4,6 +4,7 @@ namespace ChartMogul\Resource;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
+
 trait EntryTrait {
 
     protected $entries = [];

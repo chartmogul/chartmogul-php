@@ -11,6 +11,7 @@
     </parser>
     <files>
         <directory>src</directory>
+        <ignore>src/Service/RequestService.php</ignore>
     </files>
     <transformer>
         <target>docs</target>

@@ -14,6 +14,30 @@ ChartMogul\Metrics\ARPA
 
 
 
+Properties
+----------
+
+
+### $data
+
+    public string $data
+
+
+
+
+
+* Visibility: **public**
+
+
+### $arpa
+
+    public string $arpa
+
+
+
+
+
+* Visibility: **public**
 
 
 Methods

@@ -29,6 +29,39 @@ Properties
 * Visibility: **public**
 
 
+### $uuid
+
+    public string $uuid
+
+
+
+
+
+* Visibility: **public**
+
+
+### $status
+
+    public string $status
+
+
+
+
+
+* Visibility: **public**
+
+
+### $created_at
+
+    public string $created_at
+
+
+
+
+
+* Visibility: **public**
+
+
 Methods
 -------
 

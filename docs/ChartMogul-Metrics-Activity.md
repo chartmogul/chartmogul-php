@@ -14,6 +14,107 @@ ChartMogul\Metrics\Activity
 
 
 
+Properties
+----------
+
+
+### $id;
+
+    public string $id;
+
+
+
+
+
+* Visibility: **public**
+
+
+### $description;
+
+    public string $description;
+
+
+
+
+
+* Visibility: **public**
+
+
+### $type;
+
+    public string $type;
+
+
+
+
+
+* Visibility: **public**
+
+
+### $date;
+
+    public string $date;
+
+
+
+
+
+* Visibility: **public**
+
+
+### $activity_arr;
+
+    public string $activity_arr;
+
+
+
+
+
+* Visibility: **public**
+
+
+### $activity_mrr;
+
+    public string $activity_mrr;
+
+
+
+
+
+* Visibility: **public**
+
+
+### $activity_mrr_movement;
+
+    public string $activity_mrr_movement;
+
+
+
+
+
+* Visibility: **public**
+
+
+### $currency;
+
+    public string $currency;
+
+
+
+
+
+* Visibility: **public**
+
+
+### $currency_sign;
+
+    public string $currency_sign;
+
+
+
+
+
+* Visibility: **public**
 
 
 Methods

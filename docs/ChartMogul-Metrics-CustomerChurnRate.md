@@ -14,6 +14,30 @@ ChartMogul\Metrics\CustomerChurnRate
 
 
 
+Properties
+----------
+
+
+### $data
+
+    public string $data
+
+
+
+
+
+* Visibility: **public**
+
+
+### $customer_churn_rate
+
+    public string $customer_churn_rate
+
+
+
+
+
+* Visibility: **public**
 
 
 Methods

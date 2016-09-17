@@ -6,6 +6,9 @@ use ChartMogul\Resource\AbstractResource;
 
 /**
 * @codeCoverageIgnore
+* @property-read string $uuid
+* @property-read string $status
+* @property-read string $created_at
 */
 class DataSource extends AbstractResource
 {

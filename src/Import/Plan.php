@@ -6,6 +6,7 @@ use ChartMogul\Resource\AbstractResource;
 
 /**
 * @codeCoverageIgnore
+* @property-read string $uuid
 */
 class Plan extends AbstractResource
 {

@@ -14,6 +14,30 @@ ChartMogul\Metrics\MRRChurnRate
 
 
 
+Properties
+----------
+
+
+### $data
+
+    public string $data
+
+
+
+
+
+* Visibility: **public**
+
+
+### $mrr_churn_rate
+
+    public string $mrr_churn_rate
+
+
+
+
+
+* Visibility: **public**
 
 
 Methods

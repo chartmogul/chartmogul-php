@@ -40,6 +40,63 @@ Constants
 
 
 
+Properties
+----------
+
+
+### $uuid
+
+    public string $uuid
+
+
+
+
+
+* Visibility: **public**
+
+
+### $external_id
+
+    public string $external_id
+
+
+
+
+
+* Visibility: **public**
+
+
+### $cancellation_dates
+
+    public string $cancellation_dates
+
+
+
+
+
+* Visibility: **public**
+
+
+### $plan_uuid
+
+    public string $plan_uuid
+
+
+
+
+
+* Visibility: **public**
+
+
+### $data_source_uuid
+
+    public string $data_source_uuid
+
+
+
+
+
+* Visibility: **public**
 
 
 Methods

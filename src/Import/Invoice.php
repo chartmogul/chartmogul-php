@@ -10,6 +10,9 @@ use ChartMogul\Import\Transactions\Payment;
 use ChartMogul\Import\Transactions\Refund;
 use Doctrine\Common\Collections\ArrayCollection;
 
+/**
+ * @property-read string $uuid
+ */
 class Invoice extends \ChartMogul\Resource\AbstractModel
 {
 

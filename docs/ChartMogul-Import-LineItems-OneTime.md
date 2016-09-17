@@ -117,6 +117,18 @@ Properties
 * Visibility: **public**
 
 
+### $uuid
+
+    public string $uuid
+
+
+
+
+
+* Visibility: **public**
+* This property is defined by [ChartMogul\Import\LineItems\AbstractLineItem](ChartMogul-Import-LineItems-AbstractLineItem.md)
+
+
 Methods
 -------
 

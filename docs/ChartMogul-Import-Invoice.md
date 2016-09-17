@@ -84,6 +84,17 @@ Properties
 * Visibility: **public**
 
 
+### $uuid
+
+    public string $uuid
+
+
+
+
+
+* Visibility: **public**
+
+
 Methods
 -------
 

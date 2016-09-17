@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project title="API Documentation" version="2.8.5">
   <partials/>
-  <file path="Resource/EntryTrait.php" generated-path="Resource.EntryTrait.html" hash="d4aab293e779103011f7791808bfa9f4" package="Default">
+  <file path="Resource/EntryTrait.php" generated-path="Resource.EntryTrait.html" hash="48e23f66a1704e4887600c5d13cad39b" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="ArrayCollection">\Doctrine\Common\Collections\ArrayCollection</namespace-alias>
-    <trait namespace="ChartMogul\Resource" line="7" package="Default">
+    <trait namespace="ChartMogul\Resource" line="8" package="Default">
       <name>EntryTrait</name>
       <full_name>\ChartMogul\Resource\EntryTrait</full_name>
-      <docblock line="7">
+      <docblock line="8">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="7" description="Default"/>
+        <tag name="package" line="8" description="Default"/>
       </docblock>
     </trait>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="7" code="PPC:ERR-50010">No summary for trait \ChartMogul\Resource\EntryTrait</error>
+      <error line="8" code="PPC:ERR-50010">No summary for trait \ChartMogul\Resource\EntryTrait</error>
     </parse_markers>
-    <source>eJxtUD1vgzAQ3f0rbmCAocoemlQV6dil6haiynWOYBVs5DtUoYj/XhtCEmjeYsvv3ofv+aUpGyGMrJEaqRCyUjp+t6e2yj+QbOsUpkK0hLCzip02mGe2rq3xR1WhYm0N5a/Oye724BXspGZ4M+y6z+F6FgI8GmfZD+ERIvSkRoIN7A/pkpXf5C0UA7FkraBozWANJ+TBNaskUZz8E14HaRz0CbEM9eaByXnQBURcanra3liDv7D4UTyJp8BBiNciXjUWXa8fFwworEOpSogXiZIg+sEONluINGOdTMuaoAuvCQxo42OMQlvcpwcBLLBaHS0Y65PMaUb2gBVhsNT0NWxm9E4eucyb7kPNw2VDd/kXg3SeI+a3Xoj+D72Vvn0=</source>
+    <source>eJxtUD1vgzAQ3f0rbmCAocoemlQV6dil6haiynWOYBVs5DtUoYj/XhtCEmjeYsvv3ofv+aUpGyGMrJEaqRCyUjp+t6e2yj+QbOsUpkK0hLCzip02mGe2rq3xR1WhYm0N5a/Oye724BWCndQMb4Zd9zlcz0KAR+Ms+yk8QoSe1Eiwgf0hXbLym7yFYiCWrBUUrRm84YQ8uGaVJIqTf8LrII2DPiGWod88MDkPuoCIS01P2xtr8BcWX4on8RQ4CPFaxKvGouv144IBhXUoVQnxIlESRD/YwWYLkWask2lZE3ThNYEBbXyMUWiL+/QggAVWq6MFY32SOc3IHrAiDJaavobNjN7JI5d5032oebhs6C7/YpDOc8T81gvR/wHzBL6H</source>
   </file>
   <file path="Resource/PageableTrait.php" generated-path="Resource.PageableTrait.html" hash="07ef208eec23ab699925a7340801b080" package="Default">
     <docblock line="0">
@@ -589,119 +589,6 @@
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
     </parse_markers>
     <source>eJzNlj1v2zAQhnf9ihsy2IYR73GLVvDSoFFhyEGWugPNnCyiFEnww4Wb5L/3qFhC4qK1AymAOEgwyXvv5UPq6A+fTGmSRLEKnWEcYVEy6zO9DXKeJMG97Fhn6K3gbn7c/8V7s15IgcpfK4+2ICGKnk0mCUzgtkQ4REK6vAYmpf7lgDSsA6/BWL21rKqYF5zG9mCClOApyoWN41YYL7SC6iDhS+ZfJIctKrTMo7ukZLOES+Zcm+8hSYBa7SS2CeRxBHfoog/4iftGeAqFts9pDXJRCLwHLyoEg1bo+8tG4LNh5BaYtWz/WD/hQtcW3dGUIyKPKq7rgte97VSLPljVGF6nUn7F/eHXYdKsfpuwkYKD85ETFEHxGgutYvTaBXyE7z+mx9mbxDQafYwfnsWp/c/B1VXUb5Snjch4Xkc//Rtu5JjuaGO2SL07VAFhiRZSznUgF6M0X6bjgTAnK+extob1DDumPgX5BGWlApPiN6HLg4KcPoVINx8M3PxMtrZvtHlXsofzu2KSDi+JRrCr5VDArpbngXWmZ7CUuBvYRXBeV1QNFmUUjkd2GEwbY7WvaOsswvw4ql/ef5vqRl+FakPsdQGM/O+w9T+QK7Bdb7wo3rYBMeKd4NdmuoHPtPIl/b/JkQdrhdq2N+MoG0y9zs6s11Xf9TrrXK/bsnIjCqzJ3TEZ6d7c3g2ELjk5i670u37pxsTd6H5DD7RHg6vZ5Olt5ZpO7jtV6ldWTtJ++gOswFqi</source>
-  </file>
-  <file path="Service/RequestService.php" generated-path="Service.RequestService.html" hash="550beffe3d80ed89ce084b2784ae5874" package="Default">
-    <docblock line="0">
-      <description></description>
-      <long-description></long-description>
-      <tag name="package" line="0" description="Default"/>
-    </docblock>
-    <namespace-alias name="Client">\ChartMogul\Http\Client</namespace-alias>
-    <namespace-alias name="ClientInterface">\ChartMogul\Http\ClientInterface</namespace-alias>
-    <namespace-alias name="AbstractResource">\ChartMogul\Resource\AbstractResource</namespace-alias>
-    <namespace-alias name="ReflectionClass">\ReflectionClass</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Service" line="9" package="Default">
-      <extends/>
-      <name>RequestService</name>
-      <full_name>\ChartMogul\Service\RequestService</full_name>
-      <docblock line="9">
-        <description></description>
-        <long-description></long-description>
-        <tag name="package" line="9" description="Default"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Service" line="15" package="Default">
-        <name>__construct</name>
-        <full_name>\ChartMogul\Service\RequestService::__construct()</full_name>
-        <docblock line="15">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$client</name>
-          <default>null</default>
-          <type>\ChartMogul\Http\ClientInterface</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Service" line="21" package="Default">
-        <name>setResourceClass</name>
-        <full_name>\ChartMogul\Service\RequestService::setResourceClass()</full_name>
-        <docblock line="21">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$resourceClass</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Service" line="29" package="Default">
-        <name>setResource</name>
-        <full_name>\ChartMogul\Service\RequestService::setResource()</full_name>
-        <docblock line="29">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$resource</name>
-          <default></default>
-          <type>\ChartMogul\Resource\AbstractResource</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Service" line="69" package="Default">
-        <name>create</name>
-        <full_name>\ChartMogul\Service\RequestService::create()</full_name>
-        <docblock line="69">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$data</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Service" line="81" package="Default">
-        <name>all</name>
-        <full_name>\ChartMogul\Service\RequestService::all()</full_name>
-        <docblock line="81">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$data</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Service" line="94" package="Default">
-        <name>destroy</name>
-        <full_name>\ChartMogul\Service\RequestService::destroy()</full_name>
-        <docblock line="94">
-          <description></description>
-          <long-description></long-description>
-          <tag name="return" line="94" description="" type="boolean">
-            <type>boolean</type>
-          </tag>
-        </docblock>
-      </method>
-    </class>
-    <parse_markers>
-      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="9" code="PPC:ERR-50005">No summary for class \ChartMogul\Service\RequestService</error>
-      <error line="15" code="PPC:ERR-50015">Argument $client is missing from the Docblock of __construct</error>
-      <error line="15" code="PPC:ERR-50008">No summary for method __construct()</error>
-      <error line="21" code="PPC:ERR-50015">Argument $resourceClass is missing from the Docblock of setResourceClass</error>
-      <error line="21" code="PPC:ERR-50008">No summary for method setResourceClass()</error>
-      <error line="29" code="PPC:ERR-50015">Argument $resource is missing from the Docblock of setResource</error>
-      <error line="29" code="PPC:ERR-50008">No summary for method setResource()</error>
-      <error line="69" code="PPC:ERR-50015">Argument $data is missing from the Docblock of create</error>
-      <error line="69" code="PPC:ERR-50008">No summary for method create()</error>
-      <error line="81" code="PPC:ERR-50015">Argument $data is missing from the Docblock of all</error>
-      <error line="81" code="PPC:ERR-50008">No summary for method all()</error>
-      <error line="94" code="PPC:ERR-50008">No summary for method destroy()</error>
-    </parse_markers>
-    <source>eJztVl1v0zAUfe+vMFJFnKnr4LWjg6pEDMG2qhtPFFVucrMGpbFnO9uqaf+d63zVcbsPmOCJvFS17z0+95zrj3fvxVJ0MrYCJVgIZLxkUp/wyzydnYO8TkI47HRy1Zo41lrMxmkCmT58ZO5zpkHGzCA4QVNQPJchzEYLpSULdT1QRk4hTiHUCc/GKVMKCYTmF8evclC64kXuOh2Cn5DJNdNAurICqZNak2FFtxzNF2kSkjjPilXIfB7yDJnkoaYO9zqTDEmWp6l/VwCYL4lpouZmkFYxvt9Mms/KhBtS4lL/sInp6mWi9o+aqIajmbzfzVRBo1VRJnXKbvN7ZRZuB5AEC2VZCDwmrvpWsvn0UvKbgvssuA1BGALUq4OJWvI8jcgCCMsaVIKwXt8FHgwKA63a710V2iSHW27W4RJ0LrMy67lKUZfPBt0q2SFic9jyzGV7CXpelEg3yM/hXHVnQxpxTnErRhMm2QrBBNNLi2IFxKRk6/mKCVon0m6iYeX4V0Wr3FRfRvTIW9uEXgUVJym2O4VbkfIIqHfg9Ui5do9slhC4fx9YQkvBVRnRI97A88lwOCRvrKV8//HKmRDpuvZngkvT192IaWYbFNa9scMEyyJDvNxOOD4YTIPzs2/TcTCfjC6ON2Exl8DCJaEV2k7pCVMGD0d80q4cdxeshF7TguX3MuiH7+jz8DYqlgFUHbdLmdwnHkkUSnqVJxIizzKqFM7+VxeJys8liBRPKoq6V1Dons2qNrMNmGe4RRz6uzZo3b0G4snubTn4dwz87+Bz/XFOxBDl0vC7rmzi+OJndZd1q7POIPXa95hvZyCUwIsVNuBlUEuI/SPrqP4Ca7rl++noJPC3crLIMn5H3+FBNDk7vzBHGTLfP9J8ZA476tsUa/GqJWPJV2VUw327vkckZuYx8Idd/4/E2j5oG7k+BYVaxd8XamSLdLC3V2LtkQ8V1oLzFFhWDR/s1DLCp57k6Fcxe+f2oaOm06hFU9RPricUxPCXNJvTXH28PfvlYJ4nEcr6MfgaXATe9oMAH5xQt9P9Lw7ZbUs=</source>
   </file>
   <file path="Service/CreateTrait.php" generated-path="Service.CreateTrait.html" hash="40208897a2f08a92bd9b4990412dfa30" package="Default">
     <docblock line="0">
@@ -1490,80 +1377,53 @@
     </parse_markers>
     <source>eJxdj8tqw0AMRffzFVoEsgxdtyEEY8imtLjtLmAUWcQD82KkCW1K/702TaAeLc89XElPuzQmYwJ6loTE0IyY9Tmeizu2IVsaPQd9NKbIIutYYsnEx/1JNCPpHUwqORSBpohGzxn4UzkMArUJ3wamoRhEoWvfXj66pu1f9+8H2MJ6c3nY0K1C1lPr7KYclUl5gFUpdrjTcnKWYDUvygFdPyf/g/m7JWGP1i0RRZ8wfNWwBM0VFEWt+shqJV1tWoIBFfu/z/vb8T+/JP58Fw==</source>
   </file>
-  <file path="Import/Customer.php" generated-path="Import.Customer.html" hash="5bf0de60b159a826a98fcad935a7e630" package="Default">
+  <file path="Import/Customer.php" generated-path="Import.Customer.html" hash="9cc200c71b71386a0c12ce81fa17bba6" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="AbstractResource">\ChartMogul\Resource\AbstractResource</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Import" line="7" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul\Import" line="10" package="Default">
       <extends>\ChartMogul\Resource\AbstractResource</extends>
       <name>Customer</name>
       <full_name>\ChartMogul\Import\Customer</full_name>
-      <docblock line="7">
+      <docblock line="10">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="7" description="Default"/>
+        <tag name="package" line="10" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractResource" refers="\ChartMogul\Resource\AbstractResource" link="/classes/ChartMogul.Resource.AbstractResource.html"/>
       </docblock>
-      <constant namespace="ChartMogul\Import" line="14" package="Default">
+      <constant namespace="ChartMogul\Import" line="17" package="Default">
         <name>RESOURCE_PATH</name>
         <full_name>\ChartMogul\Import\Customer::RESOURCE_PATH</full_name>
         <value>'/v1/import/customers'</value>
-        <docblock line="14">
+        <docblock line="17">
           <description></description>
           <long-description></long-description>
         </docblock>
       </constant>
-      <constant namespace="ChartMogul\Import" line="15" package="Default">
+      <constant namespace="ChartMogul\Import" line="18" package="Default">
         <name>RESOURCE_NAME</name>
         <full_name>\ChartMogul\Import\Customer::RESOURCE_NAME</full_name>
         <value>'Customer'</value>
-        <docblock line="15">
+        <docblock line="18">
           <description></description>
           <long-description></long-description>
         </docblock>
       </constant>
-      <constant namespace="ChartMogul\Import" line="16" package="Default">
+      <constant namespace="ChartMogul\Import" line="19" package="Default">
         <name>ROOT_KEY</name>
         <full_name>\ChartMogul\Import\Customer::ROOT_KEY</full_name>
         <value>'customers'</value>
-        <docblock line="16">
+        <docblock line="19">
           <description></description>
           <long-description></long-description>
         </docblock>
       </constant>
-      <property static="false" visibility="public" namespace="ChartMogul\Import" line="20" package="Default">
+      <property static="false" visibility="public" namespace="ChartMogul\Import" line="23" package="Default">
         <name>$external_id</name>
         <full_name>\ChartMogul\Import\Customer::external_id</full_name>
-        <default></default>
-        <docblock line="20">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-      </property>
-      <property static="false" visibility="public" namespace="ChartMogul\Import" line="21" package="Default">
-        <name>$name</name>
-        <full_name>\ChartMogul\Import\Customer::name</full_name>
-        <default></default>
-        <docblock line="21">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-      </property>
-      <property static="false" visibility="public" namespace="ChartMogul\Import" line="22" package="Default">
-        <name>$email</name>
-        <full_name>\ChartMogul\Import\Customer::email</full_name>
-        <default></default>
-        <docblock line="22">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-      </property>
-      <property static="false" visibility="public" namespace="ChartMogul\Import" line="23" package="Default">
-        <name>$company</name>
-        <full_name>\ChartMogul\Import\Customer::company</full_name>
         <default></default>
         <docblock line="23">
           <description></description>
@@ -1571,8 +1431,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import" line="24" package="Default">
-        <name>$country</name>
-        <full_name>\ChartMogul\Import\Customer::country</full_name>
+        <name>$name</name>
+        <full_name>\ChartMogul\Import\Customer::name</full_name>
         <default></default>
         <docblock line="24">
           <description></description>
@@ -1580,8 +1440,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import" line="25" package="Default">
-        <name>$state</name>
-        <full_name>\ChartMogul\Import\Customer::state</full_name>
+        <name>$email</name>
+        <full_name>\ChartMogul\Import\Customer::email</full_name>
         <default></default>
         <docblock line="25">
           <description></description>
@@ -1589,8 +1449,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import" line="26" package="Default">
-        <name>$city</name>
-        <full_name>\ChartMogul\Import\Customer::city</full_name>
+        <name>$company</name>
+        <full_name>\ChartMogul\Import\Customer::company</full_name>
         <default></default>
         <docblock line="26">
           <description></description>
@@ -1598,8 +1458,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import" line="27" package="Default">
-        <name>$zip</name>
-        <full_name>\ChartMogul\Import\Customer::zip</full_name>
+        <name>$country</name>
+        <full_name>\ChartMogul\Import\Customer::country</full_name>
         <default></default>
         <docblock line="27">
           <description></description>
@@ -1607,24 +1467,51 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import" line="28" package="Default">
-        <name>$data_source_uuid</name>
-        <full_name>\ChartMogul\Import\Customer::data_source_uuid</full_name>
+        <name>$state</name>
+        <full_name>\ChartMogul\Import\Customer::state</full_name>
         <default></default>
         <docblock line="28">
           <description></description>
           <long-description></long-description>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="ChartMogul\Import" line="34" package="Default">
-        <name>findByExternalId</name>
-        <full_name>\ChartMogul\Import\Customer::findByExternalId()</full_name>
-        <docblock line="34">
+      <property static="false" visibility="public" namespace="ChartMogul\Import" line="29" package="Default">
+        <name>$city</name>
+        <full_name>\ChartMogul\Import\Customer::city</full_name>
+        <default></default>
+        <docblock line="29">
           <description></description>
           <long-description></long-description>
-          <tag name="param" line="34" description="" type="string" variable="$externalId">
+        </docblock>
+      </property>
+      <property static="false" visibility="public" namespace="ChartMogul\Import" line="30" package="Default">
+        <name>$zip</name>
+        <full_name>\ChartMogul\Import\Customer::zip</full_name>
+        <default></default>
+        <docblock line="30">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="public" namespace="ChartMogul\Import" line="31" package="Default">
+        <name>$data_source_uuid</name>
+        <full_name>\ChartMogul\Import\Customer::data_source_uuid</full_name>
+        <default></default>
+        <docblock line="31">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="ChartMogul\Import" line="37" package="Default">
+        <name>findByExternalId</name>
+        <full_name>\ChartMogul\Import\Customer::findByExternalId()</full_name>
+        <docblock line="37">
+          <description></description>
+          <long-description></long-description>
+          <tag name="param" line="37" description="" type="string" variable="$externalId">
             <type>string</type>
           </tag>
-          <tag name="return" line="34" description="" type="\ChartMogul\Import\Customer">
+          <tag name="return" line="37" description="" type="\ChartMogul\Import\Customer">
             <type>\ChartMogul\Import\Customer</type>
           </tag>
           <tag name="fluent" description="This method is part of a fluent interface and will return the same instance"/>
@@ -1635,10 +1522,10 @@
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Import" line="43" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Import" line="46" package="Default">
         <name>subscriptions</name>
         <full_name>\ChartMogul\Import\Customer::subscriptions()</full_name>
-        <docblock line="43">
+        <docblock line="46">
           <description></description>
           <long-description></long-description>
         </docblock>
@@ -1648,10 +1535,10 @@
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Import" line="52" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Import" line="55" package="Default">
         <name>invoices</name>
         <full_name>\ChartMogul\Import\Customer::invoices()</full_name>
-        <docblock line="52">
+        <docblock line="55">
           <description></description>
           <long-description></long-description>
         </docblock>
@@ -1801,50 +1688,65 @@
         </docblock>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="10">
+        <name>$uuid</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="10">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="10"/>
+          <tag name="property-read" line="10" description="" type="string" variable="$uuid">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="7" code="PPC:ERR-50005">No summary for class \ChartMogul\Import\Customer</error>
-      <error line="34" code="PPC:ERR-50008">No summary for method findByExternalId()</error>
-      <error line="43" code="PPC:ERR-50015">Argument $options is missing from the Docblock of subscriptions</error>
-      <error line="43" code="PPC:ERR-50008">No summary for method subscriptions()</error>
-      <error line="52" code="PPC:ERR-50015">Argument $options is missing from the Docblock of invoices</error>
-      <error line="52" code="PPC:ERR-50008">No summary for method invoices()</error>
-      <error line="20" code="PPC:ERR-50007">No summary for property $external_id</error>
-      <error line="21" code="PPC:ERR-50007">No summary for property $name</error>
-      <error line="22" code="PPC:ERR-50007">No summary for property $email</error>
-      <error line="23" code="PPC:ERR-50007">No summary for property $company</error>
-      <error line="24" code="PPC:ERR-50007">No summary for property $country</error>
-      <error line="25" code="PPC:ERR-50007">No summary for property $state</error>
-      <error line="26" code="PPC:ERR-50007">No summary for property $city</error>
-      <error line="27" code="PPC:ERR-50007">No summary for property $zip</error>
-      <error line="28" code="PPC:ERR-50007">No summary for property $data_source_uuid</error>
+      <error line="10" code="PPC:ERR-50005">No summary for class \ChartMogul\Import\Customer</error>
+      <error line="37" code="PPC:ERR-50008">No summary for method findByExternalId()</error>
+      <error line="46" code="PPC:ERR-50015">Argument $options is missing from the Docblock of subscriptions</error>
+      <error line="46" code="PPC:ERR-50008">No summary for method subscriptions()</error>
+      <error line="55" code="PPC:ERR-50015">Argument $options is missing from the Docblock of invoices</error>
+      <error line="55" code="PPC:ERR-50008">No summary for method invoices()</error>
+      <error line="23" code="PPC:ERR-50007">No summary for property $external_id</error>
+      <error line="24" code="PPC:ERR-50007">No summary for property $name</error>
+      <error line="25" code="PPC:ERR-50007">No summary for property $email</error>
+      <error line="26" code="PPC:ERR-50007">No summary for property $company</error>
+      <error line="27" code="PPC:ERR-50007">No summary for property $country</error>
+      <error line="28" code="PPC:ERR-50007">No summary for property $state</error>
+      <error line="29" code="PPC:ERR-50007">No summary for property $city</error>
+      <error line="30" code="PPC:ERR-50007">No summary for property $zip</error>
+      <error line="31" code="PPC:ERR-50007">No summary for property $data_source_uuid</error>
     </parse_markers>
-    <source>eJy1U12L2zAQfPevUCFgO3CYvt710qapoaFcU5L0oSQhKLJ8EciSkVah6ZH/fpK/YrnHtRS6L0Kj2dnVrPTufXksg0DgguoSE4pmR6zgQT4avp0XpVRwFwRGe/iSamkUodvpQYPCBFrAUgnHWqOZ0SALqhD9CVRkGg2ZwVMQIBtOeduTXlF1YlZ5pigGulaY2fqvEaec/wXrE7Xl5blhVlQihQa0TFeL78tZuv82XX9G9yhMTm8TVt07Ic0ldHj3UsbX6UPqMtq7+qzFYr3/kv5whL5ORSmVBEqAZmhkDMta1Bw4I2jkLFMC87076R+4GfkILTDjPkRkUWJxHoJGgBqAGqzDAx6DAekXK30gw4D39Qz3veaT8bha0Rh9KLHCBbKGM/F4vc486wiKglECacrzBkv6NVxjdsmNIMCkQDkT2cdz2ulEPc24SnyqZWy00pXE7S3mPOrOXGy8XdjzOkT3k9+7bWLX7eKbSc6Uhiiufbl4w+t61uagiWKl2+gIK4XPaCTrrX0Tm92wcZaj6A3TmkI0giPTNxNPIo57XBet2KZ7XtU4wp1VbwTq8XhJ9QETJ2l/hWtk1StS29UKx9fUy9Delzp81Y624r850Wb/LxPaHzxvoIERV+6fLfGZl+ASPANajaQw</source>
+    <source>eJy1U9uK2zAQfddXqBCwHQimr7vdtGlqaCjblCR9KEkwiixvBLJkdAl1l/z7Sr6t5S7bUui8GM2cOTo6M373vjyXAHBUEFUiTODyjKS+Fw+GHVZFKaS+BcAoL78hShiJyWFxUloirLuEhcbTKYBT+KGUoiRSVzNJUAYtjPIHODGGZrYcA8yQUnBplBYFkZD81IRnCo4JwSMA0IYTcBgo2BJ5oVbA0rJrspOIWpmvAReM/QXqE7HXi6pF1lAsuNJwk2zX3zfLJP222H2GdzCIL29jWtsT4/YRKrh9qePr4j5xHd1bfdR6vUu/JD8cYMhTQ6yFmmBNssa3LmtOjGI4cZZJjljqKsOCG6WfIQWizE9hUZSIV+Ok4VqOkkpbh0c4qkegX7T0ExnSKG1mmA7E19vhwm0IkqjoN6N7zirrAZJoIzlUhOVtLh7e4YTZT2441lRwmFOefaySnicccEZ142NDY6OjrilubhBjYV9zsfdOwcDrAN7Nf1fbxrE/RbN5TqXSYdT4cvWG12tW5qSwpKU7qBBJiSo4Ec3R7sT+OBZOcxi+oUoRHU70marZ3KOIogHWRUe279erHkdwtOwtQTMer6kpUH4R9q9wQraDSxq7OuLoufU6tvclha/a0d34b0503f/LhO4PXrWpkRHP2D9b4iOv4AqeAEzXr/Q=</source>
   </file>
-  <file path="Import/DataSource.php" generated-path="Import.DataSource.html" hash="e8a6a2b15539f9b2400a4265ca9ce6ca" package="Default">
+  <file path="Import/DataSource.php" generated-path="Import.DataSource.html" hash="a17a9b0f60b828cc698f5b3e126e57ae" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="AbstractResource">\ChartMogul\Resource\AbstractResource</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Import" line="10" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul\Import" line="13" package="Default">
       <extends>\ChartMogul\Resource\AbstractResource</extends>
       <name>DataSource</name>
       <full_name>\ChartMogul\Import\DataSource</full_name>
-      <docblock line="10">
+      <docblock line="13">
         <description></description>
         <long-description></long-description>
-        <tag name="codeCoverageIgnore" line="10" description=""/>
-        <tag name="package" line="10" description="Default"/>
+        <tag name="codeCoverageIgnore" line="13" description=""/>
+        <tag name="package" line="13" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractResource" refers="\ChartMogul\Resource\AbstractResource" link="/classes/ChartMogul.Resource.AbstractResource.html"/>
       </docblock>
-      <property static="false" visibility="public" namespace="ChartMogul\Import" line="35" package="Default">
+      <property static="false" visibility="public" namespace="ChartMogul\Import" line="38" package="Default">
         <name>$name</name>
         <full_name>\ChartMogul\Import\DataSource::name</full_name>
         <default></default>
-        <docblock line="35">
+        <docblock line="38">
           <description></description>
           <long-description></long-description>
         </docblock>
@@ -1989,68 +1891,113 @@
         </docblock>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="13">
+        <name>$uuid</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="13">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="13"/>
+          <tag name="property-read" line="13" description="" type="string" variable="$uuid">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="13">
+        <name>$status</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="13">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="13"/>
+          <tag name="property-read" line="13" description="" type="string" variable="$status">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="13">
+        <name>$created_at</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="13">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="13"/>
+          <tag name="property-read" line="13" description="" type="string" variable="$created_at">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="10" code="PPC:ERR-50005">No summary for class \ChartMogul\Import\DataSource</error>
-      <error line="35" code="PPC:ERR-50007">No summary for property $name</error>
+      <error line="13" code="PPC:ERR-50005">No summary for class \ChartMogul\Import\DataSource</error>
+      <error line="38" code="PPC:ERR-50007">No summary for property $name</error>
     </parse_markers>
-    <source>eJydUk1LxDAUvOdX5LCw0EvwXEVLt+Aia6VbD0KhvE0e3UC3KfkoivjfTdIVdJVFzeWRYZh5M7zL63E/EjLAAc0IHGm+B203qnN9sz6MStuUEGe+4BUa5TTHJtsZq4HbD8BTWZKQhN5wJTBXE2rocN0NSiNJGOE9GENXYGEb+RSfLQ7C0FMh8koI9S8YN5+ct6gn6Y1zjWCx1iD9eueIWd//grVCb69ejsxIDTnC9FnkvH/8sTi4GoylVbEtH6u8aB+y+pZe0SWbLpiMnTHhM7ZzFrP8h+R9timCZOiKzmX9RaYs6/aueAoKP20yamWRWxR04ZwU6SloLFhnvsE8ti5aONY5ul0vOV2E40nJG3kHOGu1qg==</source>
+    <source>eJydUtFKwzAUfc9X3IfBoCDF5ypauoJDZqWtD8KgZOmlC3RNSW6KQ/x3k3aiTidqX0LOPT2955xeXPXbnrGO79D0XCAkW65ppRrbrpe7XmmKGLPmE56jUVYLXMcbQ5oLegMcNQwCFsC1UDUmakDNG1w2ndLo0V6rHjXtzzTyGty7smtgZq2sT08NcbLm9Fy4G2FdcWJByETLjYEFJ16MGwE+EXa1geNV2TNj4B5vbf3BW4F6kM5aMsqWmksXwE/EuG1/wVqg+7zaH5gj1SflT+dMTgmNt3A8hOoMQZ4W2UOepNV9XN7AJczD4TyUYyth7TxWkxcz/4fkXbxKvaTPCqaw/iKTZWV1mz56he82cV0RCtfLVG90DE6tfoHfyzyM7KaVAmb+94zYC3sFHZPYqA==</source>
   </file>
-  <file path="Import/Subscription.php" generated-path="Import.Subscription.html" hash="c81c96ccb2074e16c99a0b601b82796c" package="Default">
+  <file path="Import/Subscription.php" generated-path="Import.Subscription.html" hash="26c70c0e2d46e7c4b6c8a7f78d28d310" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="AbstractResource">\ChartMogul\Resource\AbstractResource</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Import" line="7" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul\Import" line="14" package="Default">
       <extends>\ChartMogul\Resource\AbstractResource</extends>
       <name>Subscription</name>
       <full_name>\ChartMogul\Import\Subscription</full_name>
-      <docblock line="7">
+      <docblock line="14">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="7" description="Default"/>
+        <tag name="package" line="14" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractResource" refers="\ChartMogul\Resource\AbstractResource" link="/classes/ChartMogul.Resource.AbstractResource.html"/>
       </docblock>
-      <constant namespace="ChartMogul\Import" line="13" package="Default">
+      <constant namespace="ChartMogul\Import" line="20" package="Default">
         <name>RESOURCE_PATH</name>
         <full_name>\ChartMogul\Import\Subscription::RESOURCE_PATH</full_name>
         <value>'/v1/import/customers/:customer_uuid/subscriptions'</value>
-        <docblock line="13">
+        <docblock line="20">
           <description></description>
           <long-description></long-description>
         </docblock>
       </constant>
-      <constant namespace="ChartMogul\Import" line="14" package="Default">
+      <constant namespace="ChartMogul\Import" line="21" package="Default">
         <name>ROOT_KEY</name>
         <full_name>\ChartMogul\Import\Subscription::ROOT_KEY</full_name>
         <value>'subscriptions'</value>
-        <docblock line="14">
+        <docblock line="21">
           <description></description>
           <long-description></long-description>
         </docblock>
       </constant>
-      <constant namespace="ChartMogul\Import" line="16" package="Default">
+      <constant namespace="ChartMogul\Import" line="23" package="Default">
         <name>RESOURSE_NAME</name>
         <full_name>\ChartMogul\Import\Subscription::RESOURSE_NAME</full_name>
         <value>'Subscription'</value>
-        <docblock line="16">
+        <docblock line="23">
           <description></description>
           <long-description></long-description>
         </docblock>
       </constant>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Import" line="31" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Import" line="38" package="Default">
         <name>cancel</name>
         <full_name>\ChartMogul\Import\Subscription::cancel()</full_name>
-        <docblock line="31">
+        <docblock line="38">
           <description>Cancels a subscription that was generated from an imported invoice.</description>
           <long-description></long-description>
-          <tag name="param" line="31" description="&lt;p&gt;The time at which the subscription was cancelled. Must be an ISO 8601 formatted time in the past. The timezone defaults to UTC unless otherwise specified.&lt;/p&gt;" type="string" variable="$cancelledAt">
+          <tag name="param" line="38" description="&lt;p&gt;The time at which the subscription was cancelled. Must be an ISO 8601 formatted time in the past. The timezone defaults to UTC unless otherwise specified.&lt;/p&gt;" type="string" variable="$cancelledAt">
             <type>string</type>
           </tag>
-          <tag name="return" line="31" description="" type="\ChartMogul\Import\Subscription">
+          <tag name="return" line="38" description="" type="\ChartMogul\Import\Subscription">
             <type>\ChartMogul\Import\Subscription</type>
           </tag>
         </docblock>
@@ -2191,14 +2138,89 @@
         </docblock>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="14">
+        <name>$uuid</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="14">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="14"/>
+          <tag name="property-read" line="14" description="" type="string" variable="$uuid">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="14">
+        <name>$external_id</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="14">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="14"/>
+          <tag name="property-read" line="14" description="" type="string" variable="$external_id">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="14">
+        <name>$cancellation_dates</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="14">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="14"/>
+          <tag name="property-read" line="14" description="" type="string" variable="$cancellation_dates">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="14">
+        <name>$plan_uuid</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="14">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="14"/>
+          <tag name="property-read" line="14" description="" type="string" variable="$plan_uuid">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="14">
+        <name>$data_source_uuid</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="14">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="14"/>
+          <tag name="property-read" line="14" description="" type="string" variable="$data_source_uuid">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="7" code="PPC:ERR-50005">No summary for class \ChartMogul\Import\Subscription</error>
+      <error line="14" code="PPC:ERR-50005">No summary for class \ChartMogul\Import\Subscription</error>
     </parse_markers>
-    <source>eJx9U02P2jAQvedXzAEpgLqke6mq0qVFEdKuKkoF7KECFBkzEEuJHdljtupq/3vtBLIJoPqSZPzmvfl4+fqtSIsgkCxHUzCOEKdM01QdbLZ+ygulaRgE1rTiczTKao7r8daQZpzOAQflGTMGFnZruBYFCSUB/xDKnYFLdPAaBOCOZ1836Beoj8KxxxoZ4VIz4Wr4H3CcZSdUCeNKGoL5ZDF7nseT5Nd4+QgPEEbH+0iUHUXcGlI5ahN9Ob8m1opdZBp1m3DYpJvNlsmPyW/PdIm6Ul1Mkp/j6cRjm5Pw0BJbaEXICXfQ8bLDy6CfmJYsS27ccSY5ZhnzhMnODcg4mdVmeMVcZEwmN+ldFkuqHZwAJSLq98sn9CEuRQwwaPYKlDKCF2bggBI182R7rXJgEqrJuoCQR+WWMjhTfS+YZjmA272Qh7p+3I0JlikCiRzB06aCp04B25JerU4ZwNStC7boFZ8WM/j86eM97JXOGXntkkvIkqVghga1wl8lEXa4ZzYjA6TgeRmDlRk6syoH1y/CmcsUyMVeOKG6eo1ktWwZ+nQXVWO120xw2FvJy3qrWrvNNnsl8LVKc6ej3a/m3IJucR1KhbkbHZDiTKCkbu9uZNzf0q3R/jS92zJfFA5ODH6PH9pJzvjxY9gOrtqQusqEUQgPo9Z6WtBN/dUbvndSad+0ZN3lKry+DzfvJKcJl1xV9C14C/4BRTB1zA==</source>
+    <source>eJyFVMGO2jAQvecr5rBSABXSvVRV6dJFEdKuKkoF7KECFBlnIJYSO7InbLur/ffaCWQTqKhPMH5+b2beg6/f8iT3PMkyNDnjCGHCNE3VvkjXj1muNA09rzCt+hyNKjTH9XhrSDNOp4KFBr2eBz24z7XKUdOfvkYWg4UJuYebohDxlWv8TaglS6OrKM4kxzRlJJSMYkZoroDzlMnoP7KWg0XVBCdo4PGUGQOLYmu4FrnTAteejA2cj+29eh7Y49a0buxpgfog7JpCq0a41EzYZV4DjtP0iCphXElDMJ8sZk/zcBL9HC8f4A784HAbiNKagBeGVIbaBF9OH8sJAtPo2/jDJt1stoy+T345pnPUhepiEv0YTycO29yEg5ZYu09CThhX1g7Piw1DL+4ubbQyq83wgrm28ILi3Ljj2zKD7vQgLEUMMGjOCpQwgmdmYI8SNXNkO60yYBKqzdqCkAdlTRmcqO5zplkG5zHEeEywTBBIZAiONhE8sQrYlnRq9ZMBTK1dsEWn+LiYwedPH29hp3TGyGmXXEKWLDkzNKgVXpREiHHHipQMkIKnZQiFTNGGVVm4fhY2XCZHLnbCCtXda6RCy1agj3dBtdZimwoOu0Lyst+q105zzG4JfK2e2XOj7X+GTQta424oEaY/2iOFqUBJnW5/ZOyvpVOj3WlmtxW+wB8cGZyPH9qPbPDDB79dXLUhdZcRIx/uRi17WtBN/a07fJ+k0v5nJOspV/7lvb95JzluuOSqqm/em/cXKia70Q==</source>
   </file>
-  <file path="Import/Invoice.php" generated-path="Import.Invoice.html" hash="768413c5d1bade9c92795792a2877cb7" package="Default">
+  <file path="Import/Invoice.php" generated-path="Import.Invoice.html" hash="16de3b59169bd9f10a38c268d60af09a" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
@@ -2211,55 +2233,28 @@
     <namespace-alias name="Payment">\ChartMogul\Import\Transactions\Payment</namespace-alias>
     <namespace-alias name="Refund">\ChartMogul\Import\Transactions\Refund</namespace-alias>
     <namespace-alias name="ArrayCollection">\Doctrine\Common\Collections\ArrayCollection</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Import" line="13" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul\Import" line="16" package="Default">
       <extends>\ChartMogul\Resource\AbstractModel</extends>
       <name>Invoice</name>
       <full_name>\ChartMogul\Import\Invoice</full_name>
-      <docblock line="13">
+      <docblock line="16">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="13" description="Default"/>
+        <tag name="package" line="16" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractModel" refers="\ChartMogul\Resource\AbstractModel" link="/classes/ChartMogul.Resource.AbstractModel.html"/>
       </docblock>
-      <property static="false" visibility="public" namespace="ChartMogul\Import" line="18" package="Default">
+      <property static="false" visibility="public" namespace="ChartMogul\Import" line="21" package="Default">
         <name>$date</name>
         <full_name>\ChartMogul\Import\Invoice::date</full_name>
         <default></default>
-        <docblock line="18">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-      </property>
-      <property static="false" visibility="public" namespace="ChartMogul\Import" line="19" package="Default">
-        <name>$currency</name>
-        <full_name>\ChartMogul\Import\Invoice::currency</full_name>
-        <default></default>
-        <docblock line="19">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-      </property>
-      <property static="false" visibility="public" namespace="ChartMogul\Import" line="20" package="Default">
-        <name>$line_items</name>
-        <full_name>\ChartMogul\Import\Invoice::line_items</full_name>
-        <default>array()</default>
-        <docblock line="20">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-      </property>
-      <property static="false" visibility="public" namespace="ChartMogul\Import" line="21" package="Default">
-        <name>$transactions</name>
-        <full_name>\ChartMogul\Import\Invoice::transactions</full_name>
-        <default>array()</default>
         <docblock line="21">
           <description></description>
           <long-description></long-description>
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import" line="22" package="Default">
-        <name>$external_id</name>
-        <full_name>\ChartMogul\Import\Invoice::external_id</full_name>
+        <name>$currency</name>
+        <full_name>\ChartMogul\Import\Invoice::currency</full_name>
         <default></default>
         <docblock line="22">
           <description></description>
@@ -2267,18 +2262,45 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import" line="23" package="Default">
-        <name>$due_date</name>
-        <full_name>\ChartMogul\Import\Invoice::due_date</full_name>
-        <default></default>
+        <name>$line_items</name>
+        <full_name>\ChartMogul\Import\Invoice::line_items</full_name>
+        <default>array()</default>
         <docblock line="23">
           <description></description>
           <long-description></long-description>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Import" line="25" package="Default">
+      <property static="false" visibility="public" namespace="ChartMogul\Import" line="24" package="Default">
+        <name>$transactions</name>
+        <full_name>\ChartMogul\Import\Invoice::transactions</full_name>
+        <default>array()</default>
+        <docblock line="24">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="public" namespace="ChartMogul\Import" line="25" package="Default">
+        <name>$external_id</name>
+        <full_name>\ChartMogul\Import\Invoice::external_id</full_name>
+        <default></default>
+        <docblock line="25">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="public" namespace="ChartMogul\Import" line="26" package="Default">
+        <name>$due_date</name>
+        <full_name>\ChartMogul\Import\Invoice::due_date</full_name>
+        <default></default>
+        <docblock line="26">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Import" line="28" package="Default">
         <name>__construct</name>
         <full_name>\ChartMogul\Import\Invoice::__construct()</full_name>
-        <docblock line="25">
+        <docblock line="28">
           <description></description>
           <long-description></long-description>
           <tag name="inherited_from" description="\ChartMogul\Resource\AbstractModel::__construct()" refers="\ChartMogul\Resource\AbstractModel::__construct()" link="/classes/ChartMogul.Resource.AbstractModel.html#method___construct"/>
@@ -2335,20 +2357,35 @@
         </argument>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="16">
+        <name>$uuid</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="16">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="16"/>
+          <tag name="property-read" line="16" description="" type="string" variable="$uuid">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="13" code="PPC:ERR-50005">No summary for class \ChartMogul\Import\Invoice</error>
-      <error line="25" code="PPC:ERR-50015">Argument $attr is missing from the Docblock of __construct</error>
-      <error line="25" code="PPC:ERR-50008">No summary for method __construct()</error>
-      <error line="18" code="PPC:ERR-50007">No summary for property $date</error>
-      <error line="19" code="PPC:ERR-50007">No summary for property $currency</error>
-      <error line="20" code="PPC:ERR-50007">No summary for property $line_items</error>
-      <error line="21" code="PPC:ERR-50007">No summary for property $transactions</error>
-      <error line="22" code="PPC:ERR-50007">No summary for property $external_id</error>
-      <error line="23" code="PPC:ERR-50007">No summary for property $due_date</error>
+      <error line="16" code="PPC:ERR-50005">No summary for class \ChartMogul\Import\Invoice</error>
+      <error line="28" code="PPC:ERR-50015">Argument $attr is missing from the Docblock of __construct</error>
+      <error line="28" code="PPC:ERR-50008">No summary for method __construct()</error>
+      <error line="21" code="PPC:ERR-50007">No summary for property $date</error>
+      <error line="22" code="PPC:ERR-50007">No summary for property $currency</error>
+      <error line="23" code="PPC:ERR-50007">No summary for property $line_items</error>
+      <error line="24" code="PPC:ERR-50007">No summary for property $transactions</error>
+      <error line="25" code="PPC:ERR-50007">No summary for property $external_id</error>
+      <error line="26" code="PPC:ERR-50007">No summary for property $due_date</error>
     </parse_markers>
-    <source>eJytlc9u2kAQxu9+ijlYAaTkBUJJFSUXpEat0twAWct6KKvau9b+aYOivHtn1wavAQOp4gPI49n5fvvNeP3la7WukkSyEk3FOMLDmmn7pH65Yj4tK6XtOEmcORKffxMSpxZLM79fGqsZt9vI+OyK7xJfRInnE3+6peFaVFYo2Zf9opk0JE8pLUsUvGjdD7YpUdqLcp9x5WRepz4qbjXhzh9UWSpJf0WBWxat2aYNkJO8YMbAVP5RgrzGV4syNzCP9J7RKKc57jbypHIskrckAboqrSwVwxxS5wQh1FG3LASHNGeWLI0j3GmNkm+60YJ4M+H9hQnMFt2HNtrpkceeWUtWZF69I+4wqwHiMBkVSkGWcSpoteN2yLwvkDJrdVAYhRVv4TesZQRtb2/jNSF71BT3V2rXwtzcdfYi8S/smT48yBuNdzVWSiPjazhMAmYg/Y0bmNxB6iOjiC+SN7ib+qHPv26yW433A+Q9h09Ax5knsDsFLwePZrqXPdpBO3u7pnZ2L2SOr9f1dG07uqskVkTrn4CgjjLJUa1g/9zoQW27MqtFFuRaKBaRAhYGvYowWZivWm4EV1cgDIHW97OB3VQ4WIR4JwKTyQQGiqQsnUyDj7D4DjYnWqP6+WAmOgg/DBefooeE55vcmZRtn+l1PNpleqmP9Dgq0UMfT3HcaKtPu0kckZdWd51s72sfq/qc77OwB8Kb2HwhguBnEunwNfkPoPoztM/TdPM9+QdfZH0E</source>
+    <source>eJytlctu2zAQRff6ilkI8QMJso/rtEW6MdCgRZpdbAg0NY6JSqTARxshyL93KMkWZVu2U0QLGxoOZw7vpchPn4t1EUWS5WgKxhHu1kzbe/XssvksL5S2kyhy5kB8/l1InFnMzfzr0ljNuN1EJidn/JD4KHI8nfjLLQ3XorBCyb7sR82kofaU0rIEwbPm/WRljtKelfuAKyfTOvWb4lYT7vxO5bmS9JdluGHRmpVtgJS8Ho8jGMOXQqsCtS2vNLIUjK/wDLFzIqXh64hnzBiYyT9KkCX4YlGmBuYB1gMa5TTH7XrvVYpZ9BpFQA+Vt9QT07rmpIm6ZSY4xCmzpHwY4U5rlLzsRjNaViK8DTCFp0V30AaCHBj2zFqyLPHdO80dJjVAGCY9q1KQJJwKWu24HTIvH8TMWl11GFUzXqvfai4jaHtzE86pskdNcf/Edi3M1W1nLRL/wo43w7280WRbY6XIJr6G/SRgBuLfWML0FmIfGQV8QXuD249j6PMvm+y2x9se8o7CR6DDzCPYnYLngwdbv5c9WEG797amdlYvZIovl/Xu2ji6rSRWROtHQJCjTHJUK9g9XnpQW1ee6iYLUq0qFpACZgZ9F2GSan/V7UZwcQHCEGj9/jSwZYGDRRXvRGA6ncJAUStLB9jgPSzewebga7p+PJgJzst3w4WH7T7haZM7O2XjM32OB12mj/qAx0GJHvpwF4dGW31cTeIItLS6q2T7XutY1NdBn4Q9EF7E5iKpGn4kka4unf8Aqm+rXZ7GzbfoHyA0iMg=</source>
   </file>
   <file path="Import/LineItems/Subscription.php" generated-path="Import.LineItems.Subscription.html" hash="61d19f4798d82ef1859d6642a37fd63f" package="Default">
     <docblock line="0">
@@ -2431,18 +2468,9 @@
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="13" package="Default">
+      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="14" package="Default">
         <name>$type</name>
         <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::type</full_name>
-        <default></default>
-        <docblock line="13">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-      </property>
-      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="14" package="Default">
-        <name>$amount_in_cents</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::amount_in_cents</full_name>
         <default></default>
         <docblock line="14">
           <description></description>
@@ -2450,8 +2478,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="15" package="Default">
-        <name>$quantity</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::quantity</full_name>
+        <name>$amount_in_cents</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::amount_in_cents</full_name>
         <default></default>
         <docblock line="15">
           <description></description>
@@ -2459,8 +2487,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="16" package="Default">
-        <name>$discount_amount_in_cents</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::discount_amount_in_cents</full_name>
+        <name>$quantity</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::quantity</full_name>
         <default></default>
         <docblock line="16">
           <description></description>
@@ -2468,8 +2496,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="17" package="Default">
-        <name>$discount_code</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::discount_code</full_name>
+        <name>$discount_amount_in_cents</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::discount_amount_in_cents</full_name>
         <default></default>
         <docblock line="17">
           <description></description>
@@ -2477,8 +2505,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="18" package="Default">
-        <name>$tax_amount_in_cents</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::tax_amount_in_cents</full_name>
+        <name>$discount_code</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::discount_code</full_name>
         <default></default>
         <docblock line="18">
           <description></description>
@@ -2486,19 +2514,28 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="19" package="Default">
-        <name>$external_id</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::external_id</full_name>
+        <name>$tax_amount_in_cents</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::tax_amount_in_cents</full_name>
         <default></default>
         <docblock line="19">
           <description></description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="21" package="Default">
+      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="20" package="Default">
+        <name>$external_id</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::external_id</full_name>
+        <default></default>
+        <docblock line="20">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="22" package="Default">
         <name>$invoice_uuid</name>
         <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::invoice_uuid</full_name>
         <default></default>
-        <docblock line="21">
+        <docblock line="22">
           <description></description>
           <long-description></long-description>
         </docblock>
@@ -2599,18 +2636,9 @@
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="13" package="Default">
+      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="14" package="Default">
         <name>$type</name>
         <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::type</full_name>
-        <default></default>
-        <docblock line="13">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-      </property>
-      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="14" package="Default">
-        <name>$amount_in_cents</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::amount_in_cents</full_name>
         <default></default>
         <docblock line="14">
           <description></description>
@@ -2618,8 +2646,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="15" package="Default">
-        <name>$quantity</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::quantity</full_name>
+        <name>$amount_in_cents</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::amount_in_cents</full_name>
         <default></default>
         <docblock line="15">
           <description></description>
@@ -2627,8 +2655,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="16" package="Default">
-        <name>$discount_amount_in_cents</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::discount_amount_in_cents</full_name>
+        <name>$quantity</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::quantity</full_name>
         <default></default>
         <docblock line="16">
           <description></description>
@@ -2636,8 +2664,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="17" package="Default">
-        <name>$discount_code</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::discount_code</full_name>
+        <name>$discount_amount_in_cents</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::discount_amount_in_cents</full_name>
         <default></default>
         <docblock line="17">
           <description></description>
@@ -2645,8 +2673,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="18" package="Default">
-        <name>$tax_amount_in_cents</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::tax_amount_in_cents</full_name>
+        <name>$discount_code</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::discount_code</full_name>
         <default></default>
         <docblock line="18">
           <description></description>
@@ -2654,19 +2682,28 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="19" package="Default">
-        <name>$external_id</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::external_id</full_name>
+        <name>$tax_amount_in_cents</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::tax_amount_in_cents</full_name>
         <default></default>
         <docblock line="19">
           <description></description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="21" package="Default">
+      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="20" package="Default">
+        <name>$external_id</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::external_id</full_name>
+        <default></default>
+        <docblock line="20">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="22" package="Default">
         <name>$invoice_uuid</name>
         <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::invoice_uuid</full_name>
         <default></default>
-        <docblock line="21">
+        <docblock line="22">
           <description></description>
           <long-description></long-description>
         </docblock>
@@ -2726,35 +2763,26 @@
     </parse_markers>
     <source>eJxVjL0KwkAQBvt9ii2EwDV5gCgqVgHFxjIgl8tHcpD74XYjivjuprFw2mFmu89TJoo2QLJ14NNki17SuMxdG3Iq2p19RKsI0hDVxpDhg0sDTumBYke0Y0wFZGpysxXha8TNBzCeijgIH3vRYp3+NvQm4pW89LN3vNFXBu+4ShF3XcOq+dMDxBWf1afY0Ie+lDs6dA==</source>
   </file>
-  <file path="Import/LineItems/AbstractLineItem.php" generated-path="Import.LineItems.AbstractLineItem.html" hash="0748c483e6b33b9eca0380dc13f748b1" package="Default">
+  <file path="Import/LineItems/AbstractLineItem.php" generated-path="Import.LineItems.AbstractLineItem.html" hash="02f2a51edede9248a71b10fb674cc011" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
-    <class final="false" abstract="true" namespace="ChartMogul\Import\LineItems" line="8" package="Default">
+    <class final="false" abstract="true" namespace="ChartMogul\Import\LineItems" line="9" package="Default">
       <extends>\ChartMogul\Resource\AbstractModel</extends>
       <name>AbstractLineItem</name>
       <full_name>\ChartMogul\Import\LineItems\AbstractLineItem</full_name>
-      <docblock line="8">
+      <docblock line="9">
         <description></description>
         <long-description></long-description>
-        <tag name="codeCoverageIgnore" line="8" description=""/>
-        <tag name="package" line="8" description="Default"/>
+        <tag name="codeCoverageIgnore" line="9" description=""/>
+        <tag name="package" line="9" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractModel" refers="\ChartMogul\Resource\AbstractModel" link="/classes/ChartMogul.Resource.AbstractModel.html"/>
       </docblock>
-      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="13" package="Default">
+      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="14" package="Default">
         <name>$type</name>
         <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::type</full_name>
-        <default></default>
-        <docblock line="13">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-      </property>
-      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="14" package="Default">
-        <name>$amount_in_cents</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::amount_in_cents</full_name>
         <default></default>
         <docblock line="14">
           <description></description>
@@ -2762,8 +2790,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="15" package="Default">
-        <name>$quantity</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::quantity</full_name>
+        <name>$amount_in_cents</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::amount_in_cents</full_name>
         <default></default>
         <docblock line="15">
           <description></description>
@@ -2771,8 +2799,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="16" package="Default">
-        <name>$discount_amount_in_cents</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::discount_amount_in_cents</full_name>
+        <name>$quantity</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::quantity</full_name>
         <default></default>
         <docblock line="16">
           <description></description>
@@ -2780,8 +2808,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="17" package="Default">
-        <name>$discount_code</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::discount_code</full_name>
+        <name>$discount_amount_in_cents</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::discount_amount_in_cents</full_name>
         <default></default>
         <docblock line="17">
           <description></description>
@@ -2789,8 +2817,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="18" package="Default">
-        <name>$tax_amount_in_cents</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::tax_amount_in_cents</full_name>
+        <name>$discount_code</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::discount_code</full_name>
         <default></default>
         <docblock line="18">
           <description></description>
@@ -2798,19 +2826,28 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="19" package="Default">
-        <name>$external_id</name>
-        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::external_id</full_name>
+        <name>$tax_amount_in_cents</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::tax_amount_in_cents</full_name>
         <default></default>
         <docblock line="19">
           <description></description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="21" package="Default">
+      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="20" package="Default">
+        <name>$external_id</name>
+        <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::external_id</full_name>
+        <default></default>
+        <docblock line="20">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="public" namespace="ChartMogul\Import\LineItems" line="22" package="Default">
         <name>$invoice_uuid</name>
         <full_name>\ChartMogul\Import\LineItems\AbstractLineItem::invoice_uuid</full_name>
         <default></default>
-        <docblock line="21">
+        <docblock line="22">
           <description></description>
           <long-description></long-description>
         </docblock>
@@ -2861,20 +2898,35 @@
         </argument>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="9">
+        <name>$uuid</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="9">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="9"/>
+          <tag name="property-read" line="9" description="" type="string" variable="$uuid">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="8" code="PPC:ERR-50005">No summary for class \ChartMogul\Import\LineItems\AbstractLineItem</error>
-      <error line="13" code="PPC:ERR-50007">No summary for property $type</error>
-      <error line="14" code="PPC:ERR-50007">No summary for property $amount_in_cents</error>
-      <error line="15" code="PPC:ERR-50007">No summary for property $quantity</error>
-      <error line="16" code="PPC:ERR-50007">No summary for property $discount_amount_in_cents</error>
-      <error line="17" code="PPC:ERR-50007">No summary for property $discount_code</error>
-      <error line="18" code="PPC:ERR-50007">No summary for property $tax_amount_in_cents</error>
-      <error line="19" code="PPC:ERR-50007">No summary for property $external_id</error>
-      <error line="21" code="PPC:ERR-50007">No summary for property $invoice_uuid</error>
+      <error line="9" code="PPC:ERR-50005">No summary for class \ChartMogul\Import\LineItems\AbstractLineItem</error>
+      <error line="14" code="PPC:ERR-50007">No summary for property $type</error>
+      <error line="15" code="PPC:ERR-50007">No summary for property $amount_in_cents</error>
+      <error line="16" code="PPC:ERR-50007">No summary for property $quantity</error>
+      <error line="17" code="PPC:ERR-50007">No summary for property $discount_amount_in_cents</error>
+      <error line="18" code="PPC:ERR-50007">No summary for property $discount_code</error>
+      <error line="19" code="PPC:ERR-50007">No summary for property $tax_amount_in_cents</error>
+      <error line="20" code="PPC:ERR-50007">No summary for property $external_id</error>
+      <error line="22" code="PPC:ERR-50007">No summary for property $invoice_uuid</error>
     </parse_markers>
-    <source>eJx9j0FrAkEMhe/5FXPwtBd/wApWPC3Ui+eFJWbCOjCbmU4yopT+96rV0qVgbnnvfQlvtc7HDCA4sWYkdtsjFtulsca+m3Iq1r8H4c540hZg2TTQuDdKnrfpxAVH7kZJhaFZAh7UCpI5iqjqNo/1yTs+G4tX1//5sWdNtRD3z/TuejrCJ4C7Ti7JmIy9W9QafPtQ6yEGcgu7ZG5nCk6pig1BBmIxnZsfFcWCXeaqD0p36CX7m7o1n1uG59fsrXYRjMO/AkFOKRAPP92+4BuYf4Z3</source>
+    <source>eJx9kMFqwzAMhu96Ch96Cow+QAbb6CmwXnYOBFUWqSGRXVkuDWPvvmRtx8KgvumTfv/69fySjglAcOSckNjtjqi2j30Z2mZMUa19D8KN8ZhrgG1VQeVeKXrexTMr9tz0EpUXmjQmVpuelNG7bBqkd5tSgodqC3iYCZI5GjBn93Yr7787vhiLz679s8EH51iUuL1P72fjAT4B3PxmP2My9leT+kbLYQjkNjYlrlcEx1jEuiAdsVheN08FxYJNa+pDph/RQ+3v1HKXdcvw8li7xFbBofsXIMg5BuLumu0LvgGOYZEL</source>
   </file>
   <file path="Import/Transactions/Payment.php" generated-path="Import.Transactions.Payment.html" hash="e85076ddc86168ea59b21047ff0ba309" package="Default">
     <docblock line="0">
@@ -3470,63 +3522,54 @@
     </parse_markers>
     <source>eJxNzMEKgkAQxvH7PMUcAmEvPoBFiXjwoIHVTYhxnVTQ3WV3jSJ695bq4Fzn9/23ezMYAEUzO0OSMRvI+lL3y9QUs9HWN2dLypH0o1YuAYiFAIEHqTvO9J0t9Vz0SlsGEYOcyDms+baoDvnhWXUO09Z5GwKrELwAMJwMTY91fjpe6iy/VmmZ7zD671c+Sn7eLO00Stz4p2EM0n5l+L7hA1ylQsA=</source>
   </file>
-  <file path="Import/Plan.php" generated-path="Import.Plan.html" hash="a92c2d9c548dd6c2a2e66dfc32d97e58" package="Default">
+  <file path="Import/Plan.php" generated-path="Import.Plan.html" hash="ddce95d0da7a3a0440fcd7916f3343c5" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="AbstractResource">\ChartMogul\Resource\AbstractResource</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Import" line="10" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul\Import" line="11" package="Default">
       <extends>\ChartMogul\Resource\AbstractResource</extends>
       <name>Plan</name>
       <full_name>\ChartMogul\Import\Plan</full_name>
-      <docblock line="10">
+      <docblock line="11">
         <description></description>
         <long-description></long-description>
-        <tag name="codeCoverageIgnore" line="10" description=""/>
-        <tag name="package" line="10" description="Default"/>
+        <tag name="codeCoverageIgnore" line="11" description=""/>
+        <tag name="package" line="11" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractResource" refers="\ChartMogul\Resource\AbstractResource" link="/classes/ChartMogul.Resource.AbstractResource.html"/>
       </docblock>
-      <constant namespace="ChartMogul\Import" line="16" package="Default">
+      <constant namespace="ChartMogul\Import" line="17" package="Default">
         <name>RESOURCE_PATH</name>
         <full_name>\ChartMogul\Import\Plan::RESOURCE_PATH</full_name>
         <value>'/v1/import/plans'</value>
-        <docblock line="16">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-      </constant>
-      <constant namespace="ChartMogul\Import" line="17" package="Default">
-        <name>RESOURCE_NAME</name>
-        <full_name>\ChartMogul\Import\Plan::RESOURCE_NAME</full_name>
-        <value>'Plan'</value>
         <docblock line="17">
           <description></description>
           <long-description></long-description>
         </docblock>
       </constant>
       <constant namespace="ChartMogul\Import" line="18" package="Default">
-        <name>ROOT_KEY</name>
-        <full_name>\ChartMogul\Import\Plan::ROOT_KEY</full_name>
-        <value>'plans'</value>
+        <name>RESOURCE_NAME</name>
+        <full_name>\ChartMogul\Import\Plan::RESOURCE_NAME</full_name>
+        <value>'Plan'</value>
         <docblock line="18">
           <description></description>
           <long-description></long-description>
         </docblock>
       </constant>
-      <property static="false" visibility="public" namespace="ChartMogul\Import" line="22" package="Default">
-        <name>$name</name>
-        <full_name>\ChartMogul\Import\Plan::name</full_name>
-        <default></default>
-        <docblock line="22">
+      <constant namespace="ChartMogul\Import" line="19" package="Default">
+        <name>ROOT_KEY</name>
+        <full_name>\ChartMogul\Import\Plan::ROOT_KEY</full_name>
+        <value>'plans'</value>
+        <docblock line="19">
           <description></description>
           <long-description></long-description>
         </docblock>
-      </property>
+      </constant>
       <property static="false" visibility="public" namespace="ChartMogul\Import" line="23" package="Default">
-        <name>$interval_count</name>
-        <full_name>\ChartMogul\Import\Plan::interval_count</full_name>
+        <name>$name</name>
+        <full_name>\ChartMogul\Import\Plan::name</full_name>
         <default></default>
         <docblock line="23">
           <description></description>
@@ -3534,8 +3577,8 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import" line="24" package="Default">
-        <name>$interval_unit</name>
-        <full_name>\ChartMogul\Import\Plan::interval_unit</full_name>
+        <name>$interval_count</name>
+        <full_name>\ChartMogul\Import\Plan::interval_count</full_name>
         <default></default>
         <docblock line="24">
           <description></description>
@@ -3543,19 +3586,28 @@
         </docblock>
       </property>
       <property static="false" visibility="public" namespace="ChartMogul\Import" line="25" package="Default">
-        <name>$external_id</name>
-        <full_name>\ChartMogul\Import\Plan::external_id</full_name>
+        <name>$interval_unit</name>
+        <full_name>\ChartMogul\Import\Plan::interval_unit</full_name>
         <default></default>
         <docblock line="25">
           <description></description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="false" visibility="public" namespace="ChartMogul\Import" line="27" package="Default">
+      <property static="false" visibility="public" namespace="ChartMogul\Import" line="26" package="Default">
+        <name>$external_id</name>
+        <full_name>\ChartMogul\Import\Plan::external_id</full_name>
+        <default></default>
+        <docblock line="26">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="public" namespace="ChartMogul\Import" line="28" package="Default">
         <name>$data_source_uuid</name>
         <full_name>\ChartMogul\Import\Plan::data_source_uuid</full_name>
         <default></default>
-        <docblock line="27">
+        <docblock line="28">
           <description></description>
           <long-description></long-description>
         </docblock>
@@ -3691,17 +3743,32 @@
         </docblock>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="11">
+        <name>$uuid</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="11">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="11"/>
+          <tag name="property-read" line="11" description="" type="string" variable="$uuid">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="10" code="PPC:ERR-50005">No summary for class \ChartMogul\Import\Plan</error>
-      <error line="22" code="PPC:ERR-50007">No summary for property $name</error>
-      <error line="23" code="PPC:ERR-50007">No summary for property $interval_count</error>
-      <error line="24" code="PPC:ERR-50007">No summary for property $interval_unit</error>
-      <error line="25" code="PPC:ERR-50007">No summary for property $external_id</error>
-      <error line="27" code="PPC:ERR-50007">No summary for property $data_source_uuid</error>
+      <error line="11" code="PPC:ERR-50005">No summary for class \ChartMogul\Import\Plan</error>
+      <error line="23" code="PPC:ERR-50007">No summary for property $name</error>
+      <error line="24" code="PPC:ERR-50007">No summary for property $interval_count</error>
+      <error line="25" code="PPC:ERR-50007">No summary for property $interval_unit</error>
+      <error line="26" code="PPC:ERR-50007">No summary for property $external_id</error>
+      <error line="28" code="PPC:ERR-50007">No summary for property $data_source_uuid</error>
     </parse_markers>
-    <source>eJx9kM1qwzAQhO96Ch0CAV9Mz25pjTE0lNTBcQ8Fg9nIiyNQJCGtTKH03Ss7NTTpj44znzSjub23R8uYhhN6CwJ5cQRHWzME1W5O1jjKGAv+Qq/Rm+AEtvnBkwNBixDRNElYwh+E6bEwIzoYcDNo45AlKRMKvOc7BZrjG6HuPb9+gr0zxuOZIttvmXt0o4yRhUMgbBzIWOw/MFfqi5oxYbQnXpf76qUuym6XN4/8jq/T8SaV8zdTG2v5dfYb/Zxvy4meml8SVdV0T+XrZC73Z9s6QygIe74KQfaLGg5KCr6a1s4uFKkp9gbVCRM0/eEFLa+saUWno/UjogeC7jxpd27wwT4BsEif4w==</source>
+    <source>eJx9kV9LwzAUxd/zKfIwGBSk+FxFSyk4ZHZ09UEolCy9dIEsCclNUcTvbtJacPNPHs85N/eXk5s7czSEKHYCZxgHWhyZxa0evGw3J6MtZoR4d6bX4LS3HNr84NAyjosQommSkITec91DoUewbIDNoLSFqBqrDVh8u7LAehpmhRroynvRkyQlXDLn6E4yReEVQfWOXi4g74TQcCJQ+41oD3YUAagIFyM0lomA/V8wl/IrNcW4Vg5pXe6r57oou13ePNBbuk7H61RMJaQmYLl19lv6Kd+WMR3JzxNV1XSP5Us0l/nJDj0gcIR+fvyi+oMUnK7iX2RnilAYuJnsuPYK//C8EhdWbNGqYP1Y0TNk3VxpNxN8kE+mrqp3</source>
   </file>
   <file path="Import/CustomerInvoices.php" generated-path="Import.CustomerInvoices.html" hash="e27c5a4b6de1351ed2d6f273f5b9cbf5" package="Default">
     <docblock line="0">
@@ -4082,21 +4149,21 @@
     </parse_markers>
     <source>eJxtjrEKwjAURff3FW9zKsW1VaSEgIOpktZBEEqMwQptWvJSEcR/N20XBe98zr13tenrHsCq1lCvtEFWK+dFdxuaszDe3TWlALpRRCikZPXgrFTeEJqnN/ZKmF3IO6X9TOMLMER3ljzyvJSniu2yosD1j54kU2X6BUte7I+S8eqQlduAL+LHMm7nC3HrXKRHOXLBXvz18kzw0Qs7OA3hdDTAbwD4ALSPSqk=</source>
   </file>
-  <file path="Metrics/MRRChurnRate.php" generated-path="Metrics.MRRChurnRate.html" hash="a3ffea2302add9e5f1ee2eeffa437dae" package="Default">
+  <file path="Metrics/MRRChurnRate.php" generated-path="Metrics.MRRChurnRate.html" hash="1787aa6fd72e8b5e0e2b8a8084d88530" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="AbstractModel">\ChartMogul\Resource\AbstractModel</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="7" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="11" package="Default">
       <extends>\ChartMogul\Resource\AbstractModel</extends>
       <name>MRRChurnRate</name>
       <full_name>\ChartMogul\Metrics\MRRChurnRate</full_name>
-      <docblock line="7">
+      <docblock line="11">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="7" description="Default"/>
+        <tag name="package" line="11" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractModel" refers="\ChartMogul\Resource\AbstractModel" link="/classes/ChartMogul.Resource.AbstractModel.html"/>
       </docblock>
       <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Metrics" line="12" package="Default">
@@ -4145,28 +4212,58 @@
         </argument>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="11">
+        <name>$data</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="11">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="11"/>
+          <tag name="property-read" line="11" description="" type="string" variable="$data">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="11">
+        <name>$mrr_churn_rate</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="11">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="11"/>
+          <tag name="property-read" line="11" description="" type="string" variable="$mrr_churn_rate">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="7" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\MRRChurnRate</error>
+      <error line="11" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\MRRChurnRate</error>
     </parse_markers>
-    <source>eJxdjDEKwzAMRXefQkNvkUIpmb14DgRVFnHBsY0kQ6H07nW7JX987/Gvt5aacwV31obEMCcU83XrefFs8iSdnOt6EIG1diFe7g81QRo4ch4dZVQFH8KcupSAxsAv4xIVDim8HYw1qcZkHOESRzud4S6y0u9plb/+fAEnVj1I</source>
+    <source>eJx9jbEKwkAMhvc8RQangvQBKqh07nJzocS70Bba65HkQBHf3dOtDmb8/o98p3OaEkCklTWRZ2wnEuu2MS99xyaz1wYg625wrFsWz/31pibkCw68FK+uKsAKL0m2xGKPozAFLM4cRzwEMvozryKDn7LEQci4iDX4hVSxc679cFcw8t04BsVdGp+A5cpfY28cvi1ufuG+0MDrDfAGV8c=</source>
   </file>
-  <file path="Metrics/ARR.php" generated-path="Metrics.ARR.html" hash="df336529893a393e88788a5c0a6173e7" package="Default">
+  <file path="Metrics/ARR.php" generated-path="Metrics.ARR.html" hash="bbaa770b21631571f26ad3d46b3db3a4" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="AbstractModel">\ChartMogul\Resource\AbstractModel</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="7" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="11" package="Default">
       <extends>\ChartMogul\Resource\AbstractModel</extends>
       <name>ARR</name>
       <full_name>\ChartMogul\Metrics\ARR</full_name>
-      <docblock line="7">
+      <docblock line="11">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="7" description="Default"/>
+        <tag name="package" line="11" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractModel" refers="\ChartMogul\Resource\AbstractModel" link="/classes/ChartMogul.Resource.AbstractModel.html"/>
       </docblock>
       <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Metrics" line="12" package="Default">
@@ -4215,12 +4312,42 @@
         </argument>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="11">
+        <name>$data</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="11">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="11"/>
+          <tag name="property-read" line="11" description="" type="string" variable="$data">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="11">
+        <name>$arr</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="11">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="11"/>
+          <tag name="property-read" line="11" description="" type="string" variable="$arr">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="7" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\ARR</error>
+      <error line="11" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\ARR</error>
     </parse_markers>
-    <source>eJxdijEOwjAMRXefwgO3KBKqmLtk7mKcL4oUmsh2JCTE3ZsR+NPXe+98aVsj2uUJb6Lg6yYWS733si4Ie6hPRN1/RILXbop1vnmY6MAZZXRaxJ3nlBivwJ7H/y74TTzWrAY0kPmUJTD9QzGb6HMAfBI1Gg==</source>
+    <source>eJx9jbEKwkAMhvc8RQanA+kDVNDi3KVzl3gX2sLZHkkOFPHdDU7qYKaf//v5cjiWuQCsdGUtFBnPM4n121Tz2LPJErUFqPoFBtatSuSxu6gJRa8TZ981IQAGPBXZCovd98KU0DfLOuEukdEfTCJOG4iZVLEbBuSb8Zo8f77BB6CfO4yjcXp7uf0t3dbC8wWE9UsD</source>
   </file>
   <file path="Metrics/Activities.php" generated-path="Metrics.Activities.html" hash="6b3d7aa231338c01ca814203a68bad7f" package="Default">
     <docblock line="0">
@@ -4411,21 +4538,21 @@
     </parse_markers>
     <source>eJx1UV1rwjAUfe+vyIOggqPstd0HpRQcTCetexhzlBivGohpubmRydh/X9pa7UTzlJ57cs49pw/P5bb0PM13YEougMVbjjQpNlYtJkAohQk9z5p/gxRMYVHAIloaQi6oBcKbzEQTHubIJd3mzPgG+FLBdVoGuJeVp1LXCWOichErCZpeNAGuebWQJxQ3hkWC5F6SBMPgm0CvHHSxPPvxmDui0IZYMp2nH3n8GmUZe2xfH4KgVgs7xDTJ3t7TOMln0XzsqH1/f+8La6jYARo/aK+5tXLl89Ma/asi02iSVCJRl1cTq7DdElvsXEeLXNRY4yUWBIJgxQxxkoKtrXYWhWYboFo2roINhk0H1UEgi/rID4JOIY3V71HZLlVXL8/rSGgFDTgiP7AeJ0IX6vNrxC5+D+uJGnBTbZVy7if7kqMbBEFXr1YatY+G4Zndo600d0+mCeNqGxwRaD6H7c5ua+8PcSj9GA==</source>
   </file>
-  <file path="Metrics/AllKeyMetric.php" generated-path="Metrics.AllKeyMetric.html" hash="d90b960d998df89c3183089df041d9c5" package="Default">
+  <file path="Metrics/AllKeyMetric.php" generated-path="Metrics.AllKeyMetric.html" hash="d37e872fa8e6d94d110e8a819f8ce056" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="AbstractModel">\ChartMogul\Resource\AbstractModel</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="7" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="18" package="Default">
       <extends>\ChartMogul\Resource\AbstractModel</extends>
       <name>AllKeyMetric</name>
       <full_name>\ChartMogul\Metrics\AllKeyMetric</full_name>
-      <docblock line="7">
+      <docblock line="18">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="7" description="Default"/>
+        <tag name="package" line="18" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractModel" refers="\ChartMogul\Resource\AbstractModel" link="/classes/ChartMogul.Resource.AbstractModel.html"/>
       </docblock>
       <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Metrics" line="12" package="Default">
@@ -4474,12 +4601,147 @@
         </argument>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="18">
+        <name>$date;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="18">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="18"/>
+          <tag name="property-read" line="18" description="" type="string" variable="$date;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="18">
+        <name>$arpa;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="18">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="18"/>
+          <tag name="property-read" line="18" description="" type="string" variable="$arpa;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="18">
+        <name>$arr;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="18">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="18"/>
+          <tag name="property-read" line="18" description="" type="string" variable="$arr;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="18">
+        <name>$asp;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="18">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="18"/>
+          <tag name="property-read" line="18" description="" type="string" variable="$asp;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="18">
+        <name>$customer_churn_rate;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="18">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="18"/>
+          <tag name="property-read" line="18" description="" type="string" variable="$customer_churn_rate;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="18">
+        <name>$customers;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="18">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="18"/>
+          <tag name="property-read" line="18" description="" type="string" variable="$customers;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="18">
+        <name>$ltv;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="18">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="18"/>
+          <tag name="property-read" line="18" description="" type="string" variable="$ltv;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="18">
+        <name>$mrr;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="18">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="18"/>
+          <tag name="property-read" line="18" description="" type="string" variable="$mrr;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="18">
+        <name>$mrr_churn_rate;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="18">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="18"/>
+          <tag name="property-read" line="18" description="" type="string" variable="$mrr_churn_rate;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="7" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\AllKeyMetric</error>
+      <error line="18" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\AllKeyMetric</error>
     </parse_markers>
-    <source>eJxtzcEKwjAMBuB7n6IH32KCDI+yi+fBiGmwQteWJJWJ+O4WRHB2OX7/H/79IftsTISZJAOSPXpgHdK1hHEg5RtKZ0yRVXAmSYWRxv4iyoCVHYXawwAitg/hRI/Pt6VFKbqKv1X7NLZe5qSESs7uHCh1/wicYQO5NcmNYRFNM/GEvnCceGvg25EmCXpvbN5YrrYaeL0Ba7Bx6w==</source>
+    <source>eJyFkM0KwjAQBu95ij14KogPoKDiUbx4LsiaLFZI27C7EUV8d4N/2FpijzMf6TKzeaiCMQ3WJAEtwapC1k17iL7ckPLRytSYKB2xJWkjWyqXe1FGm7Ajn3aTojBQwCJwG4j1MmZCB2lzbA4wcqg0zXjkgHnPWS0hp20UbWvina0iNzv+c8x7LrmR11NO1/mDk+4dMzHWowgsvV/T5dkf6KzUuAS/Y8PVQPrSw0pWyX3qduEraR/yL3vE67LhYsMb+THPNl1WD/y5X+F2Bxcw4CE=</source>
   </file>
   <file path="Metrics/AbstractMetric.php" generated-path="Metrics.AbstractMetric.html" hash="6fe849e42f7a85335c90eface57c0f5f" package="Default">
     <docblock line="0">
@@ -4643,7 +4905,7 @@
     </parse_markers>
     <source>eJx1UMlqwzAQvesrdPDBhvQH7C4EE0ih6SHOpdQlTJRJIlBkMxqVhtB/rzcRpyS6zZunt8zjS32ohbBwRFeDQpkfgHhR7b0pF8iklcuE8O5qsURXeVJYTjeOCRQHILvLnFmm04pA831O4Y9HuMeaM9dlbjRafrWMtIMbdgXSt25zGTOoCGXAORmC9pUk/jDa7QUOEeRZCNm8VnacOGDXCQM6cmuhmipGxbiVjoEbt523inVl5R65U83bTHFy7ujtI2RPduCn6ex9tfxY52/TouhdfgdlvzFjvfVaVbZp4BXHQAQnGQEzySf5+TWR/44lI9UBzdZ6Y5KhaqcL1CzSdKzXKU3CpyS7sCM+aPfw7PoyGl08INiPSXaDOlwuUF0/JqFeU1D8AZR13Bw=</source>
   </file>
-  <file path="Metrics/Subscription.php" generated-path="Metrics.Subscription.html" hash="9bcb0937c736583255a774736887f074" package="Default">
+  <file path="Metrics/Subscription.php" generated-path="Metrics.Subscription.html" hash="c59e2849b2d64292e39e1f7bbf5444c7" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
@@ -4651,30 +4913,30 @@
     </docblock>
     <namespace-alias name="AbstractModel">\ChartMogul\Resource\AbstractModel</namespace-alias>
     <namespace-alias name="ClientInterface">\ChartMogul\Http\ClientInterface</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="8" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="22" package="Default">
       <extends>\ChartMogul\Resource\AbstractModel</extends>
       <name>Subscription</name>
       <full_name>\ChartMogul\Metrics\Subscription</full_name>
-      <docblock line="8">
+      <docblock line="22">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="8" description="Default"/>
+        <tag name="package" line="22" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractModel" refers="\ChartMogul\Resource\AbstractModel" link="/classes/ChartMogul.Resource.AbstractModel.html"/>
       </docblock>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="ChartMogul\Metrics" line="29" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="ChartMogul\Metrics" line="43" package="Default">
         <name>all</name>
         <full_name>\ChartMogul\Metrics\Subscription::all()</full_name>
-        <docblock line="29">
+        <docblock line="43">
           <description>Returns a list of subscriptions for a given customer.</description>
           <long-description></long-description>
-          <tag name="param" line="29" description="&lt;p&gt;array with &lt;code&gt;customer_uuid&lt;/code&gt;&lt;/p&gt;" type="array" variable="$options">
+          <tag name="param" line="43" description="&lt;p&gt;array with &lt;code&gt;customer_uuid&lt;/code&gt;&lt;/p&gt;" type="array" variable="$options">
             <type>array</type>
           </tag>
-          <tag name="param" line="29" description="" type="\ChartMogul\Http\ClientInterface|null" variable="$client">
+          <tag name="param" line="43" description="" type="\ChartMogul\Http\ClientInterface|null" variable="$client">
             <type>\ChartMogul\Http\ClientInterface</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="29" description="" type="\ChartMogul\Metrics\Subscriptions">
+          <tag name="return" line="43" description="" type="\ChartMogul\Metrics\Subscriptions">
             <type>\ChartMogul\Metrics\Subscriptions</type>
           </tag>
         </docblock>
@@ -4735,28 +4997,208 @@
         </argument>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="22">
+        <name>$id;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="22">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="22"/>
+          <tag name="property-read" line="22" description="" type="string" variable="$id;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="22">
+        <name>$plan;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="22">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="22"/>
+          <tag name="property-read" line="22" description="" type="string" variable="$plan;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="22">
+        <name>$quantity;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="22">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="22"/>
+          <tag name="property-read" line="22" description="" type="string" variable="$quantity;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="22">
+        <name>$mrr;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="22">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="22"/>
+          <tag name="property-read" line="22" description="" type="string" variable="$mrr;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="22">
+        <name>$arr;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="22">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="22"/>
+          <tag name="property-read" line="22" description="" type="string" variable="$arr;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="22">
+        <name>$status;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="22">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="22"/>
+          <tag name="property-read" line="22" description="" type="string" variable="$status;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="22">
+        <name>$billing_cycle;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="22">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="22"/>
+          <tag name="property-read" line="22" description="" type="string" variable="$billing_cycle;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="22">
+        <name>$billing_cycle_count;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="22">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="22"/>
+          <tag name="property-read" line="22" description="" type="string" variable="$billing_cycle_count;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="22">
+        <name>$start_date;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="22">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="22"/>
+          <tag name="property-read" line="22" description="" type="string" variable="$start_date;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="22">
+        <name>$end_date;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="22">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="22"/>
+          <tag name="property-read" line="22" description="" type="string" variable="$end_date;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="22">
+        <name>$currency;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="22">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="22"/>
+          <tag name="property-read" line="22" description="" type="string" variable="$currency;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="22">
+        <name>$currency_sign;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="22">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="22"/>
+          <tag name="property-read" line="22" description="" type="string" variable="$currency_sign;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="8" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\Subscription</error>
+      <error line="22" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\Subscription</error>
     </parse_markers>
-    <source>eJx9UsFOAjEQvfcr5sBBiJE7SNRw0QMXPIpZut0BmnTbdWaqEuXfLQtrZHdjL03f63szfZ3bu2pXKeV1iVxpgzDfaZJF2Ea3WqCQNTxVKvIFsUQOkQyuHnIW0ibBBbpp+9qjSLWaO4tenrwgbZJ/MjNOM8NzzNmQrcQGD/gp6AuGCz/4UgrSqigIGsECBraYtqHKad8B36L2YmXfIUqiDqZ7MBYtkTtwbp2zfpuZvXH4P5uZEL30GZNkhZauPCXQT5hIhN50X9MQGdttCqGmx6NRvcMIliiRPIMGZ1kgbID/hM6wCZS4rX1HDyayhBLpphHfV5p0CZDS0XsYhLPmdPywsoN1o8litMW6LWx9/LePzqWWa/T3LtUtXgwDn8nx6bUxd9bA8T/Stone1AOjnbu67GwGL6/X7aJNPZjBsfzwPFHH1Vd5Mjn6No7XjXp4Cv6gDkqpHwEgD1o=</source>
+    <source>eJyNU7Fy2zAM3fkVGDI0vqTe4+aaXpZ0yJKOdU+hKdjmHU2yANjW1+bfS8mSayo+plwk4QEP0Hvgh49xG5XyeocctUG432qSx7BJbvmIQtbwQqnEBfCEHBIZXH5asZA2OdyiW0zTHkTi8t5Z9PLZC9I682ey+WymYAZ3kUJEkv01oW4hE1m/gQvbLipodNrX8O9Je7Gyr+XsiGqwrsMsWhLXMlbWufzSmL1x+N+JjQnJyxudSZpWS5UUfftmjklE6E1VpTGnYbvpJZ8r4zQzfEkrNmSj2OABf0luyFAsAvxWCvLJxIJGsB1cLUODlWXwxL8SOJhWxvSZ2NGeMjz1pIIejXhF/E/9EjqRvAROdD4PDOL2cH8tujODJ5REnkGDsywQ1sAnojOsA2VsY3+gB5NYwg7p/Vh8FzXpHUBWR+/hIgw1h8+fVrbwPNY0Kdn2eVo4ubF/fHIuj9xHj7nUj1gsAw/g/PC3aeWsgc6P/Fgnb/qF0c69Kye7ha/frqZNx35wC137y2GjunOu881NxzsyXo3VlwfhX9SLUuovP7enqA==</source>
   </file>
-  <file path="Metrics/LTV.php" generated-path="Metrics.LTV.html" hash="07949d4e03229e29ec0ee2ddaeb3f38a" package="Default">
+  <file path="Metrics/LTV.php" generated-path="Metrics.LTV.html" hash="353826ce84598ad8117c21c079a266f9" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="AbstractModel">\ChartMogul\Resource\AbstractModel</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="7" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="11" package="Default">
       <extends>\ChartMogul\Resource\AbstractModel</extends>
       <name>LTV</name>
       <full_name>\ChartMogul\Metrics\LTV</full_name>
-      <docblock line="7">
+      <docblock line="11">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="7" description="Default"/>
+        <tag name="package" line="11" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractModel" refers="\ChartMogul\Resource\AbstractModel" link="/classes/ChartMogul.Resource.AbstractModel.html"/>
       </docblock>
       <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Metrics" line="12" package="Default">
@@ -4805,12 +5247,42 @@
         </argument>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="11">
+        <name>$data</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="11">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="11"/>
+          <tag name="property-read" line="11" description="" type="string" variable="$data">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="11">
+        <name>$ltv</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="11">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="11"/>
+          <tag name="property-read" line="11" description="" type="string" variable="$ltv">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="7" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\LTV</error>
+      <error line="11" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\LTV</error>
     </parse_markers>
-    <source>eJxdirEOwjAMBXd/hQf+IkgIsdIFIaYuxnmiSKGJYqeqhPh3srY33t3xVKZCNMsHVkTBl0mqD/nV0jjA61stEDXbhBsst6oYz0/zKtp1ROqfJjHj6/3BWB1zNN4c/CXulJod6oh8iOIIe5l8CfT7A4EKNTw=</source>
+    <source>eJx9jbEKwkAQRPv9ii2sApIPiKBiaxoRqzTr3ZIEzuTY3RNF/HcXu1g45bzhzWabhwww0Y01U2A8DCTWzn1JXcsmY9AGoOgCnFjnIoG7/VVNKHgdOfmurirACndZ5sxiz7UwRfTNOPW4imT0Bye7O60hJFLF4/mC/DCeouLiBl+AHncYB+P49XLzW7qtgfcHj3dLNg==</source>
   </file>
   <file path="Metrics/CustomerCounts.php" generated-path="Metrics.CustomerCounts.html" hash="fe49e6dd36c33e3077f3623831f2964e" package="Default">
     <docblock line="0">
@@ -5298,21 +5770,21 @@
     </parse_markers>
     <source>eJyzsS/IKODiykvMTS0uSExOVXDOSCwq8c1PL82J8U0tKcpMLrbm4krOSSwuVnAMCnAsVkitKEnNSwHykopLihKTSyCqFKq5FIAgOT+vuETB1S8kKDLe2ccxOFjBFqzNygpshDWSoiDXYP/QIGfX+ADHEA+gMnX9MkP9XIiV+olFBYnqWFX7Ofq6glSDHQNUUsvFxQUA4TU8iw==</source>
   </file>
-  <file path="Metrics/ARPA.php" generated-path="Metrics.ARPA.html" hash="43b51469f03046a1430d57588b077712" package="Default">
+  <file path="Metrics/ARPA.php" generated-path="Metrics.ARPA.html" hash="f5910aad3c81228b575163d071471957" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="AbstractModel">\ChartMogul\Resource\AbstractModel</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="7" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="11" package="Default">
       <extends>\ChartMogul\Resource\AbstractModel</extends>
       <name>ARPA</name>
       <full_name>\ChartMogul\Metrics\ARPA</full_name>
-      <docblock line="7">
+      <docblock line="11">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="7" description="Default"/>
+        <tag name="package" line="11" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractModel" refers="\ChartMogul\Resource\AbstractModel" link="/classes/ChartMogul.Resource.AbstractModel.html"/>
       </docblock>
       <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Metrics" line="12" package="Default">
@@ -5361,14 +5833,44 @@
         </argument>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="11">
+        <name>$data</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="11">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="11"/>
+          <tag name="property-read" line="11" description="" type="string" variable="$data">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="11">
+        <name>$arpa</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="11">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="11"/>
+          <tag name="property-read" line="11" description="" type="string" variable="$arpa">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="7" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\ARPA</error>
+      <error line="11" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\ARPA</error>
     </parse_markers>
-    <source>eJxdikEKAjEMRfc5RRbeooIMrgdk1rOJ6ccR6rQkKQji3e1S/bv/3jue2taIdnnAmyj4vInFXG+9rDPC7uqJqPuPWOC1m2Kdrh4mOnBGGZ0WcedpuUyMZ2DP43wn/CIea1YDGsh8yBJI/1CsSaL3B+HsNbg=</source>
+    <source>eJx9jbEKwkAQRPv9ii2sApIPiKDBOiDWada7IQnE5NjdgCL+uxcrtXC7mTe83e1Tn4gmucKSBPCxF/Vm7paxbeA6BKuIFvsCZ9i8aEBbX8xVQq4jxrwri4K44EPSOUH9vlVI5LwZpo43UVz+YNG04pLCKGZcn0814+aYYg6fj/hBnC9bHMER32ZUv+Xqq+j5AmcqTAA=</source>
   </file>
-  <file path="Metrics/Activity.php" generated-path="Metrics.Activity.html" hash="3ce84116e17df93b5b04808c76ba9736" package="Default">
+  <file path="Metrics/Activity.php" generated-path="Metrics.Activity.html" hash="7dee5331b0f020cec28d2db93e7c713d" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
@@ -5376,30 +5878,30 @@
     </docblock>
     <namespace-alias name="AbstractModel">\ChartMogul\Resource\AbstractModel</namespace-alias>
     <namespace-alias name="ClientInterface">\ChartMogul\Http\ClientInterface</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="8" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="19" package="Default">
       <extends>\ChartMogul\Resource\AbstractModel</extends>
       <name>Activity</name>
       <full_name>\ChartMogul\Metrics\Activity</full_name>
-      <docblock line="8">
+      <docblock line="19">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="8" description="Default"/>
+        <tag name="package" line="19" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractModel" refers="\ChartMogul\Resource\AbstractModel" link="/classes/ChartMogul.Resource.AbstractModel.html"/>
       </docblock>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="ChartMogul\Metrics" line="26" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="ChartMogul\Metrics" line="37" package="Default">
         <name>all</name>
         <full_name>\ChartMogul\Metrics\Activity::all()</full_name>
-        <docblock line="26">
+        <docblock line="37">
           <description>Returns a list of activities for a given customer.</description>
           <long-description></long-description>
-          <tag name="param" line="26" description="&lt;p&gt;array with &lt;code&gt;customer_uuid&lt;/code&gt;&lt;/p&gt;" type="array" variable="$options">
+          <tag name="param" line="37" description="&lt;p&gt;array with &lt;code&gt;customer_uuid&lt;/code&gt;&lt;/p&gt;" type="array" variable="$options">
             <type>array</type>
           </tag>
-          <tag name="param" line="26" description="" type="\ChartMogul\Http\ClientInterface|null" variable="$client">
+          <tag name="param" line="37" description="" type="\ChartMogul\Http\ClientInterface|null" variable="$client">
             <type>\ChartMogul\Http\ClientInterface</type>
             <type>null</type>
           </tag>
-          <tag name="return" line="26" description="" type="\ChartMogul\Metrics\Activities">
+          <tag name="return" line="37" description="" type="\ChartMogul\Metrics\Activities">
             <type>\ChartMogul\Metrics\Activities</type>
           </tag>
         </docblock>
@@ -5460,12 +5962,147 @@
         </argument>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="19">
+        <name>$id;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="19">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="19"/>
+          <tag name="property-read" line="19" description="" type="string" variable="$id;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="19">
+        <name>$description;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="19">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="19"/>
+          <tag name="property-read" line="19" description="" type="string" variable="$description;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="19">
+        <name>$type;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="19">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="19"/>
+          <tag name="property-read" line="19" description="" type="string" variable="$type;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="19">
+        <name>$date;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="19">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="19"/>
+          <tag name="property-read" line="19" description="" type="string" variable="$date;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="19">
+        <name>$activity_arr;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="19">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="19"/>
+          <tag name="property-read" line="19" description="" type="string" variable="$activity_arr;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="19">
+        <name>$activity_mrr;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="19">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="19"/>
+          <tag name="property-read" line="19" description="" type="string" variable="$activity_mrr;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="19">
+        <name>$activity_mrr_movement;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="19">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="19"/>
+          <tag name="property-read" line="19" description="" type="string" variable="$activity_mrr_movement;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="19">
+        <name>$currency;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="19">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="19"/>
+          <tag name="property-read" line="19" description="" type="string" variable="$currency;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="19">
+        <name>$currency_sign;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="19">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="19"/>
+          <tag name="property-read" line="19" description="" type="string" variable="$currency_sign;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="8" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\Activity</error>
+      <error line="19" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\Activity</error>
     </parse_markers>
-    <source>eJyFUrFuwjAQ3f0VN3QoCJUdilrE0g4srKUKxrmAJce2zmfaqOXf64SkKolQvVh+7+69d7Yfn/zRC2FlicFLhbA6SuK1O0SzXSOTVmEuRAxXxAaDi6Rwu9wHJqkSnKOZ98temP12ZTRafrWMVCT9JKaMDAGWivVJcwX4yWjzBPzVgi8hIC1PjlEx5nCn83kfyjEo0p61swOOK4/DBslDULZJMkl0myz/IbPSnbBMow6qVCRCq6qbRBb0IQ3Q0NPxuNlhDBvkSDaABKMDgyug9dMYoHCUiIM+oQUVA7sS6aHrfPaSZAmQBpIV3LnmhkJ7/NB8hF3Xk8Wo812/sfdo3zYak/I26G8tNfm6h0yhWmZ6mTPujVYQWHLaimhVHQKkMffXsRbw9j7pO3ZmsIDae9R+h3oNbGezWrSTm3Sto8t9n8VZCPED/CP3Hw==</source>
+    <source>eJyNU8FOwzAMvecrfODApsHujAnQLnDYhStDW5Z6W6Q0iRxnUMH+nbRr0VqgzJeofs/P9kt6e+d3XggrcwxeKoTZThLP3TaaxRyZtAoTIWJoAc8YXCSFi4d1YJIqpTM0ky7tkdkvZkaj5SfLSJukn8TGw6GAIdx7ch6JiytCmUES0nYLFzqb9KAZBkXas3a2j8aFx14Zyb14WknvNRdLSXQWLz+ft8zdHvPkSV+BikRoVXEOZxn0tnJjLJSRIcBD3Q3wndFmKXF6TfAhBKRIooyKMas9b6faRrex2t1OwdHSdrLj4x9g/g946libdWLT70DtTQVX766MITwjR7IBJBgdGNwG6n4aA2wcJWCr92hBxcAuR7puKu+9JJkDpIVkAReucijUn2+ad7BqapYx6mzVLez8D582GpPmrbLfXKrmay4yDVUj4+OecW20Su9Acjo20apyCJDGXLbHmsLL66jbsWkGUyh7D+rnUMaPtjc3pWgjN2pKB0e/D+IghPgCcDhwAg==</source>
   </file>
   <file path="Metrics/Subscriptions.php" generated-path="Metrics.Subscriptions.html" hash="ab00bf2f7f13e4a64c43c385bd92361b" package="Default">
     <docblock line="0">
@@ -5656,21 +6293,21 @@
     </parse_markers>
     <source>eJx1kU9rwkAQxe/5FHsQVLCEXmP/EELAQrVi7KHUEjbrqAvrJszMSqX0uzeJpkbRPWXf/PbNm8nDc7EpPM/KLVAhFYhoI5HH+dqZxRgYtaKh5zk6K8yAcocKFmFGjFJxIwxvkrFl3M9Rar7NTOUaZGbgOpYA7nTV05jrwIi5WERGg+UXy4ArWQXylJFEInEZKdQF69ySgG8GuyRxmV/8eKI8qmRYxJP57CONXsMkEY9nBkFQmw5b8CxO3t5nUZxOw/moxLv+7t5XjjjfApIfNJ+pc3rpUztN96rPJBzHlU9ygdZsNXl7o4122k2jXOy01gvMGRTDUhBL1kqsnFWVv1gD17ZRNV6vf9hGdRDYoT3yQdBazaHV79HZZabtl6b1VOgU9ySi3IuOZMZyrs+vgbj4V6KjaqGsWmdM2f2/fSGxLARB2692GjSP+sMT3eGNprsnOgyjgXpHBQ7XfpO5TO39AXQiAwg=</source>
   </file>
-  <file path="Metrics/CustomerCount.php" generated-path="Metrics.CustomerCount.html" hash="2c5e37e9af3340eb884ca76ce3ed11e8" package="Default">
+  <file path="Metrics/CustomerCount.php" generated-path="Metrics.CustomerCount.html" hash="19e3ed68377621b23fc20af59ce62d94" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="AbstractModel">\ChartMogul\Resource\AbstractModel</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="7" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="11" package="Default">
       <extends>\ChartMogul\Resource\AbstractModel</extends>
       <name>CustomerCount</name>
       <full_name>\ChartMogul\Metrics\CustomerCount</full_name>
-      <docblock line="7">
+      <docblock line="11">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="7" description="Default"/>
+        <tag name="package" line="11" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractModel" refers="\ChartMogul\Resource\AbstractModel" link="/classes/ChartMogul.Resource.AbstractModel.html"/>
       </docblock>
       <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Metrics" line="12" package="Default">
@@ -5719,12 +6356,42 @@
         </argument>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="11">
+        <name>$data</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="11">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="11"/>
+          <tag name="property-read" line="11" description="" type="string" variable="$data">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="11">
+        <name>$customers</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="11">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="11"/>
+          <tag name="property-read" line="11" description="" type="string" variable="$customers">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="7" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\CustomerCount</error>
+      <error line="11" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\CustomerCount</error>
     </parse_markers>
-    <source>eJxdjrEKwzAMRHd/hYb+RQqleM6SOYsqH03AsY0kQ6H03+uhS3rju8dx11vbWgiFD1hjAcWN1ef67Hmd4bqLTSF0OxULrHYVrPeHubIMnJCHJ5nNKHbzekBj7cUJL0dJRieX3oFGmlaHOBJdEjumfyi/pfHh8wVd8Tww</source>
+    <source>eJx9jbEKwkAQRPv9ii2sDiQfEEEldRrrNOvdkgSSu2N3DxTx3z1EhFg45ZvHzOGYpwwQaWXN5Bm7icT6NJZl6Nlk9toCFN0UF9ZUxPNwvqoJ+YoDL9VrnAN0eMqSMovd98IUsDpzHHEXyOhP7YtaWlm0Og34hVSx+7AulWjIN+MYFDe3+ACsqZvG3ji8f7j9hd/1Fp4v9V9UuQ==</source>
   </file>
   <file path="Metrics/CustomerChurnRates.php" generated-path="Metrics.CustomerChurnRates.html" hash="9778aee36535521f02d09172bcfdc910" package="Default">
     <docblock line="0">
@@ -6050,21 +6717,21 @@
     </parse_markers>
     <source>eJyzsS/IKODiykvMTS0uSExOVXDOSCwq8c1PL82J8U0tKcpMLrbm4krOSSwuVnAMDihWSK0oSc1LAXKSikuKEpNLIIoUqrkUgCA5P6+4RMHVLyQoMt7ZxzE4WMEWpMvKCmyANZKaINdg/9AgZ9f4AMcQD6Aqdf0yQ/1ciIX6icUF6lgV+zn6uoIUg1wCVFHLxcUFAPRnO2s=</source>
   </file>
-  <file path="Metrics/MRR.php" generated-path="Metrics.MRR.html" hash="e194716b9806db5f53f65b1f795c8235" package="Default">
+  <file path="Metrics/MRR.php" generated-path="Metrics.MRR.html" hash="40d36ddea99bb0e61fb9e4bf49e6b618" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="AbstractModel">\ChartMogul\Resource\AbstractModel</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="7" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="16" package="Default">
       <extends>\ChartMogul\Resource\AbstractModel</extends>
       <name>MRR</name>
       <full_name>\ChartMogul\Metrics\MRR</full_name>
-      <docblock line="7">
+      <docblock line="16">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="7" description="Default"/>
+        <tag name="package" line="16" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractModel" refers="\ChartMogul\Resource\AbstractModel" link="/classes/ChartMogul.Resource.AbstractModel.html"/>
       </docblock>
       <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Metrics" line="12" package="Default">
@@ -6113,12 +6780,103 @@
         </argument>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="16">
+        <name>$date;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="" line="16">
+            <type by_reference="false"/>
+          </tag>
+          <tag name="magic" line="16"/>
+          <tag name="property-read" line="16" description="" type="" variable="$date;"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="16">
+        <name>$mrr;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="" line="16">
+            <type by_reference="false"/>
+          </tag>
+          <tag name="magic" line="16"/>
+          <tag name="property-read" line="16" description="" type="" variable="$mrr;"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="16">
+        <name>$mrr_new_business;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="" line="16">
+            <type by_reference="false"/>
+          </tag>
+          <tag name="magic" line="16"/>
+          <tag name="property-read" line="16" description="" type="" variable="$mrr_new_business;"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="16">
+        <name>$mrr_expansion;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="" line="16">
+            <type by_reference="false"/>
+          </tag>
+          <tag name="magic" line="16"/>
+          <tag name="property-read" line="16" description="" type="" variable="$mrr_expansion;"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="16">
+        <name>$mrr_contraction;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="" line="16">
+            <type by_reference="false"/>
+          </tag>
+          <tag name="magic" line="16"/>
+          <tag name="property-read" line="16" description="" type="" variable="$mrr_contraction;"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="16">
+        <name>$mrr_churn;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="" line="16">
+            <type by_reference="false"/>
+          </tag>
+          <tag name="magic" line="16"/>
+          <tag name="property-read" line="16" description="" type="" variable="$mrr_churn;"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="16">
+        <name>$mrr_reactivation;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="" line="16">
+            <type by_reference="false"/>
+          </tag>
+          <tag name="magic" line="16"/>
+          <tag name="property-read" line="16" description="" type="" variable="$mrr_reactivation;"/>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="7" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\MRR</error>
+      <error line="16" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\MRR</error>
     </parse_markers>
-    <source>eJxtjsEKwjAQRO/5ihz8iwoinnvpuVDWzWALbRJ2Ey2I/26sp2r2+ObNsMdTHKMxnhZoJIa9jCSpDbc89y2STKyNMVl3QQcNWRj9+apJiAt2mIvHM6natuss1gTv1O4M+zS2XJSQwAnOHhwlNL9wESlb/3DweAzXrJOHat3AGsnrFHxtdODgt2e2vCqMWepVwad3p2/39QZJQmqW</source>
+    <source>eJx9kMsKwjAQRff5ilm4Kkg/oIKK6266LpQxHWyhTcJM4gPx3w2iaLQ1q3DvyZAzq7XrnFIGRxKHmmDXIfvSHsJQl+S511IoFSQpKhIbWFO93Ytn1DFuaYhcnmUKMtg4to7YX5ZM2MKiRU/FVDEyz+WNoVOzD9IbEpmF6OzQSG/NLKGteXzxL9MFnm/jLT4/4mtErvSAIlBWFdDZk2kFkkXAVUE8cZQn7em9gDR8yE+EX+ZTxKf2b5soTwJP398mdb3dAUIyuUM=</source>
   </file>
   <file path="Metrics/ARRs.php" generated-path="Metrics.ARRs.html" hash="7cfbfb3dc328d165d4448e4c233295be" package="Default">
     <docblock line="0">
@@ -6632,21 +7390,21 @@
     </parse_markers>
     <source>eJxtzjELwjAQBeD9fsVtHYtrq0gIAQdTJa2DIJQYgxWaNuSiCOJ/t7GLgzd/771brn3nAQbtLHltLPJOhyjH670/SRvDzVAJYHpNhFIpQvuMdrgQsjPFoE2cEb4ApzPjQBFF1ahjy7esrnGVUkXxLSh/jBL17qC4aPes2Uwqyx+L3M2DuQsh+4srJkXC6ZNJvAHgAwOZO58=</source>
   </file>
-  <file path="Metrics/CustomerChurnRate.php" generated-path="Metrics.CustomerChurnRate.html" hash="a21b12ad1ce6d0bf5019d9d795afbfcc" package="Default">
+  <file path="Metrics/CustomerChurnRate.php" generated-path="Metrics.CustomerChurnRate.html" hash="9595727abd3314b5107fcdb1b2308ef6" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="AbstractModel">\ChartMogul\Resource\AbstractModel</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="7" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="11" package="Default">
       <extends>\ChartMogul\Resource\AbstractModel</extends>
       <name>CustomerChurnRate</name>
       <full_name>\ChartMogul\Metrics\CustomerChurnRate</full_name>
-      <docblock line="7">
+      <docblock line="11">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="7" description="Default"/>
+        <tag name="package" line="11" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractModel" refers="\ChartMogul\Resource\AbstractModel" link="/classes/ChartMogul.Resource.AbstractModel.html"/>
       </docblock>
       <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Metrics" line="12" package="Default">
@@ -6695,28 +7453,58 @@
         </argument>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="11">
+        <name>$data</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="11">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="11"/>
+          <tag name="property-read" line="11" description="" type="string" variable="$data">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="11">
+        <name>$customer_churn_rate</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="11">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="11"/>
+          <tag name="property-read" line="11" description="" type="string" variable="$customer_churn_rate">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="7" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\CustomerChurnRate</error>
+      <error line="11" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\CustomerChurnRate</error>
     </parse_markers>
-    <source>eJxdjEEKwjAQRfc5xSy8RQWRrLvpulDi5GOFNAkzExCkdzeKm/qX7z/e+VLX6lwOG7QGBvk1iI3l3tI8wuTBOjjX9HBM0NKEMV9vahK444jUPU5BlXxTKxvEr03yFAyEpyFHpYNPL0d9VYqBDZFOsbvDP+RfbeFPbpGvs78B4c1Byg==</source>
+    <source>eJx9jrEKwkAMhvc8RQangvQBKqh07tK5UOJdaAvt9UhyoIjv7ikuFTHj/33w5XCMYwQItLBGcoz1SGLNOqS5a9hkcloBJN2AlnVN4rg7X9SEXJ49z9kriwKwwFOUNbLYbS9MHrMzhQF3noz+YJfU1oWld2OS0AsZZ7sEN5Mq1h9av2CbGfLVOHjFzRN4B8yXC8bO2L+rXH2PP1oVPJ60g15q</source>
   </file>
-  <file path="Metrics/ASP.php" generated-path="Metrics.ASP.html" hash="76e9982df343d573a37d08d01f453644" package="Default">
+  <file path="Metrics/ASP.php" generated-path="Metrics.ASP.html" hash="fa1ba413d6e4b222a7b440734d124303" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="AbstractModel">\ChartMogul\Resource\AbstractModel</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="7" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul\Metrics" line="11" package="Default">
       <extends>\ChartMogul\Resource\AbstractModel</extends>
       <name>ASP</name>
       <full_name>\ChartMogul\Metrics\ASP</full_name>
-      <docblock line="7">
+      <docblock line="11">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="7" description="Default"/>
+        <tag name="package" line="11" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractModel" refers="\ChartMogul\Resource\AbstractModel" link="/classes/ChartMogul.Resource.AbstractModel.html"/>
       </docblock>
       <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Metrics" line="12" package="Default">
@@ -6765,12 +7553,42 @@
         </argument>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="11">
+        <name>$data</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="11">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="11"/>
+          <tag name="property-read" line="11" description="" type="string" variable="$data">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="11">
+        <name>$asp</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="11">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="11"/>
+          <tag name="property-read" line="11" description="" type="string" variable="$asp">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="7" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\ASP</error>
+      <error line="11" code="PPC:ERR-50005">No summary for class \ChartMogul\Metrics\ASP</error>
     </parse_markers>
-    <source>eJxdikEKAjEMRfc5RRbeooIMrgdEt7OJ6ccR6rQkKQji3e1S/avPe29/aGsj2uQBb6Lg4yoWc731sswIu6snou4/4gyv3RTLdPUw0YEzyui0iDtPlxPjGdjy+N8Fv4jHmtWABjLvsgTSPxRvid4fe8w1GA==</source>
+    <source>eJx9jbEKwlAMRfd8RQangvQDKmhxLohdu8T3Qluor48kDxTx3w1O6mCmyz2Xk90+Txkg0ZU1U2A8TiTWrWNZho5N5qANQNEvcGZdiwQe2ouaUPA68uK7uqoAKzxkWTOL3bfCFNE3cxpxE8noDybNTmsIC6li25+Qb8Ypev58gw9AP3cYB+P49nLzW7qtgecLhF5LAA==</source>
   </file>
   <file path="Http/ClientInterface.php" generated-path="Http.ClientInterface.html" hash="e8150dc684ad7bc513e2e6594ea27eac" package="Default">
     <docblock line="0">
@@ -7238,21 +8056,21 @@
     </parse_markers>
     <source>eJylVclu2zAQvfMr5mAgctBad7tLXAcogrZAUbdng6FGSyuRAhcHRep/LykptkQtjhPCgAFy5vm9N+OZdx/LtCSEcFqgKilD2KRU6m8iMfmKkPD6moD7wA0TEW7EHiVN8C7hQqK9DgnLqVKwETzOEiOpzgQnj4SAPVWyOzZ7TyVwk+f/upH1c1h9lzLbU42gtH1jMIswpibXnQR4X6Gshn9AaZnxZBB0RhkThuuf4g86lKur1cUQCplE/QX/vjCfltknqtBlp1qXahmG9mrBnOGFM3zBRGFxe+I2Ei2AAo4PwCo7QNz/RqYhlqKAjjTKIzgSPVIrqaRFQ67rxUiID9FIMfe5LU1sOKuqsdtZOjbFMB30HX7jWzavQB5rSHtmOs3U2w9eYgdo5Qe3EU/wddih59xn1LCu4aAr1+YZyQfr5YlMUK9bjAJfRYM0IGaM1XaU1TPq9EQc83iStvJod9BeVYm24Cnjt1V1oN2HF7m+faruGcvPdsF2mMx0x1/k9InqCWfE46kGvsTd9fc7qMbJrx9fX9jV9Tw619B11JS3t/WkbrZAM5sWx+vuyMoUGIURPKS2x7jov5Z2odj3yFR1kaiEkXYvMZrnvk6Y2Ca13maZtGXfDuyVngdZDEGmdm7ZBK4BlsvBfTSft3LcmYh1u8sOcBcRzE/1Pvi+T0BM9YNOEaIhxxdew3dJzerY1zurRpwd/Dnf7mnbmqT+f6R9fyAH8h+ZZJOs</source>
   </file>
-  <file path="Summary.php" generated-path="Summary.html" hash="167deae5000b601e7c2e8a34ee11dbee" package="Default">
+  <file path="Summary.php" generated-path="Summary.html" hash="5456135389c262d7068375d7966dbf5b" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="AbstractModel">\ChartMogul\Resource\AbstractModel</namespace-alias>
-    <class final="false" abstract="false" namespace="ChartMogul" line="7" package="Default">
+    <class final="false" abstract="false" namespace="ChartMogul" line="12" package="Default">
       <extends>\ChartMogul\Resource\AbstractModel</extends>
       <name>Summary</name>
       <full_name>\ChartMogul\Summary</full_name>
-      <docblock line="7">
+      <docblock line="12">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="7" description="Default"/>
+        <tag name="package" line="12" description="Default"/>
         <tag name="inherited_from" description="\ChartMogul\Resource\AbstractModel" refers="\ChartMogul\Resource\AbstractModel" link="/classes/ChartMogul.Resource.AbstractModel.html"/>
       </docblock>
       <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul" line="12" package="Default">
@@ -7301,12 +8119,57 @@
         </argument>
         <inherited_from>\ChartMogul\Resource\AbstractModel</inherited_from>
       </method>
+      <property final="false" static="false" visibility="public" line="12">
+        <name>$current;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="12">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="12"/>
+          <tag name="property-read" line="12" description="" type="string" variable="$current;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="12">
+        <name>$previous;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="12">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="12"/>
+          <tag name="property-read" line="12" description="" type="string" variable="$previous;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="12">
+        <name>$percentage_change;</name>
+        <default/>
+        <docblock>
+          <description/>
+          <long-description/>
+          <tag name="var" description="" type="string" line="12">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag name="magic" line="12"/>
+          <tag name="property-read" line="12" description="" type="string" variable="$percentage_change;">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="7" code="PPC:ERR-50005">No summary for class \ChartMogul\Summary</error>
+      <error line="12" code="PPC:ERR-50005">No summary for class \ChartMogul\Summary</error>
     </parse_markers>
-    <source>eJxljTsKAkEQBfM5RQfeYgQRYxNNF6TteewKOx+6e0QR7+6a+XlhvYJab9rUQiicYY0FtJtYfV/HPscQun2C4QCrXQXD9myuLAtOeHsysxkde86sd8LNUZLRl0WPQMuaVoc4Eq2kq6J4/OVNcb3Ubv8HlnZxHnGSicuIGJ4vgxVDQw==</source>
+    <source>eJx9jkEKwjAQRfc5xSxcFaQHUFBx7Ua3BRmTIS20SZiZiEW8u+muVegs3zz+//tDapMxAQeShJbg3CLrJfrc74zJMgfNlSRmttScHqKMtmBHk1dXlYEKjoljItZxy4QOitMFDxubmSnobkVJTM8uZll1qFQHRU9322LwNMm1sT2KwC0PA/II9FIKTmCxEN4GypVYJavk5pOWfLbj5/Ff/vkCxFltXg==</source>
   </file>
   <package name="Default" full_name="Default"/>
   <package name="global" full_name="global"/>

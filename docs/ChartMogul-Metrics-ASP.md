@@ -14,6 +14,30 @@ ChartMogul\Metrics\ASP
 
 
 
+Properties
+----------
+
+
+### $data
+
+    public string $data
+
+
+
+
+
+* Visibility: **public**
+
+
+### $asp
+
+    public string $asp
+
+
+
+
+
+* Visibility: **public**
 
 
 Methods

@@ -29,8 +29,6 @@ API Index
         * [MRRs](ChartMogul-Metrics-MRRs.md)
         * [CustomerChurnRate](ChartMogul-Metrics-CustomerChurnRate.md)
         * [ASP](ChartMogul-Metrics-ASP.md)
-    * ChartMogul\Service
-        * [RequestService](ChartMogul-Service-RequestService.md)
     * ChartMogul\Exceptions
         * [ChartMogulException](ChartMogul-Exceptions-ChartMogulException.md)
         * [ForbiddenException](ChartMogul-Exceptions-ForbiddenException.md)

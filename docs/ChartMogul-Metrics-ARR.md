@@ -14,6 +14,30 @@ ChartMogul\Metrics\ARR
 
 
 
+Properties
+----------
+
+
+### $data
+
+    public string $data
+
+
+
+
+
+* Visibility: **public**
+
+
+### $arr
+
+    public string $arr
+
+
+
+
+
+* Visibility: **public**
 
 
 Methods

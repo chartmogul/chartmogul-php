@@ -14,6 +14,41 @@ ChartMogul\Summary
 
 
 
+Properties
+----------
+
+
+### $current;
+
+    public string $current;
+
+
+
+
+
+* Visibility: **public**
+
+
+### $previous;
+
+    public string $previous;
+
+
+
+
+
+* Visibility: **public**
+
+
+### $percentage_change;
+
+    public string $percentage_change;
+
+
+
+
+
+* Visibility: **public**
 
 
 Methods

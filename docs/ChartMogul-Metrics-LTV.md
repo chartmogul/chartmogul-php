@@ -14,6 +14,30 @@ ChartMogul\Metrics\LTV
 
 
 
+Properties
+----------
+
+
+### $data
+
+    public string $data
+
+
+
+
+
+* Visibility: **public**
+
+
+### $ltv
+
+    public string $ltv
+
+
+
+
+
+* Visibility: **public**
 
 
 Methods
