@@ -15,7 +15,8 @@ use ChartMogul\Resource\AbstractModel;
  * @property-read string $mrr;
  * @property-read string $mrr_churn_rate;
  */
-class AllKeyMetric extends AbstractModel {
+class AllKeyMetric extends AbstractModel
+{
     protected $date;
     protected $arpa;
     protected $arr;

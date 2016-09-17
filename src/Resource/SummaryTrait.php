@@ -4,11 +4,13 @@ namespace ChartMogul\Resource;
 
 use ChartMogul\Summary;
 
-trait SummaryTrait {
+trait SummaryTrait
+{
 
     protected $summary = [];
 
-    protected function setSummary(array $summary = []){
+    protected function setSummary(array $summary = [])
+    {
         if ($summary instanceof Summary) {
             //do nothing
         } elseif (is_array($summary)) {

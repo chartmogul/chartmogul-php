@@ -34,7 +34,7 @@ class CustomerInvoices extends AbstractResource
 
         if ($invoice instanceof \ChartMogul\Import\Invoice) {
             $this->invoices[$index] =$invoice;
-        } else if(is_array($invoice)){
+        } elseif (is_array($invoice)) {
             $this->invoices[$index] = new \ChartMogul\Import\Invoice($invoice);
         }
     }

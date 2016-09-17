@@ -32,7 +32,7 @@ class Subscription extends AbstractResource
 
     /**
      * Cancels a subscription that was generated from an imported invoice.
-     * @param  string $cancelledAt The time at which the subscription was cancelled. Must be an ISO 8601 formatted time in the past. The timezone defaults to UTC unless otherwise specified.
+     * @param  string $cancelledAt The time at which the subscription was cancelled.
      * @return Subscription
      */
     public function cancel($cancelledAt)

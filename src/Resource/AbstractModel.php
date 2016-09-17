@@ -21,8 +21,9 @@ abstract class AbstractModel
 
     private function objectToArray($obj)
     {
-        if($obj instanceof ArrayCollection)
+        if ($obj instanceof ArrayCollection) {
             $obj = $obj->toArray();
+        }
 
         $data = is_object($obj)? get_object_vars($obj): $obj;
 

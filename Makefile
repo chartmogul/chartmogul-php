@@ -26,8 +26,6 @@ cs: build
 	$(RUNNER) "./vendor/bin/phpcs --standard=PSR2 src/"
 cbf: build
 	$(RUNNER) "./vendor/bin/phpcbf --standard=PSR2 src/"
-cbf-fix: build
-	$(RUNNER) "./vendor/bin/phpcbf --standard=PSR2 src/"
 doc: build
 	$(RUNNER) "./vendor/bin/phpdoc"
 	$(RUNNER) "./vendor/bin/phpdocmd docs/structure.xml docs --index README.md"

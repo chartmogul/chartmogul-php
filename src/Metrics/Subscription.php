@@ -19,7 +19,8 @@ use ChartMogul\Http\ClientInterface;
  * @property-read string $currency;
  * @property-read string $currency_sign;
  */
-class Subscription extends AbstractModel {
+class Subscription extends AbstractModel
+{
 
     protected $id;
     protected $plan;
@@ -40,10 +41,9 @@ class Subscription extends AbstractModel {
      * @param  ClientInterface|null $client
      * @return Subscriptions
      */
-    public static function all(array $options= [], ClientInterface $client = null){
+    public static function all(array $options = [], ClientInterface $client = null)
+    {
 
         return Subscriptions::all($options, $client);
     }
 }
-
-

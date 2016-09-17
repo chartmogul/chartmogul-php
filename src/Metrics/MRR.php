@@ -13,7 +13,8 @@ use ChartMogul\Resource\AbstractModel;
  * @property-read $mrr_churn;
  * @property-read $mrr_reactivation;
  */
-class MRR extends AbstractModel {
+class MRR extends AbstractModel
+{
     protected $date;
     protected $mrr;
 

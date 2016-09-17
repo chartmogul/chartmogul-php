@@ -4,7 +4,6 @@ namespace ChartMogul\Import\Transactions;
 
 use ChartMogul\Resource\AbstractResource;
 
-
 /**
  * @property-read string $uuid
  */
@@ -23,5 +22,4 @@ abstract class AbstractTransaction extends AbstractResource
     public $external_id;
 
     public $invoice_uuid;
-
 }

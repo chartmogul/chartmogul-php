@@ -2,7 +2,8 @@
 
 namespace ChartMogul\Resource;
 
-trait PageableTrait {
+trait PageableTrait
+{
 
     protected $has_more;
     protected $per_page;

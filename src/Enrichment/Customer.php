@@ -4,7 +4,8 @@ namespace ChartMogul\Enrichment;
 
 use ChartMogul\Resource\AbstractResource;
 
-class Customer extends AbstractResource {
+class Customer extends AbstractResource
+{
     const RESOURCE_PATH = '/v1/customers';
 
     protected $uuid;
@@ -18,5 +19,4 @@ class Customer extends AbstractResource {
     public $city;
     public $zip;
     public $data_source_uuid;
-
 }

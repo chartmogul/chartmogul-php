@@ -17,4 +17,3 @@ trait DestroyTrait
             ->destroy();
     }
 }
-
