@@ -4,14 +4,29 @@ namespace ChartMogul\Exceptions;
 
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * ChartMogulException
+ */
 class ChartMogulException extends \RuntimeException implements ResponseException
 {
 
+    /**
+     * @var int
+     */
     private $statusCode = 0;
 
+    /**
+     * @var string|array
+     */
     private $response = '';
 
 
+    /**
+     * ChartMogulException
+     * @param string $message Exception message
+     * @param ResponseInterface|null $response  ResponseInterface object
+     * @param \Exception|null $previous
+     */
     public function __construct($message, ResponseInterface $response = null, \Exception $previous = null)
     {
 
@@ -28,12 +43,17 @@ class ChartMogulException extends \RuntimeException implements ResponseException
         parent::__construct($message, $this->statusCode, $previous);
     }
 
-
+    /**
+     * @inheritDoc
+     */
     public function getStatusCode()
     {
         return $this->statusCode;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getResponse()
     {
         return $this->response;

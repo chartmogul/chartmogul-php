@@ -2,6 +2,8 @@
 
 namespace ChartMogul\Resource;
 
+use \Doctrine\Common\Collections\ArrayCollection;
+
 abstract class AbstractModel
 {
     /**
@@ -10,6 +12,8 @@ abstract class AbstractModel
     public function __construct(array $data = [])
     {
         foreach ($data as $key => $value) {
+            // replace property names with dash with underscores
+            $key = str_replace('-', '_', $key);
             $this->$key = $value;
         }
     }
@@ -17,6 +21,9 @@ abstract class AbstractModel
 
     private function objectToArray($obj)
     {
+        if($obj instanceof ArrayCollection)
+            $obj = $obj->toArray();
+
         $data = is_object($obj)? get_object_vars($obj): $obj;
 
         if (is_array($data)) {
@@ -39,6 +46,16 @@ abstract class AbstractModel
     }
 
     /**
+     * @param array $data
+     * @return self
+     */
+    public static function fromArray(array $data)
+    {
+        return new static($data);
+    }
+
+    /**
+    * @ignore
     * @codeCoverageIgnore
     */
     public function __get($name)

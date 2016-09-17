@@ -37,7 +37,7 @@ class Invoice extends \ChartMogul\Resource\AbstractModel
         }
     }
 
-    public function setLineItem($index, $line)
+    protected function setLineItem($index, $line)
     {
 
         if ($line instanceof AbstractLineItem) {
@@ -49,7 +49,7 @@ class Invoice extends \ChartMogul\Resource\AbstractModel
         }
     }
 
-    public function setTransaction($index, $tr)
+    protected function setTransaction($index, $tr)
     {
 
         if ($tr instanceof AbstractTransaction) {

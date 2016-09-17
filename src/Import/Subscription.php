@@ -3,19 +3,18 @@
 namespace ChartMogul\Import;
 
 use ChartMogul\Resource\AbstractResource;
-use ChartMogul\Resource\noDestroyTrait;
-use ChartMogul\Resource\noCreateTrait;
 
 class Subscription extends AbstractResource
 {
 
-    use noDestroyTrait;
-    use noCreateTrait;
+    use \ChartMogul\Service\CreateTrait;
+    use \ChartMogul\Service\AllTrait;
 
     const RESOURCE_PATH = '/v1/import/customers/:customer_uuid/subscriptions';
     const ROOT_KEY = 'subscriptions';
 
-    private $customer_uuid;
+    const RESOURSE_NAME = 'Subscription';
+
 
     protected $uuid;
     protected $external_id;
@@ -24,26 +23,14 @@ class Subscription extends AbstractResource
     protected $plan_uuid;
     protected $data_source_uuid;
 
-
-    protected function applyAttributes(array &$data = [])
-    {
-        $this->customer_uuid = $data['customer_uuid'];
-        unset($data['customer_uuid']);
-        return parent::applyAttributes($data);
-    }
-
-    public function getResourcePath()
-    {
-        if (empty($this->customer_uuid)) {
-            throw new \Exception('customer_uuid parameter missing');
-        }
-
-        return str_replace(':customer_uuid', $this->customer_uuid, static::RESOURCE_PATH);
-    }
-
+    /**
+     * Cancels a subscription that was generated from an imported invoice.
+     * @param  string $cancelledAt The time at which the subscription was cancelled. Must be an ISO 8601 formatted time in the past. The timezone defaults to UTC unless otherwise specified.
+     * @return Subscription
+     */
     public function cancel($cancelledAt)
     {
-        $response = $this->custom(
+        $response = $this->getClient()->send(
             '/v1/import/subscriptions/'.$this->uuid,
             'PATCH',
             [

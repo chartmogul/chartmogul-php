@@ -7,7 +7,12 @@ use ChartMogul\Resource\AbstractResource;
 class Customer extends AbstractResource
 {
 
+    use \ChartMogul\Service\CreateTrait;
+    use \ChartMogul\Service\AllTrait;
+    use \ChartMogul\Service\DestroyTrait;
+
     const RESOURCE_PATH = '/v1/import/customers';
+    const RESOURCE_NAME = 'Customer';
     const ROOT_KEY = 'customers';
 
     protected $uuid;

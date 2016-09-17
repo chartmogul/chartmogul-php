@@ -3,14 +3,15 @@
 namespace ChartMogul\Import\Transactions;
 
 use ChartMogul\Resource\AbstractResource;
-use ChartMogul\Resource\noDestroyTrait;
-use ChartMogul\Resource\noAllTrait;
 
+
+/**
+ * @property-read string $uuid
+ */
 abstract class AbstractTransaction extends AbstractResource
 {
 
-    use noDestroyTrait;
-    use noAllTrait;
+    use \ChartMogul\Service\CreateTrait;
 
     const RESOURCE_PATH = '/v1/import/invoices/:invoice_uuid/transactions';
 
@@ -23,12 +24,4 @@ abstract class AbstractTransaction extends AbstractResource
 
     public $invoice_uuid;
 
-    public function getResourcePath()
-    {
-        if (empty($this->invoice_uuid)) {
-            throw new \Exception('invoice_uuid parameter missing');
-        }
-
-        return str_replace(':invoice_uuid', $this->invoice_uuid, static::RESOURCE_PATH);
-    }
 }

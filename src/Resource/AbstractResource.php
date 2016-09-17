@@ -10,7 +10,21 @@ abstract class AbstractResource extends AbstractModel
 {
 
 
+    /**
+    * @ignore
+    */
     const ROOT_KEY = null;
+
+    /**
+    * @ignore
+    */
+    const RESOURCE_PATH = null;
+
+    /**
+    * @ignore
+    */
+    const RESOURCE_NAME = null;
+
 
     /**
     * @var Client
@@ -35,25 +49,6 @@ abstract class AbstractResource extends AbstractModel
     }
 
     /**
-     * Get ROOT_KEY
-     * @return string
-     * @codeCoverageIgnore
-     */
-    public function getRootKey()
-    {
-        return static::ROOT_KEY;
-    }
-
-    /**
-     * @return string
-     * @codeCoverageIgnore
-     */
-    public function getResourcePath()
-    {
-        return static::RESOURCE_PATH;
-    }
-
-    /**
      * @return ClientInterface
      * @codeCoverageIgnore
      */
@@ -71,85 +66,6 @@ abstract class AbstractResource extends AbstractModel
     {
         $this->client = $client;
         return $this;
-    }
-
-    /**
-     * @return string
-     * @codeCoverageIgnore
-     */
-    public static function getResourceName()
-    {
-        return (new \ReflectionClass(static::class))->getShortName();
-    }
-
-    /**
-     * @param array|array &$data
-     * @return self
-     * @codeCoverageIgnore
-     */
-    protected function applyAttributes(array &$data = [])
-    {
-        foreach ($data as $key => $value) {
-            if (property_exists($this, $key)) {
-                $this->$key = $value;
-                unset($data[$key]);
-            }
-        }
-        return $this;
-    }
-
-    /**
-     * @param array|array $data
-     * @param ClientInterface|null $client
-     * @return self|ArrayCollection
-     */
-    public static function all(array $data = [], ClientInterface $client = null)
-    {
-
-        $obj = (new static([], $client))->applyAttributes($data);
-
-        $response = $obj->client
-            ->setResourceKey(self::getResourceName())
-            ->send($obj->getResourcePath(), 'GET', $data);
-
-        return static::fromArray($response, $client);
-    }
-
-    /**
-     * @param array|array $data
-     * @param ClientInterface|null $client
-     * @return self
-     */
-    public static function create(array $data = [], ClientInterface $client = null)
-    {
-        $obj = new static($data, $client);
-        $response = $obj->client
-            ->setResourceKey(self::getResourceName())
-            ->send($obj->getResourcePath(), 'POST', $obj->toArray());
-
-        return static::fromArray($response, $client);
-    }
-
-    /**
-     * @return boolean
-     */
-    public function destroy()
-    {
-        $this->custom($this->getResourcePath().'/'.$this->uuid, 'DELETE');
-        return true;
-    }
-
-    /**
-     * @param type $uri
-     * @param type|string $method
-     * @param array|array $data
-     * @return Zend\Diactoros\Response
-     */
-    protected function custom($uri, $method = 'GET', array $data = [])
-    {
-        return $this->client
-            ->setResourceKey($this->getRootKey())
-            ->send($uri, $method, $data);
     }
 
     /**

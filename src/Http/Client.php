@@ -38,8 +38,10 @@ class Client implements ClientInterface
     private $apiBase = 'https://api.chartmogul.com';
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @param Configuration|null $config Configuration Object
+     * @param HttpClient|null $client php-http/client-implementaion object
+     * @codeCoverageIgnore
+     */
     public function __construct(Configuration $config = null, HttpClient $client = null)
     {
         if (is_null($config)) {
@@ -55,16 +57,18 @@ class Client implements ClientInterface
 
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return Configuration
+     * @codeCoverageIgnore
+     */
     public function getConfiguration()
     {
         return clone $this->config;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @param Configuration $config Set config
+     * @codeCoverageIgnore
+     */
     public function setConfiguration(Configuration $config)
     {
         $this->config = $config;
@@ -72,8 +76,10 @@ class Client implements ClientInterface
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @param HttpClient $client
+     * @return self
+     * @codeCoverageIgnore
+     */
     public function setHttpClient(HttpClient $client)
     {
         $this->client = $client;
@@ -81,8 +87,9 @@ class Client implements ClientInterface
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return HttpClient
+     * @codeCoverageIgnore
+     */
     public function getHttpClient()
     {
         return clone $this->client;
@@ -121,7 +128,7 @@ class Client implements ClientInterface
         return $this->apiBase;
     }
 
-    public function getUserAgent()
+    protected function getUserAgent()
     {
         return implode(
             '/',
@@ -133,7 +140,7 @@ class Client implements ClientInterface
         );
     }
 
-    public function getBasicAuthHeader()
+    protected function getBasicAuthHeader()
     {
         return 'Basic '. base64_encode(
             $this->config->getAccountToken(). ':'. $this->config->getSecretKey()
@@ -174,7 +181,7 @@ class Client implements ClientInterface
      * @throws \ChartMogul\Exceptions\ChartMogulException
      * @return array
      */
-    public function handleResponse(ResponseInterface $response)
+    protected function handleResponse(ResponseInterface $response)
     {
         $response->getBody()->rewind();
         $data = json_decode($response->getBody()->getContents(), true);

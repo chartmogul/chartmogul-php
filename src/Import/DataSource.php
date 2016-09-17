@@ -10,7 +10,23 @@ use ChartMogul\Resource\AbstractResource;
 class DataSource extends AbstractResource
 {
 
+    use \ChartMogul\Service\CreateTrait;
+    use \ChartMogul\Service\AllTrait;
+    use \ChartMogul\Service\DestroyTrait;
+
+    /**
+    * @ignore
+    */
     const RESOURCE_PATH = '/v1/import/data_sources';
+
+    /**
+    * @ignore
+    */
+    const RESOURCE_NAME = 'Data Source';
+
+    /**
+    * @ignore
+    */
     const ROOT_KEY = 'data_sources';
 
     protected $uuid;

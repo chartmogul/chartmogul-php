@@ -3,9 +3,10 @@
 namespace ChartMogul\Exceptions;
 
 /**
-* @codeCoverageIgnore
-*/
+ * ResourceInvalidException
+ * @codeCoverageIgnore
+ */
 class ResourceInvalidException extends ChartMogulException
 {
- 
+
 }

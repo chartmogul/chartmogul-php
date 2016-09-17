@@ -9,7 +9,7 @@ RUN apt-get update && apt-get  install -y git unzip
 endef
 export Dockerfile
 
-RUNNER=docker run -t --rm --workdir "/src" -v "$(PWD):/src" chartmogulphp /bin/bash -c
+RUNNER=docker run -it --rm --workdir "/src" -v "$(PWD):/src" chartmogulphp /bin/bash -c
 
 .PHONY: build composer php
 
@@ -28,5 +28,8 @@ cbf: build
 	$(RUNNER) "./vendor/bin/phpcbf --standard=PSR2 src/"
 cbf-fix: build
 	$(RUNNER) "./vendor/bin/phpcbf --standard=PSR2 src/"
+doc: build
+	$(RUNNER) "./vendor/bin/phpdoc"
+	$(RUNNER) "./vendor/bin/phpdocmd docs/structure.xml docs --index README.md"
 %:
 	@:

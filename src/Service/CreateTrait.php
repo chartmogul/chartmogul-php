@@ -1,18 +1,20 @@
 <?php
 
-namespace ChartMogul\Resource;
+namespace ChartMogul\Service;
 
 use ChartMogul\Http\ClientInterface;
 
 /**
 * @codeCoverageIgnore
 */
-trait noCreateTrait
+trait CreateTrait
 {
 
     public static function create(array $data = [], ClientInterface $client = null)
     {
 
-        throw new \Exception('method create not implemented for '.static::class);
+        return (new RequestService($client))
+            ->setResourceClass(static::class)
+            ->create($data);
     }
 }

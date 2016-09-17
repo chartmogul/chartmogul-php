@@ -3,9 +3,10 @@
 namespace ChartMogul\Exceptions;
 
 /**
-* @codeCoverageIgnore
-*/
+ * NotFoundException
+ * @codeCoverageIgnore
+ */
 class NotFoundException extends ChartMogulException
 {
- 
+
 }

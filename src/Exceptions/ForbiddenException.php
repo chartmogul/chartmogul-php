@@ -3,9 +3,10 @@
 namespace ChartMogul\Exceptions;
 
 /**
-* @codeCoverageIgnore
-*/
+ * ForbiddenException
+ * @codeCoverageIgnore
+ */
 class ForbiddenException extends ChartMogulException
 {
- 
+
 }

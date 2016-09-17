@@ -3,7 +3,6 @@
 namespace ChartMogul\Import;
 
 use ChartMogul\Resource\AbstractResource;
-use ChartMogul\Resource\noDestroyTrait;
 
 /**
 * @codeCoverageIgnore
@@ -11,9 +10,11 @@ use ChartMogul\Resource\noDestroyTrait;
 class Plan extends AbstractResource
 {
 
-    use noDestroyTrait;
+    use \ChartMogul\Service\CreateTrait;
+    use \ChartMogul\Service\AllTrait;
 
     const RESOURCE_PATH = '/v1/import/plans';
+    const RESOURCE_NAME = 'Plan';
     const ROOT_KEY = 'plans';
 
     protected $uuid;

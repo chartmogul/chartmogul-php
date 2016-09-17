@@ -3,16 +3,17 @@
 namespace ChartMogul\Import;
 
 use ChartMogul\Resource\AbstractResource;
-use ChartMogul\Resource\noDestroyTrait;
 use ChartMogul\Http\ClientInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
 class CustomerInvoices extends AbstractResource
 {
 
-    use noDestroyTrait;
+    use \ChartMogul\Service\CreateTrait;
+    use \ChartMogul\Service\AllTrait;
 
     const RESOURCE_PATH = '/v1/import/customers/:customer_uuid/invoices';
+    const RESOURCE_NAME = 'Invoices';
 
     public $invoices = [];
 
@@ -28,21 +29,12 @@ class CustomerInvoices extends AbstractResource
         }
     }
 
-    public function getResourcePath()
-    {
-        if (empty($this->customer_uuid)) {
-            throw new \Exception('customer_uuid parameter missing');
-        }
-
-        return str_replace(':customer_uuid', $this->customer_uuid, static::RESOURCE_PATH);
-    }
-
-    public function setInvoice($index, $invoice)
+    protected function setInvoice($index, $invoice)
     {
 
         if ($invoice instanceof \ChartMogul\Import\Invoice) {
             $this->invoices[$index] =$invoice;
-        } else {
+        } else if(is_array($invoice)){
             $this->invoices[$index] = new \ChartMogul\Import\Invoice($invoice);
         }
     }

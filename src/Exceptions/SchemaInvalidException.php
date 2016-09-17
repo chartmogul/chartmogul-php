@@ -3,9 +3,10 @@
 namespace ChartMogul\Exceptions;
 
 /**
-* @codeCoverageIgnore
-*/
+ * SchemaInvalidException Interface
+ * @codeCoverageIgnore
+ */
 class SchemaInvalidException extends ChartMogulException
 {
- 
+
 }
