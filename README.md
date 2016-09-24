@@ -109,6 +109,228 @@ $ds = $dataSources>last();
 $ds->destroy();
 ```
 
+#### Customers
+
+**Import a Customer**
+
+```php
+ChartMogul\Import\Customer::create([
+    "data_source_uuid" => $ds->uuid,
+    "external_id" => "cus_0003",
+    "name" => "Adam Smith",
+    "email" => "adam@smith.com",
+    "country" => "US",
+    "city" => "New York"
+]);
+```
+
+**List Customers**
+
+```php
+ChartMogul\Import\Customer::all([
+  'page' => 1,
+  'data_source_uuid' => $ds->uuid
+]);
+```
+
+**Delete A Customer**
+
+```php
+$cus = ChartMogul\Import\Customer::all()->last();
+$cus->destroy();
+```
+
+#### Plans
+
+**Import a Plan**
+
+```php
+ChartMogul\Import\Plan::create([
+    "data_source_uuid" => $ds->uuid,
+    "name" => "Bronze Plan",
+    "interval_count" => 1,
+    "interval_unit" => "month",
+    "external_id" => "plan_0001"
+]);
+```
+
+**List Plans**
+
+```php
+$plans = ChartMogul\Import\Plan::all([
+  'page' => 1
+]);
+```
+
+
+#### Invoices
+
+**Import Invoices**
+
+```php
+$plan = ChartMogul\Import\Plan::all()->first();
+$cus = ChartMogul\Import\Customer::all()->first();
+
+$line_itme_1 = new ChartMogul\Import\LineItems\Subscription([
+    'subscription_external_id' => "sub_0001",
+    'plan_uuid' =>  $plan->uuid,
+    'service_period_start' =>  "2015-11-01 00:00:00",
+    'service_period_end' =>  "2015-12-01 00:00:00",
+    'amount_in_cents' => 5000,
+    'quantity' => 1,
+    'discount_code' => "PSO86",
+    'discount_amount_in_cents' => 1000,
+    'tax_amount_in_cents' => 900
+]);
+
+$line_itme_2 = new ChartMogul\Import\LineItems\OneTime([
+    "description" => "Setup Fees",
+    "amount_in_cents" => 2500,
+    "quantity" => 1,
+    "discount_code" => "PSO86",
+    "discount_amount_in_cents" => 500,
+    "tax_amount_in_cents" => 450
+]);
+
+$transaction = new ChartMogul\Import\Transactions\Payment([
+    "date" => "2015-11-05T00:14:23.000Z",
+    "result" => "successful"
+]);
+
+$invoice = new ChartMogul\Import\Invoice([
+    'external_id' => 'INV0001',
+    'date' =>  "2015-11-01 00:00:00",
+    'currency' => 'USD',
+    'due_date' => "2015-11-15 00:00:00",
+    'line_items' => [$line_itme_1, $line_itme_2],
+    'transactions' => [$transaction]
+]);
+
+$ci = ChartMogul\Import\CustomerInvoices::create([
+    'customer_uuid' => $cus->uuid,
+    'invoices' => [$invoice]
+]);
+
+```
+
+**List Customer Invoices**
+
+```php
+$ci = ChartMogul\Import\CustomerInvoices::all([
+    'customer_uuid' => $cus->uuid,
+    'page' => 1,
+    'per_page' => 200
+]);
+```
+
+### Metrics
+
+
+**Retrieve all key metrics**
+
+```php
+ChartMogul\Metrics::all([
+    'start-date' => '2015-01-01',
+    'end-date' => '2015-11-24',
+    'interval' => 'month',
+    'geo' => 'GB',
+    'plans' => $plan->name
+]);
+```
+
+**Retrieve MRR**
+
+
+```php
+ChartMogul\Metrics::mrr([
+    'start-date' => '2015-01-01',
+    'end-date' => '2015-11-24',
+    'interval' => 'month',
+    'geo' => 'GB',
+    'plans' => $plan->name
+]);
+```
+
+**Retrieve ARR**
+
+
+```php
+ChartMogul\Metrics::arr([
+    'start-date' => '2015-01-01',
+    'end-date' => '2015-11-24',
+    'interval' => 'month'
+]);
+```
+
+**Retrieve Average Revenue Per Account (ARPA)**
+
+```php
+ChartMogul\Metrics::arpa([
+    'start-date' => '2015-01-01',
+    'end-date' => '2015-11-24',
+    'interval' => 'month'
+]);
+```
+
+**Retrieve Average Sale Price (ASP)**
+
+```php
+ChartMogul\Metrics::asp([
+    'start-date' => '2015-01-01',
+    'end-date' => '2015-11-24',
+    'interval' => 'month',
+]);
+```
+**Retrieve Customer Count**
+
+```php
+ChartMogul\Metrics::customerCount([
+    'start-date' => '2015-01-01',
+    'end-date' => '2015-11-24',
+    'interval' => 'month',
+]);
+```
+
+**Retrieve Customer Churn Rate**
+
+```php
+ChartMogul\Metrics::customerChurnRate([
+    'start-date' => '2015-01-01',
+    'end-date' => '2015-11-24',
+]);
+```
+
+
+**Retrieve MRR Churn Rate**
+
+```php
+ChartMogul\Metrics::mrrChurnRate([
+    'start-date' => '2015-01-01',
+    'end-date' => '2015-11-24',
+]);
+```
+
+**Retrieve LTV**
+
+```php
+ChartMogul\Metrics::ltv([
+    'start-date' => '2015-01-01',
+    'end-date' => '2015-11-24',
+]);
+```
+
+**List Customer Subscriptions**
+
+```php
+ChartMogul\Metrics\Customer::subscriptions($cus->uuid);
+```
+
+**List Customer Activities**
+
+```php
+ChartMogul\Metrics\Activity::all($cus->uuid);
+```
+
 
 ### Exceptions
 
