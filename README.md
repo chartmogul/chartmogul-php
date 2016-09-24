@@ -223,7 +223,54 @@ $ci = ChartMogul\Import\CustomerInvoices::all([
 ]);
 ```
 
-### Metrics
+
+### Enrichment API
+
+#### Customers
+
+**Retrieve a Customer**
+
+```php
+ChartMogul\Enrichment\Customer::retrieve($cus->uuid);
+```
+
+**Search for Customers**
+
+```php
+ChartMogul\Enrichment\Customer::search('adam@smith.com');
+```
+
+**List all Customers**
+
+```php
+ChartMogul\Enrichment\Customer::all([
+    'page' => 1
+]);
+```
+
+
+**Merge Customers**
+
+```php
+ChartMogul\Enrichment\Customer::merge([
+    'customer_uuid' => $cus1->uuid
+], [
+    'customer_uuid' => $cus2->uuid
+]);
+```
+
+
+#### Customer Attributes
+
+**Retrieve Customer's Attributes**
+
+```php
+$customer = ChartMogul\Enrichment\Customer::retrieve($cus->uuid);
+$customer->attributes;
+
+```
+
+### Metrics API
 
 
 **Retrieve all key metrics**

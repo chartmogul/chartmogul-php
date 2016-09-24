@@ -38,6 +38,7 @@ API Index
         * [SchemaInvalidException](ChartMogul-Exceptions-SchemaInvalidException.md)
     * ChartMogul\Enrichment
         * [Customer](ChartMogul-Enrichment-Customer.md)
+        * [Customers](ChartMogul-Enrichment-Customers.md)
     * ChartMogul\Import
         * [Customer](ChartMogul-Import-Customer.md)
         * [DataSource](ChartMogul-Import-DataSource.md)

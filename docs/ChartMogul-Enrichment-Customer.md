@@ -16,9 +16,17 @@ Constants
 ----------
 
 
+### RESOURCE_NAME
+
+    const RESOURCE_NAME = 'Customer'
+
+
+
+
+
 ### RESOURCE_PATH
 
-    const RESOURCE_PATH = '/v1/customers'
+    const RESOURCE_PATH = '/v1/customers/:customer_uuid'
 
 
 
@@ -28,9 +36,31 @@ Properties
 ----------
 
 
+### $id
+
+    public string $id
+
+
+
+
+
+* Visibility: **public**
+
+
+### $uuid
+
+    public string $uuid
+
+
+
+
+
+* Visibility: **public**
+
+
 ### $external_id
 
-    public mixed $external_id
+    public string $external_id
 
 
 
@@ -41,7 +71,7 @@ Properties
 
 ### $name
 
-    public mixed $name
+    public string $name
 
 
 
@@ -52,7 +82,7 @@ Properties
 
 ### $email
 
-    public mixed $email
+    public string $email
 
 
 
@@ -61,20 +91,9 @@ Properties
 * Visibility: **public**
 
 
-### $company
+### $status
 
-    public mixed $company
-
-
-
-
-
-* Visibility: **public**
-
-
-### $country
-
-    public mixed $country
+    public string $status
 
 
 
@@ -83,20 +102,9 @@ Properties
 * Visibility: **public**
 
 
-### $state
+### $customer_since
 
-    public mixed $state
-
-
-
-
-
-* Visibility: **public**
-
-
-### $city
-
-    public mixed $city
+    public string $customer_since
 
 
 
@@ -105,9 +113,9 @@ Properties
 * Visibility: **public**
 
 
-### $zip
+### $attributes
 
-    public mixed $zip
+    public string $attributes
 
 
 
@@ -116,9 +124,86 @@ Properties
 * Visibility: **public**
 
 
-### $data_source_uuid
+### $address
 
-    public mixed $data_source_uuid
+    public string $address
+
+
+
+
+
+* Visibility: **public**
+
+
+### $mrr
+
+    public string $mrr
+
+
+
+
+
+* Visibility: **public**
+
+
+### $arr
+
+    public string $arr
+
+
+
+
+
+* Visibility: **public**
+
+
+### $billing_system_url
+
+    public string $billing_system_url
+
+
+
+
+
+* Visibility: **public**
+
+
+### $chartmogul_url
+
+    public string $chartmogul_url
+
+
+
+
+
+* Visibility: **public**
+
+
+### $billing_system_type
+
+    public string $billing_system_type
+
+
+
+
+
+* Visibility: **public**
+
+
+### $currency
+
+    public string $currency
+
+
+
+
+
+* Visibility: **public**
+
+
+### $currency_sign
+
+    public string $currency_sign
 
 
 
@@ -129,6 +214,105 @@ Properties
 
 Methods
 -------
+
+
+### tags
+
+    array ChartMogul\Enrichment\Customer::tags()
+
+Get Customer Tages
+
+
+
+* Visibility: **public**
+
+
+
+
+### customAttributes
+
+    array ChartMogul\Enrichment\Customer::customAttributes()
+
+Get Customer Custom Attributes
+
+
+
+* Visibility: **public**
+
+
+
+
+### retrieve
+
+    \ChartMogul\Enrichment\Customer ChartMogul\Enrichment\Customer::retrieve(string $customer_uuid, \ChartMogul\Http\ClientInterface|null $client)
+
+Retrieve a Customer
+
+
+
+* Visibility: **public**
+* This method is **static**.
+
+
+#### Arguments
+* $customer_uuid **string**
+* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)|null**
+
+
+
+### all
+
+    \ChartMogul\Enrichment\Customers ChartMogul\Enrichment\Customer::all(array $data, \ChartMogul\Http\ClientInterface|null $client)
+
+List all Customers
+
+
+
+* Visibility: **public**
+* This method is **static**.
+
+
+#### Arguments
+* $data **array**
+* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)|null**
+
+
+
+### search
+
+    \ChartMogul\Enrichment\Customers ChartMogul\Enrichment\Customer::search(string $email, \ChartMogul\Http\ClientInterface|null $client)
+
+Search for Customers
+
+
+
+* Visibility: **public**
+* This method is **static**.
+
+
+#### Arguments
+* $email **string**
+* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)|null**
+
+
+
+### merge
+
+    boolean ChartMogul\Enrichment\Customer::merge(array $from, array $into, \ChartMogul\Http\ClientInterface|null $client)
+
+Merge Customers
+
+
+
+* Visibility: **public**
+* This method is **static**.
+
+
+#### Arguments
+* $from **array**
+* $into **array**
+* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)|null**
+
 
 
 ### __construct

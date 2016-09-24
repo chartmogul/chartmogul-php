@@ -1,4 +1,4 @@
-ChartMogul\Import\Subscription
+ChartMogul\Enrichment\Customers
 ===============
 
 
@@ -6,8 +6,8 @@ ChartMogul\Import\Subscription
 
 
 
-* Class name: Subscription
-* Namespace: ChartMogul\Import
+* Class name: Customers
+* Namespace: ChartMogul\Enrichment
 * Parent class: [ChartMogul\Resource\AbstractResource](ChartMogul-Resource-AbstractResource.md)
 
 
@@ -16,143 +16,34 @@ Constants
 ----------
 
 
+### RESOURCE_NAME
+
+    const RESOURCE_NAME = 'Customers'
+
+
+
+
+
 ### RESOURCE_PATH
 
-    const RESOURCE_PATH = '/v1/import/customers/:customer_uuid/subscriptions'
+    const RESOURCE_PATH = '/v1/customers'
 
 
 
 
 
-### ROOT_KEY
+### ENTRY_CLASS
 
-    const ROOT_KEY = 'subscriptions'
-
-
-
-
-
-### RESOURSE_NAME
-
-    const RESOURSE_NAME = 'Subscription'
+    const ENTRY_CLASS = \ChartMogul\Enrichment\Customer::class
 
 
 
 
 
-Properties
-----------
-
-
-### $uuid
-
-    public string $uuid
-
-
-
-
-
-* Visibility: **public**
-
-
-### $external_id
-
-    public string $external_id
-
-
-
-
-
-* Visibility: **public**
-
-
-### $cancellation_dates
-
-    public string $cancellation_dates
-
-
-
-
-
-* Visibility: **public**
-
-
-### $plan_uuid
-
-    public string $plan_uuid
-
-
-
-
-
-* Visibility: **public**
-
-
-### $data_source_uuid
-
-    public string $data_source_uuid
-
-
-
-
-
-* Visibility: **public**
 
 
 Methods
 -------
-
-
-### cancel
-
-    \ChartMogul\Import\Subscription ChartMogul\Import\Subscription::cancel(string $cancelledAt)
-
-Cancels a subscription that was generated from an imported invoice.
-
-
-
-* Visibility: **public**
-
-
-#### Arguments
-* $cancelledAt **string** - &lt;p&gt;The time at which the subscription was cancelled.&lt;/p&gt;
-
-
-
-### create
-
-    mixed ChartMogul\Import\Subscription::create(array $data, \ChartMogul\Http\ClientInterface $client)
-
-
-
-
-
-* Visibility: **public**
-* This method is **static**.
-
-
-#### Arguments
-* $data **array**
-* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)**
-
-
-
-### all
-
-    \Doctrine\Common\Collections\ArrayCollection|self ChartMogul\Import\Subscription::all(array $data, \ChartMogul\Http\ClientInterface|null $client)
-
-Returns a list of objects
-
-
-
-* Visibility: **public**
-* This method is **static**.
-
-
-#### Arguments
-* $data **array**
-* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)|null** - &lt;p&gt;0&lt;/p&gt;
-
 
 
 ### __construct
@@ -169,6 +60,42 @@ Returns a list of objects
 
 #### Arguments
 * $data **array**
+
+
+
+### search
+
+    \ChartMogul\Enrichment\Customers ChartMogul\Enrichment\Customers::search(string $email, \ChartMogul\Http\ClientInterface|null $client)
+
+Search for Customers
+
+
+
+* Visibility: **public**
+* This method is **static**.
+
+
+#### Arguments
+* $email **string**
+* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)|null**
+
+
+
+### all
+
+    \Doctrine\Common\Collections\ArrayCollection|self ChartMogul\Enrichment\Customers::all(array $data, \ChartMogul\Http\ClientInterface|null $client)
+
+Returns a list of objects
+
+
+
+* Visibility: **public**
+* This method is **static**.
+
+
+#### Arguments
+* $data **array**
+* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)|null** - &lt;p&gt;0&lt;/p&gt;
 
 
 
