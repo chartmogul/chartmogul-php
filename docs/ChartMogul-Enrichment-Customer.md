@@ -315,6 +315,86 @@ Merge Customers
 
 
 
+### addTags
+
+    mixed ChartMogul\Enrichment\Customer::addTags($tags)
+
+Add tags to a customer
+
+
+
+* Visibility: **public**
+
+
+#### Arguments
+* $tags **mixed**
+
+
+
+### removeTags
+
+    mixed ChartMogul\Enrichment\Customer::removeTags($tags)
+
+Remove Tags from a Customer
+
+
+
+* Visibility: **public**
+
+
+#### Arguments
+* $tags **mixed**
+
+
+
+### addCustomAttributes
+
+    mixed ChartMogul\Enrichment\Customer::addCustomAttributes($custom)
+
+Add Custom Attributes to a Customer
+
+
+
+* Visibility: **public**
+
+
+#### Arguments
+* $custom **mixed**
+
+
+
+### removeCustomAttributes
+
+    mixed ChartMogul\Enrichment\Customer::removeCustomAttributes($custom)
+
+Remove Custom Attributes from a Customer
+
+
+
+* Visibility: **public**
+
+
+#### Arguments
+* $custom **mixed**
+
+
+
+### updateCustomAttributes
+
+    mixed ChartMogul\Enrichment\Customer::updateCustomAttributes($custom)
+
+Update Custom Attributes of a Customer
+
+
+
+* Visibility: **public**
+
+
+#### Arguments
+* $custom **mixed**
+
+
+
 ### __construct
 
     mixed ChartMogul\Resource\AbstractModel::__construct(array $data)

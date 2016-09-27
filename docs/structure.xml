@@ -1173,7 +1173,7 @@
     </parse_markers>
     <source>eJx1jbEOwjAMRHd/ReYs/QCQQKoYMjCxsliOSSqldhSHqhLi36FLxcJ6997d8VRzBRCc2SoSuzFj61dNz3K/rMS1Typ2ABi8B+fdjTLPGGTBMsUdcEE6t8fX35gzaeRRF26YOCTRtsUDUEGzfwu8dpZoP/97By+AN3wAjTg7QA==</source>
   </file>
-  <file path="Enrichment/Customer.php" generated-path="Enrichment.Customer.html" hash="6f5a0843d20d758338087c6568c82679" package="Default">
+  <file path="Enrichment/Customer.php" generated-path="Enrichment.Customer.html" hash="ee23ea7d05e74f9cf5afc708957e78ac" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
@@ -1350,6 +1350,86 @@
           <name>$client</name>
           <default>null</default>
           <type>\ChartMogul\Http\ClientInterface|null</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Enrichment" line="130" package="Default">
+        <name>addTags</name>
+        <full_name>\ChartMogul\Enrichment\Customer::addTags()</full_name>
+        <docblock line="130">
+          <description>Add tags to a customer</description>
+          <long-description></long-description>
+          <tag name="param" line="130" description="" type="mixed" variable="$tags,...">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$tags</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Enrichment" line="145" package="Default">
+        <name>removeTags</name>
+        <full_name>\ChartMogul\Enrichment\Customer::removeTags()</full_name>
+        <docblock line="145">
+          <description>Remove Tags from a Customer</description>
+          <long-description></long-description>
+          <tag name="param" line="145" description="" type="mixed" variable="$tags,...">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$tags</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Enrichment" line="159" package="Default">
+        <name>addCustomAttributes</name>
+        <full_name>\ChartMogul\Enrichment\Customer::addCustomAttributes()</full_name>
+        <docblock line="159">
+          <description>Add Custom Attributes to a Customer</description>
+          <long-description></long-description>
+          <tag name="param" line="159" description="" type="mixed" variable="$custom,...">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$custom</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Enrichment" line="174" package="Default">
+        <name>removeCustomAttributes</name>
+        <full_name>\ChartMogul\Enrichment\Customer::removeCustomAttributes()</full_name>
+        <docblock line="174">
+          <description>Remove Custom Attributes from a Customer</description>
+          <long-description></long-description>
+          <tag name="param" line="174" description="" type="mixed" variable="$custom,...">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$custom</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Enrichment" line="188" package="Default">
+        <name>updateCustomAttributes</name>
+        <full_name>\ChartMogul\Enrichment\Customer::updateCustomAttributes()</full_name>
+        <docblock line="188">
+          <description>Update Custom Attributes of a Customer</description>
+          <long-description></long-description>
+          <tag name="param" line="188" description="" type="mixed" variable="$custom,...">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$custom</name>
+          <default></default>
+          <type/>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Enrichment" line="12" package="Default">
@@ -1677,8 +1757,18 @@
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
       <error line="28" code="PPC:ERR-50005">No summary for class \ChartMogul\Enrichment\Customer</error>
+      <error line="130" code="PPC:ERR-50014">Name of argument $tags does not match with the DocBlock's name $tags,... in addTags()</error>
+      <notice line="130" code="PPC:ERR-50013">Parameter $tags,... could not be found in addTags()</notice>
+      <error line="145" code="PPC:ERR-50014">Name of argument $tags does not match with the DocBlock's name $tags,... in removeTags()</error>
+      <notice line="145" code="PPC:ERR-50013">Parameter $tags,... could not be found in removeTags()</notice>
+      <error line="159" code="PPC:ERR-50014">Name of argument $custom does not match with the DocBlock's name $custom,... in addCustomAttributes()</error>
+      <notice line="159" code="PPC:ERR-50013">Parameter $custom,... could not be found in addCustomAttributes()</notice>
+      <error line="174" code="PPC:ERR-50014">Name of argument $custom does not match with the DocBlock's name $custom,... in removeCustomAttributes()</error>
+      <notice line="174" code="PPC:ERR-50013">Parameter $custom,... could not be found in removeCustomAttributes()</notice>
+      <error line="188" code="PPC:ERR-50014">Name of argument $custom does not match with the DocBlock's name $custom,... in updateCustomAttributes()</error>
+      <notice line="188" code="PPC:ERR-50013">Parameter $custom,... could not be found in updateCustomAttributes()</notice>
     </parse_markers>
-    <source>eJy9Vltv2jAUfs+v8ANSAqJCe4WtK0JonbSuFXRPbYWMcwjREifzpRva+t9nx0kgTnBBneYXwrmf73w+yfuP+Tb3PIpT4DkmgGZbzMRNFsnkcU5ZTLYpUDHxPMkbugXwTDICj9M1FwwTUQkmtuW1EPnjLIlVmM9UANvgDqMlsOdYRVvADwlclH9V2tFg4KEBuspZlgMTuwsGOEQqZUwj1ItDh1JKpxp+qWIoTlZOKw2MK0iK48Sh5wILyR0GRHKRpcBWPKbElQkL9bCWAlzRcBgy4C6LlDGXv1O7jpNEPaz4jgtIV5K5Oid6uKke7iuGVlSxy10wEMkYULI7wURBGlFPGY48kmDO0azEGunR05Ajm7vebw+pQzLKBVrMl7ffFrP56uv0Zo4+IL9y9yddVnfT+2ttNXp+N6qGykfjer6ajcqzcFV1CyACQs3giS3Sli3hAVtbOs3RtoNmZktq+NgSN1nYUu+511YZxrXkimdt2w5Zm1Pt4hpMei2C5k9Hf4YSRxUFV8rpFCtHnwH6BGLPmnsc6ctnNFcMhGQUqZ7wrhSOTHS5TmKCNpISEWcUCRzxoF+oDL30Kb17Yhvzi8s9vg++NvefTKEv7oLMA5oebIZzizOD30c4o1DjerzUBShbeAaE64rr+nLMcIqqG9s8vcaVsV2sF8kfKpNEuRRSu30rbQMBfREOgWBltUEz/dBOWOVSV12nruCy8Qoo/ETNl1lQevb73mG7F5cc6gU003sqMLWNx8XWsq1xkgQPDZk+fnPPoA+XnTiW56l/bGhfYrXTVIoaO24PoOCUnb4XYoH/xaj4KbPSEBQZ1RAenk4dkTWhOuN4XMcbVq5H8VkCZmSLNhk7jlAnq+tPhf+EES8KDUzWt0NkhXsNphtgEZzHod6GZelJhjEV2VtwXGdZcgqEqW4iKOoamqzn4thTr8ZcfSaA0hcbwaQINGmPbYMIhEkSOPbEd9i5twRX3zeB9S1S9MP9IfLvbpf36rdjjehmzfYo2m4baBiMwX4M5am2ij4l1IJJqDjy4v0Fo3vRpA==</source>
+    <source>eJzNVttu2zgQfddX8MGA5MCxsa/OJq3hGu0CzbZwnKckMGhpbAvVbXnJ1ujm35cXXSmJsZEmLV8sk0PO8JzDmfnzXbbPHCfBMdAM+4Dme0zYdbrj0f0iIaG/jyFhF47DaWNtCTTlxIf72YYygn1WTFyYlp8Yy+7nUSiO+SthQLa4w+gGyGMoTlvCPxwoy/8Kt5OzMwedofcZSTMg7HBOAAdIuAyTHRqEgWWRc+syfBfBJDhaW60kMLZDYhxGlnXKMOPUYuBzytIYyJqGiW/zhJn42HAGttNwEBCgNouYENt+6+omjCLxsaYHyiBec2K7uS/JjSW5zxgap7JDZoPB54RA4h+OMBGQ7hJHGE4cP8KUonmONZLUJwFFpnadHw4Sw08TytBycfPldjlfrP+eXS/QJXKL7e5Fl9XX2eqTtJo8/jEpSKWTacmvVKPYqbaKuBn4DAKp4AtzSlq2Jmtqba1JjbY3SGW2ZrUeW9NNFbaWK+21l7TiWvNCZ23bjrm2ptrBNZT03AlSPx3305LoXVBaydlRKUeOM/QRWKWaFd7Jx6dX3hNgnCRI3Akf8smJPp1votBHW574LEwTxPCOekO1pOUlR757wPYhPb+q8L1zpbn7oAN9sgekP9CslhlODU4TX51wQqB6a3+oSxC28AgIlxGX8WWY4BgVL7Y5Bo0nY24xCsl/CY8isUXNmtc33DYQkA+hDgTJo/Wa7kemw8KXeOrSdQGXiZeXwL+oWcy8fOdw6NSve35FoUxAc5mnPB3bdKqylmmNo8i7a8zJ4TbzDLq86sQxHw/DPtI+hyKnCRcldtQkQGnKdD8IMMM/gyp6DFcSAuVRkHD3cCxFBkOlx+m0PG9UbO3F5wYw8fdom5J+hDpVXbYKb4QRVYF62uvLITKOew6mayA7OE1Dgy1J46MMw4SlL8Fxk6bRMRDG8hKeimukvZ6K40CUxky0CSDWVUbQLjwp2r5ssAOmnXiWPPENDvYsQUV/4xm9iLoPdUfI/frlZiV+O9KIvKzOHurabQMJgzaoaMhHkVXkyKFmhEOpEVMksyBQxRGxVNQIv7tGxOF3Wael3Wg8HluLmehFVrLYKuthjQbl5bIoYjaE26i543ybzKJjd1KVwIkq1VY4lYVES8a4Fo7XmJTdQB23Wqw9HYGKX3y1MK7NdoC8hDgVNVjigiSl/dX4FKSJOvWXgP1h8XmxWvwucBtoS0m3ujKtbzvqGoJjFD43O7Z8b50CPfMKJOQ9n1Xzuc1LaSjaS3kL/d2moj7fr/02IUc9hCMp0U/hN2HF9jh+HS8GLbeZ6LW6aEm3P4sUrlxYSKluWPaR1TVEdwdYdHmegRPCFA0eccRhWCvy9VNUv7LOG4e8o9QbqtOf3vad3j7/TGvd+yuIIFfBk/M/wLQMow==</source>
   </file>
   <file path="Enrichment/Customers.php" generated-path="Enrichment.Customers.html" hash="4ac3ee26bc9b5a1c0b98a27fca332c9a" package="Default">
     <docblock line="0">

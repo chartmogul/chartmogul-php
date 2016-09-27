@@ -121,4 +121,87 @@ class Customer extends AbstractResource
             ]);
         return true;
     }
+
+
+    /**
+     * Add tags to a customer
+     * @param mixed $tags,...
+     */
+    public function addTags($tags)
+    {
+        $tags = $this->getClient()
+            ->send('/v1/customers/'.$this->uuid.'/attributes/tags', 'POST', [
+                'tags' => func_get_args()
+            ]);
+
+        $this->attributes['tags'] = $tags;
+        return $tags;
+    }
+
+
+    /**
+     * Remove Tags from a Customer
+     * @param mixed $tags,...
+     */
+    public function removeTags($tags)
+    {
+        $tags = $this->getClient()
+            ->send('/v1/customers/'.$this->uuid.'/attributes/tags', 'DELETE', [
+                'tags' => func_get_args()
+            ]);
+
+        $this->attributes['tags'] = $tags;
+        return $tags;
+    }
+
+    /**
+     * Add Custom Attributes to a Customer
+     * @param mixed $custom,...
+     */
+    public function addCustomAttributes($custom)
+    {
+        $custom = $this->getClient()
+            ->send('/v1/customers/'.$this->uuid.'/attributes/custom', 'POST', [
+                'custom' => func_get_args()
+            ]);
+
+        $this->attributes['custom'] = $custom;
+        return $custom;
+    }
+
+
+    /**
+     * Remove Custom Attributes from a Customer
+     * @param mixed $custom,...
+     */
+    public function removeCustomAttributes($custom)
+    {
+        $custom = $this->getClient()
+            ->send('/v1/customers/'.$this->uuid.'/attributes/custom', 'DELETE', [
+                'custom' => func_get_args()
+            ]);
+
+        $this->attributes['custom'] = $custom;
+        return $custom;
+    }
+
+    /**
+     * Update Custom Attributes of a Customer
+     * @param mixed $custom,...
+     */
+    public function updateCustomAttributes($custom)
+    {
+
+        $data = [];
+        foreach (func_get_args() as $value) {
+            $data = array_merge($data, $value);
+        }
+        $custom = $this->getClient()
+            ->send('/v1/customers/'.$this->uuid.'/attributes/custom', 'PUT', [
+                'custom' => $data
+            ]);
+
+        $this->attributes['custom'] = $custom;
+        return $custom;
+    }
 }

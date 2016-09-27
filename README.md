@@ -270,6 +270,79 @@ $customer->attributes;
 
 ```
 
+
+#### Tags
+
+**Add Tags to a Customer**
+
+```php
+$customer = ChartMogul\Enrichment\Customer::retrieve($cus->uuid);
+$tags = $customer->addTags("important", "Prio1");
+```
+
+**Add Tags to Customers with email**
+
+```php
+$customers = ChartMogul\Enrichment\Customer::search('adam@smith.com');
+
+foreach ($customers->entries as $customer) {
+    $customer->addTags('foo', 'bar', 'baz');
+}
+```
+
+**Remove Tags from a Customer**
+
+```php
+$customer = ChartMogul\Enrichment\Customer::retrieve($cus->uuid);
+$tags = $customer->removeTags("important", "Prio1");
+```
+
+
+
+#### Custom Attributes
+
+
+**Add Custom Attributes to a Customer**
+
+```php
+$customer = ChartMogul\Enrichment\Customer::retrieve($cus->uuid);
+$custom = $customer->addCustomAttributes(
+    ['type' => 'String', 'key' => 'channel', 'value' => 'Facebook'],
+    ['type' => 'Integer', 'key' => 'age', 'value' => 8 ]
+);
+```
+
+
+**Add Custom Attributes to Customers with email**
+
+```php
+$customers = ChartMogul\Enrichment\Customer::search('adam@smith.com');
+
+foreach ($customers->entries as $customer) {
+    $customer->addCustomAttributes(
+        ['type' => 'String', 'key' => 'channel', 'value' => 'Facebook'],
+        ['type' => 'Integer', 'key' => 'age', 'value' => 8 ]
+    );
+}
+```
+
+**Update Custom Attributes of a Customer**
+
+```php
+$customer = ChartMogul\Enrichment\Customer::retrieve($cus->uuid);
+$custom = $customer->updateCustomAttributes(
+    ['channel' => 'Twitter'],
+    ['age' => 18]
+);
+```
+
+**Remove Custom Attributes from a Customer**
+
+```php
+$customer = ChartMogul\Enrichment\Customer::retrieve($cus->uuid);
+$tags = $customer->removeCustomAttributes("age", "channel");
+```
+
 ### Metrics API
 
 
