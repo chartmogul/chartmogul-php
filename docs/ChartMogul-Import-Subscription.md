@@ -16,25 +16,9 @@ Constants
 ----------
 
 
-### RESOURCE_PATH
+### RESOURCE_NAME
 
-    const RESOURCE_PATH = '/v1/import/customers/:customer_uuid/subscriptions'
-
-
-
-
-
-### ROOT_KEY
-
-    const ROOT_KEY = 'subscriptions'
-
-
-
-
-
-### RESOURSE_NAME
-
-    const RESOURSE_NAME = 'Subscription'
+    const RESOURCE_NAME = 'Subscription'
 
 
 
@@ -121,9 +105,9 @@ Cancels a subscription that was generated from an imported invoice.
 
 ### create
 
-    mixed ChartMogul\Import\Subscription::create(array $data, \ChartMogul\Http\ClientInterface $client)
+    \ChartMogul\Import\Subscription ChartMogul\Import\Subscription::create(array $data, \ChartMogul\Http\ClientInterface|null $client)
 
-
+Create a Resource
 
 
 
@@ -133,7 +117,7 @@ Cancels a subscription that was generated from an imported invoice.
 
 #### Arguments
 * $data **array**
-* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)**
+* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)|null**
 
 
 
@@ -157,7 +141,7 @@ Returns a list of objects
 
 ### __construct
 
-    mixed ChartMogul\Resource\AbstractModel::__construct(array $data)
+    mixed ChartMogul\Resource\AbstractModel::__construct(array $attributes)
 
 
 
@@ -168,7 +152,7 @@ Returns a list of objects
 
 
 #### Arguments
-* $data **array**
+* $attributes **array**
 
 
 
@@ -223,7 +207,7 @@ Returns a list of objects
 
 ### toArray
 
-    mixed ChartMogul\Resource\AbstractModel::toArray()
+    array ChartMogul\Resource\AbstractModel::toArray()
 
 
 

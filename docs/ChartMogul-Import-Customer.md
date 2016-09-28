@@ -12,32 +12,6 @@ ChartMogul\Import\Customer
 
 
 
-Constants
-----------
-
-
-### RESOURCE_PATH
-
-    const RESOURCE_PATH = '/v1/import/customers'
-
-
-
-
-
-### RESOURCE_NAME
-
-    const RESOURCE_NAME = 'Customer'
-
-
-
-
-
-### ROOT_KEY
-
-    const ROOT_KEY = 'customers'
-
-
-
 
 
 Properties
@@ -162,7 +136,7 @@ Methods
 
     \ChartMogul\Import\Customer ChartMogul\Import\Customer::findByExternalId(string $externalId)
 
-
+Find a Customer by External ID
 
 
 
@@ -177,9 +151,9 @@ Methods
 
 ### subscriptions
 
-    mixed ChartMogul\Import\Customer::subscriptions(array $options)
+    \Doctrine\Common\Collections\ArrayCollection ChartMogul\Import\Customer::subscriptions(array $options)
 
-
+Find a Customer Subscriptions
 
 
 
@@ -193,9 +167,9 @@ Methods
 
 ### invoices
 
-    mixed ChartMogul\Import\Customer::invoices(array $options)
+    \Doctrine\Common\Collections\ArrayCollection ChartMogul\Import\Customer::invoices(array $options)
 
-
+Find a Customer Invoices
 
 
 
@@ -209,9 +183,9 @@ Methods
 
 ### create
 
-    mixed ChartMogul\Import\Customer::create(array $data, \ChartMogul\Http\ClientInterface $client)
+    \ChartMogul\Import\Customer ChartMogul\Import\Customer::create(array $data, \ChartMogul\Http\ClientInterface|null $client)
 
-
+Create a Resource
 
 
 
@@ -221,7 +195,7 @@ Methods
 
 #### Arguments
 * $data **array**
-* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)**
+* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)|null**
 
 
 
@@ -245,9 +219,9 @@ Returns a list of objects
 
 ### destroy
 
-    mixed ChartMogul\Import\Customer::destroy()
+    boolean ChartMogul\Import\Customer::destroy()
 
-
+Delete a resource
 
 
 
@@ -258,7 +232,7 @@ Returns a list of objects
 
 ### __construct
 
-    mixed ChartMogul\Resource\AbstractModel::__construct(array $data)
+    mixed ChartMogul\Resource\AbstractModel::__construct(array $attributes)
 
 
 
@@ -269,7 +243,7 @@ Returns a list of objects
 
 
 #### Arguments
-* $data **array**
+* $attributes **array**
 
 
 
@@ -324,7 +298,7 @@ Returns a list of objects
 
 ### toArray
 
-    mixed ChartMogul\Resource\AbstractModel::toArray()
+    array ChartMogul\Resource\AbstractModel::toArray()
 
 
 

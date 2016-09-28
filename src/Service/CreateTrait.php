@@ -10,6 +10,12 @@ use ChartMogul\Http\ClientInterface;
 trait CreateTrait
 {
 
+    /**
+     * Create a Resource
+     * @param  array                $data
+     * @param  ClientInterface|null $client
+     * @return self
+     */
     public static function create(array $data = [], ClientInterface $client = null)
     {
 

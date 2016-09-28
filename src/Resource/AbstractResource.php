@@ -71,7 +71,7 @@ abstract class AbstractResource extends AbstractModel
     /**
      * @param array $data
      * @param ClientInterface|null $client
-     * @return self
+     * @return ArrayCollection|self
      */
     public static function fromArray(array $data, ClientInterface $client = null)
     {

@@ -12,24 +12,6 @@ ChartMogul\Enrichment\Customer
 
 
 
-Constants
-----------
-
-
-### RESOURCE_NAME
-
-    const RESOURCE_NAME = 'Customer'
-
-
-
-
-
-### RESOURCE_PATH
-
-    const RESOURCE_PATH = '/v1/customers/:customer_uuid'
-
-
-
 
 
 Properties
@@ -220,7 +202,7 @@ Methods
 
     array ChartMogul\Enrichment\Customer::tags()
 
-Get Customer Tages
+Get Customer Tags
 
 
 
@@ -317,7 +299,7 @@ Merge Customers
 
 ### addTags
 
-    mixed ChartMogul\Enrichment\Customer::addTags($tags)
+    array ChartMogul\Enrichment\Customer::addTags($tags)
 
 Add tags to a customer
 
@@ -333,7 +315,7 @@ Add tags to a customer
 
 ### removeTags
 
-    mixed ChartMogul\Enrichment\Customer::removeTags($tags)
+    array ChartMogul\Enrichment\Customer::removeTags($tags)
 
 Remove Tags from a Customer
 
@@ -349,7 +331,7 @@ Remove Tags from a Customer
 
 ### addCustomAttributes
 
-    mixed ChartMogul\Enrichment\Customer::addCustomAttributes($custom)
+    array ChartMogul\Enrichment\Customer::addCustomAttributes($custom)
 
 Add Custom Attributes to a Customer
 
@@ -365,7 +347,7 @@ Add Custom Attributes to a Customer
 
 ### removeCustomAttributes
 
-    mixed ChartMogul\Enrichment\Customer::removeCustomAttributes($custom)
+    array ChartMogul\Enrichment\Customer::removeCustomAttributes($custom)
 
 Remove Custom Attributes from a Customer
 
@@ -381,7 +363,7 @@ Remove Custom Attributes from a Customer
 
 ### updateCustomAttributes
 
-    mixed ChartMogul\Enrichment\Customer::updateCustomAttributes($custom)
+    array ChartMogul\Enrichment\Customer::updateCustomAttributes($custom)
 
 Update Custom Attributes of a Customer
 
@@ -397,7 +379,7 @@ Update Custom Attributes of a Customer
 
 ### __construct
 
-    mixed ChartMogul\Resource\AbstractModel::__construct(array $data)
+    mixed ChartMogul\Resource\AbstractModel::__construct(array $attributes)
 
 
 
@@ -408,7 +390,7 @@ Update Custom Attributes of a Customer
 
 
 #### Arguments
-* $data **array**
+* $attributes **array**
 
 
 
@@ -463,7 +445,7 @@ Update Custom Attributes of a Customer
 
 ### toArray
 
-    mixed ChartMogul\Resource\AbstractModel::toArray()
+    array ChartMogul\Resource\AbstractModel::toArray()
 
 
 

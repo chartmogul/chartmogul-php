@@ -10,8 +10,17 @@ use ChartMogul\Http\ClientInterface;
 
 class Subscriptions extends AbstractResource
 {
+    /**
+     * @ignore
+     */
     const ENTRY_CLASS = Subscription::class;
+    /**
+     * @ignore
+     */
     const RESOURCE_PATH = '/v1/customers/:customer_uuid/subscriptions';
+    /**
+     * @ignore
+     */
     const RESOURCE_NAME = 'Subscriptions';
 
     use EntryTrait;

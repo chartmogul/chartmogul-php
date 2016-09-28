@@ -12,32 +12,6 @@ ChartMogul\Enrichment\Customers
 
 
 
-Constants
-----------
-
-
-### RESOURCE_NAME
-
-    const RESOURCE_NAME = 'Customers'
-
-
-
-
-
-### RESOURCE_PATH
-
-    const RESOURCE_PATH = '/v1/customers'
-
-
-
-
-
-### ENTRY_CLASS
-
-    const ENTRY_CLASS = \ChartMogul\Enrichment\Customer::class
-
-
-
 
 
 
@@ -48,7 +22,7 @@ Methods
 
 ### __construct
 
-    mixed ChartMogul\Resource\AbstractModel::__construct(array $data)
+    mixed ChartMogul\Resource\AbstractModel::__construct(array $attributes)
 
 
 
@@ -59,7 +33,7 @@ Methods
 
 
 #### Arguments
-* $data **array**
+* $attributes **array**
 
 
 
@@ -150,7 +124,7 @@ Returns a list of objects
 
 ### toArray
 
-    mixed ChartMogul\Resource\AbstractModel::toArray()
+    array ChartMogul\Resource\AbstractModel::toArray()
 
 
 

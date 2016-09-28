@@ -23,11 +23,6 @@ class Configuration
      * @var string
      */
     private $secretKey = '';
-    /**
-     * @var string
-     */
-    private $apiBase = 'https://api.chartmogul.com';
-
 
     /**
      * Creates new config object from accountToken and secretKey
@@ -78,15 +73,6 @@ class Configuration
     {
         $this->secretKey = $secretKey;
         return $this;
-    }
-
-    /**
-     * Get API Base URL
-     * @return string
-     */
-    public function getApiBase()
-    {
-        return $this->apiBase;
     }
 
     /**

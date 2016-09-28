@@ -12,32 +12,6 @@ ChartMogul\Metrics\Subscriptions
 
 
 
-Constants
-----------
-
-
-### ENTRY_CLASS
-
-    const ENTRY_CLASS = \ChartMogul\Metrics\Subscription::class
-
-
-
-
-
-### RESOURCE_PATH
-
-    const RESOURCE_PATH = '/v1/customers/:customer_uuid/subscriptions'
-
-
-
-
-
-### RESOURCE_NAME
-
-    const RESOURCE_NAME = 'Subscriptions'
-
-
-
 
 
 
@@ -48,7 +22,7 @@ Methods
 
 ### __construct
 
-    mixed ChartMogul\Resource\AbstractModel::__construct(array $data)
+    mixed ChartMogul\Resource\AbstractModel::__construct(array $attributes)
 
 
 
@@ -59,7 +33,7 @@ Methods
 
 
 #### Arguments
-* $data **array**
+* $attributes **array**
 
 
 
@@ -132,7 +106,7 @@ Returns a list of objects
 
 ### toArray
 
-    mixed ChartMogul\Resource\AbstractModel::toArray()
+    array ChartMogul\Resource\AbstractModel::toArray()
 
 
 

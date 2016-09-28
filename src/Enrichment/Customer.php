@@ -27,7 +27,13 @@ use ChartMogul\Service\RequestService;
  */
 class Customer extends AbstractResource
 {
+    /**
+     * @ignore
+     */
     const RESOURCE_NAME = 'Customer';
+    /**
+     * @ignore
+     */
     const RESOURCE_PATH = '/v1/customers/:customer_uuid';
 
     protected $id;
@@ -48,7 +54,7 @@ class Customer extends AbstractResource
     protected $currency_sign;
 
     /**
-     * Get Customer Tages
+     * Get Customer Tags
      * @return array
      */
     public function tags()
@@ -126,6 +132,7 @@ class Customer extends AbstractResource
     /**
      * Add tags to a customer
      * @param mixed $tags,...
+     * @return  array
      */
     public function addTags($tags)
     {
@@ -142,6 +149,7 @@ class Customer extends AbstractResource
     /**
      * Remove Tags from a Customer
      * @param mixed $tags,...
+     * @return array
      */
     public function removeTags($tags)
     {
@@ -157,6 +165,7 @@ class Customer extends AbstractResource
     /**
      * Add Custom Attributes to a Customer
      * @param mixed $custom,...
+     * @return array
      */
     public function addCustomAttributes($custom)
     {
@@ -173,6 +182,7 @@ class Customer extends AbstractResource
     /**
      * Remove Custom Attributes from a Customer
      * @param mixed $custom,...
+     * @return array
      */
     public function removeCustomAttributes($custom)
     {
@@ -188,6 +198,7 @@ class Customer extends AbstractResource
     /**
      * Update Custom Attributes of a Customer
      * @param mixed $custom,...
+     * @return array
      */
     public function updateCustomAttributes($custom)
     {

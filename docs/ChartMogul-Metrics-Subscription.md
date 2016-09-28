@@ -174,7 +174,7 @@ Returns a list of subscriptions for a given customer.
 
 ### __construct
 
-    mixed ChartMogul\Resource\AbstractModel::__construct(array $data)
+    mixed ChartMogul\Resource\AbstractModel::__construct(array $attributes)
 
 
 
@@ -185,13 +185,13 @@ Returns a list of subscriptions for a given customer.
 
 
 #### Arguments
-* $data **array**
+* $attributes **array**
 
 
 
 ### toArray
 
-    mixed ChartMogul\Resource\AbstractModel::toArray()
+    array ChartMogul\Resource\AbstractModel::toArray()
 
 
 

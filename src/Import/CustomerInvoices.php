@@ -12,7 +12,13 @@ class CustomerInvoices extends AbstractResource
     use \ChartMogul\Service\CreateTrait;
     use \ChartMogul\Service\AllTrait;
 
+    /**
+     * @ignore
+     */
     const RESOURCE_PATH = '/v1/import/customers/:customer_uuid/invoices';
+    /**
+     * @ignore
+     */
     const RESOURCE_NAME = 'Invoices';
 
     public $invoices = [];

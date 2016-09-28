@@ -17,10 +17,16 @@ class Subscription extends AbstractResource
     use \ChartMogul\Service\CreateTrait;
     use \ChartMogul\Service\AllTrait;
 
+    /**
+     * @ignore
+     */
     const RESOURCE_PATH = '/v1/import/customers/:customer_uuid/subscriptions';
+    /**
+     * @ignore
+     */
     const ROOT_KEY = 'subscriptions';
 
-    const RESOURSE_NAME = 'Subscription';
+    const RESOURCE_NAME = 'Subscription';
 
 
     protected $uuid;

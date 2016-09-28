@@ -94,19 +94,6 @@ Set Secret Key
 
 
 
-### getApiBase
-
-    string ChartMogul\Configuration::getApiBase()
-
-Get API Base URL
-
-
-
-* Visibility: **public**
-
-
-
-
 ### getDefaultConfiguration
 
     \ChartMogul\Configuration ChartMogul\Configuration::getDefaultConfiguration()

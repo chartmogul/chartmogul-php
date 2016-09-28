@@ -14,8 +14,17 @@ class Customer extends AbstractResource
     use \ChartMogul\Service\AllTrait;
     use \ChartMogul\Service\DestroyTrait;
 
+    /**
+     * @ignore
+     */
     const RESOURCE_PATH = '/v1/import/customers';
+    /**
+     * @ignore
+     */
     const RESOURCE_NAME = 'Customer';
+    /**
+     * @ignore
+     */
     const ROOT_KEY = 'customers';
 
     protected $uuid;
@@ -31,27 +40,38 @@ class Customer extends AbstractResource
     public $data_source_uuid;
 
     /**
+     * Find a Customer by External ID
      * @param string $externalId
-     * @return self
+     * @return Customer
      */
     public static function findByExternalId($externalId)
     {
         return static::all(
             [
-            'external_id' => $externalId
+                'external_id' => $externalId
             ]
         )->first();
     }
 
+    /**
+     * Find a Customer Subscriptions
+     * @param  array  $options
+     * @return \Doctrine\Common\Collections\ArrayCollection | Customer
+     */
     public function subscriptions(array $options = [])
     {
         if (!isset($this->subscriptions)) {
             $options['customer_uuid'] = $this->uuid;
-            $this->invoices = Subscription::all($options);
+            $this->subscriptions = Subscription::all($options);
         }
         return $this->subscriptions;
     }
 
+    /**
+     * Find a Customer Invoices
+     * @param  array  $options
+     * @return \Doctrine\Common\Collections\ArrayCollection | Customer
+     */
     public function invoices(array $options = [])
     {
         if (!isset($this->invoices)) {

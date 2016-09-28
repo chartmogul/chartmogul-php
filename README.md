@@ -36,14 +36,14 @@ This library requires php 5.4 or above.
 
 
 ```sh
-composer require chartmogul/chartmogul-php@dev-master
+composer require chartmogul/chartmogul-php
 ```
 or in `composer.json`:
 
 ```json
 {
     "require": {
-        "chartmogul/chartmogul-phpt": "dev-master"
+        "chartmogul/chartmogul-php": "1.0.0"
     }
 }
 ```
@@ -56,7 +56,7 @@ Setup the default configuration with your ChartMogul account token and secret ke
 require('./vendor/autoload.php');
 
 ChartMogul\Configuration::getDefaultConfiguration()
-  ->setAccountToken('<YOUR_ACCOUNT_TOKEN>')
+    ->setAccountToken('<YOUR_ACCOUNT_TOKEN>')
     ->setSecretKey('<YOUR_SECRET_KEY>');
 ```
 
@@ -79,7 +79,7 @@ $ds->destroy();
 
 ```
 
-All array results are wrapped with `Doctrine\Common\Collections\ArrayCollection` for ease of access.
+All array results are wrapped with [`Doctrine\Common\Collections\ArrayCollection`](http://www.doctrine-project.org/api/common/2.3/class-Doctrine.Common.Collections.ArrayCollection.html) for ease of access. See [Exceptoins](#exceptions) for a list of exceptions thrown by this library.
 
 ### Import API
 
@@ -105,7 +105,7 @@ ChartMogul\Import\DataSource::all();
 
 ```php
 $dataSources = ChartMogul\Import\DataSource::all();
-$ds = $dataSources>last();
+$ds = $dataSources->last();
 $ds->destroy();
 ```
 
@@ -471,18 +471,46 @@ The following table describes the public methods of the error object.
 | `getStatusCode()`     | number           | When the error occurs during an HTTP request, the HTTP status code. |
 | `getResponse()` | array or string | HTTP response as array, or raw response if not parsable to array |
 
+
+## Using Your Own HTTP Client
+
+The library uses `php-http/guzzle6-adapter` as the HTTP client. But you can use any HTTP client that implements [`php-http/client-implementation`](https://packagist.org/providers/php-http/client-implementation) virtual package. For example:
+
+
+```php
+$config = new ChartMogul\Configuration('accountToken','secretKey');
+
+$httpClient = new My\HttpClient();
+$client = new ChartMogul\Http\Client($config, $client);
+
+customers = $ChartMogul\Import\Customer::all([
+  'page' => 1,
+  'data_source_uuid' => $ds->uuid
+], $client);
+
+```
+
+Learn more about this virtual package at [here](http://docs.php-http.org/en/latest/httplug/users.html).
+
+## API Documenttion
+
+Find the full public api documentation [here](docs/README.md).
+
+
 ## Development
 
 
 You need `Docker` installed locally to use our `Makefile` workflow.
 
-* Fork it
-* Create your feature branch (`git checkout -b my-new-feature`)
-* Install dependencies: `make build`
-* Fix bugs or add features. Make sure the changes pass the coding guidelines by runing PHP CodeSniffer: `make cs`
-* Write tests for your new features. Run tests and check test coverage with `make test`
-* If all tests are passed, push to the branch (`git push origin my-new-feature`)
-* Create a new Pull Request
+* Fork it.
+* Create your feature branch (`git checkout -b my-new-feature`).
+* Install dependencies: `make build`.
+* Fix bugs or add features. Make sure the changes pass the coding guidelines by runing PHP CodeSniffer: `make cs`. You can also run `make cbf` to fix some errors automatically.
+* Write tests for your new features. Run tests and check test coverage with `make test`.
+* Generate api documentation by running `make doc`.
+* To run any composer commands or php scripts, use `make composer <commands>` or `make php <script>`.
+* If all tests are passed, push to the branch (`git push origin my-new-feature`).
+* Create a new Pull Request.
 
 ## Contributing
 

@@ -12,32 +12,6 @@ ChartMogul\Import\Plan
 
 
 
-Constants
-----------
-
-
-### RESOURCE_PATH
-
-    const RESOURCE_PATH = '/v1/import/plans'
-
-
-
-
-
-### RESOURCE_NAME
-
-    const RESOURCE_NAME = 'Plan'
-
-
-
-
-
-### ROOT_KEY
-
-    const ROOT_KEY = 'plans'
-
-
-
 
 
 Properties
@@ -116,9 +90,9 @@ Methods
 
 ### create
 
-    mixed ChartMogul\Import\Plan::create(array $data, \ChartMogul\Http\ClientInterface $client)
+    \ChartMogul\Import\Plan ChartMogul\Import\Plan::create(array $data, \ChartMogul\Http\ClientInterface|null $client)
 
-
+Create a Resource
 
 
 
@@ -128,7 +102,7 @@ Methods
 
 #### Arguments
 * $data **array**
-* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)**
+* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)|null**
 
 
 
@@ -152,7 +126,7 @@ Returns a list of objects
 
 ### __construct
 
-    mixed ChartMogul\Resource\AbstractModel::__construct(array $data)
+    mixed ChartMogul\Resource\AbstractModel::__construct(array $attributes)
 
 
 
@@ -163,7 +137,7 @@ Returns a list of objects
 
 
 #### Arguments
-* $data **array**
+* $attributes **array**
 
 
 
@@ -218,7 +192,7 @@ Returns a list of objects
 
 ### toArray
 
-    mixed ChartMogul\Resource\AbstractModel::toArray()
+    array ChartMogul\Resource\AbstractModel::toArray()
 
 
 

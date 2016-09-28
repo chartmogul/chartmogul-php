@@ -57,7 +57,7 @@ Methods
 
 ### __construct
 
-    mixed ChartMogul\Resource\AbstractModel::__construct(array $data)
+    mixed ChartMogul\Resource\AbstractModel::__construct(array $attributes)
 
 
 
@@ -68,13 +68,13 @@ Methods
 
 
 #### Arguments
-* $data **array**
+* $attributes **array**
 
 
 
 ### toArray
 
-    mixed ChartMogul\Resource\AbstractModel::toArray()
+    array ChartMogul\Resource\AbstractModel::toArray()
 
 
 

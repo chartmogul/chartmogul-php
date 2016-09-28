@@ -9,9 +9,9 @@ abstract class AbstractModel
     /**
     * @codeCoverageIgnore
     */
-    public function __construct(array $data = [])
+    public function __construct(array $attributes = [])
     {
-        foreach ($data as $key => $value) {
+        foreach ($attributes as $key => $value) {
             // replace property names with dash with underscores
             $key = str_replace('-', '_', $key);
             $this->$key = $value;
@@ -40,6 +40,7 @@ abstract class AbstractModel
     }
     /**
     * @codeCoverageIgnore
+    * @return  array
     */
     public function toArray()
     {

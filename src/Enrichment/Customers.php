@@ -12,8 +12,17 @@ class Customers extends AbstractResource
     use EntryTrait;
     use AllTrait;
 
+    /**
+     * @ignore
+     */
     const RESOURCE_NAME = 'Customers';
+    /**
+     * @ignore
+     */
     const RESOURCE_PATH = '/v1/customers';
+    /**
+     * @ignore
+     */
     const ENTRY_CLASS = Customer::class;
 
     protected static function getEntryClass()
@@ -21,6 +30,11 @@ class Customers extends AbstractResource
         return static::ENTRY_CLASS;
     }
 
+    /**
+     * Constructor
+     * @param array                $attr
+     * @param ClientInterface|null $client
+     */
     public function __construct(array $attr = [], ClientInterface $client = null)
     {
 

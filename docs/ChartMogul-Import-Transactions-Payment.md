@@ -109,9 +109,9 @@ Methods
 
 ### create
 
-    mixed ChartMogul\Import\Transactions\AbstractTransaction::create(array $data, \ChartMogul\Http\ClientInterface $client)
+    \ChartMogul\Import\Transactions\AbstractTransaction ChartMogul\Import\Transactions\AbstractTransaction::create(array $data, \ChartMogul\Http\ClientInterface|null $client)
 
-
+Create a Resource
 
 
 
@@ -122,13 +122,13 @@ Methods
 
 #### Arguments
 * $data **array**
-* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)**
+* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)|null**
 
 
 
 ### __construct
 
-    mixed ChartMogul\Resource\AbstractModel::__construct(array $data)
+    mixed ChartMogul\Resource\AbstractModel::__construct(array $attributes)
 
 
 
@@ -139,7 +139,7 @@ Methods
 
 
 #### Arguments
-* $data **array**
+* $attributes **array**
 
 
 
@@ -194,7 +194,7 @@ Methods
 
 ### toArray
 
-    mixed ChartMogul\Resource\AbstractModel::toArray()
+    array ChartMogul\Resource\AbstractModel::toArray()
 
 
 

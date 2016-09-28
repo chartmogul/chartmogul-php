@@ -9,6 +9,10 @@ use ChartMogul\Http\ClientInterface;
 trait DestroyTrait
 {
 
+    /**
+     * Delete a resource
+     * @return boolean
+     */
     public function destroy()
     {
 

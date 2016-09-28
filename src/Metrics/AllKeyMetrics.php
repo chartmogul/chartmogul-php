@@ -9,8 +9,17 @@ use ChartMogul\Http\ClientInterface;
 
 class AllKeyMetrics extends AbstractResource
 {
+    /**
+     * @ignore
+     */
     const ENTRY_CLASS = AllKeyMetric::class;
+    /**
+     * @ignore
+     */
     const RESOURCE_PATH = '/v1/metrics/all';
+    /**
+     * @ignore
+     */
     const RESOURCE_NAME = 'All Key Metrics';
 
     use EntryTrait;

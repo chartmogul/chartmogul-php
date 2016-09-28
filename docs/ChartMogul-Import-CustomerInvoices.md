@@ -12,24 +12,6 @@ ChartMogul\Import\CustomerInvoices
 
 
 
-Constants
-----------
-
-
-### RESOURCE_PATH
-
-    const RESOURCE_PATH = '/v1/import/customers/:customer_uuid/invoices'
-
-
-
-
-
-### RESOURCE_NAME
-
-    const RESOURCE_NAME = 'Invoices'
-
-
-
 
 
 Properties
@@ -64,7 +46,7 @@ Methods
 
 ### __construct
 
-    mixed ChartMogul\Resource\AbstractModel::__construct(array $data)
+    mixed ChartMogul\Resource\AbstractModel::__construct(array $attributes)
 
 
 
@@ -75,15 +57,15 @@ Methods
 
 
 #### Arguments
-* $data **array**
+* $attributes **array**
 
 
 
 ### create
 
-    mixed ChartMogul\Import\CustomerInvoices::create(array $data, \ChartMogul\Http\ClientInterface $client)
+    \ChartMogul\Import\CustomerInvoices ChartMogul\Import\CustomerInvoices::create(array $data, \ChartMogul\Http\ClientInterface|null $client)
 
-
+Create a Resource
 
 
 
@@ -93,7 +75,7 @@ Methods
 
 #### Arguments
 * $data **array**
-* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)**
+* $client **[ChartMogul\Http\ClientInterface](ChartMogul-Http-ClientInterface.md)|null**
 
 
 
@@ -166,7 +148,7 @@ Returns a list of objects
 
 ### toArray
 
-    mixed ChartMogul\Resource\AbstractModel::toArray()
+    array ChartMogul\Resource\AbstractModel::toArray()
 
 
 
