@@ -481,7 +481,7 @@ The library uses `php-http/guzzle6-adapter` as the HTTP client. But you can use 
 $config = new ChartMogul\Configuration('accountToken','secretKey');
 
 $httpClient = new My\HttpClient();
-$client = new ChartMogul\Http\Client($config, $client);
+$client = new ChartMogul\Http\Client($config, $httpClient);
 
 customers = $ChartMogul\Import\Customer::all([
   'page' => 1,
