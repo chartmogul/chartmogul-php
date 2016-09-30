@@ -154,6 +154,32 @@ Methods
 
 
 
+### getUserAgent
+
+    mixed ChartMogul\Http\Client::getUserAgent()
+
+
+
+
+
+* Visibility: **public**
+
+
+
+
+### getBasicAuthHeader
+
+    mixed ChartMogul\Http\Client::getBasicAuthHeader()
+
+
+
+
+
+* Visibility: **public**
+
+
+
+
 ### send
 
     mixed ChartMogul\Http\ClientInterface::send($path, $method, $data)
@@ -170,5 +196,21 @@ Methods
 * $path **mixed**
 * $method **mixed**
 * $data **mixed**
+
+
+
+### handleResponse
+
+    array ChartMogul\Http\Client::handleResponse(\Psr\Http\Message\ResponseInterface $response)
+
+
+
+
+
+* Visibility: **public**
+
+
+#### Arguments
+* $response **Psr\Http\Message\ResponseInterface**
 
 

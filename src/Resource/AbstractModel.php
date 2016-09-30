@@ -50,6 +50,7 @@ abstract class AbstractModel
     /**
      * @param array $data
      * @return self
+     * @codeCoverageIgnore
      */
     public static function fromArray(array $data)
     {

@@ -736,17 +736,6 @@
     </parse_markers>
     <source>eJxdj8FOwzAQRO/7FXvgkERC+YAiqBQO9MCl5diL604TS8EO63UrhPrvxMFUgrmM1m/WYz88TcNE3rwjTsaCu8GIvoY+jfsd5OwsVkQp/gEvqtO+Gx28brxCTmZJtU1DDa9tOKILZ4jpsel9EFDTkopxys+IKuHzLQ/0RcSz8lp2bmY8QsGGBTEksfgFa4Em8XwIYYTx5bhdfEqH0Vk+JW/VBc/Hn46qXmgpySp3VB4X3uIjzbnyxaqub6ms+8cI3ZY3VHc6uPg/cGtZLeBKV/oGAi9iLQ==</source>
   </file>
-  <file path="autoload.php" generated-path="autoload.html" hash="ce407ff5715c837d02b1aba7975bf512" package="Default">
-    <docblock line="0">
-      <description></description>
-      <long-description></long-description>
-      <tag name="package" line="0" description="Default"/>
-    </docblock>
-    <parse_markers>
-      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-    </parse_markers>
-    <source>eJyzsS/IKOACAAaLAc4=</source>
-  </file>
   <file path="Exceptions/ChartMogulException.php" generated-path="Exceptions.ChartMogulException.html" hash="4731b77dafb4024d6ae44db7d6f93e74" package="Default">
     <docblock line="0">
       <description></description>
@@ -8128,7 +8117,7 @@
     </parse_markers>
     <source>eJx9kMFqwzAQRO/7FXswxDWBfIATUjClDaWXkluTgyqvZRFHEvIqEEL/PbJCCC51ddHO6g0zaLl2rQMw4ki9E5KwaoXnD6tCt3tjdiVA6EfbyppGq+AFa2vK9DqAu6rTZDiZbmO0LooCCnyWtqbKnsgLRRtlrCcoFqANk29SZuI3dw0XAIzHhe9OS2yCkUMWKuJReP5U/g32v8GRwkwmGd0T5k/qbfCS3umcZwc6T+eYOs+c4BZXOJvNMTsSt7Ye1OvLdljUgkWUX/t/uj6+LH+MsWW6J1qqkS1CP3AFZy2aqQ==</source>
   </file>
-  <file path="Http/Client.php" generated-path="Http.Client.html" hash="2bd5e852b761acb2dae222dbdaf4698a" package="Default">
+  <file path="Http/Client.php" generated-path="Http.Client.html" hash="fa1a459fc4d966701f58d41545bb99cf" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
@@ -8285,6 +8274,22 @@
           <tag name="codeCoverageIgnore" line="126" description=""/>
         </docblock>
       </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Http" line="131" package="Default">
+        <name>getUserAgent</name>
+        <full_name>\ChartMogul\Http\Client::getUserAgent()</full_name>
+        <docblock line="131">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Http" line="143" package="Default">
+        <name>getBasicAuthHeader</name>
+        <full_name>\ChartMogul\Http\Client::getBasicAuthHeader()</full_name>
+        <docblock line="143">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Http" line="150" package="Default">
         <name>send</name>
         <full_name>\ChartMogul\Http\Client::send()</full_name>
@@ -8309,6 +8314,28 @@
           <type/>
         </argument>
       </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ChartMogul\Http" line="184" package="Default">
+        <name>handleResponse</name>
+        <full_name>\ChartMogul\Http\Client::handleResponse()</full_name>
+        <docblock line="184">
+          <description></description>
+          <long-description></long-description>
+          <tag name="param" line="184" description="" type="\Psr\Http\Message\ResponseInterface" variable="$response">
+            <type>\Psr\Http\Message\ResponseInterface</type>
+          </tag>
+          <tag name="throws" line="184" description="" type="\ChartMogul\Exceptions\ChartMogulException">
+            <type>\ChartMogul\Exceptions\ChartMogulException</type>
+          </tag>
+          <tag name="return" line="184" description="" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$response</name>
+          <default></default>
+          <type>\Psr\Http\Message\ResponseInterface</type>
+        </argument>
+      </method>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
@@ -8323,12 +8350,15 @@
       <error line="110" code="PPC:ERR-50008">No summary for method getResourceKey()</error>
       <error line="118" code="PPC:ERR-50008">No summary for method getApiVersion()</error>
       <error line="126" code="PPC:ERR-50008">No summary for method getApiBase()</error>
+      <error line="131" code="PPC:ERR-50008">No summary for method getUserAgent()</error>
+      <error line="143" code="PPC:ERR-50008">No summary for method getBasicAuthHeader()</error>
       <error line="150" code="PPC:ERR-50015">Argument $path is missing from the Docblock of send</error>
       <error line="150" code="PPC:ERR-50015">Argument $method is missing from the Docblock of send</error>
       <error line="150" code="PPC:ERR-50015">Argument $data is missing from the Docblock of send</error>
       <error line="150" code="PPC:ERR-50008">No summary for method send()</error>
+      <error line="184" code="PPC:ERR-50008">No summary for method handleResponse()</error>
     </parse_markers>
-    <source>eJy1WG1T2zgQ/p5foTJM7TAkoRzTD3Bwx1Fa6A2BA9oPB0xGsTexi2O5kgwHPf77reRX2QovueIvsVfS7rPPrrSr/PpbEiSdTkxnIBLqAdkLKJdHbJpGlwdSJludTioM6R6LJ+E05VSGLN7SoyeC68mXRyAEncLlKSpjsYDDWAKfoNpsnp6zF4UQSz0/e62N7fo0wRWXn9L7+wje53MJFSST1Bf8DbF/+SGknmScCTT5PQVhH/vCQ/TDi6gQJFcZzpIIZvhWSEqonR+dDsFnsLKif1fI7zeUkwpvJh3on4SHN1QCWfZyZLalBmP21XqGfbWQPIyn1mUcBEu5B3/CHdkmTvHpvFgRTcKvwAXCU3re9df6awsp+YMi+aghQLLE5mCAor6nUmemUqfvsVlTrdKbUE5nJkv/xmkUFbyYQ+R4/A082VhdhadYmsUZs7un0Ayy714Zd6pUMVOVx3zYYzfAMYcPpzHjkA/lnqbjKPTIJI09DWQ0QnxISOpJ14RYAN8mCsxqDV0JLBvqasU/MjP4hBPihmKkhtxcSbdbG1dPpdwwurk5BfkBJjSNpDHgdrfK9Q/l27IMQtHbKXWZOdjGolFbsJTewK2xSR+3Wqwq9002rZ0bHGTKY8sWWiBeyE+DmAb7uTEvYjGYBJUAn5G7ZYDOQJLsdVHEoonYaqjpxtzQNvzU857wrJ25zdAIiCb/w7/KgNu2Nc8za/o827N8UuNEXyyhavCflU1muteRzTc/n7zTqgC4y9dwN4cvs06oiS9g7MW4piauObS0of0067tlNXvCeFX2fqZtVQSfNqxmGVYTziQWI/ANfV8E8N3pI+mlChqCdI1j2Rk4q4bgwhyuanIPC2Rjboscc9g5OTjpOf3SsNN3VskFCkdHu5+PT0df90/PDo+Hq0SLDoeV6KprKLoqv7rPIAL5Cr3dVAYHQH3g8+hw9DyC+MZI8PuNEcReix7jgOztqLB5Hktjec6uAZOmT5xN1NCedgYe2qmy2gK+tUlj311OqAxUX4RMLc9ABsxXX5/2z5XAp5Li58VV4VK1fbGl5bq1c6oNq8pyqWQ7V9Oqy8VK1fuMxmkY+SMtcrW5Wm3Ws0sI9ZpdwUh5iKOuKvHYSrtmEnfNqPZ2bkMZ/JXZ0iZt4ydISEZLt9ZxYEOrm/jCWN7Tu1YTGgkis40daXoKmmwz8ixyVEYxHt7rgqqikflmS7jH1GCOSNVeyrsEUItDkwTTQCsdfBOo+bHFeGPhPao2uQGgtvW77baMck6LaJK3b8kbmCWyELTSISc2c4z5mL8IgYcSXIWu2CT5YnsS8PxOpypIvZj1dlSOF6EqLNURm2dfQGM/guKG6JZ6u090Iq07ZQWpnCkDzm4FuaxdV/f/8SBRcRA1aSls9gSaVbPmt0+jhgePAGvV42LACASH2xBPiRrvxYbUwfEhC451bdbTqtwTbneV4GUEanoEppkXkMbaM0llKvaU0lameOoGt7G2tmlI1aO51W3+HHrPvABm9DC+oVHol3K3pUg9S5/PjodE6BVEL6A5tSJ28NaGN3Xw+0ur1sWNuNeexrmmnjEHer1l8/Hdpk36ywKef2R8HPo+xE95fR4AyTcIJhTN0ikUZFIoeGWXNxZwbsjkR6yNT0bU9G2p327w+kt4HUojn8RMkjGg16j2dT1eX3/tRFZuP8dZbByoIoZxkia+en1Vz9ebWziX2pJ+fW3dKrVki8Wcn/3lsADPlvPYTrKV3aJXAM6RUzw4CPO8lPPXIfbBLMD6YI6okCNt3u2SN9iKqUNttH96ii3v8Hi43zxbFyLE0SflCeUYEm1L9QiNmtkAWNRbVUSKovrQ+Q+2ZCDp</source>
+    <source>eJy1WN9T2zgQfs9foTJMbTMkoRzTBzi44ygt9IbAAe3DESaj2JvYxbFdSYaDHv/7reSfshUCueKX2Ctp99tvV9pVfv0t8ZNOJ6Iz4Al1gRz4lImTeJqGwyMhkp1OJ+Wa9CCOJsE0ZVQEcbSjRs84U5OHJ8A5ncLwHJXFEYfjSACboNpsnppzEAYQCTU/e62N7Xs0wRXDT+nDQwjv87mEcpJJ6gv+hsgbfgioK2IWczT5PQVuHvvCAvTDDSnnJFcZzJIQZvhWSEqonR+dDsGnv7amftfI77eUkQpvJu2rn4QFt1QAWXVzZKalGmPm1WqGeTUXLIimxmUMeJwyF/6Ee7JLrOLTerEimgRfgXGEJ/W86230NpZS8gdF8lGDj2Tx7X4fRT1Xps5Mpk7PjWdNtVJvQhmd6Sz9G6VhWPCiD5HT8TdwRWN1FZ5iaRZnzO6uRNPPvrtl3KlUFeuq3NiDg/gWGObw8TSKGeRDuafpOAxcMkkjVwEZjRAfEpK6wtYhFsB3iQSzXkNXAsuGHKX4R2YGn2BC7ICP5JCdK3Gc2rh8KuWa0e3tKYgPMKFpKLQB29kp1z+Wb6vCD3h3r9Sl52Abi0JtwFJ6A3faJn3aarGq3DfZtHZuMBApiwxbaIl4IT8NYhrs58bcMI5AJ6gE+IzcLQN0AYJkr8si5k3ERkNNN+aGtuGnmrfAs3bmNkPDIZz8D/8qA3bb1jzPjOnzbM/ySY0TfbmEqsF/Vjbp6V5HNt/8fPLOqwJgr97A/Ry+9DohJ76AsRfjmuq45tDShvbTrO+X1WyB8ars/UzbsgguNixnaVYNyr5wYPvTJ3JLVjNEaGtnstW31jXBlT5cFeQuVsfG3BYz+rB1dnTWtXqlYatnrZMrFI5O9j+fno++Hp5fHJ8O1okSHQ8q0bWjKbouv5xFLCBTgbufCv8IqAdsHheWmkcQ3Bipfb81gshtcaMdjd09GTDXjdNIXMY3gOnSI9Y2amhPuwAX7VT5vBg5xx7UXk2o8GVHhDStzkD4sSe/Ph1eSoFHBcXPq+vCpWrjYjPLVFNnVVtVFuRSyW6uplWRi5Wy6xmN0yD0RkpkK3O1qqxmlxDq1bqCkbIAR21Z3LGJtvX0dfSQdvfuAuH/ldlSJk3jZ0hIRotT6zWwlVXte2Es7+ZtowmFBJGZxk4UPQVNphl5Flkyo2IWPKhSKqOR+WZKuKfUYI4I2ViK+wRQi0WTBNNAKe1/46j5qcV4V2FdKne4BqC27512Q0YZo0U0ydu35A3MElEIWumQE5s5FnuYvwiBBQJsia7YJPlicxKw/DYna0e9jHX3ZI4XoSos1RHrp55PIy+E4m5ol3qdBT1I6zZZQSpnCp/Fd5wMaxfVw39cSGQceE1aCpvdgGL1yWrfgP8EqlYZLga0KDC4C/CIqJFe7EYVGQ+yyBjXZq2sTDxuO+sE7yBQ08Mxx1yfNNZeCCpSfiCVttLElRe3rY2NbU0qH0Ws6u7ncHvh+jCjx9EtDQOvlNstRfJZ+XxxOiBcrSBqAc2p5ZGFlzW8oIPXW1k3Lm4EvfY0DjX5jBnQmx2Tj++2TdJflvD8Y8zGgedBtMjrSx9IvjvAIzRLp4CTSaHglV3eWsK5QSw+YmFcGFHdt5Veu6/rreAtKA09EsWCjAG9RrWv6/Hm5msnsnT7Oc5i10AlMTEjaeLJ11f1fLO5hXOpKek3NzaNUkO2GMx52T8NS/BsOIzNJBvZLRoFYAw5xYODxK6bMvY6xD7q1VcdzCHlYqTM2w55g32YPNRGh+fn2OwOTgeHzbN1KUIsdVKeUYYhUbZkg9AomA2ARbGVRaSoqI+d/wCkqx0I</source>
   </file>
   <file path="Configuration.php" generated-path="Configuration.html" hash="f025ebf10f5b69d3541c294bb2575384" package="Default">
     <docblock line="0">

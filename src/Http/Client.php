@@ -128,7 +128,7 @@ class Client implements ClientInterface
         return $this->apiBase;
     }
 
-    protected function getUserAgent()
+    public function getUserAgent()
     {
         return implode(
             '/',
@@ -140,7 +140,7 @@ class Client implements ClientInterface
         );
     }
 
-    protected function getBasicAuthHeader()
+    public function getBasicAuthHeader()
     {
         return 'Basic '. base64_encode(
             $this->config->getAccountToken(). ':'. $this->config->getSecretKey()
@@ -181,7 +181,7 @@ class Client implements ClientInterface
      * @throws \ChartMogul\Exceptions\ChartMogulException
      * @return array
      */
-    protected function handleResponse(ResponseInterface $response)
+    public function handleResponse(ResponseInterface $response)
     {
         $response->getBody()->rewind();
         $data = json_decode($response->getBody()->getContents(), true);
