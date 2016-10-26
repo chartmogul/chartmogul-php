@@ -6,7 +6,7 @@
 
 <p align="center"><code>chartmogul-php</code> provides convenient PHP bindings for <a href="https://dev.chartmogul.com">ChartMogul's API</a>.</p>
 <p align="center">
-  <a href="https://packagist.org/packages/chartmogul/chartmogul-php"><img src="https://badge.fury.io/ph/chartmogul/chartmogul-php.svg" alt="PHP Package" /></a>
+  <a href="https://packagist.org/packages/chartmogul/chartmogul-php"><img src="https://badge.fury.io/ph/chartmogul%2Fchartmogul-php.svg" alt="PHP Package" /></a>
   <a href="https://travis-ci.org/chartmogul/chartmogul-php"><img src="https://travis-ci.org/chartmogul/chartmogul-php.svg?branch=master" alt="Build Status"/></a>
 </p>
 <hr>
@@ -492,9 +492,9 @@ customers = $ChartMogul\Import\Customer::all([
 
 Learn more about this virtual package at [here](http://docs.php-http.org/en/latest/httplug/users.html).
 
-## API Documenttion
+## API Documentation
 
-Find the full public api documentation [here](docs/README.md).
+Find the full public API documentation [here](docs/README.md).
 
 
 ## Development
@@ -507,7 +507,7 @@ You need `Docker` installed locally to use our `Makefile` workflow.
 * Install dependencies: `make build`.
 * Fix bugs or add features. Make sure the changes pass the coding guidelines by runing PHP CodeSniffer: `make cs`. You can also run `make cbf` to fix some errors automatically.
 * Write tests for your new features. Run tests and check test coverage with `make test`.
-* Generate api documentation by running `make doc`.
+* Generate API documentation by running `make doc`.
 * To run any composer commands or php scripts, use `make composer <commands>` or `make php <script>`.
 * If all tests are passed, push to the branch (`git push origin my-new-feature`).
 * Create a new Pull Request.
