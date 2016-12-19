@@ -23,6 +23,7 @@ class ChartMogulException extends \RuntimeException implements ResponseException
 
     /**
      * ChartMogulException
+     * You can match against subclasses or parsed response.
      * @param string $message Exception message
      * @param ResponseInterface|null $response  ResponseInterface object
      * @param \Exception|null $previous
@@ -38,6 +39,9 @@ class ChartMogulException extends \RuntimeException implements ResponseException
             $json = json_decode($body, true);
 
             $this->response = json_last_error() === JSON_ERROR_NONE? $json : $body;
+            
+            // Adding body to message to get the whole error message to API user.
+            $message = $message . " " . $body;
         }
 
         parent::__construct($message, $this->statusCode, $previous);
