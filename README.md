@@ -223,6 +223,19 @@ $ci = ChartMogul\Import\CustomerInvoices::all([
 ]);
 ```
 
+#### Subscriptions
+
+**List Customer Subscriptions**
+
+```php
+$subscriptions = $cus->subscriptions();
+```
+
+**Cancel Customer Subscriptions**
+```php
+$canceldate = '2017-01-01T10:00:00.000Z';
+$subscription = $subscriptions->last()->cancel($canceldate);
+```
 
 ### Enrichment API
 
