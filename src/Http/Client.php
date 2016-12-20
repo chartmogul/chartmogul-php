@@ -191,37 +191,33 @@ class Client implements ClientInterface
                     "JSON schema validation hasn't passed.",
                     $response
                 );
-                break;
             case 401:
             case 403:
                 throw new \ChartMogul\Exceptions\ForbiddenException(
                     "The requested action is forbidden.",
                     $response
                 );
-                break;
             case 404:
                 throw new \ChartMogul\Exceptions\NotFoundException(
-                    "The requested ".$this->resourceKey." could not be found.",
+                    "The resource could not be found.",
                     $response
                 );
-                break;
             case 422:
                 throw new \ChartMogul\Exceptions\SchemaInvalidException(
                     "The ".$this->resourceKey." could not be created or updated.",
                     $response
                 );
-                break;
             case 200:
             case 201:
             case 202:
-            case 204:
                 break;
+            case 204: // HTTP No Content
+                return "";
             default:
                 throw new \ChartMogul\Exceptions\ChartMogulException(
                     $this->resourceKey." request error has occurred.",
                     $response
                 );
-                break;
         }
 
         if (json_last_error() !== JSON_ERROR_NONE) {
