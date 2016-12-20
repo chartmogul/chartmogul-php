@@ -41,7 +41,7 @@ class ChartMogulException extends \RuntimeException implements ResponseException
             $this->response = json_last_error() === JSON_ERROR_NONE? $json : $body;
             
             // Adding body to message to get the whole error message to API user.
-            $message = $message . " " . $body;
+            $message = $message . " Response:\n " . $body;
         }
 
         parent::__construct($message, $this->statusCode, $previous);
