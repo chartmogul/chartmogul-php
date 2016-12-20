@@ -95,6 +95,12 @@ $ds = ChartMogul\Import\DataSource::create([
 ]);
 ```
 
+**Get a Datasource by UUID**
+
+```php
+ChartMogul\Import\DataSource::get($uuid);
+```
+
 **List Datasources**
 
 ```php
@@ -133,6 +139,12 @@ ChartMogul\Import\Customer::all([
 ]);
 ```
 
+**Get a Customer by UUID**
+
+```php
+ChartMogul\Import\Customer::get($uuid);
+```
+
 **Delete A Customer**
 
 ```php
@@ -154,12 +166,25 @@ ChartMogul\Import\Plan::create([
 ]);
 ```
 
+**Get a Plan by UUID**
+
+```php
+ChartMogul\Import\Plan::get($uuid);
+```
+
 **List Plans**
 
 ```php
 $plans = ChartMogul\Import\Plan::all([
   'page' => 1
 ]);
+```
+
+**Delete A Plan**
+
+```php
+$plan = ChartMogul\Import\Plan::all()->last();
+$plan->destroy();
 ```
 
 

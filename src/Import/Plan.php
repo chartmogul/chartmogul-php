@@ -3,6 +3,10 @@
 namespace ChartMogul\Import;
 
 use ChartMogul\Resource\AbstractResource;
+use ChartMogul\Service\GetTrait;
+use ChartMogul\Service\CreateTrait;
+use ChartMogul\Service\AllTrait;
+use ChartMogul\Service\DestroyTrait;
 
 /**
 * @codeCoverageIgnore
@@ -10,9 +14,11 @@ use ChartMogul\Resource\AbstractResource;
 */
 class Plan extends AbstractResource
 {
-
-    use \ChartMogul\Service\CreateTrait;
-    use \ChartMogul\Service\AllTrait;
+    
+    use AllTrait;
+    use CreateTrait;
+    use DestroyTrait;
+    use GetTrait;
 
     /**
      * @ignore

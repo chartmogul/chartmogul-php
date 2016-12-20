@@ -97,6 +97,14 @@ class Customer extends AbstractResource
     {
         return Customers::all($data, $client);
     }
+    /**
+     * Get a single customer by UUID
+     * @param  string                $uuid
+     * @return Customer
+     */
+    public static function get($uuid, ClientInterface $client = null) {
+        return Customers::get($data, $client);
+    }
 
     /**
      * Search for Customers
