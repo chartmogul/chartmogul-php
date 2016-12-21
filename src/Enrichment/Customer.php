@@ -97,7 +97,21 @@ class Customer extends AbstractResource
     {
         return Customers::all($data, $client);
     }
-
+    
+    /**
+     * Find a Customer by External ID
+     * @param string $externalId
+     * @return Customer
+     */
+    public static function findByExternalId($externalId)
+    {
+        return static::all(
+            [
+                'external_id' => $externalId
+            ]
+        )->entries->first();
+    }
+    
     /**
      * Search for Customers
      * @param  string                $email

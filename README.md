@@ -133,6 +133,13 @@ ChartMogul\Import\Customer::all([
 ]);
 ```
 
+**Find Customer By External ID**
+
+```php
+ChartMogul\Import\Customer::findByExternalId($external_id);
+```
+
+
 **Delete A Customer**
 
 ```php
@@ -261,6 +268,11 @@ ChartMogul\Enrichment\Customer::all([
 ]);
 ```
 
+**Find Customer By External ID**
+
+```php
+ChartMogul\Enrichment\Customer::findByExternalId($external_id);
+```
 
 **Merge Customers**
 
