@@ -29,7 +29,7 @@
 
 ## Installation
 
-This library requires php 5.4 or above.
+This library requires php 5.5 or above.
 
 
 **Using Composer**:
