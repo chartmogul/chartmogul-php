@@ -120,7 +120,9 @@ ChartMogul\Import\Customer::create([
     "name" => "Adam Smith",
     "email" => "adam@smith.com",
     "country" => "US",
-    "city" => "New York"
+    "city" => "New York",
+    "lead_created_at" => "2016-10-01T00:00:00.000Z",
+    "free_trial_started_at" => "2016-11-02T00:00:00.000Z"
 ]);
 ```
 
@@ -281,6 +283,25 @@ ChartMogul\Enrichment\Customer::merge([
     'customer_uuid' => $cus1->uuid
 ], [
     'customer_uuid' => $cus2->uuid
+]);
+
+// alternatively:
+ChartMogul\Enrichment\Customer::merge([
+    'external_id' => $cus1->external_id,
+    'data_source_uuid' => $ds->uuid
+        ], [
+    'external_id' => $cus2->external_id,
+    'data_source_uuid' => $ds->uuid
+]);
+```
+
+**Update a Customer**
+
+```php
+$result = ChartMogul\Enrichment\Customer::update([
+    'customer_uuid' => $cus1->uuid
+        ], [
+    'name' => 'New Name'
 ]);
 ```
 
