@@ -138,7 +138,10 @@ ChartMogul\Import\Customer::all([
 **Find Customer By External ID**
 
 ```php
-ChartMogul\Import\Customer::findByExternalId($external_id);
+ChartMogul\Import\Customer::findByExternalId([
+    "data_source_uuid" => "ds_fef05d54-47b4-431b-aed2-eb6b9e545430",
+    "external_id" => "cus_0001"
+]);
 ```
 
 

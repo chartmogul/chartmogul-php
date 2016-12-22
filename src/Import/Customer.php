@@ -46,13 +46,9 @@ class Customer extends AbstractResource
      * @param string $externalId
      * @return Customer
      */
-    public static function findByExternalId($externalId)
+    public static function findByExternalId(array $options = [])
     {
-        return static::all(
-            [
-                'external_id' => $externalId
-            ]
-        )->first();
+        return static::all($options)->first();
     }
 
     /**
