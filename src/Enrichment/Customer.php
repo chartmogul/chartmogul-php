@@ -5,7 +5,7 @@ namespace ChartMogul\Enrichment;
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Http\ClientInterface;
 use ChartMogul\Service\RequestService;
-
+use ChartMogul\Service\UpdateTrait;
 /**
  * @property-read string $id
  * @property-read string $uuid
@@ -27,6 +27,9 @@ use ChartMogul\Service\RequestService;
  */
 class Customer extends AbstractResource
 {
+    
+    use UpdateTrait;
+    
     /**
      * @ignore
      */
@@ -52,6 +55,17 @@ class Customer extends AbstractResource
     protected $billing_system_type;
     protected $currency;
     protected $currency_sign;
+    
+    // PATCH = Update a customer
+    protected $data_source_uuid;
+    protected $data_source_uuids;
+    protected $external_ids;
+    protected $city;
+    protected $country;
+    protected $state;
+    protected $zip;
+    protected $lead_created_at;
+    protected $free_trial_started_at;
 
     /**
      * Get Customer Tags
