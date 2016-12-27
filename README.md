@@ -258,8 +258,12 @@ $subscriptions = $cus->subscriptions();
 ```
 
 **Cancel Customer Subscriptions**
+
 ```php
 $canceldate = '2016-01-01T10:00:00.000Z';
+$cus = new ChartMogul\Import\Customer([
+    "uuid" => "cus_uuid"
+]);
 $subscription = $subscriptions->last()->cancel($canceldate);
 ```
 
