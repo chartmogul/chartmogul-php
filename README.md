@@ -245,7 +245,7 @@ $subscriptions = $cus->subscriptions();
 
 **Cancel Customer Subscriptions**
 ```php
-$canceldate = '2017-01-01T10:00:00.000Z';
+$canceldate = '2016-01-01T10:00:00.000Z';
 $subscription = $subscriptions->last()->cancel($canceldate);
 ```
 
