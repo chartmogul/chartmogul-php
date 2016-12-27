@@ -237,6 +237,20 @@ $ci = ChartMogul\Import\CustomerInvoices::all([
 
 #### Subscriptions
 
+**Create a Transaction**
+
+```php
+ChartMogul\Import\Transactions\Refund::create([
+    "invoice_uuid" => $ci->invoices[0]->uuid,
+    "date" => "2015-12-25 18:10:00",
+    "result" => "successful"
+]);
+```
+
+The same can be done with Payment class.
+
+#### Subscriptions
+
 **List Customer Subscriptions**
 
 ```php
