@@ -3,6 +3,10 @@
 namespace ChartMogul\Import;
 
 use ChartMogul\Resource\AbstractResource;
+use ChartMogul\Service\GetTrait;
+use ChartMogul\Service\CreateTrait;
+use ChartMogul\Service\AllTrait;
+use ChartMogul\Service\DestroyTrait;
 
 /**
 * @codeCoverageIgnore
@@ -10,9 +14,11 @@ use ChartMogul\Resource\AbstractResource;
 */
 class Plan extends AbstractResource
 {
-
-    use \ChartMogul\Service\CreateTrait;
-    use \ChartMogul\Service\AllTrait;
+    
+    use AllTrait;
+    use CreateTrait;
+    use DestroyTrait;
+    use GetTrait;
 
     /**
      * @ignore
@@ -35,4 +41,12 @@ class Plan extends AbstractResource
     public $external_id;
 
     public $data_source_uuid;
+    
+    public static function update(array $id = [], array $data = [], ClientInterface $client = null)
+    {
+        return (new RequestService($client))
+            ->setResourceClass(static::class)
+            ->setResourcePath(static::RESOURCE_PATH . "/:plan_uuid")
+            ->update($id, $data);
+    }
 }

@@ -18,7 +18,6 @@ trait UpdateTrait
      */
     public static function update(array $id = [], array $data = [], ClientInterface $client = null)
     {
-
         return (new RequestService($client))
             ->setResourceClass(static::class)
             ->update($id, $data);

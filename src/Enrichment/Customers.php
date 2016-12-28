@@ -6,11 +6,13 @@ use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Http\ClientInterface;
 use ChartMogul\Resource\EntryTrait;
 use ChartMogul\Service\AllTrait;
+use ChartMogul\Service\GetTrait;
 
 class Customers extends AbstractResource
 {
     use EntryTrait;
     use AllTrait;
+    use GetTrait;
 
     /**
      * @ignore
