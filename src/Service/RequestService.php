@@ -87,6 +87,18 @@ class RequestService
         return $class::fromArray($response, $this->client);
     }
 
+    public function update(array $id, array $data)
+    {
+        $class = $this->resourceClass;
+        
+        
+        $response = $this->client
+            ->setResourceKey($class::RESOURCE_NAME)
+            ->send($this->applyResourcePath($id), 'PATCH', $data);
+
+        return $class::fromArray($response, $this->client);
+    }
+    
     public function all($data)
     {
         $class = $this->resourceClass;

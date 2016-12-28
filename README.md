@@ -29,7 +29,7 @@
 
 ## Installation
 
-This library requires php 5.4 or above.
+This library requires php 5.5 or above.
 
 
 **Using Composer**:
@@ -126,7 +126,9 @@ ChartMogul\Import\Customer::create([
     "name" => "Adam Smith",
     "email" => "adam@smith.com",
     "country" => "US",
-    "city" => "New York"
+    "city" => "New York",
+    "lead_created_at" => "2016-10-01T00:00:00.000Z",
+    "free_trial_started_at" => "2016-11-02T00:00:00.000Z"
 ]);
 ```
 
@@ -143,6 +145,15 @@ ChartMogul\Import\Customer::all([
 
 ```php
 ChartMogul\Import\Customer::get($uuid);
+```
+
+**Find Customer By External ID**
+
+```php
+ChartMogul\Import\Customer::findByExternalId([
+    "data_source_uuid" => "ds_fef05d54-47b4-431b-aed2-eb6b9e545430",
+    "external_id" => "cus_0001"
+]);
 ```
 
 **Delete A Customer**
@@ -259,6 +270,20 @@ $ci = ChartMogul\Import\CustomerInvoices::all([
 
 #### Subscriptions
 
+**Create a Transaction**
+
+```php
+ChartMogul\Import\Transactions\Refund::create([
+    "invoice_uuid" => $ci->invoices[0]->uuid,
+    "date" => "2015-12-25 18:10:00",
+    "result" => "successful"
+]);
+```
+
+The same can be done with Payment class.
+
+#### Subscriptions
+
 **List Customer Subscriptions**
 
 ```php
@@ -266,8 +291,12 @@ $subscriptions = $cus->subscriptions();
 ```
 
 **Cancel Customer Subscriptions**
+
 ```php
-$canceldate = '2017-01-01T10:00:00.000Z';
+$canceldate = '2016-01-01T10:00:00.000Z';
+$cus = new ChartMogul\Import\Customer([
+    "uuid" => "cus_uuid"
+]);
 $subscription = $subscriptions->last()->cancel($canceldate);
 ```
 
@@ -295,6 +324,11 @@ ChartMogul\Enrichment\Customer::all([
 ]);
 ```
 
+**Find Customer By External ID**
+
+```php
+ChartMogul\Enrichment\Customer::findByExternalId($external_id);
+```
 
 **Merge Customers**
 
@@ -303,6 +337,25 @@ ChartMogul\Enrichment\Customer::merge([
     'customer_uuid' => $cus1->uuid
 ], [
     'customer_uuid' => $cus2->uuid
+]);
+
+// alternatively:
+ChartMogul\Enrichment\Customer::merge([
+    'external_id' => $cus1->external_id,
+    'data_source_uuid' => $ds->uuid
+        ], [
+    'external_id' => $cus2->external_id,
+    'data_source_uuid' => $ds->uuid
+]);
+```
+
+**Update a Customer**
+
+```php
+$result = ChartMogul\Enrichment\Customer::update([
+    'customer_uuid' => $cus1->uuid
+        ], [
+    'name' => 'New Name'
 ]);
 ```
 
@@ -489,13 +542,17 @@ ChartMogul\Metrics::ltv([
 **List Customer Subscriptions**
 
 ```php
-ChartMogul\Metrics\Customer::subscriptions($cus->uuid);
+ChartMogul\Metrics\Subscriptions::all(
+    ["customer_uuid" => $cus->uuid]
+);
 ```
 
 **List Customer Activities**
 
 ```php
-ChartMogul\Metrics\Activity::all($cus->uuid);
+ChartMogul\Metrics\Activities::all(
+    ["customer_uuid" => $cus->uuid]
+);
 ```
 
 

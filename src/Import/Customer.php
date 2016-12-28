@@ -38,19 +38,17 @@ class Customer extends AbstractResource
     public $city;
     public $zip;
     public $data_source_uuid;
+    public $lead_created_at;
+    public $free_trial_started_at;
 
     /**
      * Find a Customer by External ID
      * @param string $externalId
      * @return Customer
      */
-    public static function findByExternalId($externalId)
+    public static function findByExternalId(array $options = [])
     {
-        return static::all(
-            [
-                'external_id' => $externalId
-            ]
-        )->first();
+        return static::all($options)->first();
     }
 
     /**

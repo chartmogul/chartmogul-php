@@ -1,4 +1,5 @@
 <?php
+
 namespace ChartMogul\Service;
 
 use ChartMogul\Http\ClientInterface;
@@ -10,13 +11,15 @@ trait UpdateTrait
 {
 
     /**
-     * Get a single resource by UUID.
-     * @return resource
+     * Update a Resource
+     * @param  array                $data
+     * @param  ClientInterface|null $client
+     * @return self
      */
-    public static function update($uuid, array $data, ClientInterface $client = null)
+    public static function update(array $id = [], array $data = [], ClientInterface $client = null)
     {
         return (new RequestService($client))
-            ->setResource($this)
-            ->update($uuid, $data);
+            ->setResourceClass(static::class)
+            ->update($id, $data);
     }
 }
