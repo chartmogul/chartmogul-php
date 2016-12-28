@@ -164,13 +164,13 @@ class Customer extends AbstractResource
      */
     public function addTags($tags)
     {
-        $tags = $this->getClient()
+        $result = $this->getClient()
             ->send('/v1/customers/'.$this->uuid.'/attributes/tags', 'POST', [
                 'tags' => func_get_args()
             ]);
 
-        $this->attributes['tags'] = $tags;
-        return $tags;
+        $this->attributes['tags'] = $result['tags'];
+        return $result['tags'];
     }
 
 
@@ -181,13 +181,13 @@ class Customer extends AbstractResource
      */
     public function removeTags($tags)
     {
-        $tags = $this->getClient()
+        $result = $this->getClient()
             ->send('/v1/customers/'.$this->uuid.'/attributes/tags', 'DELETE', [
                 'tags' => func_get_args()
             ]);
 
-        $this->attributes['tags'] = $tags;
-        return $tags;
+        $this->attributes['tags'] = $result['tags'];
+        return $result['tags'];
     }
 
     /**
@@ -197,13 +197,13 @@ class Customer extends AbstractResource
      */
     public function addCustomAttributes($custom)
     {
-        $custom = $this->getClient()
+        $result = $this->getClient()
             ->send('/v1/customers/'.$this->uuid.'/attributes/custom', 'POST', [
                 'custom' => func_get_args()
             ]);
 
-        $this->attributes['custom'] = $custom;
-        return $custom;
+        $this->attributes['custom'] = $result['custom'];
+        return $result['custom'];
     }
 
 
@@ -214,13 +214,13 @@ class Customer extends AbstractResource
      */
     public function removeCustomAttributes($custom)
     {
-        $custom = $this->getClient()
+        $result = $this->getClient()
             ->send('/v1/customers/'.$this->uuid.'/attributes/custom', 'DELETE', [
                 'custom' => func_get_args()
             ]);
 
-        $this->attributes['custom'] = $custom;
-        return $custom;
+        $this->attributes['custom'] = $result['custom'];
+        return $result['custom'];
     }
 
     /**
@@ -235,12 +235,12 @@ class Customer extends AbstractResource
         foreach (func_get_args() as $value) {
             $data = array_merge($data, $value);
         }
-        $custom = $this->getClient()
+        $result = $this->getClient()
             ->send('/v1/customers/'.$this->uuid.'/attributes/custom', 'PUT', [
                 'custom' => $data
             ]);
 
-        $this->attributes['custom'] = $custom;
-        return $custom;
+        $this->attributes['custom'] = $result['custom'];
+        return $result['custom'];
     }
 }
