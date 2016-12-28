@@ -509,13 +509,17 @@ ChartMogul\Metrics::ltv([
 **List Customer Subscriptions**
 
 ```php
-ChartMogul\Metrics\Customer::subscriptions($cus->uuid);
+ChartMogul\Metrics\Subscriptions::all(
+    ["customer_uuid" => $cus->uuid]
+);
 ```
 
 **List Customer Activities**
 
 ```php
-ChartMogul\Metrics\Activity::all($cus->uuid);
+ChartMogul\Metrics\Activities::all(
+    ["customer_uuid" => $cus->uuid]
+);
 ```
 
 
