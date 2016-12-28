@@ -10,7 +10,7 @@ class RequestService
 {
 
     private $resourceClass;
-
+    private $resourcePath;
     private $client;
 
     public function __construct(ClientInterface $client = null)
@@ -36,6 +36,17 @@ class RequestService
         $this->resourceClass = get_class($resource);
         return $this;
     }
+    
+    /**
+     * Use only when default class resource path must be overridden.
+     * @param type $resourcePath
+     * @return $this
+     */
+    public function setResourcePath($resourcePath)
+    {
+        $this->$resourcePath = $resourcePath;
+        return $this;
+    }
 
     private function getNamedParams($path)
     {
@@ -50,6 +61,10 @@ class RequestService
     {
         $class = $this->resourceClass;
         $path = $class::RESOURCE_PATH;
+        if (isset($this->$resourcePath)) {
+            $path = $this->$resourcePath;
+        }
+        
         foreach ($this->getNamedParams($path) as $param) {
             if (empty($data[$param])) {
                 throw new \Exception('Parameter '.$param. ' is required');
@@ -129,16 +144,6 @@ class RequestService
             ->setResourceKey($class::RESOURCE_NAME)
             ->send($class::RESOURCE_PATH.'/'.$uuid, 'GET');
 
-        return $class::fromArray($response, $this->client);
-    }
-    
-    public function update($uuid, $data)
-    {
-        $class = $this->resourceClass;
-
-        $response = $this->client
-            ->setResourceKey($class::RESOURCE_NAME)
-            ->send($class::RESOURCE_PATH.'/'.$uuid, 'PATCH', $data);
         return $class::fromArray($response, $this->client);
     }
 }

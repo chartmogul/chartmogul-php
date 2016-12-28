@@ -19,7 +19,6 @@ class Plan extends AbstractResource
     use CreateTrait;
     use DestroyTrait;
     use GetTrait;
-    use UpdateTrait;
 
     /**
      * @ignore
@@ -42,4 +41,12 @@ class Plan extends AbstractResource
     public $external_id;
 
     public $data_source_uuid;
+    
+    public static function update(array $id = [], array $data = [], ClientInterface $client = null)
+    {
+        return (new RequestService($client))
+            ->setResourceClass(static::class)
+            ->setResourcePath(static::RESOURCE_PATH . "/:plan_uuid")
+            ->update($id, $data);
+    }
 }
