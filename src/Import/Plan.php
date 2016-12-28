@@ -19,6 +19,7 @@ class Plan extends AbstractResource
     use CreateTrait;
     use DestroyTrait;
     use GetTrait;
+    use UpdateTrait;
 
     /**
      * @ignore

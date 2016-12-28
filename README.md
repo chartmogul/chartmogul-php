@@ -187,6 +187,15 @@ $plan = ChartMogul\Import\Plan::all()->last();
 $plan->destroy();
 ```
 
+**Update A Plan**
+
+```php
+$plan = ChartMogul\Import\Plan::update($plan->uuid, [
+            "name" => "Bronze Monthly Plan",
+            "interval_count" => 1,
+            "interval_unit" => "month"
+]);
+```
 
 #### Invoices
 

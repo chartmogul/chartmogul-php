@@ -202,6 +202,11 @@ class Client implements ClientInterface
                     "The resource could not be found.",
                     $response
                 );
+            case 405:
+                throw new \ChartMogul\Exceptions\NotAllowedException(
+                    "Method Not Allowed.",
+                    $response
+                );
             case 422:
                 throw new \ChartMogul\Exceptions\SchemaInvalidException(
                     "The ".$this->resourceKey." could not be created or updated.",

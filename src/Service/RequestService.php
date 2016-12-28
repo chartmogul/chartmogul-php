@@ -119,5 +119,14 @@ class RequestService
 
         return $class::fromArray($response, $this->client);
     }
+    
+    public function update($uuid, $data)
+    {
+        $class = $this->resourceClass;
 
+        $response = $this->client
+            ->setResourceKey($class::RESOURCE_NAME)
+            ->send($class::RESOURCE_PATH.'/'.$uuid, 'PATCH', $data);
+        return $class::fromArray($response, $this->client);
+    }
 }
