@@ -24,7 +24,7 @@ class DataSource extends AbstractResource {
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/import/data_sources';
+    const RESOURCE_PATH = '/v1/data_sources';
 
     /**
      * @ignore

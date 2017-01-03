@@ -23,7 +23,7 @@ class Plan extends AbstractResource
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/import/plans';
+    const RESOURCE_PATH = '/v1/plans';
     /**
      * @ignore
      */
