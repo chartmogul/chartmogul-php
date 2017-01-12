@@ -16,7 +16,7 @@ class Subscription extends AbstractResource
 
     use \ChartMogul\Service\CreateTrait;
     use \ChartMogul\Service\AllTrait;
-
+    
     /**
      * @ignore
      */
@@ -52,5 +52,17 @@ class Subscription extends AbstractResource
         );
         $this->cancellation_dates = $response['cancellation_dates'];
         return $this;
+    }
+    /**
+     * @param array $data
+     * @param ClientInterface|null $client
+     * @return ArrayCollection|self
+     */
+    public static function fromArray(array $data, \ChartMogul\Http\ClientInterface $client = null) {
+        $result = parent::fromArray($data, $client);
+        if (isset($data["customer_uuid"])) {
+            $result->customer_uuid = $data["customer_uuid"];
+        }
+        return $result;
     }
 }

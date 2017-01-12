@@ -4,7 +4,6 @@ namespace ChartMogul\Metrics;
 
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Resource\EntryTrait;
-use ChartMogul\Resource\PageableTrait;
 use ChartMogul\Service\AllTrait;
 use ChartMogul\Http\ClientInterface;
 
@@ -25,7 +24,6 @@ class Subscriptions extends AbstractResource
 
     use EntryTrait;
     use AllTrait;
-    use PageableTrait;
 
     protected static function getEntryClass()
     {
