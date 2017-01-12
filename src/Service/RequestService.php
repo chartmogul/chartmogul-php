@@ -44,7 +44,7 @@ class RequestService
      */
     public function setResourcePath($resourcePath)
     {
-        $this->$resourcePath = $resourcePath;
+        $this->resourcePath = $resourcePath;
         return $this;
     }
 
@@ -61,8 +61,8 @@ class RequestService
     {
         $class = $this->resourceClass;
         $path = $class::RESOURCE_PATH;
-        if (isset($this->$resourcePath)) {
-            $path = $this->$resourcePath;
+        if (isset($this->resourcePath)) {
+            $path = $this->resourcePath;
         }
         
         foreach ($this->getNamedParams($path) as $param) {
