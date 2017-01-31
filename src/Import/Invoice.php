@@ -4,7 +4,7 @@ namespace ChartMogul\Import;
 
 use ChartMogul\Import\LineItems\AbstractLineItem;
 use ChartMogul\Import\LineItems\OneTime;
-use ChartMogul\Import\LineItems\Subscription;
+use ChartMogul\Import\LineItems\Subscription as SubsItem;
 use ChartMogul\Import\Transactions\AbstractTransaction;
 use ChartMogul\Import\Transactions\Payment;
 use ChartMogul\Import\Transactions\Refund;
@@ -48,7 +48,7 @@ class Invoice extends \ChartMogul\Resource\AbstractModel
         } elseif (is_array($line) && isset($line['type']) && $line['type'] === 'one_time') {
             $this->line_items[$index] = new OneTime($line);
         } elseif (is_array($line) && isset($line['type']) && $line['type'] === 'subscription') {
-            $this->line_items[$index] = new Subscription($line);
+            $this->line_items[$index] = new SubsItem($line);
         }
     }
 
