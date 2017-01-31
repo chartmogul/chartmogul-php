@@ -1,6 +1,6 @@
 <?php
 
-namespace ChartMogul\Enrichment;
+namespace ChartMogul;
 
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Http\ClientInterface;
@@ -27,9 +27,9 @@ use ChartMogul\Service\UpdateTrait;
  */
 class Customer extends AbstractResource
 {
-    
+
     use UpdateTrait;
-    
+
     /**
      * @ignore
      */
@@ -44,6 +44,7 @@ class Customer extends AbstractResource
     protected $external_id;
     protected $name;
     protected $email;
+    protected $company;
     protected $status;
     protected $customer_since;
     protected $attributes;
@@ -55,7 +56,7 @@ class Customer extends AbstractResource
     protected $billing_system_type;
     protected $currency;
     protected $currency_sign;
-    
+
     // PATCH = Update a customer
     protected $data_source_uuid;
     protected $data_source_uuids;
@@ -86,22 +87,6 @@ class Customer extends AbstractResource
     }
 
     /**
-     * Retrieve a Customer
-     * @param  string               $customer_uuid
-     * @param  ClientInterface|null $client
-     * @return Customer
-     */
-    public static function retrieve($customer_uuid, ClientInterface $client = null)
-    {
-
-        return (new RequestService($client))
-            ->setResourceClass(static::class)
-            ->all([
-                'customer_uuid' => $customer_uuid
-            ]);
-    }
-
-    /**
      * List all Customers
      * @param  array                $data
      * @param  ClientInterface|null $client
@@ -118,7 +103,7 @@ class Customer extends AbstractResource
      * @return Customer
      */
     public static function get($uuid, ClientInterface $client = null) {
-        return Customers::get($data, $client);
+        return Customers::get($uuid, $client);
     }
 
     /**
@@ -128,13 +113,9 @@ class Customer extends AbstractResource
      */
     public static function findByExternalId($externalId)
     {
-        return static::all(
-            [
-                'external_id' => $externalId
-            ]
-        )->entries->first();
+        return static::all(['external_id' => $externalId])->entries->first();
     }
-    
+
     /**
      * Search for Customers
      * @param  string                $email

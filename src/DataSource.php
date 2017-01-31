@@ -1,6 +1,6 @@
 <?php
 
-namespace ChartMogul\Import;
+namespace ChartMogul;
 
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Service\CreateTrait;
