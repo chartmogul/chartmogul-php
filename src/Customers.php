@@ -1,18 +1,23 @@
 <?php
 
-namespace ChartMogul\Enrichment;
+namespace ChartMogul;
 
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Http\ClientInterface;
 use ChartMogul\Resource\EntryTrait;
 use ChartMogul\Service\AllTrait;
 use ChartMogul\Service\GetTrait;
+use ChartMogul\Service\CreateTrait;
+use ChartMogul\Service\DestroyTrait;
+
 
 class Customers extends AbstractResource
 {
+    use CreateTrait;
     use EntryTrait;
     use AllTrait;
     use GetTrait;
+    use DestroyTrait;
 
     /**
      * @ignore

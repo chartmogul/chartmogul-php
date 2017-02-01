@@ -1,6 +1,6 @@
 <?php
 
-namespace ChartMogul\Import;
+namespace ChartMogul;
 
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Service\GetTrait;
@@ -14,7 +14,7 @@ use ChartMogul\Service\DestroyTrait;
 */
 class Plan extends AbstractResource
 {
-    
+
     use AllTrait;
     use CreateTrait;
     use DestroyTrait;
@@ -41,7 +41,7 @@ class Plan extends AbstractResource
     public $external_id;
 
     public $data_source_uuid;
-    
+
     public static function update(array $id = [], array $data = [], ClientInterface $client = null)
     {
         return (new RequestService($client))

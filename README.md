@@ -64,7 +64,7 @@ ChartMogul\Configuration::getDefaultConfiguration()
 
 ```php
 try {
-  $dataSources = ChartMogul\Import\DataSource::all();
+  $dataSources = ChartMogul\DataSource::all();
 } catch(\ChartMogul\Exceptions\ForbiddenException $e){
   // handle authentication exception
 } catch(\ChartMogul\Exceptions\ChartMogulException $e){
@@ -90,7 +90,7 @@ Available methods in Import API:
 **Create Datasources**
 
 ```php
-$ds = ChartMogul\Import\DataSource::create([
+$ds = ChartMogul\DataSource::create([
   'name' => 'In-house Billing'
 ]);
 ```
@@ -98,19 +98,19 @@ $ds = ChartMogul\Import\DataSource::create([
 **Get a Datasource by UUID**
 
 ```php
-ChartMogul\Import\DataSource::get($uuid);
+ChartMogul\DataSource::get($uuid);
 ```
 
 **List Datasources**
 
 ```php
-ChartMogul\Import\DataSource::all();
+ChartMogul\DataSource::all();
 ```
 
 **Delete a Datasource**
 
 ```php
-$dataSources = ChartMogul\Import\DataSource::all();
+$dataSources = ChartMogul\DataSource::all();
 $ds = $dataSources->last();
 $ds->destroy();
 ```
@@ -135,22 +135,16 @@ ChartMogul\Import\Customer::create([
 **List Customers**
 
 ```php
-ChartMogul\Import\Customer::all([
+ChartMogul\Customers::all([
   'page' => 1,
   'data_source_uuid' => $ds->uuid
 ]);
 ```
 
-**Get a Customer by UUID**
-
-```php
-ChartMogul\Import\Customer::get($uuid);
-```
-
 **Find Customer By External ID**
 
 ```php
-ChartMogul\Import\Customer::findByExternalId([
+ChartMogul\Customer::findByExternalId([
     "data_source_uuid" => "ds_fef05d54-47b4-431b-aed2-eb6b9e545430",
     "external_id" => "cus_0001"
 ]);
@@ -161,6 +155,128 @@ ChartMogul\Import\Customer::findByExternalId([
 ```php
 $cus = ChartMogul\Import\Customer::all()->last();
 $cus->destroy();
+```
+
+**Get a Customer**
+
+```php
+ChartMogul\Customer::get($uuid);
+```
+
+**Search for Customers**
+
+```php
+ChartMogul\Customer::search('adam@smith.com');
+```
+
+**Merge Customers**
+
+```php
+ChartMogul\Customer::merge([
+    'customer_uuid' => $cus1->uuid
+], [
+    'customer_uuid' => $cus2->uuid
+]);
+
+// alternatively:
+ChartMogul\Customer::merge([
+    'external_id' => $cus1->external_id,
+    'data_source_uuid' => $ds->uuid
+        ], [
+    'external_id' => $cus2->external_id,
+    'data_source_uuid' => $ds->uuid
+]);
+```
+
+**Update a Customer**
+
+```php
+$result = ChartMogul\Customer::update([
+    'customer_uuid' => $cus1->uuid
+        ], [
+    'name' => 'New Name'
+]);
+```
+
+
+#### Customer Attributes
+
+**Retrieve Customer's Attributes**
+
+```php
+$customer = ChartMogul\Customer::get($cus->uuid);
+$customer->attributes;
+
+```
+
+
+#### Tags
+
+**Add Tags to a Customer**
+
+```php
+$customer = ChartMogul\Customer::get($cus->uuid);
+$tags = $customer->addTags("important", "Prio1");
+```
+
+**Add Tags to Customers with email**
+
+```php
+$customers = ChartMogul\Customer::search('adam@smith.com');
+
+foreach ($customers->entries as $customer) {
+    $customer->addTags('foo', 'bar', 'baz');
+}
+```
+
+**Remove Tags from a Customer**
+
+```php
+$customer = ChartMogul\Customer::get($cus->uuid);
+$tags = $customer->removeTags("important", "Prio1");
+```
+
+#### Custom Attributes
+
+**Add Custom Attributes to a Customer**
+
+```php
+$customer = ChartMogul\Customer::get($cus->uuid);
+$custom = $customer->addCustomAttributes(
+    ['type' => 'String', 'key' => 'channel', 'value' => 'Facebook'],
+    ['type' => 'Integer', 'key' => 'age', 'value' => 8 ]
+);
+```
+
+
+**Add Custom Attributes to Customers with email**
+
+```php
+$customers = ChartMogul\Customer::search('adam@smith.com');
+
+foreach ($customers->entries as $customer) {
+    $customer->addCustomAttributes(
+        ['type' => 'String', 'key' => 'channel', 'value' => 'Facebook'],
+        ['type' => 'Integer', 'key' => 'age', 'value' => 8 ]
+    );
+}
+```
+
+**Update Custom Attributes of a Customer**
+
+```php
+$customer = ChartMogul\Customer::get($cus->uuid);
+$custom = $customer->updateCustomAttributes(
+    ['channel' => 'Twitter'],
+    ['age' => 18]
+);
+```
+
+**Remove Custom Attributes from a Customer**
+
+```php
+$customer = ChartMogul\Customer::get($cus->uuid);
+$tags = $customer->removeCustomAttributes("age", "channel");
 ```
 
 #### Plans
@@ -300,148 +416,6 @@ $cus = new ChartMogul\Import\Customer([
 $subscription = $subscriptions->last()->cancel($canceldate);
 ```
 
-### Enrichment API
-
-#### Customers
-
-**Retrieve a Customer**
-
-```php
-ChartMogul\Enrichment\Customer::retrieve($cus->uuid);
-```
-
-**Search for Customers**
-
-```php
-ChartMogul\Enrichment\Customer::search('adam@smith.com');
-```
-
-**List all Customers**
-
-```php
-ChartMogul\Enrichment\Customer::all([
-    'page' => 1
-]);
-```
-
-**Find Customer By External ID**
-
-```php
-ChartMogul\Enrichment\Customer::findByExternalId($external_id);
-```
-
-**Merge Customers**
-
-```php
-ChartMogul\Enrichment\Customer::merge([
-    'customer_uuid' => $cus1->uuid
-], [
-    'customer_uuid' => $cus2->uuid
-]);
-
-// alternatively:
-ChartMogul\Enrichment\Customer::merge([
-    'external_id' => $cus1->external_id,
-    'data_source_uuid' => $ds->uuid
-        ], [
-    'external_id' => $cus2->external_id,
-    'data_source_uuid' => $ds->uuid
-]);
-```
-
-**Update a Customer**
-
-```php
-$result = ChartMogul\Enrichment\Customer::update([
-    'customer_uuid' => $cus1->uuid
-        ], [
-    'name' => 'New Name'
-]);
-```
-
-
-#### Customer Attributes
-
-**Retrieve Customer's Attributes**
-
-```php
-$customer = ChartMogul\Enrichment\Customer::retrieve($cus->uuid);
-$customer->attributes;
-
-```
-
-
-#### Tags
-
-**Add Tags to a Customer**
-
-```php
-$customer = ChartMogul\Enrichment\Customer::retrieve($cus->uuid);
-$tags = $customer->addTags("important", "Prio1");
-```
-
-**Add Tags to Customers with email**
-
-```php
-$customers = ChartMogul\Enrichment\Customer::search('adam@smith.com');
-
-foreach ($customers->entries as $customer) {
-    $customer->addTags('foo', 'bar', 'baz');
-}
-```
-
-**Remove Tags from a Customer**
-
-```php
-$customer = ChartMogul\Enrichment\Customer::retrieve($cus->uuid);
-$tags = $customer->removeTags("important", "Prio1");
-```
-
-
-
-#### Custom Attributes
-
-
-**Add Custom Attributes to a Customer**
-
-```php
-$customer = ChartMogul\Enrichment\Customer::retrieve($cus->uuid);
-$custom = $customer->addCustomAttributes(
-    ['type' => 'String', 'key' => 'channel', 'value' => 'Facebook'],
-    ['type' => 'Integer', 'key' => 'age', 'value' => 8 ]
-);
-```
-
-
-**Add Custom Attributes to Customers with email**
-
-```php
-$customers = ChartMogul\Enrichment\Customer::search('adam@smith.com');
-
-foreach ($customers->entries as $customer) {
-    $customer->addCustomAttributes(
-        ['type' => 'String', 'key' => 'channel', 'value' => 'Facebook'],
-        ['type' => 'Integer', 'key' => 'age', 'value' => 8 ]
-    );
-}
-```
-
-**Update Custom Attributes of a Customer**
-
-```php
-$customer = ChartMogul\Enrichment\Customer::retrieve($cus->uuid);
-$custom = $customer->updateCustomAttributes(
-    ['channel' => 'Twitter'],
-    ['age' => 18]
-);
-```
-
-**Remove Custom Attributes from a Customer**
-
-```php
-$customer = ChartMogul\Enrichment\Customer::retrieve($cus->uuid);
-$tags = $customer->removeCustomAttributes("age", "channel");
-```
 
 ### Metrics API
 
