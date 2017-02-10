@@ -60,6 +60,12 @@ ChartMogul\Configuration::getDefaultConfiguration()
     ->setSecretKey('<YOUR_SECRET_KEY>');
 ```
 
+
+### Test your authentication
+```php
+print_r(ChartMogul\Ping::ping()->data);
+```
+
 ## Usage
 
 ```php
