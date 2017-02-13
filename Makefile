@@ -4,18 +4,19 @@ RUNNER=docker run -it --rm --workdir "/src" -v "$(PWD):/src" chartmogulphp /bin/
 
 build:
 	if [ "$(shell docker images -q chartmogulphp 2> /dev/null)" = "" ]; then docker build --tag=chartmogulphp .; fi;
-	if [ ! -d vendor ]; then make composer install; fi;
 composer: build
-	$(RUNNER) "php composer.phar $(filter-out $@,$(MAKECMDGOALS))"
-test: build
+	$(RUNNER) "composer $(filter-out $@,$(MAKECMDGOALS))"
+dependencies: build
+	if [ ! -d vendor ]; then make composer install; fi;
+test: dependencies
 	$(RUNNER) "./vendor/bin/phpunit --coverage-text --coverage-html ./coverage "
-php: build
+php: dependencies
 	$(RUNNER) "php $(filter-out $@,$(MAKECMDGOALS))"
-cs: build
+cs: dependencies
 	$(RUNNER) "./vendor/bin/phpcs --standard=PSR2 src/"
-cbf: build
+cbf: dependencies
 	$(RUNNER) "./vendor/bin/phpcbf --standard=PSR2 src/"
-doc: build
+doc: dependencies
 	$(RUNNER) "./vendor/bin/phpdoc"
 	$(RUNNER) "./vendor/bin/phpdocmd docs/structure.xml docs --index README.md"
 %:
