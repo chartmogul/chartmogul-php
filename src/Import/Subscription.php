@@ -16,7 +16,7 @@ class Subscription extends AbstractResource
 
     use \ChartMogul\Service\CreateTrait;
     use \ChartMogul\Service\AllTrait;
-    
+
     /**
      * @ignore
      */
@@ -36,6 +36,19 @@ class Subscription extends AbstractResource
     protected $plan_uuid;
     protected $data_source_uuid;
 
+
+
+    private function cancellation($payload)
+    {
+        $response = $this->getClient()->send(
+            '/v1/import/subscriptions/'.$this->uuid,
+            'PATCH',
+            $payload
+        );
+        $this->cancellation_dates = $response['cancellation_dates'];
+        return $this;
+    }
+
     /**
      * Cancels a subscription that was generated from an imported invoice.
      * @param  string $cancelledAt The time at which the subscription was cancelled.
@@ -43,16 +56,23 @@ class Subscription extends AbstractResource
      */
     public function cancel($cancelledAt)
     {
-        $response = $this->getClient()->send(
-            '/v1/import/subscriptions/'.$this->uuid,
-            'PATCH',
-            [
+        return $this->cancellation([
             'cancelled_at' => $cancelledAt
-            ]
-        );
-        $this->cancellation_dates = $response['cancellation_dates'];
-        return $this;
+        ]);
     }
+
+    /**
+     * Changes dates of cancellation for a subscription.
+     * @param  array $cancellationDates The array of times (strings) at which the subscription was cancelled.
+     * @return Subscription
+     */
+    public function setCancellationDates($cancellationDates)
+    {
+        return $this->cancellation([
+            'cancellation_dates' => $cancellationDates
+        ]);
+    }
+
     /**
      * @param array $data
      * @param ClientInterface|null $client

@@ -417,11 +417,16 @@ $subscriptions = $cus->subscriptions();
 ```php
 $canceldate = '2016-01-01T10:00:00.000Z';
 $cus = new ChartMogul\Import\Customer([
-    "uuid" => "cus_uuid"
+    'uuid' => 'cus_uuid'
 ]);
 $subscription = $subscriptions->last()->cancel($canceldate);
 ```
 
+Or set the cancellation dates:
+```php
+$cancellationDates = ['2016-01-01T10:00:00.000Z', '2017-01-01T10:00:00.000Z']
+$subscription = $subscriptions->last()->setCancellationDates($cancellationDates)
+```
 
 ### Metrics API
 
