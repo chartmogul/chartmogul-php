@@ -87,11 +87,9 @@ $ds->destroy();
 
 All array results are wrapped with [`Doctrine\Common\Collections\ArrayCollection`](http://www.doctrine-project.org/api/common/2.3/class-Doctrine.Common.Collections.ArrayCollection.html) for ease of access. See [Exceptoins](#exceptions) for a list of exceptions thrown by this library.
 
-### Import API
-
 Available methods in Import API:
 
-#### [Data Sources](https://dev.chartmogul.com/docs/data-sources)
+### [Data Sources](https://dev.chartmogul.com/docs/data-sources)
 
 **Create Datasources**
 
@@ -121,7 +119,7 @@ $ds = $dataSources->last();
 $ds->destroy();
 ```
 
-#### Customers
+### Customers
 
 **Import a Customer**
 
@@ -285,12 +283,12 @@ $customer = ChartMogul\Customer::get($cus->uuid);
 $tags = $customer->removeCustomAttributes("age", "channel");
 ```
 
-#### Plans
+### Plans
 
 **Import a Plan**
 
 ```php
-ChartMogul\Import\Plan::create([
+ChartMogul\Plan::create([
     "data_source_uuid" => $ds->uuid,
     "name" => "Bronze Plan",
     "interval_count" => 1,
@@ -302,13 +300,13 @@ ChartMogul\Import\Plan::create([
 **Get a Plan by UUID**
 
 ```php
-ChartMogul\Import\Plan::get($uuid);
+ChartMogul\Plan::get($uuid);
 ```
 
 **List Plans**
 
 ```php
-$plans = ChartMogul\Import\Plan::all([
+$plans = ChartMogul\Plan::all([
   'page' => 1
 ]);
 ```
@@ -316,21 +314,21 @@ $plans = ChartMogul\Import\Plan::all([
 **Delete A Plan**
 
 ```php
-$plan = ChartMogul\Import\Plan::all()->last();
+$plan = ChartMogul\Plan::all()->last();
 $plan->destroy();
 ```
 
 **Update A Plan**
 
 ```php
-$plan = ChartMogul\Import\Plan::update(["plan_uuid" => $plan->uuid], [
+$plan = ChartMogul\Plan::update(["plan_uuid" => $plan->uuid], [
             "name" => "Bronze Monthly Plan",
             "interval_count" => 1,
             "interval_unit" => "month"
 ]);
 ```
 
-#### Invoices
+### Invoices
 
 **Import Invoices**
 
@@ -390,7 +388,7 @@ $ci = ChartMogul\Import\CustomerInvoices::all([
 ]);
 ```
 
-#### Subscriptions
+### Transactions
 
 **Create a Transaction**
 
@@ -404,7 +402,7 @@ ChartMogul\Import\Transactions\Refund::create([
 
 The same can be done with Payment class.
 
-#### Subscriptions
+### Subscriptions
 
 **List Customer Subscriptions**
 
