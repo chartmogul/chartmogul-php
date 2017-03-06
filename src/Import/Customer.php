@@ -5,7 +5,7 @@ namespace ChartMogul\Import;
 use ChartMogul\Resource\AbstractResource;
 
 /**
- * @deprecated Use ChartMogul\Customer or CustomerInvoices etc.
+ * @deprecated Use ChartMogul\Customer, Import\CustomerInvoices or Import\Subscription.
  * @property-read string $uuid
  */
 class Customer extends AbstractResource
@@ -46,6 +46,7 @@ class Customer extends AbstractResource
      * Find a Customer by External ID
      * @param string $externalId
      * @return Customer
+     * @deprecated Use ChartMogul\Customer
      */
     public static function findByExternalId(array $options = [])
     {
@@ -56,6 +57,7 @@ class Customer extends AbstractResource
      * Find a Customer Subscriptions
      * @param  array  $options
      * @return \Doctrine\Common\Collections\ArrayCollection | Customer
+     * @deprecated Use Import\Subscription.
      */
     public function subscriptions(array $options = [])
     {
@@ -70,6 +72,7 @@ class Customer extends AbstractResource
      * Find a Customer Invoices
      * @param  array  $options
      * @return \Doctrine\Common\Collections\ArrayCollection | Customer
+     * @deprecated Use Import\CustomerInvoices.
      */
     public function invoices(array $options = [])
     {

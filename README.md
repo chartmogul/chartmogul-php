@@ -124,7 +124,7 @@ $ds->destroy();
 **Import a Customer**
 
 ```php
-ChartMogul\Import\Customer::create([
+ChartMogul\Customer::create([
     "data_source_uuid" => $ds->uuid,
     "external_id" => "cus_0003",
     "name" => "Adam Smith",
@@ -139,7 +139,7 @@ ChartMogul\Import\Customer::create([
 **List Customers**
 
 ```php
-ChartMogul\Customers::all([
+ChartMogul\Customer::all([
   'page' => 1,
   'data_source_uuid' => $ds->uuid
 ]);
@@ -157,7 +157,7 @@ ChartMogul\Customer::findByExternalId([
 **Delete A Customer**
 
 ```php
-$cus = ChartMogul\Import\Customer::all()->last();
+$cus = ChartMogul\Customer::all()->last();
 $cus->destroy();
 ```
 

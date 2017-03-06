@@ -20,6 +20,7 @@ trait UpdateTrait
     {
         return (new RequestService($client))
             ->setResourceClass(static::class)
+            ->setResourcePath(static::RESOURCE_PATH . "/:" . static::RESOURCE_ID)
             ->update($id, $data);
     }
 }

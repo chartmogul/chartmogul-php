@@ -10,7 +10,9 @@ use ChartMogul\Service\GetTrait;
 use ChartMogul\Service\CreateTrait;
 use ChartMogul\Service\DestroyTrait;
 
-
+/**
+ * @deprecated Use Customer.
+ */
 class Customers extends AbstractResource
 {
     use CreateTrait;
@@ -55,15 +57,10 @@ class Customers extends AbstractResource
      * @param  string                $email
      * @param  ClientInterface|null $client
      * @return Customers
+     * @deprecated Use Customer.
      */
     public static function search($email, ClientInterface $client = null)
     {
-
-        $response = (new static([], $client))
-            ->getClient()
-            ->setResourceKey(static::RESOURCE_NAME)
-            ->send('/v1/customers/search', 'GET', ['email' => $email]);
-
-        return static::fromArray($response, $client);
+        return Customer::search($email, $client);
     }
 }

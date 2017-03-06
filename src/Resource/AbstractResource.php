@@ -73,7 +73,8 @@ abstract class AbstractResource extends AbstractModel
      * @param ClientInterface|null $client
      * @return ArrayCollection|self
      */
-    public static function fromArray(array $data, ClientInterface $client = null) {
+    public static function fromArray(array $data, ClientInterface $client = null)
+    {
         if (isset($data[static::ROOT_KEY])) {
             $array = new ArrayCollection(array_map([static::class, 'fromArray'], $data[static::ROOT_KEY]));
             // The following are subject to change soon, so they are optional.
@@ -97,5 +98,4 @@ abstract class AbstractResource extends AbstractModel
 
         return new static($data, $client);
     }
-
 }
