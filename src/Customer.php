@@ -4,8 +4,12 @@ namespace ChartMogul;
 
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Http\ClientInterface;
-use ChartMogul\Service\RequestService;
 use ChartMogul\Service\UpdateTrait;
+use ChartMogul\Service\CreateTrait;
+use ChartMogul\Service\AllTrait;
+use ChartMogul\Service\DestroyTrait;
+use ChartMogul\Service\GetTrait;
+
 /**
  * @property-read string $id
  * @property-read string $uuid
@@ -28,6 +32,10 @@ use ChartMogul\Service\UpdateTrait;
 class Customer extends AbstractResource
 {
 
+    use CreateTrait;
+    use AllTrait;
+    use GetTrait;
+    use DestroyTrait;
     use UpdateTrait;
 
     /**
@@ -37,7 +45,9 @@ class Customer extends AbstractResource
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/customers/:customer_uuid';
+    const RESOURCE_PATH = '/v1/customers';
+    const RESOURCE_ID = 'customer_uuid';
+    const ROOT_KEY = 'entries';
 
     protected $id;
     protected $uuid;
@@ -87,27 +97,7 @@ class Customer extends AbstractResource
     }
 
     /**
-     * List all Customers
-     * @param  array                $data
-     * @param  ClientInterface|null $client
-     * @return Customers
-     */
-    public static function all($data = [], ClientInterface $client = null)
-    {
-        return Customers::all($data, $client);
-    }
-
-    /**
-     * Get a single customer by UUID
-     * @param  string                $uuid
-     * @return Customer
-     */
-    public static function get($uuid, ClientInterface $client = null) {
-        return Customers::get($uuid, $client);
-    }
-
-    /**
-     * Find a Customer by External ID
+     * Find a Customer by External ID. Returns only first result!
      * @param string $externalId
      * @return Customer
      */
@@ -124,7 +114,13 @@ class Customer extends AbstractResource
      */
     public static function search($email, ClientInterface $client = null)
     {
-        return Customers::search($email, $client);
+
+        $response = (new static([], $client))
+            ->getClient()
+            ->setResourceKey(static::RESOURCE_NAME)
+            ->send('/v1/customers/search', 'GET', ['email' => $email]);
+
+        return static::fromArray($response, $client);
     }
 
     /**

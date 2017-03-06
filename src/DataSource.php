@@ -14,7 +14,8 @@ use ChartMogul\Service\GetTrait;
  * @property-read string $status
  * @property-read string $created_at
  */
-class DataSource extends AbstractResource {
+class DataSource extends AbstractResource
+{
 
     use CreateTrait;
     use AllTrait;
@@ -39,6 +40,7 @@ class DataSource extends AbstractResource {
     protected $uuid;
     protected $status;
     protected $created_at;
-    public $name;
+    protected $system;
 
+    public $name;
 }

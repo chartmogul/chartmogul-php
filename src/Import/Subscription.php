@@ -3,6 +3,8 @@
 namespace ChartMogul\Import;
 
 use ChartMogul\Resource\AbstractResource;
+use \ChartMogul\Service\CreateTrait;
+use \ChartMogul\Service\AllTrait;
 
 /**
  * @property-read string $uuid
@@ -14,8 +16,8 @@ use ChartMogul\Resource\AbstractResource;
 class Subscription extends AbstractResource
 {
 
-    use \ChartMogul\Service\CreateTrait;
-    use \ChartMogul\Service\AllTrait;
+    use CreateTrait;
+    use AllTrait;
 
     /**
      * @ignore
@@ -78,7 +80,8 @@ class Subscription extends AbstractResource
      * @param ClientInterface|null $client
      * @return ArrayCollection|self
      */
-    public static function fromArray(array $data, \ChartMogul\Http\ClientInterface $client = null) {
+    public static function fromArray(array $data, \ChartMogul\Http\ClientInterface $client = null)
+    {
         $result = parent::fromArray($data, $client);
         if (isset($data["customer_uuid"])) {
             $result->customer_uuid = $data["customer_uuid"];
