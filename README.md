@@ -43,7 +43,7 @@ or in `composer.json`:
 ```json
 {
     "require": {
-        "chartmogul/chartmogul-php": "1.0.0"
+        "chartmogul/chartmogul-php": "1.1.2"
     }
 }
 ```

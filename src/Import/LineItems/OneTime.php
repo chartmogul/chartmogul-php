@@ -4,10 +4,8 @@ namespace ChartMogul\Import\LineItems;
 
 /**
 * @codeCoverageIgnore
+* @deprecated Use ChartMogul\OneTime
 */
-class OneTime extends AbstractLineItem
-{
+class OneTime extends ChartMogul\OneTime {
 
-    public $type = 'one_time';
-    public $description;
 }

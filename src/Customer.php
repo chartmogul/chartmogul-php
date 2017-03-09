@@ -103,7 +103,10 @@ class Customer extends AbstractResource
      */
     public static function findByExternalId($externalId)
     {
-        return static::all(['external_id' => $externalId])->entries->first();
+        if (gettype($externalId) == 'string') {
+            $externalId = ['external_id' => $externalId];
+        }
+        return static::all($externalId)->entries->first();
     }
 
     /**
@@ -132,7 +135,7 @@ class Customer extends AbstractResource
      */
     public static function merge($from, $into, ClientInterface $client = null)
     {
-        $response = (new static([], $client))
+        (new static([], $client))
             ->getClient()
             ->setResourcekey(static::class)
             ->send('/v1/customers/merges', 'POST', [
@@ -228,5 +231,35 @@ class Customer extends AbstractResource
 
         $this->attributes['custom'] = $result['custom'];
         return $result['custom'];
+    }
+
+    /**
+     * Find a Customer Subscriptions
+     * @param  array  $options
+     * @return \Doctrine\Common\Collections\ArrayCollection | Customer
+     * @deprecated Use Import\Subscription.
+     */
+    public function subscriptions(array $options = [])
+    {
+        if (!isset($this->subscriptions)) {
+            $options['customer_uuid'] = $this->uuid;
+            $this->subscriptions = Subscription::all($options);
+        }
+        return $this->subscriptions;
+    }
+
+    /**
+     * Find a Customer Invoices
+     * @param  array  $options
+     * @return \Doctrine\Common\Collections\ArrayCollection | Customer
+     * @deprecated Use Import\CustomerInvoices.
+     */
+    public function invoices(array $options = [])
+    {
+        if (!isset($this->invoices)) {
+            $options['customer_uuid'] = $this->uuid;
+            $this->invoices = CustomerInvoices::all($options)->invoices;
+        }
+        return $this->invoices;
     }
 }
