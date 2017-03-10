@@ -249,7 +249,7 @@ class Customer extends AbstractResource
     }
 
     /**
-     * Find a Customer Invoices
+     * Find customer's invoices
      * @param  array  $options
      * @return \Doctrine\Common\Collections\ArrayCollection | Customer
      * @deprecated Use Import\CustomerInvoices.
