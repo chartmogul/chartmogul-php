@@ -3,12 +3,9 @@
 namespace ChartMogul\Import\Transactions;
 
 /**
-* @codeCoverageIgnore
-*/
-class Refund extends AbstractTransaction
-{
-
-    const RESOURCE_NAME= 'Refund Transaction';
-
-    public $type = 'refund';
+ * @codeCoverageIgnore
+ * @deprecated Use ChartMogul\Refund
+ */
+class Refund extends ChartMogul\Refund {
+    
 }
