@@ -333,10 +333,10 @@ $plan = ChartMogul\Plan::update(["plan_uuid" => $plan->uuid], [
 **Import Invoices**
 
 ```php
-$plan = ChartMogul\Import\Plan::all()->first();
-$cus = ChartMogul\Import\Customer::all()->first();
+$plan = ChartMogul\Plan::all()->first();
+$cus = ChartMogul\Customer::all()->first();
 
-$line_itme_1 = new ChartMogul\Import\LineItems\Subscription([
+$line_itme_1 = new ChartMogul\LineItems\Subscription([
     'subscription_external_id' => "sub_0001",
     'plan_uuid' =>  $plan->uuid,
     'service_period_start' =>  "2015-11-01 00:00:00",
@@ -348,7 +348,7 @@ $line_itme_1 = new ChartMogul\Import\LineItems\Subscription([
     'tax_amount_in_cents' => 900
 ]);
 
-$line_itme_2 = new ChartMogul\Import\LineItems\OneTime([
+$line_itme_2 = new ChartMogul\LineItems\OneTime([
     "description" => "Setup Fees",
     "amount_in_cents" => 2500,
     "quantity" => 1,
@@ -357,12 +357,12 @@ $line_itme_2 = new ChartMogul\Import\LineItems\OneTime([
     "tax_amount_in_cents" => 450
 ]);
 
-$transaction = new ChartMogul\Import\Transactions\Payment([
+$transaction = new ChartMogul\Transactions\Payment([
     "date" => "2015-11-05T00:14:23.000Z",
     "result" => "successful"
 ]);
 
-$invoice = new ChartMogul\Import\Invoice([
+$invoice = new ChartMogul\Invoice([
     'external_id' => 'INV0001',
     'date' =>  "2015-11-01 00:00:00",
     'currency' => 'USD',
@@ -371,7 +371,7 @@ $invoice = new ChartMogul\Import\Invoice([
     'transactions' => [$transaction]
 ]);
 
-$ci = ChartMogul\Import\CustomerInvoices::create([
+$ci = ChartMogul\CustomerInvoices::create([
     'customer_uuid' => $cus->uuid,
     'invoices' => [$invoice]
 ]);
@@ -381,7 +381,7 @@ $ci = ChartMogul\Import\CustomerInvoices::create([
 **List Customer Invoices**
 
 ```php
-$ci = ChartMogul\Import\CustomerInvoices::all([
+$ci = ChartMogul\CustomerInvoices::all([
     'customer_uuid' => $cus->uuid,
     'page' => 1,
     'per_page' => 200
@@ -393,7 +393,7 @@ $ci = ChartMogul\Import\CustomerInvoices::all([
 **Create a Transaction**
 
 ```php
-ChartMogul\Import\Transactions\Refund::create([
+ChartMogul\Transactions\Refund::create([
     "invoice_uuid" => $ci->invoices[0]->uuid,
     "date" => "2015-12-25 18:10:00",
     "result" => "successful"
@@ -414,7 +414,7 @@ $subscriptions = $cus->subscriptions();
 
 ```php
 $canceldate = '2016-01-01T10:00:00.000Z';
-$cus = new ChartMogul\Import\Customer([
+$cus = new ChartMogul\Customer([
     'uuid' => 'cus_uuid'
 ]);
 $subscription = $subscriptions->last()->cancel($canceldate);
@@ -570,7 +570,7 @@ $config = new ChartMogul\Configuration('accountToken','secretKey');
 $httpClient = new My\HttpClient();
 $client = new ChartMogul\Http\Client($config, $httpClient);
 
-customers = $ChartMogul\Import\Customer::all([
+customers = $ChartMogul\Customer::all([
   'page' => 1,
   'data_source_uuid' => $ds->uuid
 ], $client);
