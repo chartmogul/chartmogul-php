@@ -106,7 +106,14 @@ class Customer extends AbstractResource
         if (gettype($externalId) == 'string') {
             $externalId = ['external_id' => $externalId];
         }
-        return static::all($externalId)->entries->first();
+
+        $response = static::all($externalId);
+
+        if (is_null($response)) {
+          return null;
+        } else {
+          return $response->first();
+        }
     }
 
     /**
