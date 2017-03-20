@@ -4,3 +4,4 @@ composer.lock
 /coverage
 test.php
 /nbproject/
+*.cache
