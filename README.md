@@ -102,7 +102,7 @@ $ds = ChartMogul\DataSource::create([
 **Get a Datasource by UUID**
 
 ```php
-ChartMogul\DataSource::get($uuid);
+ChartMogul\DataSource::retrieve($uuid);
 ```
 
 **List Datasources**
@@ -164,7 +164,7 @@ $cus->destroy();
 **Get a Customer**
 
 ```php
-ChartMogul\Customer::get($uuid);
+ChartMogul\Customer::retrieve($uuid);
 ```
 
 **Search for Customers**
@@ -208,7 +208,7 @@ $result = ChartMogul\Customer::update([
 **Retrieve Customer's Attributes**
 
 ```php
-$customer = ChartMogul\Customer::get($cus->uuid);
+$customer = ChartMogul\Customer::retrieve($cus->uuid);
 $customer->attributes;
 
 ```
@@ -219,7 +219,7 @@ $customer->attributes;
 **Add Tags to a Customer**
 
 ```php
-$customer = ChartMogul\Customer::get($cus->uuid);
+$customer = ChartMogul\Customer::retrieve($cus->uuid);
 $tags = $customer->addTags("important", "Prio1");
 ```
 
@@ -236,7 +236,7 @@ foreach ($customers->entries as $customer) {
 **Remove Tags from a Customer**
 
 ```php
-$customer = ChartMogul\Customer::get($cus->uuid);
+$customer = ChartMogul\Customer::retrieve($cus->uuid);
 $tags = $customer->removeTags("important", "Prio1");
 ```
 
@@ -245,7 +245,7 @@ $tags = $customer->removeTags("important", "Prio1");
 **Add Custom Attributes to a Customer**
 
 ```php
-$customer = ChartMogul\Customer::get($cus->uuid);
+$customer = ChartMogul\Customer::retrieve($cus->uuid);
 $custom = $customer->addCustomAttributes(
     ['type' => 'String', 'key' => 'channel', 'value' => 'Facebook'],
     ['type' => 'Integer', 'key' => 'age', 'value' => 8 ]
@@ -269,7 +269,7 @@ foreach ($customers->entries as $customer) {
 **Update Custom Attributes of a Customer**
 
 ```php
-$customer = ChartMogul\Customer::get($cus->uuid);
+$customer = ChartMogul\Customer::retrieve($cus->uuid);
 $custom = $customer->updateCustomAttributes(
     ['channel' => 'Twitter'],
     ['age' => 18]
@@ -279,7 +279,7 @@ $custom = $customer->updateCustomAttributes(
 **Remove Custom Attributes from a Customer**
 
 ```php
-$customer = ChartMogul\Customer::get($cus->uuid);
+$customer = ChartMogul\Customer::retrieve($cus->uuid);
 $tags = $customer->removeCustomAttributes("age", "channel");
 ```
 
@@ -300,7 +300,7 @@ ChartMogul\Plan::create([
 **Get a Plan by UUID**
 
 ```php
-ChartMogul\Plan::get($uuid);
+ChartMogul\Plan::retrieve($uuid);
 ```
 
 **List Plans**
