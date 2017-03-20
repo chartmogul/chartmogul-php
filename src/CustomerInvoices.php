@@ -38,10 +38,10 @@ class CustomerInvoices extends AbstractResource
     protected function setInvoice($index, $invoice)
     {
 
-        if ($invoice instanceof \ChartMogul\Import\Invoice) {
-            $this->invoices[$index] =$invoice;
+        if ($invoice instanceof \ChartMogul\Invoice) {
+            $this->invoices[$index] = $invoice;
         } elseif (is_array($invoice)) {
-            $this->invoices[$index] = new \ChartMogul\Import\Invoice($invoice);
+            $this->invoices[$index] = new \ChartMogul\Invoice($invoice);
         }
     }
 }
