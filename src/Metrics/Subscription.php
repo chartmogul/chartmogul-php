@@ -23,6 +23,7 @@ class Subscription extends AbstractModel
 {
 
     protected $id;
+    protected $external_id;
     protected $plan;
     protected $quantity;
     protected $mrr;
