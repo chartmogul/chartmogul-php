@@ -5,6 +5,8 @@ namespace ChartMogul;
 use ChartMogul\LineItems\AbstractLineItem;
 use ChartMogul\LineItems\OneTime;
 use ChartMogul\LineItems\Subscription as SubsItem;
+use ChartMogul\Service\AllTrait;
+use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Transactions\AbstractTransaction;
 use ChartMogul\Transactions\Payment;
 use ChartMogul\Transactions\Refund;
@@ -13,11 +15,25 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @property-read string $uuid
  */
-class Invoice extends \ChartMogul\Resource\AbstractModel
+class Invoice extends AbstractResource
 {
+    use AllTrait;
+    /**
+     * @ignore
+     */
+    const RESOURCE_PATH = '/v1/invoices';
+    /**
+     * @ignore
+     */
+    const ENTRY_CLASS = Invoice::class;
+    /**
+     * @ignore
+     */
+    const ROOT_KEY = 'invoices';
 
     protected $uuid;
 
+    public $customer_uuid;
     public $date;
     public $currency;
     public $line_items = [];

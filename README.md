@@ -388,6 +388,16 @@ $ci = ChartMogul\CustomerInvoices::all([
 ]);
 ```
 
+**List Invoices**
+
+```php
+$invoices = ChartMogul\Invoice::all([
+    'external_id' => 'my_invoice',
+    'page' => 1,
+    'per_page' => 200
+]);
+```
+
 ### Transactions
 
 **Create a Transaction**
