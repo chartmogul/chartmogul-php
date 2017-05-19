@@ -2,10 +2,12 @@
 
 namespace ChartMogul;
 
+use ChartMogul\Http\ClientInterface;
 use ChartMogul\LineItems\AbstractLineItem;
 use ChartMogul\LineItems\OneTime;
 use ChartMogul\LineItems\Subscription as SubsItem;
 use ChartMogul\Service\AllTrait;
+use ChartMogul\Service\DestroyTrait;
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Transactions\AbstractTransaction;
 use ChartMogul\Transactions\Payment;
@@ -18,6 +20,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Invoice extends AbstractResource
 {
     use AllTrait;
+    use DestroyTrait;
     /**
      * @ignore
      */
@@ -41,9 +44,9 @@ class Invoice extends AbstractResource
     public $external_id;
     public $due_date;
 
-    public function __construct(array $attr = [])
+    public function __construct(array $attr = [], ClientInterface $client = null)
     {
-        parent::__construct($attr);
+        parent::__construct($attr, $client);
 
         $this->line_items = new ArrayCollection($this->line_items);
         foreach ($this->line_items as $key => $item) {
