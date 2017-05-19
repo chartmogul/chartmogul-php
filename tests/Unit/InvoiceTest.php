@@ -85,4 +85,33 @@ class InvoiceTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(2, $result->current_page);
         $this->assertEquals(3, $result->total_pages);
     }
+
+    public function testDestroyInvoice()
+    {
+        $response = new Response(204);
+        $mockClient = new \Http\Mock\Client();
+        $mockClient->addResponse($response);
+
+        $cmClient = new Client(null, $mockClient);
+        $result = (new Invoice(["uuid" => "inv_123"], $cmClient))->destroy();
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("DELETE", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("", $uri->getQuery());
+        $this->assertEquals("/v1/invoices/inv_123", $uri->getPath());
+    }
+
+    /**
+    * @expectedException     ChartMogul\Exceptions\NotFoundException
+    */
+    public function testDestroyInvoiceNotFound()
+    {
+        $response = new Response(404);
+        $mockClient = new \Http\Mock\Client();
+        $mockClient->addResponse($response);
+
+        $cmClient = new Client(null, $mockClient);
+        $result = (new Invoice(["uuid" => "inv_123"], $cmClient))->destroy();
+    }
 }
