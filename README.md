@@ -99,7 +99,7 @@ $ds = ChartMogul\DataSource::create([
 ]);
 ```
 
-**Get a Datasource by UUID**
+**Get a Datasource**
 
 ```php
 ChartMogul\DataSource::retrieve($uuid);
@@ -396,6 +396,12 @@ $invoices = ChartMogul\Invoice::all([
     'page' => 1,
     'per_page' => 200
 ]);
+```
+
+**Retrieve an Invoice**
+
+```php
+$invoice = ChartMogul\Invoice::retrieve('inv_uuid');
 ```
 
 ### Transactions
