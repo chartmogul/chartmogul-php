@@ -8,6 +8,7 @@ use ChartMogul\LineItems\OneTime;
 use ChartMogul\LineItems\Subscription as SubsItem;
 use ChartMogul\Service\AllTrait;
 use ChartMogul\Service\DestroyTrait;
+use ChartMogul\Service\GetTrait;
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Transactions\AbstractTransaction;
 use ChartMogul\Transactions\Payment;
@@ -21,6 +22,8 @@ class Invoice extends AbstractResource
 {
     use AllTrait;
     use DestroyTrait;
+    use GetTrait;
+
     /**
      * @ignore
      */
