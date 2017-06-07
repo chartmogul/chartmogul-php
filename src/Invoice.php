@@ -40,12 +40,15 @@ class Invoice extends AbstractResource
     protected $uuid;
 
     public $customer_uuid;
-    public $date;
+    public $external_id;
+    public $data_source_uuid;
+
     public $currency;
+    public $date;
+    public $due_date;
+
     public $line_items = [];
     public $transactions = [];
-    public $external_id;
-    public $due_date;
 
     public function __construct(array $attr = [], ClientInterface $client = null)
     {
