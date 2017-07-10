@@ -13,7 +13,7 @@ trait AllTrait
      * Returns a list of objects
      * @param  array $data
      * @param  ClientInterface|null $client 0
-     * @return \Doctrine\Common\Collections\ArrayCollection|self
+     * @return \Doctrine\Common\Collections\ArrayCollection|self[]|self
 
      */
     public static function all(array $data = [], ClientInterface $client = null)
