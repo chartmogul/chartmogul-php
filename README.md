@@ -85,7 +85,7 @@ $ds->destroy();
 
 ```
 
-All array results are wrapped with [`Doctrine\Common\Collections\ArrayCollection`](http://www.doctrine-project.org/api/common/2.3/class-Doctrine.Common.Collections.ArrayCollection.html) for ease of access. See [Exceptoins](#exceptions) for a list of exceptions thrown by this library.
+All array results are wrapped with [`Doctrine\Common\Collections\ArrayCollection`](http://www.doctrine-project.org/api/common/2.3/class-Doctrine.Common.Collections.ArrayCollection.html) for ease of access. See [Exceptions](#exceptions) for a list of exceptions thrown by this library.
 
 Available methods in Import API:
 
