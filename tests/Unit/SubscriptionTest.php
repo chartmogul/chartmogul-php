@@ -78,10 +78,12 @@ const CANCEL_SUB_JSON = '{
         $uri = $request->getUri();
         $this->assertEquals("", $uri->getQuery());
         $this->assertEquals("/v1/import/subscriptions/sub_some_id", $uri->getPath());
-        // both result & original object should have these parameters parsed from the response:
-        $this->assertEquals("cus_f466e33d-ff2b-4a11-8f85-417eb02157a7", $subscription->customer_uuid);
+        $this->assertEquals("sub_65bc29a4-dbce-42a0-8435-d54b8701e762", $subscription->uuid);
         $this->assertEquals("pl_6a21613e-9c36-11e7-b772-cf778619abb9", $result->plan_uuid);
-
         $this->assertEquals("2018-08-08T00:00:00.000Z", $subscription->cancellation_dates[0]);
+        $this->assertEquals("cus_69030f0a-9c36-11e7-997f-979f1762dcb8", $subscription->customer_uuid);
+        $this->assertEquals("ds_51f40656-9b74-11e7-af6f-efb2fa0552a1", $subscription->data_source_uuid);
+        $this->assertEquals("SB00004G8AMAWS", $subscription->external_id);
     }
 }
+
