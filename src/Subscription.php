@@ -47,7 +47,7 @@ class Subscription extends AbstractResource
             'PATCH',
             $payload
         );
-        $this->cancellation_dates = $response['cancellation_dates'];
+        $this->__construct($response);
         return $this;
     }
 
