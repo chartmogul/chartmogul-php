@@ -83,6 +83,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
     }
     /**
      * @dataProvider provider
+     * @expectedException \ChartMogul\Exceptions\ChartMogulException
      */
     public function testHandleResponseExceptions($status, $exception)
     {
@@ -90,8 +91,6 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             ->disableOriginalConstructor()
             ->setMethods(null)
             ->getMock();
-
-        $this->setExpectedException($exception);
 
         $res = Http\Discovery\MessageFactoryDiscovery::find()->createResponse(
             $status,
