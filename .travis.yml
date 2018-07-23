@@ -4,3 +4,9 @@ php:
   - '5.6'
   - '7.2'
   - nightly
+
+install:
+  - composer install
+
+script:
+  - phpunit
