@@ -12,7 +12,3 @@ install:
 
 script:
   - phpunit --coverage-text --coverage-html ./coverage
-
-branches:
-  only:
-    - master
