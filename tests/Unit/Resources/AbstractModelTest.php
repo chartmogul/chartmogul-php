@@ -2,7 +2,7 @@
 
 use ChartMogul\Resource\AbstractModel;
 
-class AbstractModelTest extends PHPUnit_Framework_TestCase
+class AbstractModelTest extends \PHPUnit\Framework\TestCase
 {
 
 

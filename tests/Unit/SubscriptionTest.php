@@ -6,7 +6,7 @@ use ChartMogul\Exceptions\ChartMogulException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
 
-class SubscriptionTest extends PHPUnit_Framework_TestCase
+class SubscriptionTest extends \PHPUnit\Framework\TestCase
 {
 
   const ALL_SUBS_JSON = '{

@@ -3,7 +3,7 @@
 use ChartMogul\Http\Client;
 use ChartMogul\Exceptions\ChartMogulException;
 
-class ClientTest extends PHPUnit_Framework_TestCase
+class ClientTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstructor()

@@ -6,7 +6,7 @@ use ChartMogul\Exceptions\ChartMogulException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
 
-class InvoiceTest extends PHPUnit_Framework_TestCase
+class InvoiceTest extends \PHPUnit\Framework\TestCase
 {
     const ALL_INVOICE_JSON = '{
       "invoices": [
