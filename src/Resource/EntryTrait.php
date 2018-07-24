@@ -9,8 +9,6 @@ trait EntryTrait
 
     protected $entries = [];
 
-    protected abstract static function getEntryClass();
-
     protected function setEntries(array $entries = [])
     {
         $this->entries = new ArrayCollection($entries);

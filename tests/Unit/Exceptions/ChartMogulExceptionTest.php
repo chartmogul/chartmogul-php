@@ -2,7 +2,7 @@
 
 use ChartMogul\Exceptions\ChartMogulException;
 
-class ChartMogulExceptionTest extends PHPUnit_Framework_TestCase
+class ChartMogulExceptionTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()

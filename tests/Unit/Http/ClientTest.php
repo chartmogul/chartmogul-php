@@ -3,7 +3,7 @@
 use ChartMogul\Http\Client;
 use ChartMogul\Exceptions\ChartMogulException;
 
-class ClientTest extends PHPUnit_Framework_TestCase
+class ClientTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstructor()
@@ -83,6 +83,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
     }
     /**
      * @dataProvider provider
+     * @expectedException \ChartMogul\Exceptions\ChartMogulException
      */
     public function testHandleResponseExceptions($status, $exception)
     {
@@ -90,8 +91,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->setMethods(null)
             ->getMock();
-
-        $this->setExpectedException($exception);
 
         $res = Http\Discovery\MessageFactoryDiscovery::find()->createResponse(
             $status,
@@ -137,7 +136,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
             ->method('getUserAgent')
             ->willReturn('agent');
 
-        $response = $this->getMock('Psr\Http\Message\ResponseInterface');
+        $response = $this->getMockBuilder('Psr\Http\Message\ResponseInterface')->getMock();
 
         $mock->expects($this->once())
             ->method('handleResponse')
