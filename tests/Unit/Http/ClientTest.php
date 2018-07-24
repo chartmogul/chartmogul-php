@@ -136,7 +136,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             ->method('getUserAgent')
             ->willReturn('agent');
 
-        $response = $this->getMock('Psr\Http\Message\ResponseInterface');
+        $response = $this->getMockBuilder('Psr\Http\Message\ResponseInterface')->getMock();
 
         $mock->expects($this->once())
             ->method('handleResponse')

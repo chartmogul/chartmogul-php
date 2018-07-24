@@ -1,20 +1,24 @@
-RUNNER=docker run -it --rm --workdir "/src" -v "$(PWD):/src" chartmogulphp7 /bin/bash -c
+RUNNER=docker run -it --rm --workdir "/src" -v "$(PWD):/src" -v "$(HOME)/.composer/cache:/root/.composer/cache" chartmogulphp5 /bin/bash -c
 
 .PHONY: build composer php
 
 build:
-	@if [ "$(shell docker images -q chartmogulphp7 2> /dev/null)" = "" ]; then docker build --tag=chartmogulphp7 .; fi;
-composer: build
-	$(RUNNER) "composer $(filter-out $@,$(MAKECMDGOALS))"
-dependencies: build
-	@if [ ! -d vendor ]; then make composer install; fi;
+	@docker build --build-arg VERSION=5.5 --tag=chartmogulphp5 .
+	@docker build --build-arg VERSION=7.2 --tag=chartmogulphp7 .
+composer:
+	@$(RUNNER) "composer $(filter-out $@,$(MAKECMDGOALS))"
+dependencies:
+	make -s composer update -- --prefer-dist
 test: dependencies
-	$(RUNNER) "./vendor/bin/phpunit --coverage-text --coverage-html ./coverage "
+	$(RUNNER) "phpunit --coverage-text --coverage-html ./coverage "
 php: dependencies
 	$(RUNNER) "php $(filter-out $@,$(MAKECMDGOALS))"
 cs: dependencies
 	$(RUNNER) "./vendor/bin/phpcs --standard=PSR2 src/"
 cbf: dependencies
 	$(RUNNER) "./vendor/bin/phpcbf --standard=PSR2 src/"
+doc:
+	$(RUNNER) "./vendor/bin/phpdoc"
+	$(RUNNER) "./vendor/bin/phpdocmd docs/structure.xml docs --index README.md"
 %:
 	@:

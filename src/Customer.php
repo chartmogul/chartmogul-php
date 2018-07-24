@@ -110,9 +110,9 @@ class Customer extends AbstractResource
         $response = static::all($externalId);
 
         if (is_null($response)) {
-          return null;
+            return null;
         } else {
-          return $response->first();
+            return $response->first();
         }
     }
 

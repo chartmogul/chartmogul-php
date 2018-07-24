@@ -5,6 +5,7 @@
         convertNoticesToExceptions="true"
         convertWarningsToExceptions="true"
         stopOnFailure="false"
+        verbose="true"
         bootstrap="tests/bootstrap.php">
     <testsuites>
         <testsuite name="ChartMogul PHP SDK Test Suite">

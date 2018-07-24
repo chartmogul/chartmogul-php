@@ -23,6 +23,11 @@ class SubscriptionTest extends \PHPUnit\Framework\TestCase
     "current_page": 2,
     "total_pages": 3
 }';
+
+    const CANCEL_SUBSCRIPTION = '{
+      "cancellation_dates": ["2016-01-01T10:00:00.000Z", "2017-01-01T10:00:00.000Z"]
+    }';
+
     public function testAllSubscriptions()
     {
         $stream = Psr7\stream_for(SubscriptionTest::ALL_SUBS_JSON);
@@ -46,5 +51,25 @@ class SubscriptionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals("sub_dd169c42-e127-4637-8b8f-a239b248e3cd", $result[0]->uuid);
         $this->assertEquals(2, $result->current_page);
         $this->assertEquals(3, $result->total_pages);
+    }
+    public function testCancel(){
+        $stream = Psr7\stream_for(SubscriptionTest::CANCEL_SUBSCRIPTION);
+        $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
+        $mockClient = new \Http\Mock\Client();
+        $mockClient->addResponse($response);
+
+        $cmClient = new Client(null, $mockClient);
+        $subsUUID = "sub_e6bc5407-e258-4de0-bb43-61faaf062035";
+        $subscription = new ChartMogul\Subscription(["uuid" => $subsUUID], $cmClient);
+        $canceldate = '2016-01-01T10:00:00.000Z';
+        $result = $subscription->cancel($canceldate);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("PATCH", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("", $uri->getQuery());
+        $this->assertEquals("/v1/import/subscriptions/".$subsUUID, $uri->getPath());
+
+        $this->assertTrue($result instanceof Subscription);
     }
 }
