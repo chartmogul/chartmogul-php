@@ -3,6 +3,8 @@
 
 namespace ChartMogul;
 
+const DEFAULT_MAX_RETRIES = 20;
+
 /**
  *
  * @codeCoverageIgnore
@@ -23,16 +25,22 @@ class Configuration
      * @var string
      */
     private $secretKey = '';
+    /**
+     * @var int
+     * maximum retry attempts
+     */
+    private $retry = DEFAULT_MAX_RETRIES;
 
     /**
      * Creates new config object from accountToken and secretKey
      * @param string $accountToken
      * @param string $secretKey
      */
-    public function __construct($accountToken = '', $secretKey = '')
+    public function __construct($accountToken = '', $secretKey = '', $retries = DEFAULT_MAX_RETRIES)
     {
         $this->accountToken = $accountToken;
         $this->secretKey = $secretKey;
+        $this->retries = $retries;
     }
 
     /**
@@ -72,6 +80,26 @@ class Configuration
     public function setSecretKey($secretKey)
     {
         $this->secretKey = $secretKey;
+        return $this;
+    }
+
+    /**
+     * Get retries
+     * @return int
+     */
+    public function getRetries()
+    {
+        return $this->retries;
+    }
+
+    /**
+     * Set max retries
+     * @param int $retries
+     * @return self
+     */
+    public function setRetries($retries)
+    {
+        $this->retries = $retries;
         return $this;
     }
 

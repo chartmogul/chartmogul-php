@@ -595,6 +595,21 @@ customers = $ChartMogul\Customer::all([
 
 Learn more about this virtual package at [here](http://docs.php-http.org/en/latest/httplug/users.html).
 
+
+### Rate Limits & Exponential Backoff
+
+The library will keep retrying if the request exceeds the rate limit or if there's any network related error.
+By default, the request will be retried for 20 times (approximated 15 minutes) before finally giving up.
+
+You can change the retry count using `Configuration` object:
+
+```php
+ChartMogul\Configuration::getDefaultConfiguration()
+    ->setAccountToken('<YOUR_ACCOUNT_TOKEN>')
+    ->setSecretKey('<YOUR_SECRET_KEY>')
+    ->setRetries(15); //0 disables retrying
+```
+
 ## API Documentation
 
 Find the full public API documentation [here](docs/README.md).

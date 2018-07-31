@@ -147,6 +147,15 @@ class Client implements ClientInterface
         );
     }
 
+    protected function sendWithRetry(Request $request)
+    {
+        $backoff = new Retry($this->config->getRetries());
+        $response =  $backoff->retry(function () use ($request) {
+            return $this->client->sendRequest($request);
+        });
+        return $this->handleResponse($response);
+    }
+
     public function send($path = '', $method = 'GET', $data = [])
     {
 
@@ -171,9 +180,7 @@ class Client implements ClientInterface
             $request->getBody()->write(json_encode($data));
         }
 
-        $response = $this->client->sendRequest($request);
-
-        return $this->handleResponse($response);
+        return $this->sendWithRetry($request);
     }
 
     /**

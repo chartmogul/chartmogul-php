@@ -9,15 +9,15 @@ composer:
 	@$(RUNNER) "composer $(filter-out $@,$(MAKECMDGOALS))"
 dependencies:
 	make -s composer update -- --prefer-dist
-test: dependencies
+test:
 	$(RUNNER) "phpunit --coverage-text --coverage-html ./coverage "
-php: dependencies
+php:
 	$(RUNNER) "php $(filter-out $@,$(MAKECMDGOALS))"
-cs: dependencies
+cs:
 	$(RUNNER) "./vendor/bin/phpcs --standard=PSR2 src/"
-cbf: dependencies
+cbf:
 	$(RUNNER) "./vendor/bin/phpcbf --standard=PSR2 src/"
-doc: dependencies
+doc:
 	$(RUNNER) "./vendor/bin/phpdoc"
 	$(RUNNER) "./vendor/bin/phpdocmd docs/structure.xml docs --index README.md"
 %:
