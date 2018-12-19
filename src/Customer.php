@@ -157,7 +157,7 @@ class Customer extends AbstractResource
      * @param  string               $customerUUID
      * @param  array                $data
      * @param  ClientInterface|null $client
-     * @return self
+     * @return bool
      */
     public static function connectSubscriptions($customerUUID, array $data = [], ClientInterface $client = null)
     {
