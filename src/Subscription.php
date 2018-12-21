@@ -33,10 +33,11 @@ class Subscription extends AbstractResource
 
     protected $uuid;
     protected $external_id;
-    protected $cancellation_dates = [];
+    protected $cancellation_dates;
 
     protected $plan_uuid;
     protected $data_source_uuid;
+    protected $customer_uuid;
 
 
 
@@ -47,7 +48,11 @@ class Subscription extends AbstractResource
             'PATCH',
             $payload
         );
-        $this->cancellation_dates = $response['cancellation_dates'];
+        foreach ($response as $key => $value) {
+            // replace property names with dash with underscores
+            $key = str_replace('-', '_', $key);
+            $this->$key = $value;
+        }
         return $this;
     }
 
@@ -87,5 +92,30 @@ class Subscription extends AbstractResource
             $result->customer_uuid = $data["customer_uuid"];
         }
         return $result;
+    }
+
+    /**
+     * Connect Subscriptions
+     * @param  string               $customerUUID Customer UUID
+     * @param  Subscription[]       $subscriptions Array of Subscription to connect this subscription with
+     * @return bool
+     */
+    public function connect($customerUUID, array $subscriptions)
+    {
+        $arr = [];
+        for($i=0; $i < count($subscriptions); $i++) {
+            $arr[$i] = $subscriptions[$i];
+            if($subscriptions[$i] instanceof Subscription) {
+                $arr[$i] = $subscriptions[$i]->toArray();
+            }
+        }
+
+        array_unshift($arr, $this->toArray());
+
+        $this->getClient()
+            ->send('/v1/customers/'.$customerUUID.'/connect_subscriptions', 'POST', [
+                'subscriptions' => $arr,
+            ]);
+        return true;
     }
 }

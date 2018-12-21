@@ -219,6 +219,13 @@ ChartMogul\Customer::connectSubscriptions("cus_5915ee5a-babd-406b-b8ce-d207133fb
 ]);
 ```
 
+OR
+
+```php
+$subscription1->connect("cus_5915ee5a-babd-406b-b8ce-d207133fb4cb", $subscriptions);
+
+```
+
 #### Customer Attributes
 
 **Retrieve Customer's Attributes**
