@@ -72,4 +72,47 @@ class SubscriptionTest extends \PHPUnit\Framework\TestCase
 
         $this->assertTrue($result instanceof Subscription);
     }
+    public function testConnect(){
+        $stream = Psr7\stream_for('{}');
+        $response = new Response(202, ['Content-Type' => 'application/json'], $stream);
+        $mockClient = new \Http\Mock\Client();
+        $mockClient->addResponse($response);
+
+        $cmClient = new Client(null, $mockClient);
+        $subscription1 = new Subscription(["external_id" => "d1c0c885-add0-48db-8fa9-0bdf5017d6b0", "data_source_uuid" => "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213", "uuid" => "uuid_001"], $cmClient);
+        $subscription2 = new Subscription(["external_id" => "9db5f4a1-1695-44c0-8bd4-de7ce4d0f1d4", "data_source_uuid" => "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213"]);
+        $subscription3 = ["external_id" => "sub_0001", "data_source_uuid" => "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213"];
+        $expected = [
+            "subscriptions" => [
+                [
+                    "uuid" => "uuid_001",
+                    "external_id" => "d1c0c885-add0-48db-8fa9-0bdf5017d6b0",
+                    "data_source_uuid" => "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213",
+                ],
+                [
+                    "external_id" => "9db5f4a1-1695-44c0-8bd4-de7ce4d0f1d4",
+                    "data_source_uuid" => "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213",
+                ],
+                [
+                    "external_id" => "sub_0001",
+                    "data_source_uuid" => "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213",
+                ],
+            ]
+        ];
+
+        $result = $subscription1->connect("cus_5915ee5a-babd-406b-b8ce-d207133fb4cb", [ 
+            $subscription2, $subscription3,
+        ]);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("POST", $request->getMethod());
+        $uri = $request->getUri();
+        $body = $request->getBody();
+        $body->rewind();
+        $this->assertEquals(json_encode($expected), $body->getContents());
+        $this->assertEquals("", $uri->getQuery());
+        $this->assertEquals("/v1/customers/cus_5915ee5a-babd-406b-b8ce-d207133fb4cb/connect_subscriptions", $uri->getPath());
+
+        $this->assertEquals($result, true);
+    }
 }
