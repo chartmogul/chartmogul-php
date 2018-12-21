@@ -96,8 +96,8 @@ class Subscription extends AbstractResource
 
     /**
      * Connect Subscriptions
-     * @param  string               $customerUUID
-     * @param  Array                $subscriptions
+     * @param  string               $customerUUID Customer UUID
+     * @param  Subscription[]       $subscriptions Array of Subscription to connect this subscription with
      * @return bool
      */
     public function connect($customerUUID, array $subscriptions)
