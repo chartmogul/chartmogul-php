@@ -152,7 +152,7 @@ class InvoiceTest extends \PHPUnit\Framework\TestCase
 
     public function testDestroyInvoiceNotFound()
     {
-        $this->expectedException(NotFoundException::class);
+        $this->expectException(NotFoundException::class);
         $response = new Response(404);
         $mockClient = new \Http\Mock\Client();
         $mockClient->addResponse($response);

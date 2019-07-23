@@ -3,6 +3,7 @@
 use ChartMogul\Http\Client;
 use ChartMogul\Exceptions\ChartMogulException;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7;
 use Zend\Diactoros\Request;
 use Http\Client\Exception\NetworkException;
 
@@ -89,8 +90,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
      */
     public function testHandleResponseExceptions($status, $exception)
     {
-        $this->expectedExceptionCode($exception[0]);
-        $this->expectedException($exception[1]);
+        $this->expectException($exception);
         $mock = $this->getMockBuilder(Client::class)
             ->disableOriginalConstructor()
             ->setMethods(null)
@@ -172,7 +172,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 
     public function testNoRetry()
     {
-        $this->expectedException(ChartMogulException::class);
+        $this->expectException(ChartMogulException::class);
         list($mock, $mockClient) = $this->getMockClient(0, [500]);
 
         $mock->send('', 'GET', []);
@@ -198,7 +198,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 
     public function testRetryMaxAttemptReached()
     {
-        $this->expectedException(NetworkException::class);
+        $this->expectException(NetworkException::class);
         list($mock, $mockClient) = $this->getMockClient(1, [200], [
             new \Http\Client\Exception\NetworkException("some error", new Request()),
             new \Http\Client\Exception\NetworkException("some error", new Request()),
