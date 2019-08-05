@@ -3,11 +3,22 @@ php:
   - '7.1'
   - '7.2'
   - '7.3'
+  - nightly
 
 before_script:
-  - composer install
+  - |
+    if [[ "$TRAVIS_PHP_VERSION" == 'nightly' ]]; then
+      #ignore php version check on nightly build
+      composer install --ignore-platform-reqs
+    else 
+      composer install
+    fi
   - if [[ "$TRAVIS_PHP_VERSION" == '7.1' ]]; then composer require phpunit/phpunit:^7; fi
 
 script:
-  - if [[ "$TRAVIS_PHP_VERSION" == '7.1' ]]; then vendor/bin/phpunit; fi
-  - if [[ "$TRAVIS_PHP_VERSION" != '7.1' ]]; then phpunit ; fi
+  - |
+    if [[ "$TRAVIS_PHP_VERSION" == '7.1' ]]; then
+      vendor/bin/phpunit
+    else 
+      phpunit
+    fi

@@ -31,9 +31,12 @@
 
 This library requires php 5.5 or above.
 
+For older php versions (`< 7.1`) use `1.x.x` releases of this library.
+
+For php version `>=7.1` use the latest releases (`2.x.x`) of the library
+
 
 **Using Composer**:
-
 
 ```sh
 composer require chartmogul/chartmogul-php
@@ -43,7 +46,7 @@ or in `composer.json`:
 ```json
 {
     "require": {
-        "chartmogul/chartmogul-php": "~1.1"
+        "chartmogul/chartmogul-php": "~2.0"
     }
 }
 ```
