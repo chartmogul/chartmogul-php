@@ -18,8 +18,5 @@ cs:
 	$(RUNNER) "./vendor/bin/phpcs --standard=PSR2 src/"
 cbf:
 	$(RUNNER) "./vendor/bin/phpcbf --standard=PSR2 src/"
-doc:
-	$(RUNNER) "./vendor/bin/phpdoc"
-	$(RUNNER) "./vendor/bin/phpdocmd docs/structure.xml docs --index README.md"
 %:
 	@:
