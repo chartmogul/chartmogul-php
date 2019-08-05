@@ -633,10 +633,6 @@ ChartMogul\Configuration::getDefaultConfiguration()
     ->setRetries(15); //0 disables retrying
 ```
 
-## API Documentation
-
-Find the full public API documentation [here](docs/README.md).
-
 
 ## Development
 
@@ -648,7 +644,6 @@ You need `Docker` installed locally to use our `Makefile` workflow.
 * Install dependencies: `make build`.
 * Fix bugs or add features. Make sure the changes pass the coding guidelines by runing PHP CodeSniffer: `make cs`. You can also run `make cbf` to fix some errors automatically.
 * Write tests for your new features. Run tests and check test coverage with `make test`.
-* Generate API documentation by running `make doc`.
 * To run any composer commands or php scripts, use `make composer <commands>` or `make php <script>`.
 * If all tests are passed, push to the branch (`git push origin my-new-feature`).
 * Create a new Pull Request.
