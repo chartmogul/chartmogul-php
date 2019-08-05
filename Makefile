@@ -1,10 +1,11 @@
-RUNNER=docker run -it --rm --workdir "/src" -v "$(PWD):/src" -v "$(HOME)/.composer/cache:/root/.composer/cache" chartmogulphp5 /bin/bash -c
+RUNNER=docker run -it --rm --workdir "/src" -v "$(PWD):/src" -v "$(HOME)/.composer/cache:/root/.composer/cache" chartmogulphp71 /bin/bash -c
 
 .PHONY: build composer php
 
 build:
-	@docker build --build-arg VERSION=5.5 --tag=chartmogulphp5 .
-	@docker build --build-arg VERSION=7.2 --tag=chartmogulphp7 .
+	@docker build --build-arg VERSION=7.1 --tag=chartmogulphp71 .
+	@docker build --build-arg VERSION=7.2 --tag=chartmogulphp72 .
+	@docker build --build-arg VERSION=7.3 --tag=chartmogulphp73 .
 composer:
 	@$(RUNNER) "composer $(filter-out $@,$(MAKECMDGOALS))"
 dependencies:
@@ -17,8 +18,5 @@ cs:
 	$(RUNNER) "./vendor/bin/phpcs --standard=PSR2 src/"
 cbf:
 	$(RUNNER) "./vendor/bin/phpcbf --standard=PSR2 src/"
-doc:
-	$(RUNNER) "./vendor/bin/phpdoc"
-	$(RUNNER) "./vendor/bin/phpdocmd docs/structure.xml docs --index README.md"
 %:
 	@:

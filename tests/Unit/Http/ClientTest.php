@@ -2,9 +2,10 @@
 
 use ChartMogul\Http\Client;
 use ChartMogul\Exceptions\ChartMogulException;
-use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7;
 use Zend\Diactoros\Request;
+use Http\Client\Exception\NetworkException;
 
 class ClientTest extends \PHPUnit\Framework\TestCase
 {
@@ -86,10 +87,10 @@ class ClientTest extends \PHPUnit\Framework\TestCase
     }
     /**
      * @dataProvider provider
-     * @expectedException \ChartMogul\Exceptions\ChartMogulException
      */
     public function testHandleResponseExceptions($status, $exception)
     {
+        $this->expectException($exception);
         $mock = $this->getMockBuilder(Client::class)
             ->disableOriginalConstructor()
             ->setMethods(null)
@@ -169,14 +170,12 @@ class ClientTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($request->getBody()->getContents(), $rBody);
     }
 
-    /**
-    * @expectedException     ChartMogul\Exceptions\ChartMogulException
-    */
     public function testNoRetry()
     {
+        $this->expectException(ChartMogulException::class);
         list($mock, $mockClient) = $this->getMockClient(0, [500]);
 
-        $returnedResponse = $mock->send('', 'GET', []);
+        $mock->send('', 'GET', []);
         $this->assertEquals(count($mockClient->getRequests()), 1);
     }
 
@@ -184,7 +183,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
     {
         list($mock, $mockClient) = $this->getMockClient(10, [500, 429, 200]);
 
-        $returnedResponse = $mock->send('', 'GET', []);
+        $mock->send('', 'GET', []);
         $this->assertEquals(count($mockClient->getRequests()), 3);
     }
     public function testRetryNetworkError()
@@ -193,14 +192,13 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             new \Http\Client\Exception\NetworkException("some error", new Request()),
         ]);
 
-        $returnedResponse = $mock->send('', 'GET', []);
+        $mock->send('', 'GET', []);
         $this->assertEquals(count($mockClient->getRequests()), 2);
     }
-    /**
-    * @expectedException     \Http\Client\Exception\NetworkException
-    */
+
     public function testRetryMaxAttemptReached()
     {
+        $this->expectException(NetworkException::class);
         list($mock, $mockClient) = $this->getMockClient(1, [200], [
             new \Http\Client\Exception\NetworkException("some error", new Request()),
             new \Http\Client\Exception\NetworkException("some error", new Request()),

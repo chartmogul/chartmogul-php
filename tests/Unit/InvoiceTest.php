@@ -5,6 +5,7 @@ use ChartMogul\Invoice;
 use ChartMogul\Exceptions\ChartMogulException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
+use ChartMogul\Exceptions\NotFoundException;
 
 class InvoiceTest extends \PHPUnit\Framework\TestCase
 {
@@ -149,11 +150,9 @@ class InvoiceTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals("/v1/invoices/inv_123", $uri->getPath());
     }
 
-    /**
-    * @expectedException     ChartMogul\Exceptions\NotFoundException
-    */
     public function testDestroyInvoiceNotFound()
     {
+        $this->expectException(NotFoundException::class);
         $response = new Response(404);
         $mockClient = new \Http\Mock\Client();
         $mockClient->addResponse($response);

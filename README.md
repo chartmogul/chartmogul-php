@@ -31,9 +31,12 @@
 
 This library requires php 5.5 or above.
 
+For older php versions (`< 7.1`) use `1.x.x` releases of this library.
+
+For php version `>=7.1` use the latest releases (`2.x.x`) of the library
+
 
 **Using Composer**:
-
 
 ```sh
 composer require chartmogul/chartmogul-php
@@ -43,7 +46,7 @@ or in `composer.json`:
 ```json
 {
     "require": {
-        "chartmogul/chartmogul-php": "~1.1"
+        "chartmogul/chartmogul-php": "~2.0"
     }
 }
 ```
@@ -633,10 +636,6 @@ ChartMogul\Configuration::getDefaultConfiguration()
     ->setRetries(15); //0 disables retrying
 ```
 
-## API Documentation
-
-Find the full public API documentation [here](docs/README.md).
-
 
 ## Development
 
@@ -648,7 +647,6 @@ You need `Docker` installed locally to use our `Makefile` workflow.
 * Install dependencies: `make build`.
 * Fix bugs or add features. Make sure the changes pass the coding guidelines by runing PHP CodeSniffer: `make cs`. You can also run `make cbf` to fix some errors automatically.
 * Write tests for your new features. Run tests and check test coverage with `make test`.
-* Generate API documentation by running `make doc`.
 * To run any composer commands or php scripts, use `make composer <commands>` or `make php <script>`.
 * If all tests are passed, push to the branch (`git push origin my-new-feature`).
 * Create a new Pull Request.
