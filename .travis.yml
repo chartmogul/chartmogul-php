@@ -6,7 +6,7 @@ php:
 
 before_script:
   - composer install
-  - if [[ "$TRAVIS_PHP_VERSION" == '7.1' ]]; composer require --no-update phpunit/phpunit:^7; fi
+  - if [[ "$TRAVIS_PHP_VERSION" == '7.1' ]]; then composer require phpunit/phpunit:^7; fi
 
 script:
   - if [[ "$TRAVIS_PHP_VERSION" == '7.1' ]]; then vendor/bin/phpunit; fi
