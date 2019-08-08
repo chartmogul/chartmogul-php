@@ -1,5 +1,11 @@
 RUNNER=docker run -it --rm --workdir "/src" -v "$(PWD):/src" -v "$(HOME)/.composer/cache:/root/.composer/cache" chartmogulphp71 /bin/bash -c
 
+ifeq (${TRAVIS_PHP_VERSION},"7.1")
+  PHPUNIT=vendor/bin/phpunit
+else
+  PHPUNIT=phpunit
+endif
+
 .PHONY: build composer php
 
 build:
@@ -11,7 +17,7 @@ composer:
 dependencies:
 	make -s composer update -- --prefer-dist
 test:
-	$(RUNNER) "phpunit --coverage-text --coverage-clover build/logs/clover.xml"
+	$(RUNNER) $(PHPUNIT) " --coverage-text --coverage-clover build/logs/clover.xml"
 php:
 	$(RUNNER) "php $(filter-out $@,$(MAKECMDGOALS))"
 cs:
