@@ -18,6 +18,8 @@ dependencies:
 	make -s composer update -- --prefer-dist
 test:
 	$(RUNNER) $(PHPUNIT) " --coverage-text --coverage-clover build/logs/clover.xml"
+travis_test:
+	$(PHPUNIT) " --coverage-text --coverage-clover build/logs/clover.xml"
 php:
 	$(RUNNER) "php $(filter-out $@,$(MAKECMDGOALS))"
 cs:
