@@ -19,7 +19,8 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
-  - make travis_test
+  - if [[ "$TRAVIS_PHP_VERSION" == '7.1' ]]; then PHPUNIT=vendor/bin/phpunit; else PHPUNIT=phpunit; fi
+  - $PHPUNIT --coverage-text --coverage-clover ./build/logs/clover.xml
 
 after_script:
   - ./cc-test-reporter after-build -t clover --exit-code $TRAVIS_TEST_RESULT
