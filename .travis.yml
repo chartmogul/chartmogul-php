@@ -5,6 +5,11 @@ php:
   - '7.3'
   - nightly
 
+branches:
+  only:
+    - master
+    - 1.x
+
 before_script:
   - |
     if [[ "$TRAVIS_PHP_VERSION" == 'nightly' ]]; then
