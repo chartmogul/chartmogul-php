@@ -110,6 +110,22 @@ class InvoiceTest extends \PHPUnit\Framework\TestCase
       ]
     }';
 
+    public function testCreateInvoice()
+    {
+      $stream = Psr7\stream_for('{invoices: [{errors: {"plan_id": "doesn\'t exist"}}]}');
+      $response = new Response(422, ['Content-Type' => 'application/json'], $stream);
+      $mockClient = new \Http\Mock\Client();
+      $mockClient->addResponse($response);
+      $cmClient = new Client(null, $mockClient);
+
+      $this->expectException(\ChartMogul\Exceptions\SchemaInvalidException::class);
+      $restult = ChartMogul\CustomerInvoices::create([
+      'customer_uuid' => 'some_id',
+      'invoices' => [['mock' => 'invoice']]
+      ], $cmClient);
+    }
+
+
     public function testAllInvoices()
     {
         $stream = Psr7\stream_for(InvoiceTest::ALL_INVOICE_JSON);
