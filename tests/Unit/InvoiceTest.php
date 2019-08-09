@@ -110,7 +110,7 @@ class InvoiceTest extends \PHPUnit\Framework\TestCase
       ]
     }';
 
-    public function testCreateInvoice()
+    public function testCreateInvoiceFailsOnValidation()
     {
       $stream = Psr7\stream_for('{invoices: [{errors: {"plan_id": "doesn\'t exist"}}]}');
       $response = new Response(422, ['Content-Type' => 'application/json'], $stream);
@@ -124,7 +124,6 @@ class InvoiceTest extends \PHPUnit\Framework\TestCase
       'invoices' => [['mock' => 'invoice']]
       ], $cmClient);
     }
-
 
     public function testAllInvoices()
     {
