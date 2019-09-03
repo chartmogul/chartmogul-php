@@ -42,6 +42,7 @@ class Invoice extends AbstractResource
     public $customer_uuid;
     public $external_id;
     public $data_source_uuid;
+    public $customer_external_id;
 
     public $currency;
     public $date;
