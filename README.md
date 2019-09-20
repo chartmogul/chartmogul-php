@@ -364,6 +364,7 @@ $cus = ChartMogul\Customer::all()->first();
 
 $line_itme_1 = new ChartMogul\LineItems\Subscription([
     'subscription_external_id' => "sub_0001",
+    'subscription_set_external_id' => 'set_0001',
     'plan_uuid' =>  $plan->uuid,
     'service_period_start' =>  "2015-11-01 00:00:00",
     'service_period_end' =>  "2015-12-01 00:00:00",
