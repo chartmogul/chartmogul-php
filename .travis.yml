@@ -7,7 +7,13 @@ php:
   - nightly
 
 before_script:
-  - composer install
+  - |
+    if [[ "$TRAVIS_PHP_VERSION" == 'nightly' ]]; then
+      #ignore php version check on nightly build
+      composer install --ignore-platform-reqs
+    else
+      composer install
+    fi
 
 script:
   - phpunit
