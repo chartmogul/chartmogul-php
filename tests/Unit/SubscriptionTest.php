@@ -15,6 +15,7 @@ class SubscriptionTest extends \PHPUnit\Framework\TestCase
         {
             "uuid": "sub_dd169c42-e127-4637-8b8f-a239b248e3cd",
             "external_id": "abc",
+            "subscription_set_external_id": "set_001",
             "cancellation_dates": [],
             "plan_uuid": "pl_d6fe6904-8319-11e7-82b4-ffedd86c182a",
             "data_source_uuid": "ds_637442a6-8319-11e7-a280-1f28ec01465c"
@@ -49,6 +50,7 @@ class SubscriptionTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($result[0] instanceof Subscription);
         $this->assertEquals("cus_f466e33d-ff2b-4a11-8f85-417eb02157a7", $result->customer_uuid);
         $this->assertEquals("sub_dd169c42-e127-4637-8b8f-a239b248e3cd", $result[0]->uuid);
+        $this->assertEquals("set_001", $result[0]->subscription_set_external_id);
         $this->assertEquals(2, $result->current_page);
         $this->assertEquals(3, $result->total_pages);
     }
