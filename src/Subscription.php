@@ -9,6 +9,7 @@ use \ChartMogul\Service\AllTrait;
 /**
  * @property-read string $uuid
  * @property-read string $external_id
+ * @property-read string $subscription_set_external_id
  * @property-read string $cancellation_dates
  * @property-read string $plan_uuid
  * @property-read string $data_source_uuid
@@ -33,6 +34,7 @@ class Subscription extends AbstractResource
 
     protected $uuid;
     protected $external_id;
+    protected $subscription_set_external_id;
     protected $cancellation_dates;
 
     protected $plan_uuid;
