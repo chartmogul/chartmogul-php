@@ -568,17 +568,17 @@ ChartMogul\Metrics::ltv([
 **List Customer Subscriptions**
 
 ```php
-ChartMogul\Metrics\Subscriptions::all(
-    ["customer_uuid" => $cus->uuid]
-);
+ChartMogul\Metrics\Subscriptions::all([
+    "customer_uuid" => $cus->uuid
+]);
 ```
 
 **List Customer Activities**
 
 ```php
-ChartMogul\Metrics\Activities::all(
-    ["customer_uuid" => $cus->uuid]
-);
+ChartMogul\Metrics\Activities::all([
+    "customer_uuid" => $cus->uuid
+]);
 ```
 
 
@@ -613,7 +613,7 @@ $config = new ChartMogul\Configuration('accountToken','secretKey');
 $httpClient = new My\HttpClient();
 $client = new ChartMogul\Http\Client($config, $httpClient);
 
-customers = $ChartMogul\Customer::all([
+$customers = ChartMogul\Customer::all([
   'page' => 1,
   'data_source_uuid' => $ds->uuid
 ], $client);
@@ -662,7 +662,7 @@ The library is available as open source under the terms of the [MIT License](htt
 
 ### The MIT License (MIT)
 
-*Copyright (c) 2016 ChartMogul Ltd.*
+*Copyright (c) 2019 ChartMogul Ltd.*
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
