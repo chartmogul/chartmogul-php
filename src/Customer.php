@@ -99,9 +99,9 @@ class Customer extends AbstractResource
     /**
      * Find a Customer by External ID. Returns only first result!
      * @param string $externalId
-     * @return Customer
+     * @return Customer|null
      */
-    public static function findByExternalId($externalId)
+    public static function findByExternalId($externalId): ?Customer
     {
         if (gettype($externalId) == 'string') {
             $externalId = ['external_id' => $externalId];
@@ -111,9 +111,9 @@ class Customer extends AbstractResource
 
         if (is_null($response)) {
             return null;
-        } else {
-            return $response->first();
         }
+
+        return $response->first();
     }
 
     /**
