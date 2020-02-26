@@ -354,6 +354,57 @@ $plan = ChartMogul\Plan::update(["plan_uuid" => $plan->uuid], [
 ]);
 ```
 
+### Plan Groups
+
+**Create a Plan Group**
+
+```php
+ChartMogul\PlanGroup::create([
+    "name" => "Bronze Plan",
+    "plans" => [$plan_uuid_1, $plan_uuid_2],
+]);
+```
+
+**Get a Plan Group by UUID**
+
+```php
+ChartMogul\PlanGroup::retrieve($uuid);
+```
+
+**List Plan Groups**
+
+```php
+$plan_groups = ChartMogul\PlanGroup::all([
+  'page' => 1
+]);
+```
+
+**Delete A Plan Group**
+
+```php
+$plan_group = ChartMogul\PlanGroup::all()->last();
+$plan_group->destroy();
+```
+
+**Update A Plan Group**
+
+```php
+$plan_group = ChartMogul\PlanGroup::update(
+  ["plan_group_uuid" => $plan_group->uuid],
+  [
+  "name" => "A new plan group name",
+  "plans" => [$plan_uuid_1, $plan_uuid_2]
+]);
+```
+
+**List Plans In A Plan Group**
+
+```php
+$plan_group_plans = ChartMogul\PlanGroups\Plan::all(
+  ["plan_group_uuid" => $plan_group->uuid]
+);
+```
+
 ### Invoices
 
 **Import Invoices**
