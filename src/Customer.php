@@ -101,7 +101,7 @@ class Customer extends AbstractResource
      * @param string $externalId
      * @return Customer|null
      */
-    public static function findByExternalId($externalId): ?Customer
+    public static function findByExternalId($externalId)
     {
         if (gettype($externalId) == 'string') {
             $externalId = ['external_id' => $externalId];
@@ -113,7 +113,7 @@ class Customer extends AbstractResource
             return null;
         }
 
-        return $response->first();
+        return $response->first() || null;
     }
 
     /**
