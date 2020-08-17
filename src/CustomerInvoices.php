@@ -35,6 +35,15 @@ class CustomerInvoices extends AbstractResource
         }
     }
 
+    public static function destroyAll($dataSourceUUID, $customerUUID)
+    {
+        (new static([], $client))
+            ->getClient()
+            ->setResourcekey(static::class)
+            ->send('/v1/data_sources/'.dataSourceUUID.'/customers/'.$customerUUID.'/invoices', 'DELETE');
+        return true;
+    }
+
     protected function setInvoice($index, $invoice)
     {
 
