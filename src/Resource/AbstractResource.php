@@ -76,7 +76,9 @@ abstract class AbstractResource extends AbstractModel
     public static function fromArray(array $data, ClientInterface $client = null)
     {
         if (isset($data[static::ROOT_KEY])) {
-            $array = new ArrayCollection(array_map([static::class, 'fromArray'], $data[static::ROOT_KEY]));
+            $array = new ArrayCollection(array_map(function ($data) use ($client) {
+                return static::fromArray($data, $client);
+            }, $data[static::ROOT_KEY]));
             // The following are subject to change soon, so they are optional.
             if (isset($data["current_page"])) {
                 $array->current_page = $data["current_page"];
