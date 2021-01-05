@@ -41,15 +41,6 @@ For php version `>=7.1` use the latest releases (`2.x.x` or `3.x.x`) of the libr
 ```sh
 composer require chartmogul/chartmogul-php:^3.0 php-http/guzzle6-adapter:^2.0.1 http-interop/http-factory-guzzle:^1.0
 ```
-or in `composer.json`:
-
-```json
-{
-    "require": {
-        "chartmogul/chartmogul-php": "~3.0"
-    }
-}
-```
 
 ## Configuration
 
