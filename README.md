@@ -33,10 +33,12 @@ This library requires php 5.5 or above.
 
 For older php versions (`< 7.1`) use `1.x.x` releases of this library.
 
-For php version `>=7.1` use the latest releases (`2.x.x` or `3.x.x`) of the library
+For php version `>=7.1` use the latest releases (`3.x.x`) of the library
 
 
-**Using Composer**:
+The library doesn't depend on any concrete HTTP client libraries. Follow the instructions [here](http://docs.php-http.org/en/latest/httplug/users.html) to find out how to include a HTTP client.
+
+Here's an example with `Guzzle HTTP client`:
 
 ```sh
 composer require chartmogul/chartmogul-php:^3.0 php-http/guzzle6-adapter:^2.0.1 http-interop/http-factory-guzzle:^1.0
@@ -642,12 +644,6 @@ The following table describes the public methods of the error object.
 | `getMessage()`  | string           | The error message                                                   |
 | `getStatusCode()`     | number           | When the error occurs during an HTTP request, the HTTP status code. |
 | `getResponse()` | array or string | HTTP response as array, or raw response if not parsable to array |
-
-
-## Using Your Own HTTP Client
-
-TODO
-
 
 
 ### Rate Limits & Exponential Backoff
