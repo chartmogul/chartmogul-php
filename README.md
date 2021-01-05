@@ -33,20 +33,20 @@ This library requires php 5.5 or above.
 
 For older php versions (`< 7.1`) use `1.x.x` releases of this library.
 
-For php version `>=7.1` use the latest releases (`2.x.x`) of the library
+For php version `>=7.1` use the latest releases (`2.x.x` or `3.x.x`) of the library
 
 
 **Using Composer**:
 
 ```sh
-composer require chartmogul/chartmogul-php
+composer require chartmogul/chartmogul-php:^3.0 php-http/guzzle6-adapter:^2.0.1 http-interop/http-factory-guzzle:^1.0
 ```
 or in `composer.json`:
 
 ```json
 {
     "require": {
-        "chartmogul/chartmogul-php": "~2.0"
+        "chartmogul/chartmogul-php": "~3.0"
     }
 }
 ```
@@ -655,23 +655,8 @@ The following table describes the public methods of the error object.
 
 ## Using Your Own HTTP Client
 
-The library uses `php-http/guzzle6-adapter` as the HTTP client. But you can use any HTTP client that implements [`php-http/client-implementation`](https://packagist.org/providers/php-http/client-implementation) virtual package. For example:
+TODO
 
-
-```php
-$config = new ChartMogul\Configuration('accountToken','secretKey');
-
-$httpClient = new My\HttpClient();
-$client = new ChartMogul\Http\Client($config, $httpClient);
-
-$customers = ChartMogul\Customer::all([
-  'page' => 1,
-  'data_source_uuid' => $ds->uuid
-], $client);
-
-```
-
-Learn more about this virtual package at [here](http://docs.php-http.org/en/latest/httplug/users.html).
 
 
 ### Rate Limits & Exponential Backoff

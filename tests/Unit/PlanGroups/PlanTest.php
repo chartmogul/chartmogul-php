@@ -1,11 +1,12 @@
 <?php
+namespace ChartMogul\Tests;
 
 use ChartMogul\Http\Client;
 use ChartMogul\PlanGroups\Plan;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
 
-class PlanGroupsPlanTest extends \PHPUnit\Framework\TestCase
+class PlanGroupsPlanTest extends TestCase
 {
     const ALL_PLAN_GROUPS_PLANS_JSON = '{
     "plans": [
@@ -33,11 +34,8 @@ class PlanGroupsPlanTest extends \PHPUnit\Framework\TestCase
     public function testAllPlanGroups()
     {
       $stream = Psr7\stream_for(PlanGroupsPlanTest::ALL_PLAN_GROUPS_PLANS_JSON);
-      $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
-      $mockClient = new \Http\Mock\Client();
-      $mockClient->addResponse($response);
+      list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-      $cmClient = new Client(null, $mockClient);
       $planGroupUuid = 'plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab';
       $query = [
         "plan_group_uuid" => $planGroupUuid,
@@ -54,7 +52,7 @@ class PlanGroupsPlanTest extends \PHPUnit\Framework\TestCase
       $this->assertEquals("page=1&per_page=2", $uri->getQuery());
 
       $this->assertEquals(2, sizeof($result));
-      $this->assertTrue($result[0] instanceof ChartMogul\PlanGroups\Plan);
+      $this->assertTrue($result[0] instanceof Plan);
       $this->assertEquals("pl_2f7f4360-3633-0138-f01f-62b37fb4c770", $result[0]->uuid);
       $this->assertEquals("ds_424b9628-5405-11ea-ab18-e3a0f4f45097", $result[0]->data_source_uuid);
       $this->assertEquals(1, $result->current_page);

@@ -1,13 +1,13 @@
 <?php
-
 namespace ChartMogul\Http;
 
 use ChartMogul\Configuration;
 use Psr\Http\Message\ResponseInterface;
 use Http\Client\HttpClient;
-use Http\Adapter\Guzzle6\Client as GuzzleClient;
-use Zend\Diactoros\Request;
-use Zend\Diactoros\Uri;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\RequestFactoryInterface;
+use Http\Discovery\HttpClientDiscovery;
+use Http\Discovery\Psr17FactoryDiscovery;
 
 class Client implements ClientInterface
 {
@@ -38,21 +38,24 @@ class Client implements ClientInterface
     private $apiBase = 'https://api.chartmogul.com';
 
     /**
+    * @var RequestFactoryInterface
+    */
+    private $requestFactory;
+
+    /**
      * @param Configuration|null $config Configuration Object
      * @param HttpClient|null $client php-http/client-implementaion object
+     * @param RequestFactoryInterface|null $requestFactory
      * @codeCoverageIgnore
      */
-    public function __construct(Configuration $config = null, HttpClient $client = null)
-    {
-        if (is_null($config)) {
-            $config = Configuration::getDefaultConfiguration();
-        }
-        $this->config = $config;
-
-        if (is_null($client)) {
-            $client = new GuzzleClient();
-        }
-        $this->client = $client;
+    public function __construct(
+        Configuration $config = null,
+        HttpClient $client = null,
+        RequestFactoryInterface $requestFactory = null
+    ) {
+        $this->config = $config ?: Configuration::getDefaultConfiguration();
+        $this->client = $client ?: HttpClientDiscovery::find();
+        $this->requestFactory = $requestFactory ?: Psr17FactoryDiscovery::findRequestFactory();
     }
 
 
@@ -147,7 +150,7 @@ class Client implements ClientInterface
         );
     }
 
-    protected function sendWithRetry(Request $request)
+    protected function sendWithRetry(RequestInterface $request)
     {
         $backoff = new Retry($this->config->getRetries());
         $response =  $backoff->retry(function () use ($request) {
@@ -165,13 +168,11 @@ class Client implements ClientInterface
             $data = [];
         }
 
-        $uri = (new Uri($this->apiBase))
-            ->withQuery($query)
-            ->withPath($path);
-
-        $request = (new Request())
-            ->withUri($uri)
-            ->withMethod($method)
+        $request = $this->requestFactory
+            ->createRequest($method, $this->apiBase);
+        $request = $request->withUri(
+            $request->getUri()->withPath($path)->withQuery($query)
+        )
             ->withHeader('Authorization', $this->getBasicAuthHeader())
             ->withHeader('content-type', 'application/json')
             ->withHeader('user-agent', $this->getUserAgent());

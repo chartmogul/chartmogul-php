@@ -1,4 +1,5 @@
 <?php
+namespace ChartMogul\Tests;
 
 use ChartMogul\Http\Client;
 use ChartMogul\Metrics;
@@ -9,7 +10,7 @@ use ChartMogul\Exceptions\ChartMogulException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
 
-class MetricsTest extends \PHPUnit\Framework\TestCase
+class MetricsTest extends TestCase
 {
 
     const ALL_JSON = '{
@@ -64,11 +65,8 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
     public function testAll()
     {
         $stream = Psr7\stream_for(MetricsTest::ALL_JSON);
-        $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
-        $mockClient = new \Http\Mock\Client();
-        $mockClient->addResponse($response);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-        $cmClient = new Client(null, $mockClient);
         $result = Metrics::all(["interval" => "month"],$cmClient);
         $request = $mockClient->getRequests()[0];
 
@@ -84,11 +82,8 @@ class MetricsTest extends \PHPUnit\Framework\TestCase
     public function testLtv(){
 
         $stream = Psr7\stream_for(MetricsTest::LTV_JSON);
-        $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
-        $mockClient = new \Http\Mock\Client();
-        $mockClient->addResponse($response);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-        $cmClient = new Client(null, $mockClient);
         $result = Metrics::ltv([
             "start-date" => "2015-01-01",
             "end-date" => "2015-11-01",

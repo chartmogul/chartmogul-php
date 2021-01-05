@@ -1,4 +1,5 @@
 <?php
+namespace ChartMogul\Tests;
 
 use ChartMogul\Http\Client;
 use ChartMogul\Subscription;
@@ -6,7 +7,7 @@ use ChartMogul\Exceptions\ChartMogulException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
 
-class SubscriptionTest extends \PHPUnit\Framework\TestCase
+class SubscriptionTest extends TestCase
 {
 
   const ALL_SUBS_JSON = '{
@@ -32,11 +33,8 @@ class SubscriptionTest extends \PHPUnit\Framework\TestCase
     public function testAllSubscriptions()
     {
         $stream = Psr7\stream_for(SubscriptionTest::ALL_SUBS_JSON);
-        $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
-        $mockClient = new \Http\Mock\Client();
-        $mockClient->addResponse($response);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-        $cmClient = new Client(null, $mockClient);
         $query = ['customer_uuid' => 'cus_f466e33d-ff2b-4a11-8f85-417eb02157a7'];
         $result = Subscription::all($query, $cmClient);
         $request = $mockClient->getRequests()[0];
@@ -56,13 +54,10 @@ class SubscriptionTest extends \PHPUnit\Framework\TestCase
     }
     public function testCancel(){
         $stream = Psr7\stream_for(SubscriptionTest::CANCEL_SUBSCRIPTION);
-        $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
-        $mockClient = new \Http\Mock\Client();
-        $mockClient->addResponse($response);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-        $cmClient = new Client(null, $mockClient);
         $subsUUID = "sub_e6bc5407-e258-4de0-bb43-61faaf062035";
-        $subscription = new ChartMogul\Subscription(["uuid" => $subsUUID], $cmClient);
+        $subscription = new Subscription(["uuid" => $subsUUID], $cmClient);
         $canceldate = '2016-01-01T10:00:00.000Z';
         $result = $subscription->cancel($canceldate);
         $request = $mockClient->getRequests()[0];
@@ -76,11 +71,8 @@ class SubscriptionTest extends \PHPUnit\Framework\TestCase
     }
     public function testConnect(){
         $stream = Psr7\stream_for('{}');
-        $response = new Response(202, ['Content-Type' => 'application/json'], $stream);
-        $mockClient = new \Http\Mock\Client();
-        $mockClient->addResponse($response);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [202], $stream);
 
-        $cmClient = new Client(null, $mockClient);
         $subscription1 = new Subscription(["external_id" => "d1c0c885-add0-48db-8fa9-0bdf5017d6b0", "data_source_uuid" => "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213", "uuid" => "uuid_001"], $cmClient);
         $subscription2 = new Subscription(["external_id" => "9db5f4a1-1695-44c0-8bd4-de7ce4d0f1d4", "data_source_uuid" => "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213"]);
         $subscription3 = ["external_id" => "sub_0001", "data_source_uuid" => "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213"];
