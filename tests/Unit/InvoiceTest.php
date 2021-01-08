@@ -1,13 +1,15 @@
 <?php
+namespace ChartMogul\Tests;
 
 use ChartMogul\Http\Client;
 use ChartMogul\Invoice;
+use ChartMogul\CustomerInvoices;
 use ChartMogul\Exceptions\ChartMogulException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
 use ChartMogul\Exceptions\NotFoundException;
 
-class InvoiceTest extends \PHPUnit\Framework\TestCase
+class InvoiceTest extends TestCase
 {
     const ALL_INVOICE_JSON = '{
       "invoices": [
@@ -113,13 +115,10 @@ class InvoiceTest extends \PHPUnit\Framework\TestCase
     public function testCreateInvoiceFailsOnValidation()
     {
       $stream = Psr7\stream_for('{invoices: [{errors: {"plan_id": "doesn\'t exist"}}]}');
-      $response = new Response(422, ['Content-Type' => 'application/json'], $stream);
-      $mockClient = new \Http\Mock\Client();
-      $mockClient->addResponse($response);
-      $cmClient = new Client(null, $mockClient);
+      list($cmClient, $mockClient) = $this->getMockClient(0, [422], $stream);
 
       $this->expectException(\ChartMogul\Exceptions\SchemaInvalidException::class);
-      $restult = ChartMogul\CustomerInvoices::create([
+      $restult = CustomerInvoices::create([
       'customer_uuid' => 'some_id',
       'invoices' => [['mock' => 'invoice']]
       ], $cmClient);
@@ -128,11 +127,8 @@ class InvoiceTest extends \PHPUnit\Framework\TestCase
     public function testAllInvoices()
     {
         $stream = Psr7\stream_for(InvoiceTest::ALL_INVOICE_JSON);
-        $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
-        $mockClient = new \Http\Mock\Client();
-        $mockClient->addResponse($response);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-        $cmClient = new Client(null, $mockClient);
         $query = ["page" => 2, "external_id" => "INV0001"];
         $result = Invoice::all($query, $cmClient);
         $request = $mockClient->getRequests()[0];
@@ -151,11 +147,8 @@ class InvoiceTest extends \PHPUnit\Framework\TestCase
 
     public function testDestroyInvoice()
     {
-        $response = new Response(204);
-        $mockClient = new \Http\Mock\Client();
-        $mockClient->addResponse($response);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [204]);
 
-        $cmClient = new Client(null, $mockClient);
         $result = (new Invoice(["uuid" => "inv_123"], $cmClient))->destroy();
         $request = $mockClient->getRequests()[0];
 
@@ -167,25 +160,19 @@ class InvoiceTest extends \PHPUnit\Framework\TestCase
 
     public function testDestroyInvoiceNotFound()
     {
+        list($cmClient, $mockClient) = $this->getMockClient(0, [404]);
         $this->expectException(NotFoundException::class);
-        $response = new Response(404);
-        $mockClient = new \Http\Mock\Client();
-        $mockClient->addResponse($response);
 
-        $cmClient = new Client(null, $mockClient);
         $result = (new Invoice(["uuid" => "inv_123"], $cmClient))->destroy();
     }
 
     public function testRetrieveInvoice()
     {
         $stream = Psr7\stream_for(InvoiceTest::RETRIEVE_INVOICE_JSON);
-        $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
-        $mockClient = new \Http\Mock\Client();
-        $mockClient->addResponse($response);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9';
 
-        $cmClient = new Client(null, $mockClient);
         $result = Invoice::retrieve($uuid, $cmClient);
         $request = $mockClient->getRequests()[0];
 

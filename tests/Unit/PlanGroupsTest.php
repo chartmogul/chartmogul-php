@@ -1,4 +1,5 @@
 <?php
+namespace ChartMogul\Tests;
 
 use ChartMogul\Http\Client;
 use ChartMogul\PlanGroup;
@@ -7,7 +8,7 @@ use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
 use ChartMogul\Exceptions\NotFoundException;
 
-class PlanGroupTest extends \PHPUnit\Framework\TestCase
+class PlanGroupTest extends TestCase
 {
     const ALL_PLAN_GROUPS_JSON = '{
       "plan_groups": [{
@@ -27,11 +28,8 @@ class PlanGroupTest extends \PHPUnit\Framework\TestCase
     public function testAllPlanGroups()
     {
       $stream = Psr7\stream_for(PlanGroupTest::ALL_PLAN_GROUPS_JSON);
-      $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
-      $mockClient = new \Http\Mock\Client();
-      $mockClient->addResponse($response);
+      list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-      $cmClient = new Client(null, $mockClient);
       $query = ["page" => 2, "per_page" => 1];
 
       $result = PlanGroup::all($query, $cmClient);
@@ -51,11 +49,8 @@ class PlanGroupTest extends \PHPUnit\Framework\TestCase
 
     public function testDestroyPlanGroup()
     {
-      $response = new Response(204);
-      $mockClient = new \Http\Mock\Client();
-      $mockClient->addResponse($response);
+      list($cmClient, $mockClient) = $this->getMockClient(0, [204]);
 
-      $cmClient = new Client(null, $mockClient);
       $result = (new PlanGroup(["uuid" => "plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab"], $cmClient))->destroy();
       $request = $mockClient->getRequests()[0];
 
@@ -67,25 +62,19 @@ class PlanGroupTest extends \PHPUnit\Framework\TestCase
 
     public function testDestroyPlanGroupNotFound()
     {
+        list($cmClient, $mockClient) = $this->getMockClient(0, [404]);
         $this->expectException(NotFoundException::class);
-        $response = new Response(404);
-        $mockClient = new \Http\Mock\Client();
-        $mockClient->addResponse($response);
 
-        $cmClient = new Client(null, $mockClient);
         $result = (new PlanGroup(["uuid" => "plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab"], $cmClient))->destroy();
     }
 
     public function testRetrievePlanGroup()
     {
         $stream = Psr7\stream_for(PlanGroupTest::RETRIEVE_PLAN_GROUP);
-        $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
-        $mockClient = new \Http\Mock\Client();
-        $mockClient->addResponse($response);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab';
 
-        $cmClient = new Client(null, $mockClient);
         $result = PlanGroup::retrieve($uuid, $cmClient);
         $request = $mockClient->getRequests()[0];
 
@@ -101,16 +90,13 @@ class PlanGroupTest extends \PHPUnit\Framework\TestCase
     public function testCreatePlanGroup()
     {
       $stream = Psr7\stream_for(PlanGroupTest::RETRIEVE_PLAN_GROUP);
-      $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
-      $mockClient = new \Http\Mock\Client();
-      $mockClient->addResponse($response);
+      list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
       $plan_uuid_1 = 'pl_7e7c1bc7-50e0-447d-9750-8d66e9c0c702';
       $plan_uuid_2 = 'pl_2d1ca933-8745-43d9-a836-85674597699c';
 
 
-      $cmClient = new Client(null, $mockClient);
-
-      $result = ChartMogul\PlanGroup::create([
+      $result = PlanGroup::create([
           "name" => "My Plan Group",
           "plans" => [$plan_uuid_1, $plan_uuid_2],
       ],
@@ -131,25 +117,19 @@ class PlanGroupTest extends \PHPUnit\Framework\TestCase
     public function testUpdatePlanGroup()
     {
       $stream = Psr7\stream_for(PlanGroupTest::RETRIEVE_PLAN_GROUP);
-      $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
-      $mockClient = new \Http\Mock\Client();
-      $mockClient->addResponse($response);
+      list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
       $uuid = 'plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab';
 
-      $cmClient = new Client(null, $mockClient);
       $plan_group = PlanGroup::retrieve($uuid, $cmClient);
 
       $stream = Psr7\stream_for(PlanGroupTest::RETRIEVE_PLAN_GROUP);
-      $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
-      $mockClient = new \Http\Mock\Client();
-      $mockClient->addResponse($response);
+      list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
       $uuid = 'plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab';
       $plan_uuid_1 = 'pl_7e7c1bc7-50e0-447d-9750-8d66e9c0c702';
       $plan_uuid_2 = 'pl_2d1ca933-8745-43d9-a836-85674597699c';
 
-      $cmClient = new Client(null, $mockClient);
       $result = PlanGroup::update(
         ["plan_group_uuid" => $uuid],
         [

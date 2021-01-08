@@ -1,6 +1,8 @@
 <?php
+namespace ChartMogul\Tests\Exceptions;
 
 use ChartMogul\Exceptions\ChartMogulException;
+use Http\Discovery\MessageFactoryDiscovery;
 
 class ChartMogulExceptionTest extends \PHPUnit\Framework\TestCase
 {
@@ -9,7 +11,7 @@ class ChartMogulExceptionTest extends \PHPUnit\Framework\TestCase
     {
 
         // Test non-JSON response
-        $mock = Http\Discovery\MessageFactoryDiscovery::find()->createResponse(
+        $mock = MessageFactoryDiscovery::find()->createResponse(
             200,
             null,
             [],
@@ -20,7 +22,7 @@ class ChartMogulExceptionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($e->getResponse(), 'plain text');
 
         // Test JSON response
-        $mock = Http\Discovery\MessageFactoryDiscovery::find()->createResponse(
+        $mock = MessageFactoryDiscovery::find()->createResponse(
             200,
             null,
             [],

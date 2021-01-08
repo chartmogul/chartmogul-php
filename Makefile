@@ -12,6 +12,8 @@ dependencies:
 	make -s composer update -- --prefer-dist
 test:
 	$(RUNNER) "phpunit --coverage-text --coverage-html ./coverage"
+phpunit:
+	$(RUNNER) "phpunit $(filter-out $@,$(MAKECMDGOALS))"
 php:
 	$(RUNNER) "php $(filter-out $@,$(MAKECMDGOALS))"
 cs:

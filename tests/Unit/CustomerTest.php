@@ -1,4 +1,5 @@
 <?php
+namespace ChartMogul\Tests;
 
 use ChartMogul\Http\Client;
 use ChartMogul\Customer;
@@ -6,7 +7,7 @@ use ChartMogul\Exceptions\ChartMogulException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
 
-class CustomerTest extends \PHPUnit\Framework\TestCase
+class CustomerTest extends TestCase
 {
     const CREATE_CUSTOMER_JSON= '{
       "id": 74596,
@@ -158,13 +159,10 @@ class CustomerTest extends \PHPUnit\Framework\TestCase
     public function testRetrieveCustomer()
     {
         $stream = Psr7\stream_for(CustomerTest::RETRIEVE_CUSTOMER_JSON);
-        $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
-        $mockClient = new \Http\Mock\Client();
-        $mockClient->addResponse($response);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'cus_de305d54-75b4-431b-adb2-eb6b9e546012';
 
-        $cmClient = new Client(null, $mockClient);
         $result = Customer::retrieve($uuid, $cmClient);
         $request = $mockClient->getRequests()[0];
 
@@ -179,11 +177,8 @@ class CustomerTest extends \PHPUnit\Framework\TestCase
     public function testCreateCustomer()
     {
         $stream = Psr7\stream_for(CustomerTest::CREATE_CUSTOMER_JSON);
-        $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
-        $mockClient = new \Http\Mock\Client();
-        $mockClient->addResponse($response);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-        $cmClient = new Client(null, $mockClient);
         $result = Customer::create([
             "data_source_uuid" => "ds_fef05d54-47b4-431b-aed2-eb6b9e545430",
             "external_id" => "cus_0001",
@@ -206,13 +201,10 @@ class CustomerTest extends \PHPUnit\Framework\TestCase
     public function testSearchCustomer(){
 
         $stream = Psr7\stream_for(CustomerTest::SEARCH_CUSTOMER_JSON);
-        $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
-        $mockClient = new \Http\Mock\Client();
-        $mockClient->addResponse($response);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
 
         $email = "bob@examplecompany.com";
-        $cmClient = new Client(null, $mockClient);
         $result = Customer::search($email, $cmClient);
         $request = $mockClient->getRequests()[0];
 
@@ -229,11 +221,8 @@ class CustomerTest extends \PHPUnit\Framework\TestCase
     public function testConnectSubscriptions()
     {
         $stream = Psr7\stream_for('{}');
-        $response = new Response(202, ['Content-Type' => 'application/json'], $stream);
-        $mockClient = new \Http\Mock\Client();
-        $mockClient->addResponse($response);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-        $cmClient = new Client(null, $mockClient);
         $result = Customer::connectSubscriptions("cus_5915ee5a-babd-406b-b8ce-d207133fb4cb", [
             "subscriptions" => [
                 [

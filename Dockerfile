@@ -5,7 +5,6 @@ RUN mv composer.phar /usr/local/bin/composer
 RUN chmod a+x /usr/local/bin/composer
 RUN apt-get update && apt-get  install -y git unzip
 ARG VERSION
-RUN composer global require hirak/prestissimo
 RUN if [ "$VERSION" = "7.1" ]; then \
     composer global require phpunit/phpunit:^7;  else \
     composer global require phpunit/phpunit:^8; fi
