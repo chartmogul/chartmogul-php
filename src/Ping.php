@@ -2,6 +2,7 @@
 
 namespace ChartMogul;
 
+use ChartMogul\Http\ClientInterface;
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Service\AllTrait;
 
