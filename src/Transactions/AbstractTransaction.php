@@ -20,6 +20,7 @@ abstract class AbstractTransaction extends AbstractResource
     public $date;
     public $result;
     public $external_id;
+    public $amount_in_cents;
 
     public $invoice_uuid;
 }
