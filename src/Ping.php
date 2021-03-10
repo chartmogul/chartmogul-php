@@ -2,6 +2,7 @@
 
 namespace ChartMogul;
 
+use ChartMogul\Http\ClientInterface;
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Service\AllTrait;
 
@@ -26,6 +27,6 @@ class Ping extends AbstractResource
 
     public static function ping(ClientInterface $client = null)
     {
-        return Ping::all();
+        return Ping::all([], $client);
     }
 }
