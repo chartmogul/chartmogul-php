@@ -3,7 +3,7 @@
 namespace ChartMogul\Http;
 
 use ChartMogul\Configuration;
-use Http\Client\HttpClient;
+use Psr\Http\Client\ClientInterface as HttpClient;
 
 /**
 * @codeCoverageIgnore
