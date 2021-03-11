@@ -625,6 +625,13 @@ ChartMogul\Metrics\Activities::all([
 ]);
 ```
 
+### Account
+
+**Retrieve Account Details**
+
+```php
+ChartMogul\Account::retrieve();
+```
 
 ### Exceptions
 
