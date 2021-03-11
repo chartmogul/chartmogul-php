@@ -136,13 +136,16 @@ class RequestService
             ->send($this->getResourcePath($obj->toArray()).'/'.$obj->uuid, 'DELETE');
         return true;
     }
-    
-    public function get($uuid)
+
+    public function get($uuid = null)
     {
         $class = $this->resourceClass;
         $response = $this->client
             ->setResourceKey($class::RESOURCE_NAME)
-            ->send($class::RESOURCE_PATH.'/'.$uuid, 'GET');
+            ->send(
+                $uuid ? $class::RESOURCE_PATH.'/'.$uuid : $class::RESOURCE_PATH,
+                'GET'
+            );
 
         return $class::fromArray($response, $this->client);
     }
