@@ -1,6 +1,6 @@
 <?php
 
-namespace ChartMogul\Metrics;
+namespace ChartMogul\Metrics\Customers;
 
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Resource\EntryTrait;
@@ -16,7 +16,7 @@ class Activities extends AbstractResource
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/activities';
+    const RESOURCE_PATH = '/v1/customers/:customer_uuid/activities';
     /**
      * @ignore
      */

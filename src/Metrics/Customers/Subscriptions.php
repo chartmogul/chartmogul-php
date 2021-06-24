@@ -1,6 +1,6 @@
 <?php
 
-namespace ChartMogul\Metrics;
+namespace ChartMogul\Metrics\Customers;
 
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Resource\EntryTrait;
