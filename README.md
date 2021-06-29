@@ -612,7 +612,7 @@ ChartMogul\Metrics::ltv([
 **List Customer Subscriptions**
 
 ```php
-ChartMogul\Metrics\Subscriptions::all([
+ChartMogul\Metrics\Customers\Subscriptions::all([
     "customer_uuid" => $cus->uuid
 ]);
 ```
@@ -620,8 +620,16 @@ ChartMogul\Metrics\Subscriptions::all([
 **List Customer Activities**
 
 ```php
-ChartMogul\Metrics\Activities::all([
+ChartMogul\Metrics\Customers\Activities::all([
     "customer_uuid" => $cus->uuid
+]);
+```
+
+**List Activities**
+
+```php
+ChartMogul\Metrics\Activities::all([
+    'start-date' => '2020-06-02T00:00:00Z'
 ]);
 ```
 

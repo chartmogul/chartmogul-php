@@ -1,6 +1,6 @@
 <?php
 
-namespace ChartMogul\Metrics;
+namespace ChartMogul\Metrics\Customers;
 
 use ChartMogul\Resource\AbstractModel;
 use ChartMogul\Http\ClientInterface;
