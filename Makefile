@@ -6,6 +6,7 @@ build:
 	@docker build --build-arg VERSION=7.1 --tag=chartmogulphp71 .
 	@docker build --build-arg VERSION=7.2 --tag=chartmogulphp72 .
 	@docker build --build-arg VERSION=7.3 --tag=chartmogulphp73 .
+	@docker build --build-arg VERSION=8.0 --tag=chartmogulphp80 .
 composer:
 	@$(RUNNER) "composer $(filter-out $@,$(MAKECMDGOALS))"
 dependencies:
