@@ -9,21 +9,20 @@ use ChartMogul\Http\ClientInterface;
 
 class AllKeyMetrics extends AbstractResource
 {
-    /**
-     * @ignore
-     */
-    const ENTRY_CLASS = AllKeyMetric::class;
-    /**
-     * @ignore
-     */
-    const RESOURCE_PATH = '/v1/metrics/all';
-    /**
-     * @ignore
-     */
-    const RESOURCE_NAME = 'All Key Metrics';
-
     use EntryTrait;
     use AllTrait;
+    /**
+     * @ignore
+     */
+    public const ENTRY_CLASS = AllKeyMetric::class;
+    /**
+     * @ignore
+     */
+    public const RESOURCE_PATH = '/v1/metrics/all';
+    /**
+     * @ignore
+     */
+    public const RESOURCE_NAME = 'All Key Metrics';
 
     protected static function getEntryClass()
     {
@@ -32,7 +31,6 @@ class AllKeyMetrics extends AbstractResource
 
     public function __construct(array $attr = [], ClientInterface $client = null)
     {
-
         parent::__construct($attr, $client);
 
         $this->setEntries($this->entries);

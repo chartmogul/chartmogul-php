@@ -8,5 +8,4 @@ namespace ChartMogul\Import\Transactions;
  */
 abstract class AbstractTransaction extends ChartMogul\AbstractTransaction
 {
-    
 }

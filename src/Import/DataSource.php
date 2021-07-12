@@ -7,5 +7,4 @@ namespace ChartMogul\Import;
  */
 class DataSource extends ChartMogul\DataSource
 {
-
 }

@@ -2,7 +2,7 @@
 
 namespace ChartMogul\Resource;
 
-use \Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 abstract class AbstractModel
 {
@@ -25,7 +25,7 @@ abstract class AbstractModel
             $obj = $obj->toArray();
         }
 
-        $data = is_object($obj)? get_object_vars($obj): $obj;
+        $data = is_object($obj) ? get_object_vars($obj) : $obj;
 
         if (is_array($data)) {
             return array_filter(

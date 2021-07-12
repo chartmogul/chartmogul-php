@@ -8,5 +8,4 @@ namespace ChartMogul\Exceptions;
  */
 class NotFoundException extends ChartMogulException
 {
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace ChartMogul\Http;
 
 use Psr\Http\Message\ResponseInterface;
@@ -12,7 +13,6 @@ class ExponentialStrategy extends \STS\Backoff\Strategies\ExponentialStrategy
 
 class Retry
 {
-
     private $retries;
 
     public function __construct($retries)

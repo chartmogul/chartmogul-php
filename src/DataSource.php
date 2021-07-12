@@ -16,7 +16,6 @@ use ChartMogul\Service\GetTrait;
  */
 class DataSource extends AbstractResource
 {
-
     use CreateTrait;
     use AllTrait;
     use DestroyTrait;
@@ -25,17 +24,17 @@ class DataSource extends AbstractResource
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/data_sources';
+    public const RESOURCE_PATH = '/v1/data_sources';
 
     /**
      * @ignore
      */
-    const RESOURCE_NAME = 'Data Source';
+    public const RESOURCE_NAME = 'Data Source';
 
     /**
      * @ignore
      */
-    const ROOT_KEY = 'data_sources';
+    public const ROOT_KEY = 'data_sources';
 
     protected $uuid;
     protected $status;

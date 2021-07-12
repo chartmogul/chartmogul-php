@@ -8,5 +8,4 @@ namespace ChartMogul\Import\LineItems;
 */
 class OneTime extends ChartMogul\OneTime
 {
-
 }

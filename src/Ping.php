@@ -17,11 +17,11 @@ class Ping extends AbstractResource
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/ping';
+    public const RESOURCE_PATH = '/v1/ping';
     /**
      * @ignore
      */
-    const RESOURCE_NAME = 'Ping';
+    public const RESOURCE_NAME = 'Ping';
 
     public $data;
 

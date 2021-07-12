@@ -9,7 +9,6 @@ use Psr\Http\Message\ResponseInterface;
  */
 class ChartMogulException extends \RuntimeException implements ResponseException
 {
-
     /**
      * @var int
      */
@@ -30,7 +29,6 @@ class ChartMogulException extends \RuntimeException implements ResponseException
      */
     public function __construct($message, ResponseInterface $response = null, \Exception $previous = null)
     {
-
         if ($response) {
             $response->getBody()->rewind();
             $this->statusCode = $response->getStatusCode();
@@ -38,7 +36,7 @@ class ChartMogulException extends \RuntimeException implements ResponseException
             $body = $response->getBody()->getContents();
             $json = json_decode($body, true);
 
-            $this->response = json_last_error() === JSON_ERROR_NONE? $json : $body;
+            $this->response = json_last_error() === JSON_ERROR_NONE ? $json : $body;
             // Adding body to message to get the whole error message to API user.
             $message = $message . " Response:\n " . $body;
         }

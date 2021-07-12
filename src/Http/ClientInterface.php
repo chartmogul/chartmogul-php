@@ -10,7 +10,6 @@ use Http\Client\HttpClient;
 */
 interface ClientInterface
 {
-
     public function getConfiguration();
 
     public function setConfiguration(Configuration $config);

@@ -7,13 +7,13 @@ class ARPAs extends AbstractMetric
     /**
      * @ignore
      */
-    const ENTRY_CLASS = ARPA::class;
+    public const ENTRY_CLASS = ARPA::class;
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/metrics/arpa';
+    public const RESOURCE_PATH = '/v1/metrics/arpa';
     /**
      * @ignore
      */
-    const RESOURCE_NAME = 'ARPAs';
+    public const RESOURCE_NAME = 'ARPAs';
 }

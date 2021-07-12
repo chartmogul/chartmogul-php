@@ -7,5 +7,4 @@ namespace ChartMogul\Import;
  */
 class Subscription extends \ChartMogul\Subscription
 {
-
 }

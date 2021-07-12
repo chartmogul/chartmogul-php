@@ -7,5 +7,4 @@ namespace ChartMogul\Import;
  */
 class Customer extends ChartMogul\Customer
 {
-
 }

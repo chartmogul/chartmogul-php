@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ChartMogul;
 
 const DEFAULT_MAX_RETRIES = 20;
@@ -11,7 +10,6 @@ const DEFAULT_MAX_RETRIES = 20;
  */
 class Configuration
 {
-
     /**
      * @var null|Configuration
      */

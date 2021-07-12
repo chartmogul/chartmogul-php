@@ -1,4 +1,5 @@
 <?php
+
 namespace ChartMogul\Service;
 
 use ChartMogul\Http\Client;
@@ -8,7 +9,6 @@ use ReflectionClass;
 
 class RequestService
 {
-
     private $resourceClass;
     private $resourcePath;
     private $client;
@@ -23,7 +23,7 @@ class RequestService
 
     public function setResourceClass($resourceClass)
     {
-        if (!new $resourceClass instanceof AbstractResource) {
+        if (!new $resourceClass() instanceof AbstractResource) {
             throw new \Exception('Resource should be an instance of '.AbstractResource::class);
         }
         $this->resourceClass = $resourceClass;
@@ -36,7 +36,7 @@ class RequestService
         $this->resourceClass = get_class($resource);
         return $this;
     }
-    
+
     /**
      * Use only when default class resource path must be overridden.
      * @param type $resourcePath
@@ -64,7 +64,7 @@ class RequestService
         if (isset($this->resourcePath)) {
             $path = $this->resourcePath;
         }
-        
+
         foreach ($this->getNamedParams($path) as $param) {
             if (empty($data[$param])) {
                 throw new \Exception('Parameter '.$param. ' is required');
@@ -105,15 +105,15 @@ class RequestService
     public function update(array $id, array $data)
     {
         $class = $this->resourceClass;
-        
-        
+
+
         $response = $this->client
             ->setResourceKey($class::RESOURCE_NAME)
             ->send($this->applyResourcePath($id), 'PATCH', $data);
 
         return $class::fromArray($response, $this->client);
     }
-    
+
     public function all($data)
     {
         $class = $this->resourceClass;

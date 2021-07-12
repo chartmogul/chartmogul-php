@@ -24,15 +24,15 @@ class Customers extends AbstractResource
     /**
      * @ignore
      */
-    const RESOURCE_NAME = 'Customers';
+    public const RESOURCE_NAME = 'Customers';
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/customers';
+    public const RESOURCE_PATH = '/v1/customers';
     /**
      * @ignore
      */
-    const ENTRY_CLASS = Customer::class;
+    public const ENTRY_CLASS = Customer::class;
 
     protected static function getEntryClass()
     {
@@ -46,7 +46,6 @@ class Customers extends AbstractResource
      */
     public function __construct(array $attr = [], ClientInterface $client = null)
     {
-
         parent::__construct($attr, $client);
 
         $this->setEntries($this->entries);

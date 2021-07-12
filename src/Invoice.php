@@ -27,15 +27,15 @@ class Invoice extends AbstractResource
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/invoices';
+    public const RESOURCE_PATH = '/v1/invoices';
     /**
      * @ignore
      */
-    const ENTRY_CLASS = Invoice::class;
+    public const ENTRY_CLASS = Invoice::class;
     /**
      * @ignore
      */
-    const ROOT_KEY = 'invoices';
+    public const ROOT_KEY = 'invoices';
 
     protected $uuid;
 
@@ -68,7 +68,6 @@ class Invoice extends AbstractResource
 
     protected function setLineItem($index, $line)
     {
-
         if ($line instanceof AbstractLineItem) {
             $this->line_items[$index] = $line;
         } elseif (is_array($line) && isset($line['type']) && $line['type'] === 'one_time') {
@@ -80,7 +79,6 @@ class Invoice extends AbstractResource
 
     protected function setTransaction($index, $tr)
     {
-
         if ($tr instanceof AbstractTransaction) {
             $this->transactions[$index] = $tr;
         } elseif (is_array($tr) && isset($tr['type']) && $tr['type'] === 'payment') {
