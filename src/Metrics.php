@@ -10,7 +10,6 @@ use ChartMogul\Http\ClientInterface;
  */
 class Metrics
 {
-
     /**
      * Retrieves all key metrics, for the specified time period.
      * @param array|array $options

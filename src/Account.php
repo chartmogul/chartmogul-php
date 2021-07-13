@@ -15,21 +15,20 @@ use ChartMogul\Service\ShowTrait;
 */
 class Account extends AbstractResource
 {
-
     use ShowTrait;
 
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/account';
+    public const RESOURCE_PATH = '/v1/account';
     /**
      * @ignore
      */
-    const RESOURCE_NAME = 'Account';
+    public const RESOURCE_NAME = 'Account';
     /**
      * @ignore
      */
-    const ROOT_KEY = 'account';
+    public const ROOT_KEY = 'account';
 
     public $name;
     public $currency;

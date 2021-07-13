@@ -7,5 +7,4 @@ namespace ChartMogul\Import;
  */
 class Invoice extends \ChartMogul\Invoice
 {
-
 }

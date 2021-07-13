@@ -6,7 +6,6 @@ use ChartMogul\Summary;
 
 trait SummaryTrait
 {
-
     protected $summary = [];
 
     protected function setSummary(array $summary = [])

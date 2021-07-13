@@ -23,7 +23,6 @@ use ChartMogul\Http\ClientInterface;
  */
 class Activity extends AbstractModel
 {
-
     protected $description;
     protected $type;
     protected $date;
@@ -47,7 +46,6 @@ class Activity extends AbstractModel
      */
     public static function all(array $options = [], ClientInterface $client = null)
     {
-
         return Activities::all($options, $client);
     }
 }

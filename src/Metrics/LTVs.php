@@ -7,13 +7,13 @@ class LTVs extends AbstractMetric
     /**
      * @ignore
      */
-    const ENTRY_CLASS = LTV::class;
+    public const ENTRY_CLASS = LTV::class;
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/metrics/ltv';
+    public const RESOURCE_PATH = '/v1/metrics/ltv';
     /**
      * @ignore
      */
-    const RESOURCE_NAME = 'LTVs';
+    public const RESOURCE_NAME = 'LTVs';
 }

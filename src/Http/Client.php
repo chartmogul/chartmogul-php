@@ -1,4 +1,5 @@
 <?php
+
 namespace ChartMogul\Http;
 
 use ChartMogul\Configuration;
@@ -11,7 +12,6 @@ use Http\Discovery\Psr17FactoryDiscovery;
 
 class Client implements ClientInterface
 {
-
     /**
     * @var HttpClient
     */
@@ -161,7 +161,6 @@ class Client implements ClientInterface
 
     public function send($path = '', $method = 'GET', $data = [])
     {
-
         $query = '';
         if ($method === 'GET') {
             $query = http_build_query($data);
