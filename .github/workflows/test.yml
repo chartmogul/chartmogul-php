@@ -79,4 +79,4 @@ jobs:
       - name: Install dependencies
         run: composer update --no-interaction --no-progress --prefer-dist
       - name: "Run phpstan"
-        run: phpstan analyse --error-format=checkstyle -l 4 src | cs2pr
+        run: phpstan analyse --error-format=checkstyle | cs2pr

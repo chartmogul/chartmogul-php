@@ -8,7 +8,7 @@ trait SummaryTrait
 {
     protected $summary = [];
 
-    protected function setSummary(array $summary = [])
+    protected function setSummary($summary = [])
     {
         if ($summary instanceof Summary) {
             //do nothing

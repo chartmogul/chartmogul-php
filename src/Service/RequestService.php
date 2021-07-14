@@ -10,6 +10,7 @@ use ReflectionClass;
 class RequestService
 {
     private $resourceClass;
+    private $resource;
     private $resourcePath;
     private $client;
 
@@ -39,7 +40,7 @@ class RequestService
 
     /**
      * Use only when default class resource path must be overridden.
-     * @param type $resourcePath
+     * @param string $resourcePath
      * @return $this
      */
     public function setResourcePath($resourcePath)

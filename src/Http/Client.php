@@ -224,7 +224,7 @@ class Client implements ClientInterface
             case 202:
                 break;
             case 204: // HTTP No Content
-                return "";
+                return [];
             default:
                 throw new \ChartMogul\Exceptions\ChartMogulException(
                     $this->resourceKey." request error has occurred.",

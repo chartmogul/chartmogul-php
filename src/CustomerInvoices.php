@@ -34,12 +34,12 @@ class CustomerInvoices extends AbstractResource
         }
     }
 
-    public static function destroyAll($dataSourceUUID, $customerUUID)
+    public static function destroyAll($dataSourceUUID, $customerUUID, ClientInterface $client = null)
     {
         (new static([], $client))
             ->getClient()
             ->setResourcekey(static::class)
-            ->send('/v1/data_sources/'.dataSourceUUID.'/customers/'.$customerUUID.'/invoices', 'DELETE');
+            ->send('/v1/data_sources/'.$dataSourceUUID.'/customers/'.$customerUUID.'/invoices', 'DELETE');
         return true;
     }
 

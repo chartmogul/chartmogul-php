@@ -4,8 +4,8 @@ namespace ChartMogul\Import\Transactions;
 
 /**
  * @codeCoverageIgnore
- * @deprecated Use ChartMogul\Payment
+ * @deprecated Use \ChartMogul\Transactions\Payment
  */
-class Payment extends ChartMogul\Payment
+class Payment extends \ChartMogul\Transactions\Payment
 {
 }

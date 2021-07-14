@@ -14,6 +14,11 @@ class AbstractMetric extends AbstractResource
     use SummaryTrait;
     use AllTrait;
 
+    /**
+     * @ignore
+     */
+    public const ENTRY_CLASS = self::class;
+
     protected static function getEntryClass()
     {
         return static::ENTRY_CLASS;

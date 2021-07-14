@@ -3,11 +3,14 @@
 namespace ChartMogul;
 
 use ChartMogul\Resource\AbstractResource;
+use ChartMogul\Resource\Collection;
 use ChartMogul\Service\CreateTrait;
 use ChartMogul\Service\AllTrait;
+use ChartMogul\Http\ClientInterface;
 
 /**
  * @property-read string $uuid
+ * @property-read string $customer_uuid
  * @property-read string $external_id
  * @property-read string $subscription_set_external_id
  * @property-read string $cancellation_dates
@@ -82,14 +85,12 @@ class Subscription extends AbstractResource
     }
 
     /**
-     * @param array $data
-     * @param ClientInterface|null $client
-     * @return ArrayCollection|self
+     * @inheritDoc
      */
-    public static function fromArray(array $data, \ChartMogul\Http\ClientInterface $client = null)
+    public static function fromArray(array $data, ClientInterface $client = null)
     {
         $result = parent::fromArray($data, $client);
-        if (isset($data["customer_uuid"])) {
+        if (isset($data["customer_uuid"]) && $result instanceof Collection) {
             $result->customer_uuid = $data["customer_uuid"];
         }
         return $result;
