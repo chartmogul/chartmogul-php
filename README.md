@@ -6,8 +6,8 @@
 
 <p align="center"><code>chartmogul-php</code> provides convenient PHP bindings for <a href="https://dev.chartmogul.com">ChartMogul's API</a>.</p>
 <p align="center">
-  <a href="https://packagist.org/packages/chartmogul/chartmogul-php"><img src="https://badge.fury.io/ph/chartmogul%2Fchartmogul-php.svg" alt="PHP Package" /></a>
-  <a href="https://travis-ci.org/chartmogul/chartmogul-php"><img src="https://travis-ci.org/chartmogul/chartmogul-php.svg?branch=main" alt="Build Status"/></a>
+  <a href="https://packagist.org/packages/chartmogul/chartmogul-php" target="_blank"><img class="badge" src="http://poser.pugx.org/chartmogul/chartmogul-php/v"></a>
+  <a href="#"><img src="https://github.com/chartmogul/chartmogul-php/actions/workflows/test.yml/badge.svg" alt="Build Status"/></a>
 </p>
 <hr>
 

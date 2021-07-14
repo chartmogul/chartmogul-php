@@ -1,4 +1,5 @@
 <?php
+
 namespace ChartMogul\Service;
 
 use ChartMogul\Http\ClientInterface;
@@ -8,7 +9,6 @@ use ChartMogul\Http\ClientInterface;
 */
 trait AllTrait
 {
-
     /**
      * Returns a list of objects
      * @param  array $data
@@ -18,7 +18,6 @@ trait AllTrait
      */
     public static function all(array $data = [], ClientInterface $client = null)
     {
-
         return (new RequestService($client))
             ->setResourceClass(static::class)
             ->all($data);

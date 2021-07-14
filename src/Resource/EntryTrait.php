@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 trait EntryTrait
 {
-
     protected $entries = [];
 
     protected function setEntries(array $entries = [])

@@ -7,13 +7,13 @@ class ASPs extends AbstractMetric
     /**
      * @ignore
      */
-    const ENTRY_CLASS = ASP::class;
+    public const ENTRY_CLASS = ASP::class;
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/metrics/asp';
+    public const RESOURCE_PATH = '/v1/metrics/asp';
     /**
      * @ignore
      */
-    const RESOURCE_NAME = 'ASPs';
+    public const RESOURCE_NAME = 'ASPs';
 }

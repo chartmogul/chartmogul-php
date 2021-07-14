@@ -9,7 +9,6 @@ use ChartMogul\Http\ClientInterface;
 */
 trait CreateTrait
 {
-
     /**
      * Create a Resource
      * @param  array                $data
@@ -18,7 +17,6 @@ trait CreateTrait
      */
     public static function create(array $data = [], ClientInterface $client = null)
     {
-
         return (new RequestService($client))
             ->setResourceClass(static::class)
             ->create($data);

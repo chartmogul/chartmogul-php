@@ -8,5 +8,4 @@ namespace ChartMogul\Import\Transactions;
  */
 class Refund extends ChartMogul\Refund
 {
-    
 }

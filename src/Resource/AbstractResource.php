@@ -8,22 +8,20 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 abstract class AbstractResource extends AbstractModel
 {
-
+    /**
+    * @ignore
+    */
+    public const ROOT_KEY = null;
 
     /**
     * @ignore
     */
-    const ROOT_KEY = null;
+    public const RESOURCE_PATH = null;
 
     /**
     * @ignore
     */
-    const RESOURCE_PATH = null;
-
-    /**
-    * @ignore
-    */
-    const RESOURCE_NAME = null;
+    public const RESOURCE_NAME = null;
 
 
     /**
@@ -39,7 +37,6 @@ abstract class AbstractResource extends AbstractModel
      */
     public function __construct(array $attr = [], ClientInterface $client = null)
     {
-
         parent::__construct($attr);
 
         if (is_null($client)) {

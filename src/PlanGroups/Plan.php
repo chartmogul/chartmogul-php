@@ -16,11 +16,11 @@ class Plan extends AbstractResource
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/plan_groups/:plan_group_uuid/plans';
+    public const RESOURCE_PATH = '/v1/plan_groups/:plan_group_uuid/plans';
     /**
      * @ignore
      */
-    const ROOT_KEY = 'plans';
+    public const ROOT_KEY = 'plans';
 
     protected $uuid;
 

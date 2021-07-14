@@ -9,21 +9,20 @@ use ChartMogul\Http\ClientInterface;
 
 class Subscriptions extends AbstractResource
 {
-    /**
-     * @ignore
-     */
-    const ENTRY_CLASS = Subscription::class;
-    /**
-     * @ignore
-     */
-    const RESOURCE_PATH = '/v1/customers/:customer_uuid/subscriptions';
-    /**
-     * @ignore
-     */
-    const RESOURCE_NAME = 'Subscriptions';
-
     use EntryTrait;
     use AllTrait;
+    /**
+     * @ignore
+     */
+    public const ENTRY_CLASS = Subscription::class;
+    /**
+     * @ignore
+     */
+    public const RESOURCE_PATH = '/v1/customers/:customer_uuid/subscriptions';
+    /**
+     * @ignore
+     */
+    public const RESOURCE_NAME = 'Subscriptions';
 
     protected static function getEntryClass()
     {
@@ -32,7 +31,6 @@ class Subscriptions extends AbstractResource
 
     public function __construct(array $attr = [], ClientInterface $client = null)
     {
-
         parent::__construct($attr, $client);
 
         $this->setEntries($this->entries);

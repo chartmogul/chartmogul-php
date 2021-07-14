@@ -31,7 +31,6 @@ use ChartMogul\Service\GetTrait;
  */
 class Customer extends AbstractResource
 {
-
     use CreateTrait;
     use AllTrait;
     use GetTrait;
@@ -41,13 +40,13 @@ class Customer extends AbstractResource
     /**
      * @ignore
      */
-    const RESOURCE_NAME = 'Customer';
+    public const RESOURCE_NAME = 'Customer';
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/customers';
-    const RESOURCE_ID = 'customer_uuid';
-    const ROOT_KEY = 'entries';
+    public const RESOURCE_PATH = '/v1/customers';
+    public const RESOURCE_ID = 'customer_uuid';
+    public const ROOT_KEY = 'entries';
 
     protected $id;
     protected $uuid;
@@ -124,7 +123,6 @@ class Customer extends AbstractResource
      */
     public static function search($email, ClientInterface $client = null)
     {
-
         $response = (new static([], $client))
             ->getClient()
             ->setResourceKey(static::RESOURCE_NAME)
@@ -242,7 +240,6 @@ class Customer extends AbstractResource
      */
     public function updateCustomAttributes($custom)
     {
-
         $data = [];
         foreach (func_get_args() as $value) {
             $data = array_merge($data, $value);

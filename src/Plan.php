@@ -15,7 +15,6 @@ use ChartMogul\Service\DestroyTrait;
 */
 class Plan extends AbstractResource
 {
-
     use AllTrait;
     use CreateTrait;
     use UpdateTrait;
@@ -25,16 +24,16 @@ class Plan extends AbstractResource
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/plans';
-    const RESOURCE_ID = 'plan_uuid';
+    public const RESOURCE_PATH = '/v1/plans';
+    public const RESOURCE_ID = 'plan_uuid';
     /**
      * @ignore
      */
-    const RESOURCE_NAME = 'Plan';
+    public const RESOURCE_NAME = 'Plan';
     /**
      * @ignore
      */
-    const ROOT_KEY = 'plans';
+    public const ROOT_KEY = 'plans';
 
     protected $uuid;
 

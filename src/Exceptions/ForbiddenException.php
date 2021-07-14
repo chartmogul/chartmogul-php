@@ -8,5 +8,4 @@ namespace ChartMogul\Exceptions;
  */
 class ForbiddenException extends ChartMogulException
 {
-
 }

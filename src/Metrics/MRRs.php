@@ -7,13 +7,13 @@ class MRRs extends AbstractMetric
     /**
      * @ignore
      */
-    const ENTRY_CLASS = MRR::class;
+    public const ENTRY_CLASS = MRR::class;
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/metrics/mrr';
+    public const RESOURCE_PATH = '/v1/metrics/mrr';
     /**
      * @ignore
      */
-    const RESOURCE_NAME = 'MRRs';
+    public const RESOURCE_NAME = 'MRRs';
 }

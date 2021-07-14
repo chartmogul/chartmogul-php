@@ -8,7 +8,6 @@ namespace ChartMogul\LineItems;
 */
 abstract class AbstractLineItem extends \ChartMogul\Resource\AbstractModel
 {
-
     protected $uuid;
 
     public $type;

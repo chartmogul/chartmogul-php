@@ -9,7 +9,6 @@ use ChartMogul\Http\ClientInterface;
 */
 trait UpdateTrait
 {
-
     /**
      * Update a Resource
      * @param  array                $data

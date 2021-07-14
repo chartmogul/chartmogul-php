@@ -7,5 +7,4 @@ namespace ChartMogul\Import;
  */
 class Plan extends ChartMogul\Plan
 {
-
 }

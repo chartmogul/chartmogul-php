@@ -2,9 +2,9 @@
 
 namespace ChartMogul;
 
-use \ChartMogul\Resource\AbstractResource;
-use \ChartMogul\Service\CreateTrait;
-use \ChartMogul\Service\AllTrait;
+use ChartMogul\Resource\AbstractResource;
+use ChartMogul\Service\CreateTrait;
+use ChartMogul\Service\AllTrait;
 
 /**
  * @property-read string $uuid
@@ -16,20 +16,19 @@ use \ChartMogul\Service\AllTrait;
  */
 class Subscription extends AbstractResource
 {
-
     use CreateTrait;
     use AllTrait;
 
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/import/customers/:customer_uuid/subscriptions';
+    public const RESOURCE_PATH = '/v1/import/customers/:customer_uuid/subscriptions';
     /**
      * @ignore
      */
-    const ROOT_KEY = 'subscriptions';
+    public const ROOT_KEY = 'subscriptions';
 
-    const RESOURCE_NAME = 'Subscription';
+    public const RESOURCE_NAME = 'Subscription';
 
 
     protected $uuid;
