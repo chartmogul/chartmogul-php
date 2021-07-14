@@ -6,6 +6,6 @@ namespace ChartMogul\Import\LineItems;
 * @codeCoverageIgnore
 * @deprecated
 */
-abstract class AbstractLineItem extends \ChartMogul\AbstractLineItem
+abstract class AbstractLineItem extends \ChartMogul\LineItems\AbstractLineItem
 {
 }

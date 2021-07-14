@@ -4,8 +4,8 @@ namespace ChartMogul\Import\LineItems;
 
 /**
 * @codeCoverageIgnore
-* @deprecated Use ChartMogul\Subscription
+* @deprecated Use \ChartMogul\LineItems\Subscription
 */
-class Subscription extends Subscription
+class Subscription extends \ChartMogul\LineItems\Subscription
 {
 }

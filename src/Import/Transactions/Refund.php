@@ -4,8 +4,8 @@ namespace ChartMogul\Import\Transactions;
 
 /**
  * @codeCoverageIgnore
- * @deprecated Use ChartMogul\Refund
+ * @deprecated Use \ChartMogul\Transactions\Refund
  */
-class Refund extends ChartMogul\Refund
+class Refund extends \ChartMogul\Transactions\Refund
 {
 }

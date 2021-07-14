@@ -4,7 +4,6 @@ namespace ChartMogul\Resource;
 
 use ChartMogul\Http\Client;
 use ChartMogul\Http\ClientInterface;
-use Doctrine\Common\Collections\ArrayCollection;
 
 abstract class AbstractResource extends AbstractModel
 {
@@ -25,7 +24,7 @@ abstract class AbstractResource extends AbstractModel
 
 
     /**
-    * @var Client
+    * @var ClientInterface
     */
     private $client = null;
 
@@ -33,7 +32,7 @@ abstract class AbstractResource extends AbstractModel
      * @codeCoverageIgnore
      * @param array|array $attr
      * @param ClientInterface|null $client
-     * @return type
+     * @return self
      */
     public function __construct(array $attr = [], ClientInterface $client = null)
     {
@@ -68,12 +67,12 @@ abstract class AbstractResource extends AbstractModel
     /**
      * @param array $data
      * @param ClientInterface|null $client
-     * @return ArrayCollection|self
+     * @return Collection|static
      */
     public static function fromArray(array $data, ClientInterface $client = null)
     {
         if (isset($data[static::ROOT_KEY])) {
-            $array = new ArrayCollection(array_map(function ($data) use ($client) {
+            $array = new Collection(array_map(function ($data) use ($client) {
                 return static::fromArray($data, $client);
             }, $data[static::ROOT_KEY]));
             // The following are subject to change soon, so they are optional.

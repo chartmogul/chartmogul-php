@@ -3,6 +3,7 @@
 namespace ChartMogul;
 
 use ChartMogul\Resource\AbstractResource;
+use ChartMogul\Resource\Collection;
 use ChartMogul\Http\ClientInterface;
 use ChartMogul\Service\UpdateTrait;
 use ChartMogul\Service\CreateTrait;
@@ -77,6 +78,9 @@ class Customer extends AbstractResource
     protected $lead_created_at;
     protected $free_trial_started_at;
 
+    private $subscriptions;
+    private $invoices;
+
     /**
      * Get Customer Tags
      * @return array
@@ -98,28 +102,29 @@ class Customer extends AbstractResource
     /**
      * Find a Customer by External ID. Returns only first result!
      * @param string $externalId
+     * @param  ClientInterface|null $client
      * @return Customer|null
      */
-    public static function findByExternalId($externalId)
+    public static function findByExternalId($externalId, ClientInterface $client = null)
     {
         if (gettype($externalId) == 'string') {
             $externalId = ['external_id' => $externalId];
         }
 
-        $response = static::all($externalId);
+        $response = self::all($externalId, $client);
 
-        if (is_null($response)) {
-            return null;
+        if($response instanceof Collection) {
+            return $response->first();
         }
 
-        return $response->first() ?: null;
+        return null;
     }
 
     /**
      * Search for Customers
      * @param  string                $email
      * @param  ClientInterface|null $client
-     * @return Customers
+     * @return Collection|static
      */
     public static function search($email, ClientInterface $client = null)
     {
@@ -256,7 +261,7 @@ class Customer extends AbstractResource
     /**
      * Find a Customer Subscriptions
      * @param  array  $options
-     * @return \Doctrine\Common\Collections\ArrayCollection | Customer
+     * @return Collection | Customer
      * @deprecated Use Import\Subscription.
      */
     public function subscriptions(array $options = [])
@@ -271,7 +276,7 @@ class Customer extends AbstractResource
     /**
      * Find customer's invoices
      * @param  array  $options
-     * @return \Doctrine\Common\Collections\ArrayCollection | Customer
+     * @return Collection | Customer
      * @deprecated Use Import\CustomerInvoices.
      */
     public function invoices(array $options = [])

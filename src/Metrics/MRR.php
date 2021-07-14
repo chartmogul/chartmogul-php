@@ -5,13 +5,13 @@ namespace ChartMogul\Metrics;
 use ChartMogul\Resource\AbstractModel;
 
 /**
- * @property-read $date;
- * @property-read $mrr;
- * @property-read $mrr_new_business;
- * @property-read $mrr_expansion;
- * @property-read $mrr_contraction;
- * @property-read $mrr_churn;
- * @property-read $mrr_reactivation;
+ * @property-read string $date;
+ * @property-read int $mrr;
+ * @property-read int $mrr_new_business;
+ * @property-read int $mrr_expansion;
+ * @property-read int $mrr_contraction;
+ * @property-read int $mrr_churn;
+ * @property-read int $mrr_reactivation;
  */
 class MRR extends AbstractModel
 {

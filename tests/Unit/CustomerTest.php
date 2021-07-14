@@ -3,6 +3,7 @@ namespace ChartMogul\Tests;
 
 use ChartMogul\Http\Client;
 use ChartMogul\Customer;
+use ChartMogul\Resource\Collection;
 use ChartMogul\Exceptions\ChartMogulException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
@@ -213,6 +214,7 @@ class CustomerTest extends TestCase
         $this->assertEquals("email=".urlencode($email), $uri->getQuery());
         $this->assertEquals("/v1/customers/search", $uri->getPath());
 
+        $this->assertTrue($result instanceof Collection);
         $this->assertTrue($result[0] instanceof Customer);
         $this->assertEquals($result->has_more, false);
         $this->assertEquals($result->page, 1);
@@ -243,5 +245,22 @@ class CustomerTest extends TestCase
         $this->assertEquals("/v1/customers/cus_5915ee5a-babd-406b-b8ce-d207133fb4cb/connect_subscriptions", $uri->getPath());
 
         $this->assertEquals($result, true);
+    }
+
+    public function testFindByExternalId(){
+
+        $stream = Psr7\stream_for(CustomerTest::SEARCH_CUSTOMER_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+
+        $result = Customer::findByExternalId("34916129", $cmClient);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("external_id=34916129", $uri->getQuery());
+        $this->assertEquals("/v1/customers", $uri->getPath());
+
+        $this->assertTrue($result instanceof Customer);
     }
 }
