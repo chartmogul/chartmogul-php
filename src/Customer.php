@@ -113,7 +113,7 @@ class Customer extends AbstractResource
 
         $response = self::all($externalId, $client);
 
-        if($response instanceof Collection) {
+        if ($response instanceof Collection) {
             return $response->first();
         }
 
