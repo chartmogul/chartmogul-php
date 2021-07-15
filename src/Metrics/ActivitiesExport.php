@@ -11,7 +11,7 @@ use ChartMogul\Service\GetTrait;
  * @property-read string $id;
  * @property-read string $status;
  * @property-read string $file_url;
- * @property-read string $params;
+ * @property-read mixed $params;
  * @property-read string $expires_at;
  * @property-read string $created_at;
  */
@@ -38,7 +38,7 @@ class ActivitiesExport extends AbstractResource
     protected $expires_at;
     protected $created_at;
 
-    protected $activity_type;
+    protected $type;
     protected $start_date;
     protected $end_date;
 }
