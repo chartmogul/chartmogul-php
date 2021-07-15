@@ -49,7 +49,7 @@ class ActivitiesExportTest extends TestCase
         $stream = Psr7\stream_for(ActivitiesExportTest::POST_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-        $result = ActivitiesExport::create(['type' => 'contraction', 'start_date' => '2020-01-01', 'end_date' => '2020-12-31'], $cmClient);
+        $result = ActivitiesExport::create(['type' => 'contraction', 'start-date' => '2020-01-01', 'end-date' => '2020-12-31'], $cmClient);
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals("POST", $request->getMethod());
