@@ -4,7 +4,7 @@ namespace ChartMogul\Http;
 
 use ChartMogul\Configuration;
 use Psr\Http\Message\ResponseInterface;
-use Http\Client\HttpClient;
+use Psr\Http\Client\ClientInterface as HttpClient;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Http\Discovery\HttpClientDiscovery;
@@ -44,7 +44,7 @@ class Client implements ClientInterface
 
     /**
      * @param Configuration|null $config Configuration Object
-     * @param HttpClient|null $client php-http/client-implementaion object
+     * @param HttpClient|null $client psr/http-client-implementaion object
      * @param RequestFactoryInterface|null $requestFactory
      * @codeCoverageIgnore
      */
