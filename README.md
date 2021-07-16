@@ -632,6 +632,22 @@ ChartMogul\Metrics\Activities::all([
     'start-date' => '2020-06-02T00:00:00Z',
     'per-page' => 100
 ]);
+
+**Create an Activities Export**
+
+```php
+ChartMogul\Metrics\ActivitiesExport::create([
+    'start-date' => '2020-06-02T00:00:00Z',
+    'end-date' =>  '2021-06-02T00:00:00Z'
+    'type' => 'churn'
+]);
+```
+
+**Retrieve an Activities Export**
+
+```php
+$id = '7f554dba-4a41-4cb2-9790-2045e4c3a5b1';
+ChartMogul\Metrics\ActivitiesExport::retrieve($id);
 ```
 
 ### Account
