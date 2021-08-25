@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ChartMogul;
 
 const DEFAULT_MAX_RETRIES = 20;
@@ -11,7 +10,6 @@ const DEFAULT_MAX_RETRIES = 20;
  */
 class Configuration
 {
-
     /**
      * @var null|Configuration
      */
@@ -29,7 +27,7 @@ class Configuration
      * @var int
      * maximum retry attempts
      */
-    private $retry = DEFAULT_MAX_RETRIES;
+    private $retries = DEFAULT_MAX_RETRIES;
 
     /**
      * Creates new config object from accountToken and secretKey

@@ -2,16 +2,15 @@
 
 namespace ChartMogul\Resource;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use ChartMogul\Resource\Collection;
 
 trait EntryTrait
 {
-
     protected $entries = [];
 
     protected function setEntries(array $entries = [])
     {
-        $this->entries = new ArrayCollection($entries);
+        $this->entries = new Collection($entries);
 
         $entryClass = static::getEntryClass();
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace ChartMogul\Metrics;
+namespace ChartMogul\Metrics\Customers;
 
 use ChartMogul\Resource\AbstractModel;
 use ChartMogul\Http\ClientInterface;
@@ -21,7 +21,6 @@ use ChartMogul\Http\ClientInterface;
  */
 class Subscription extends AbstractModel
 {
-
     protected $id;
     protected $external_id;
     protected $plan;
@@ -44,7 +43,6 @@ class Subscription extends AbstractModel
      */
     public static function all(array $options = [], ClientInterface $client = null)
     {
-
         return Subscriptions::all($options, $client);
     }
 }

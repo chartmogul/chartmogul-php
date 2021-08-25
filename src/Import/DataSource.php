@@ -3,9 +3,8 @@
 namespace ChartMogul\Import;
 
 /**
- * @deprecated Use ChartMogul\DataSource
+ * @deprecated Use \ChartMogul\DataSource
  */
-class DataSource extends ChartMogul\DataSource
+class DataSource extends \ChartMogul\DataSource
 {
-
 }

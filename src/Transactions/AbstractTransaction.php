@@ -9,10 +9,9 @@ use ChartMogul\Resource\AbstractResource;
  */
 abstract class AbstractTransaction extends AbstractResource
 {
-
     use \ChartMogul\Service\CreateTrait;
 
-    const RESOURCE_PATH = '/v1/import/invoices/:invoice_uuid/transactions';
+    public const RESOURCE_PATH = '/v1/import/invoices/:invoice_uuid/transactions';
 
     protected $uuid;
 

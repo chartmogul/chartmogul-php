@@ -6,8 +6,8 @@
 
 <p align="center"><code>chartmogul-php</code> provides convenient PHP bindings for <a href="https://dev.chartmogul.com">ChartMogul's API</a>.</p>
 <p align="center">
-  <a href="https://packagist.org/packages/chartmogul/chartmogul-php"><img src="https://badge.fury.io/ph/chartmogul%2Fchartmogul-php.svg" alt="PHP Package" /></a>
-  <a href="https://travis-ci.org/chartmogul/chartmogul-php"><img src="https://travis-ci.org/chartmogul/chartmogul-php.svg?branch=main" alt="Build Status"/></a>
+  <a href="https://packagist.org/packages/chartmogul/chartmogul-php" target="_blank"><img class="badge" src="http://poser.pugx.org/chartmogul/chartmogul-php/v"></a>
+  <a href="#"><img src="https://github.com/chartmogul/chartmogul-php/actions/workflows/test.yml/badge.svg" alt="Build Status"/></a>
 </p>
 <hr>
 
@@ -33,7 +33,7 @@ This library requires php 5.5 or above.
 
 For older php versions (`< 7.1`) use `1.x.x` releases of this library.
 
-For php version `>=7.1` use the latest releases (`3.x.x`) of the library
+For php version `>=7.1` use the latest releases (`4.x.x`) of the library
 
 
 The library doesn't depend on any concrete HTTP client libraries. Follow the instructions [here](http://docs.php-http.org/en/latest/httplug/users.html) to find out how to include a HTTP client.
@@ -41,7 +41,7 @@ The library doesn't depend on any concrete HTTP client libraries. Follow the ins
 Here's an example with `Guzzle HTTP client`:
 
 ```sh
-composer require chartmogul/chartmogul-php:^3.0 php-http/guzzle6-adapter:^2.0.1 http-interop/http-factory-guzzle:^1.0
+composer require chartmogul/chartmogul-php:^4.0 php-http/guzzle6-adapter:^2.0.1 http-interop/http-factory-guzzle:^1.0
 ```
 
 ## Configuration
@@ -612,7 +612,7 @@ ChartMogul\Metrics::ltv([
 **List Customer Subscriptions**
 
 ```php
-ChartMogul\Metrics\Subscriptions::all([
+ChartMogul\Metrics\Customers\Subscriptions::all([
     "customer_uuid" => $cus->uuid
 ]);
 ```
@@ -620,11 +620,43 @@ ChartMogul\Metrics\Subscriptions::all([
 **List Customer Activities**
 
 ```php
-ChartMogul\Metrics\Activities::all([
+ChartMogul\Metrics\Customers\Activities::all([
     "customer_uuid" => $cus->uuid
 ]);
 ```
 
+**List Activities**
+
+```php
+ChartMogul\Metrics\Activities::all([
+    'start-date' => '2020-06-02T00:00:00Z',
+    'per-page' => 100
+]);
+
+**Create an Activities Export**
+
+```php
+ChartMogul\Metrics\ActivitiesExport::create([
+    'start-date' => '2020-06-02T00:00:00Z',
+    'end-date' =>  '2021-06-02T00:00:00Z'
+    'type' => 'churn'
+]);
+```
+
+**Retrieve an Activities Export**
+
+```php
+$id = '7f554dba-4a41-4cb2-9790-2045e4c3a5b1';
+ChartMogul\Metrics\ActivitiesExport::retrieve($id);
+```
+
+### Account
+
+**Retrieve Account Details**
+
+```php
+ChartMogul\Account::retrieve();
+```
 
 ### Exceptions
 

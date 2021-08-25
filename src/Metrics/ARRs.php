@@ -7,13 +7,13 @@ class ARRs extends AbstractMetric
     /**
      * @ignore
      */
-    const ENTRY_CLASS = ARR::class;
+    public const ENTRY_CLASS = ARR::class;
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/metrics/arr';
+    public const RESOURCE_PATH = '/v1/metrics/arr';
     /**
      * @ignore
      */
-    const RESOURCE_NAME = 'ARRs';
+    public const RESOURCE_NAME = 'ARRs';
 }

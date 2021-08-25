@@ -7,7 +7,6 @@ namespace ChartMogul\LineItems;
 */
 class Subscription extends AbstractLineItem
 {
-
     public $type = 'subscription';
     public $subscription_external_id;
     public $subscription_set_external_id;

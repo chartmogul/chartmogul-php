@@ -7,13 +7,13 @@ class MRRChurnRates extends AbstractMetric
     /**
      * @ignore
      */
-    const ENTRY_CLASS = MRRChurnRate::class;
+    public const ENTRY_CLASS = MRRChurnRate::class;
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/metrics/mrr-churn-rate';
+    public const RESOURCE_PATH = '/v1/metrics/mrr-churn-rate';
     /**
      * @ignore
      */
-    const RESOURCE_NAME = 'MRR Churn Rates';
+    public const RESOURCE_NAME = 'MRR Churn Rates';
 }

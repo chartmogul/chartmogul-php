@@ -3,10 +3,8 @@
 namespace ChartMogul\Import\Transactions;
 
 /**
- * @property-read string $uuid
- * @deprecated Use ChartMogul\AbstractTransaction
+ * @deprecated Use \ChartMogul\Transactions\AbstractTransaction
  */
-abstract class AbstractTransaction extends ChartMogul\AbstractTransaction
+abstract class AbstractTransaction extends \ChartMogul\Transactions\AbstractTransaction
 {
-    
 }

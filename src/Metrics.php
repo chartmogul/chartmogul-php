@@ -10,7 +10,6 @@ use ChartMogul\Http\ClientInterface;
  */
 class Metrics
 {
-
     /**
      * Retrieves all key metrics, for the specified time period.
      * @param array|array $options
@@ -23,9 +22,7 @@ class Metrics
     }
     /**
      * Retrieves the Average Revenue Per Account (ARPA), for the specified time period.
-     * @param array|array $options
-     * @param ClientInterface|null $client
-     * @return NSMetrics\ARPAs
+     * @inheritDoc
      */
     public static function arpa(array $options = [], ClientInterface $client = null)
     {
@@ -34,9 +31,7 @@ class Metrics
 
     /**
      * Retrieves the Annualized Run Rate (ARR), for the specified time period.
-     * @param array|array $options
-     * @param ClientInterface|null $client
-     * @return NSMetrics\ARRs
+     * @inheritDoc
      */
     public static function arr(array $options = [], ClientInterface $client = null)
     {
@@ -45,9 +40,7 @@ class Metrics
 
     /**
      * Retrieves the Average Sale Price (ASP), for the specified time period.
-     * @param array|array $options
-     * @param ClientInterface|null $client
-     * @return NSMetrics\ASPs
+     * @inheritDoc
      */
     public static function asp(array $options = [], ClientInterface $client = null)
     {
@@ -56,9 +49,7 @@ class Metrics
 
     /**
      * Retrieves the Customer Churn Rate, for the specified time period.
-     * @param array|array $options
-     * @param ClientInterface|null $client
-     * @return NSMetrics\CustomerChurnRates
+     * @inheritDoc
      */
     public static function customerChurnRate(array $options = [], ClientInterface $client = null)
     {
@@ -67,9 +58,7 @@ class Metrics
 
     /**
      * Retrieves the number of active customers, for the specified time period.
-     * @param array|array $options
-     * @param ClientInterface|null $client
-     * @return NSMetrics\CustomerCounts
+     * @inheritDoc
      */
     public static function customerCount(array $options = [], ClientInterface $client = null)
     {
@@ -78,9 +67,7 @@ class Metrics
 
     /**
      * Retrieves the Monthly Recurring Revenue (MRR), for the specified time period.
-     * @param array|array $options
-     * @param ClientInterface|null $client
-     * @return NSMetrics\MRRs
+     * @inheritDoc
      */
     public static function mrr(array $options = [], ClientInterface $client = null)
     {
@@ -89,9 +76,7 @@ class Metrics
 
     /**
      * Retrieves the Customer Lifetime Value (LTV), for the specified time period.
-     * @param array|array $options
-     * @param ClientInterface|null $client
-     * @return NSMetrics\LTVs
+     * @inheritDoc
      */
     public static function ltv(array $options = [], ClientInterface $client = null)
     {
@@ -100,9 +85,7 @@ class Metrics
 
     /**
      * Retrieves the Net MRR Churn Rate, for the specified time period.
-     * @param array|array $options
-     * @param ClientInterface|null $client
-     * @return NSMetrics\MRRChurnRates
+     * @inheritDoc
      */
     public static function mrrChurnRate(array $options = [], ClientInterface $client = null)
     {

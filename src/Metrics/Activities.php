@@ -9,21 +9,20 @@ use ChartMogul\Http\ClientInterface;
 
 class Activities extends AbstractResource
 {
-    /**
-     * @ignore
-     */
-    const ENTRY_CLASS = Activity::class;
-    /**
-     * @ignore
-     */
-    const RESOURCE_PATH = '/v1/customers/:customer_uuid/activities';
-    /**
-     * @ignore
-     */
-    const RESOURCE_NAME = 'Activities';
-
     use EntryTrait;
     use AllTrait;
+    /**
+     * @ignore
+     */
+    public const ENTRY_CLASS = Activity::class;
+    /**
+     * @ignore
+     */
+    public const RESOURCE_PATH = '/v1/activities';
+    /**
+     * @ignore
+     */
+    public const RESOURCE_NAME = 'Activities';
 
     protected static function getEntryClass()
     {
@@ -32,7 +31,6 @@ class Activities extends AbstractResource
 
     public function __construct(array $attr = [], ClientInterface $client = null)
     {
-
         parent::__construct($attr, $client);
 
         $this->setEntries($this->entries);

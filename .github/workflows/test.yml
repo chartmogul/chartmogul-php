@@ -1,0 +1,106 @@
+name: Run specs and generate Code Climate report
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions: ['7.3', '7.4', '8.0']
+        phpunit-versions: ['latest']
+        include:
+        - php-versions: '7.2'
+          phpunit-versions: '8.5.13'
+        - php-versions: '7.1'
+          phpunit-versions: '7.5.20'
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP ${{ matrix.php-versions }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: phpunit:${{ matrix.phpunit-versions }}
+          coverage: xdebug
+
+      - name: Setup problem matchers for PHPUnit
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: composer update --no-interaction --no-progress --prefer-dist
+
+      - name: Set ENV for codeclimate (pull_request)
+        run: |
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
+          echo "GIT_BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
+          echo "GIT_COMMIT_SHA=$(git rev-parse origin/$GITHUB_HEAD_REF)" >> $GITHUB_ENV
+        if: github.event_name == 'pull_request'
+
+      - name: Set ENV for codeclimate (push)
+        run: |
+          echo "GIT_BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+          echo "GIT_COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
+        if: github.event_name == 'push'
+
+      - name: Install Code Climate test report
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+
+      - name: Run tests
+        run: phpunit --coverage-text --coverage-clover ./build/logs/clover.xml
+
+      - name: Send Report to Code Climate
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        if: ${{ matrix.php-versions == '7.4' && success() }}
+        run: ./cc-test-reporter after-build
+  coding-guidelines:
+    name: "Coding Guidelines"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: cs2pr, php-cs-fixer
+
+      - name: "Run php-cs-fixer"
+        run: php-cs-fixer fix --dry-run src
+  static-analysis:
+    name: "Static Analysis"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: phpstan, cs2pr
+
+      - name: Install dependencies
+        run: composer update --no-interaction --no-progress --prefer-dist
+
+      - name: "Run phpstan"
+        run: phpstan analyse --error-format=checkstyle | cs2pr

@@ -10,7 +10,6 @@ use Psr\Http\Client\ClientInterface as HttpClient;
 */
 interface ClientInterface
 {
-
     public function getConfiguration();
 
     public function setConfiguration(Configuration $config);

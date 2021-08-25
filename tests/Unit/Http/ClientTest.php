@@ -10,7 +10,7 @@ use Http\Client\HttpClient;
 use Http\Discovery\MessageFactoryDiscovery;
 
 class ClientTest extends TestCase
-{ 
+{
     public function setUp(): void
     {
         parent::setUp();
@@ -35,7 +35,7 @@ class ClientTest extends TestCase
             ->setMethods(null)
             ->getMock();
 
-        $this->assertEquals("chartmogul-php/1.0.0/PHP-".PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION, $mock->getUserAgent());
+        $this->assertEquals("chartmogul-php/4.2.0/PHP-".PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION, $mock->getUserAgent());
     }
 
     public function testGetBasicAuthHeader()

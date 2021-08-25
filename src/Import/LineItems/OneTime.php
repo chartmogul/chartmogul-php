@@ -4,9 +4,8 @@ namespace ChartMogul\Import\LineItems;
 
 /**
 * @codeCoverageIgnore
-* @deprecated Use ChartMogul\OneTime
+* @deprecated Use \ChartMogul\LineItems\OneTime
 */
-class OneTime extends ChartMogul\OneTime
+class OneTime extends \ChartMogul\LineItems\OneTime
 {
-
 }

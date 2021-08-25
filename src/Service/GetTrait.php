@@ -1,4 +1,5 @@
 <?php
+
 namespace ChartMogul\Service;
 
 use ChartMogul\Http\ClientInterface;
@@ -8,7 +9,6 @@ use ChartMogul\Http\ClientInterface;
 */
 trait GetTrait
 {
-
     /**
      * Get a single resource by UUID.
      * @return resource

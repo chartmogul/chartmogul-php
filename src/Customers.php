@@ -3,6 +3,7 @@
 namespace ChartMogul;
 
 use ChartMogul\Resource\AbstractResource;
+use ChartMogul\Resource\Collection;
 use ChartMogul\Http\ClientInterface;
 use ChartMogul\Resource\EntryTrait;
 use ChartMogul\Service\AllTrait;
@@ -24,15 +25,15 @@ class Customers extends AbstractResource
     /**
      * @ignore
      */
-    const RESOURCE_NAME = 'Customers';
+    public const RESOURCE_NAME = 'Customers';
     /**
      * @ignore
      */
-    const RESOURCE_PATH = '/v1/customers';
+    public const RESOURCE_PATH = '/v1/customers';
     /**
      * @ignore
      */
-    const ENTRY_CLASS = Customer::class;
+    public const ENTRY_CLASS = Customer::class;
 
     protected static function getEntryClass()
     {
@@ -46,7 +47,6 @@ class Customers extends AbstractResource
      */
     public function __construct(array $attr = [], ClientInterface $client = null)
     {
-
         parent::__construct($attr, $client);
 
         $this->setEntries($this->entries);
@@ -56,7 +56,7 @@ class Customers extends AbstractResource
      * Search for Customers
      * @param  string                $email
      * @param  ClientInterface|null $client
-     * @return Customers
+     * @return Collection|static
      * @deprecated Use Customer.
      */
     public static function search($email, ClientInterface $client = null)

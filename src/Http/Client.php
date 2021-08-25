@@ -1,4 +1,5 @@
 <?php
+
 namespace ChartMogul\Http;
 
 use ChartMogul\Configuration;
@@ -11,7 +12,6 @@ use Http\Discovery\Psr17FactoryDiscovery;
 
 class Client implements ClientInterface
 {
-
     /**
     * @var HttpClient
     */
@@ -30,7 +30,7 @@ class Client implements ClientInterface
     /**
     * @var string
     */
-    private $apiVersion = '1.0.0';
+    private $apiVersion = '4.2.0';
 
     /**
     * @var string
@@ -161,7 +161,6 @@ class Client implements ClientInterface
 
     public function send($path = '', $method = 'GET', $data = [])
     {
-
         $query = '';
         if ($method === 'GET') {
             $query = http_build_query($data);
@@ -225,7 +224,7 @@ class Client implements ClientInterface
             case 202:
                 break;
             case 204: // HTTP No Content
-                return "";
+                return [];
             default:
                 throw new \ChartMogul\Exceptions\ChartMogulException(
                     $this->resourceKey." request error has occurred.",

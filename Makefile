@@ -6,8 +6,9 @@ build:
 	@docker build --build-arg VERSION=7.1 --tag=chartmogulphp71 .
 	@docker build --build-arg VERSION=7.2 --tag=chartmogulphp72 .
 	@docker build --build-arg VERSION=7.3 --tag=chartmogulphp73 .
+	@docker build --build-arg VERSION=8.0 --tag=chartmogulphp80 .
 composer:
-	@$(RUNNER) "composer $(filter-out $@,$(MAKECMDGOALS))"
+	$(RUNNER) "composer $(filter-out $@,$(MAKECMDGOALS))"
 dependencies:
 	make -s composer update -- --prefer-dist
 test:
@@ -16,9 +17,5 @@ phpunit:
 	$(RUNNER) "phpunit $(filter-out $@,$(MAKECMDGOALS))"
 php:
 	$(RUNNER) "php $(filter-out $@,$(MAKECMDGOALS))"
-cs:
-	$(RUNNER) "./vendor/bin/phpcs --standard=PSR2 src/"
-cbf:
-	$(RUNNER) "./vendor/bin/phpcbf --standard=PSR2 src/"
 %:
 	@:
