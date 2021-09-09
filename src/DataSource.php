@@ -13,6 +13,7 @@ use ChartMogul\Service\GetTrait;
  * @property-read string $uuid
  * @property-read string $status
  * @property-read string $created_at
+ * @property-read string $system
  */
 class DataSource extends AbstractResource
 {
