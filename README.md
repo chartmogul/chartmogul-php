@@ -416,7 +416,9 @@ $line_itme_1 = new ChartMogul\LineItems\Subscription([
     'quantity' => 1,
     'discount_code' => "PSO86",
     'discount_amount_in_cents' => 1000,
-    'tax_amount_in_cents' => 900
+    'tax_amount_in_cents' => 900,
+    'transaction_fees_currency' => "EUR",
+    'discount_description' => "5 EUR"
 ]);
 
 $line_itme_2 = new ChartMogul\LineItems\OneTime([
@@ -425,7 +427,9 @@ $line_itme_2 = new ChartMogul\LineItems\OneTime([
     "quantity" => 1,
     "discount_code" => "PSO86",
     "discount_amount_in_cents" => 500,
-    "tax_amount_in_cents" => 450
+    "tax_amount_in_cents" => 450,
+    "transaction_fees_currency" => "EUR",
+    "discount_description" => "2 EUR"
 ]);
 
 $transaction = new ChartMogul\Transactions\Payment([

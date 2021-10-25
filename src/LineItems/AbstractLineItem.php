@@ -17,6 +17,9 @@ abstract class AbstractLineItem extends \ChartMogul\Resource\AbstractModel
     public $discount_code;
     public $tax_amount_in_cents;
     public $transaction_fees_in_cents;
+    public $transaction_fees_currency;
+    public $discount_description;
+    public $event_order;
     public $external_id;
 
     public $invoice_uuid;
