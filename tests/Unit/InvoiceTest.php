@@ -35,6 +35,8 @@ class InvoiceTest extends TestCase
               "discount_code": "PSO86",
               "discount_amount_in_cents": 1000,
               "tax_amount_in_cents": 900,
+              "transaction_fees_currency": "EUR",
+              "discount_description": "5 EUR",
               "account_code": null
             },
             {
@@ -47,6 +49,8 @@ class InvoiceTest extends TestCase
               "discount_code": "PSO86",
               "discount_amount_in_cents": 500,
               "tax_amount_in_cents": 450,
+              "transaction_fees_currency": "EUR",
+              "discount_description": "2 EUR",
               "account_code": null
             }
           ],
@@ -86,6 +90,8 @@ class InvoiceTest extends TestCase
           "discount_code": "PSO86",
           "discount_amount_in_cents": 1000,
           "tax_amount_in_cents": 900,
+          "transaction_fees_currency": "EUR",
+          "discount_description": "5 EUR",
           "account_code": null
         },
         {
@@ -98,6 +104,8 @@ class InvoiceTest extends TestCase
           "discount_code": "PSO86",
           "discount_amount_in_cents": 500,
           "tax_amount_in_cents": 450,
+          "transaction_fees_currency": "EUR",
+          "discount_description": "2 EUR",
           "account_code": null
         }
       ],
