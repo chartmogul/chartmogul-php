@@ -46,6 +46,9 @@ composer require chartmogul/chartmogul-php:^4.0 php-http/guzzle6-adapter:^2.0.1 
 
 ## Configuration
 
+[Deprecation] - `account_token`/`secret_key` combo is deprecated. Please use API key for both fields.
+Version 5.x will introduce a breaking change in authentication configuration. For more details, please visit: https://dev.chartmogul.com/docs/authentication
+
 Setup the default configuration with your ChartMogul account token and secret key:
 
 ```php
