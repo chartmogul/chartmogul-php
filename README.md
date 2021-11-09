@@ -45,7 +45,6 @@ composer require chartmogul/chartmogul-php:^4.0 php-http/guzzle6-adapter:^2.0.1 
 ```
 
 ## Configuration
-
 Setup the default configuration with your ChartMogul api key:
 
 ```php
