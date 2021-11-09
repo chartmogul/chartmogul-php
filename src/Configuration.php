@@ -18,11 +18,7 @@ class Configuration
     /**
      * @var string
      */
-    private $accountToken = '';
-    /**
-     * @var string
-     */
-    private $secretKey = '';
+    private $apiKey = '';
     /**
      * @var int
      * maximum retry attempts
@@ -30,54 +26,32 @@ class Configuration
     private $retries = DEFAULT_MAX_RETRIES;
 
     /**
-     * Creates new config object from accountToken and secretKey
-     * @param string $accountToken
-     * @param string $secretKey
+     * Creates new config object from apiKey
+     * @param string $apiKey
      */
-    public function __construct($accountToken = '', $secretKey = '', $retries = DEFAULT_MAX_RETRIES)
+    public function __construct($apiKey = '', $retries = DEFAULT_MAX_RETRIES)
     {
-        $this->accountToken = $accountToken;
-        $this->secretKey = $secretKey;
+        $this->apiKey = $apiKey;
         $this->retries = $retries;
     }
 
     /**
-     * Get Account Token
+     * Get Api Key
      * @return string
      */
-    public function getAccountToken()
+    public function getApiKey()
     {
-        return $this->accountToken;
+        return $this->apiKey;
     }
 
     /**
-     * Set Account Token
-     * @param string $accountToken
+     * Set Api Key
+     * @param string $apiKey
      * @return self
      */
-    public function setAccountToken($accountToken)
+    public function setApiKey($apiKey)
     {
-        $this->accountToken = $accountToken;
-        return $this;
-    }
-
-    /**
-     * Get Secret Key
-     * @return string
-     */
-    public function getSecretKey()
-    {
-        return $this->secretKey;
-    }
-
-    /**
-     * Set Secret Key
-     * @param string $secretKey
-     * @return self
-     */
-    public function setSecretKey($secretKey)
-    {
-        $this->secretKey = $secretKey;
+        $this->apiKey = $apiKey;
         return $this;
     }
 

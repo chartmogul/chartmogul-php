@@ -30,7 +30,7 @@ class Client implements ClientInterface
     /**
     * @var string
     */
-    private $apiVersion = '4.9.0';
+    private $apiVersion = '5.0.0';
 
     /**
     * @var string
@@ -146,7 +146,7 @@ class Client implements ClientInterface
     public function getBasicAuthHeader()
     {
         return 'Basic '. base64_encode(
-            $this->config->getAccountToken(). ':'. ''
+            $this->config->getApiKey(). ':'. ''
         );
     }
 
