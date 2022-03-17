@@ -13,6 +13,9 @@ RUN if [ "$VERSION" = "7.1" ]; then \
 RUN if [ "$VERSION" = "8.0" ]; then \
     pecl install xdebug-3.0.4;  else \
     pecl install xdebug-2.7.2; fi
+RUN if [ "$VERSION" = "8.1" ]; then \
+    pecl install xdebug-3.1.3;  else \
+    pecl install xdebug-2.7.2; fi
 RUN docker-php-ext-enable xdebug
 ENV PATH="${PATH}:/root/.composer/vendor/bin"
 COPY php.ini /usr/local/etc/php/
