@@ -345,6 +345,55 @@ $plan = ChartMogul\Plan::update(["plan_uuid" => $plan->uuid], [
 ]);
 ```
 
+### Subscription Events
+
+**List Subscriptions Events**
+
+```php
+$subscription_events = ChartMogul\SubscriptionEvent::all([
+  'page' => 1
+]);
+```
+
+**Create Subscription Event**
+
+```php
+ChartMogul\SubscriptionEvent::create([
+    "external_id" => "evnt_026",
+    "customer_external_id" => "cus_0003",
+    "data_source_uuid" => $ds->uuid,
+    "event_type" => "subscription_start_scheduled",
+    "event_date" => "2022-03-30",
+    "effective_date" => "2022-04-01",
+    "subscription_external_id" => "sub_0001",
+    "plan_external_id" => "plan_0001",
+    "currency" => "USD",
+    "amount_in_cents" => 1000
+]);
+```
+
+**Update Subscription Event**
+
+```php
+$plan = ChartMogul\SubscriptionEvent::update([
+    "id" => $sub_ev->id
+        ], [
+    "external_id" => "evnt_026",
+    "data_source_uuid" => $ds->uuid,
+    "effective_date" => "2022-04-30",
+    "currency" => "USD",
+    "amount_in_cents" => "100"
+]);
+```
+
+**Delete Subscription Event**
+
+```php
+$sub_ev = ChartMogul\SubscriptionEvent::all()->last();
+$sub_ev->destroy();
+```
+
+
 ### Plan Groups
 
 **Create a Plan Group**
