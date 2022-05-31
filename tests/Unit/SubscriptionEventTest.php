@@ -3,7 +3,6 @@ namespace ChartMogul\Tests;
 
 use ChartMogul\Http\Client;
 use ChartMogul\SubscriptionEvent;
-use ChartMogul\Exceptions\ChartMogulException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
 
@@ -27,9 +26,7 @@ class SubscriptionEventTest extends TestCase
       	"updated_at": "2022-04-09T11:17:14Z",
       	"quantity": 1,
       	"currency": "USD",
-      	"amount_in_cents": 1000,
-      	"tax_amount_in_cents": 19,
-      	"retracted_event_id": null
+      	"amount_in_cents": 1000
       },
       {
         "id": 73966837,
@@ -47,9 +44,7 @@ class SubscriptionEventTest extends TestCase
       	"updated_at": "2022-04-09T11:17:14Z",
       	"quantity": 1,
       	"currency": "USD",
-      	"amount_in_cents": 1000,
-      	"tax_amount_in_cents": 19,
-      	"retracted_event_id": null
+      	"amount_in_cents": 1000
       }
     ],
     "current_page": 1,
@@ -87,7 +82,7 @@ class SubscriptionEventTest extends TestCase
     "created_at": "2022-04-09T11:17:14Z",
     "updated_at": "2022-04-09T11:17:14Z",
     "quantity": 1,
-    "currency": "USD",
+    "currency": "EUR",
     "amount_in_cents": 100
   }';
 

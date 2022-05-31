@@ -378,10 +378,7 @@ ChartMogul\SubscriptionEvent::create([
 $plan = ChartMogul\SubscriptionEvent::update([
     "id" => $sub_ev->id
         ], [
-    "external_id" => "evnt_026",
-    "data_source_uuid" => $ds->uuid,
-    "effective_date" => "2022-04-30",
-    "currency" => "USD",
+    "currency" => "EUR",``
     "amount_in_cents" => "100"
 ]);
 ```

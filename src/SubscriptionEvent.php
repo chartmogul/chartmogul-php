@@ -8,7 +8,6 @@ use ChartMogul\Service\AllTrait;
 use ChartMogul\Service\CreateTrait;
 use ChartMogul\Service\UpdateTrait;
 use ChartMogul\Service\DestroyTrait;
-use ChartMogul\Service\GetTrait;
 use ChartMogul\Resource\Collection;
 
 
@@ -18,7 +17,6 @@ class SubscriptionEvent extends AbstractResource
     use CreateTrait;
     use UpdateTrait;
     use DestroyTrait;
-    use GetTrait;
 
     /**
      * @ignore
