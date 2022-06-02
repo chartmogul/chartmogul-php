@@ -1,0 +1,23 @@
+<?php
+
+namespace ChartMogul\Service;
+
+use ChartMogul\Http\ClientInterface;
+
+/**
+* @codeCoverageIgnore
+*/
+trait DestroyWithParamsTrait
+{
+    /**
+     * Delete a resource
+     * @return boolean
+     */
+    public function destroy(array $params = [], ClientInterface $client = null)
+    {
+        return (new RequestService($client))
+            ->setResource($this)
+            ->setResourcePath(static::RESOURCE_PATH)
+            ->destroyWithParams($params);
+    }
+}

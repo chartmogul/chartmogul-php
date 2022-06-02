@@ -350,9 +350,7 @@ $plan = ChartMogul\Plan::update(["plan_uuid" => $plan->uuid], [
 **List Subscriptions Events**
 
 ```php
-$subscription_events = ChartMogul\SubscriptionEvent::all([
-  'page' => 1
-]);
+$subscription_events = ChartMogul\SubscriptionEvent::all();
 ```
 
 **Create Subscription Event**

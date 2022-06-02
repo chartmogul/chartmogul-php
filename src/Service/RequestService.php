@@ -107,7 +107,6 @@ class RequestService
     {
         $class = $this->resourceClass;
 
-
         $response = $this->client
             ->setResourceKey($class::RESOURCE_NAME)
             ->send($this->applyResourcePath($id), 'PATCH', $data);
@@ -135,6 +134,20 @@ class RequestService
         $obj->getClient()
             ->setResourceKey($obj::RESOURCE_NAME)
             ->send($this->getResourcePath($obj->toArray()).'/'.$obj->uuid, 'DELETE');
+        return true;
+    }
+
+     /**
+     * @return boolean
+     */
+    public function destroyWithParams($params)
+    {
+        $obj = $this->resource;
+
+        $obj->getClient()
+            ->setResourceKey($obj::RESOURCE_NAME)
+            ->send($this->getResourcePath($obj->toArray($params)), 'DELETE');
+
         return true;
     }
 
