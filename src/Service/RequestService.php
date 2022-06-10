@@ -146,8 +146,6 @@ class RequestService
             $client->getBasicAuthHeader();
             $client->getUserAgent();
             throw new \ChartMogul\Exceptions\SchemaInvalidException("Param id or params external_id and data_source_uuid required.");
-
-            return false;
         }
 
         $class = $this->resourceClass;
@@ -169,8 +167,6 @@ class RequestService
             $client->getBasicAuthHeader();
             $client->getUserAgent();
             throw new \ChartMogul\Exceptions\SchemaInvalidException("Param id or params external_id and data_source_uuid required.");
-
-            return false;
         }
 
         $response = $client->setResourceKey($obj::RESOURCE_NAME)
