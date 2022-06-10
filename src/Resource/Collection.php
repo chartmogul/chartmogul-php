@@ -30,4 +30,8 @@ class Collection extends ArrayCollection
     * @var string
     */
     public $customer_uuid;
+    /**
+    * @array
+    */
+    public $meta;
 }
