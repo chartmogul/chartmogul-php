@@ -7,23 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class SubscriptionEventCollection extends ArrayCollection
 {
     /**
-    * @var int
+    * @array
     */
-    public $next_key;
-    /**
-    * @var int
-    */
-    public $prev_key;
-    /**
-    * @var int
-    */
-    public $page;
-    /**
-    * @var int
-    */
-    public $total_pages;
-    /**
-    * @var string
-    */
-    public $before_key;
+    public $meta;
 }

@@ -4,16 +4,16 @@ namespace ChartMogul\Resource;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-class Collection extends ArrayCollection
+class MetaCollection extends ArrayCollection
 {
     /**
     * @var int
     */
-    public $current_page;
+    public $next_key;
     /**
     * @var int
     */
-    public $per_page;
+    public $prev_key;
     /**
     * @var int
     */
@@ -21,13 +21,9 @@ class Collection extends ArrayCollection
     /**
     * @var int
     */
-    public $has_more;
-    /**
-    * @var int
-    */
     public $total_pages;
     /**
     * @var string
     */
-    public $customer_uuid;
+    public $before_key;
 }

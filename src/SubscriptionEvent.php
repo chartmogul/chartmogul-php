@@ -10,6 +10,7 @@ use ChartMogul\Service\UpdateWithParamsTrait;
 use ChartMogul\Service\DestroyWithParamsTrait;
 use ChartMogul\Resource\Collection;
 use ChartMogul\Resource\SubscriptionEventCollection;
+use ChartMogul\Resource\MetaCollection;
 
 class SubscriptionEvent extends AbstractResource
 {
