@@ -5,6 +5,7 @@ use ChartMogul\Http\Client;
 use ChartMogul\SubscriptionEvent;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
+use ChartMogul\Exceptions\ChartMogulException;
 
 class SubscriptionEventTest extends TestCase
 {
@@ -47,8 +48,14 @@ class SubscriptionEventTest extends TestCase
       	"amount_in_cents": 1000
       }
     ],
-    "current_page": 1,
-    "total_pages": 1
+    "meta":
+    {
+        "next_key": 67048503,
+        "prev_key": null,
+        "before_key": "2022-04-10T22:27:35.834Z",
+        "page": 1,
+        "total_pages": 166
+    }
   }';
   const RETRIEVE_SUBSCRIPTION_EVENT = '{
     "id": 73966836,
@@ -91,21 +98,20 @@ class SubscriptionEventTest extends TestCase
      $stream = Psr7\stream_for(SubscriptionEventTest::ALL_SUBSCRIPTION_EVENT_JSON);
      list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-     $query = ["page" => 1, "external_id" => "ex_id_1"];
-     $result = SubscriptionEvent::all($query, $cmClient);
+     $result = SubscriptionEvent::all([],$cmClient);
      $request = $mockClient->getRequests()[0];
 
      $this->assertEquals("GET", $request->getMethod());
      $uri = $request->getUri();
-     $this->assertEquals("page=1&external_id=ex_id_1", $uri->getQuery());
      $this->assertEquals("/v1/subscription_events", $uri->getPath());
 
      $this->assertEquals(2, sizeof($result));
      $this->assertTrue($result[0] instanceof SubscriptionEvent);
      $this->assertEquals("ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba", $result[0]->data_source_uuid);
      $this->assertEquals("scus_023", $result[0]->customer_external_id);
-     $this->assertEquals(1, $result->current_page);
-     $this->assertEquals(1, $result->total_pages);
+     $this->assertEquals(166, $result->meta->total_pages);
+     $this->assertEquals(1, $result->meta->page);
+     $this->assertEquals("2022-04-10T22:27:35.834Z", $result->meta->before_key);
    }
 
    public function testCreateSubscriptionEvent()
@@ -140,7 +146,7 @@ class SubscriptionEventTest extends TestCase
      $this->assertEquals("scus_023", $result->customer_external_id);
    }
 
-   public function testUpdateSubscriptionEvent()
+   public function testUpdateSubscriptionEventWithId()
    {
      $stream = Psr7\stream_for(SubscriptionEventTest::UPDATE_SUBSCRIPTION_EVENT);
      list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
@@ -148,9 +154,8 @@ class SubscriptionEventTest extends TestCase
      $id = 73966836;
      $new_amount = 100;
 
-     $result = SubscriptionEvent::update(
-       ["id" => $id],
-       ['amount_in_cents' => $new_amount],
+     $result = SubscriptionEvent::updateWithParams(
+       ["id" => $id, 'amount_in_cents' => $new_amount],
        $cmClient
      );
 
@@ -163,12 +168,49 @@ class SubscriptionEventTest extends TestCase
      $this->assertEquals($result->amount_in_cents, $new_amount);
    }
 
+   public function testUpdateSubscriptionEventWithDataSourceUuidAndExternalId()
+   {
+     $stream = Psr7\stream_for(SubscriptionEventTest::UPDATE_SUBSCRIPTION_EVENT);
+     list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+     $data_source_uuid = "ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba";
+     $external_id = "ex_id_1";
+     $new_amount = 100;
+
+     $result = SubscriptionEvent::updateWithParams(
+       ["data_source_uuid" => $data_source_uuid, "external_id" => $external_id, 'amount_in_cents' => $new_amount],
+       $cmClient
+     );
+
+     $request = $mockClient->getRequests()[0];
+     $this->assertEquals("PATCH", $request->getMethod());
+     $uri = $request->getUri();
+     $this->assertEquals("", $uri->getQuery());
+     $this->assertEquals("/v1/subscription_events", $uri->getPath());
+     $this->assertTrue($result instanceof SubscriptionEvent);
+     $this->assertEquals($result->amount_in_cents, $new_amount);
+   }
+
+   public function testUpdateSubscriptionEventWithBadParams()
+   {
+     $stream = Psr7\stream_for(SubscriptionEventTest::UPDATE_SUBSCRIPTION_EVENT);
+     list($cmClient, $mockClient) = $this->getMockClient(0, [400], $stream);
+
+     $new_amount = 100;
+
+     $this->expectException(\ChartMogul\Exceptions\SchemaInvalidException::class);
+     $result = SubscriptionEvent::updateWithParams(
+       ['amount_in_cents' => $new_amount],
+       $cmClient
+     );
+   }
+
    public function testDestroySubscriptionEventWithId()
    {
      list($cmClient, $mockClient) = $this->getMockClient(0, [204]);
      $id = 73966836;
 
-     $result = (new SubscriptionEvent(["id" => $id], $cmClient))->destroy([$id]);
+     $result = (new SubscriptionEvent(["id" => $id], $cmClient))->destroyWithParams(["id" => $id]);
      $request = $mockClient->getRequests()[0];
      $this->assertEquals("DELETE", $request->getMethod());
      $uri = $request->getUri();
@@ -177,17 +219,29 @@ class SubscriptionEventTest extends TestCase
    }
 
    public function testDestroySubscriptionEventWithDataSourceUuidAndExternalId()
-      {
-        list($cmClient, $mockClient) = $this->getMockClient(0, [204]);
-        $data_source_uuid = "ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba";
-        $external_id = "ex_id_1";
-        $id = 73966836;
+   {
+      list($cmClient, $mockClient) = $this->getMockClient(0, [204]);
+      $data_source_uuid = "ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba";
+      $external_id = "ex_id_1";
+      $id = 73966836;
 
-        $result = (new SubscriptionEvent(["id" => $id], $cmClient))->destroy([$data_source_uuid, $external_id]);
-        $request = $mockClient->getRequests()[0];
-        $this->assertEquals("DELETE", $request->getMethod());
-        $uri = $request->getUri();
-        $this->assertEquals("", $uri->getQuery());
-        $this->assertEquals("/v1/subscription_events", $uri->getPath());
-      }
+      $result = (new SubscriptionEvent(["id" => $id], $cmClient))->destroyWithParams(["data_source_uuid" => $data_source_uuid, "external_id" => $external_id]);
+      $request = $mockClient->getRequests()[0];
+      $this->assertEquals("DELETE", $request->getMethod());
+      $uri = $request->getUri();
+      $this->assertEquals("", $uri->getQuery());
+      $this->assertEquals("/v1/subscription_events", $uri->getPath());
+   }
+
+   public function testDestroySubscriptionEventWithBadParams()
+   {
+      $data_source_uuid = "ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba";
+      $id = 73966836;
+
+      $stream = Psr7\stream_for('{invoices: [{errors: {"plan_id": "doesn\'t exist"}}]}');
+      list($cmClient, $mockClient) = $this->getMockClient(0, [400]);
+
+      $this->expectException(\ChartMogul\Exceptions\SchemaInvalidException::class);
+      (new SubscriptionEvent(["id" => $id], $cmClient))->destroyWithParams(["data_source_uuid" => $data_source_uuid], $cmClient);
+   }
 }

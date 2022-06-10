@@ -91,6 +91,27 @@ abstract class AbstractResource extends AbstractModel
             if (isset($data["page"])) {
                 $array->page = $data["page"];
             }
+
+            if (isset($data["meta"])) {
+                $meta = $data['meta'];
+                $array->meta = new SubscriptionEventCollection();
+
+                if (isset($meta['page'])) {
+                    $array->meta->page = $meta["page"];
+                }
+                if (isset($meta['next_key'])) {
+                    $array->meta->next_key = $meta["next_key"];
+                }
+                if (isset($meta['prev_key'])) {
+                    $array->meta->prev_key = $meta["prev_key"];
+                }
+                if (isset($meta['before_key'])) {
+                    $array->meta->before_key = $meta["before_key"];
+                }
+                if (isset($meta['total_pages'])) {
+                    $array->meta->total_pages = $meta["total_pages"];
+                }
+            }
             return $array;
         }
 

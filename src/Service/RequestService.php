@@ -6,6 +6,7 @@ use ChartMogul\Http\Client;
 use ChartMogul\Http\ClientInterface;
 use ChartMogul\Resource\AbstractResource;
 use ReflectionClass;
+use ChartMogul\Exceptions\ChartMogulException;
 
 class RequestService
 {
@@ -137,16 +138,43 @@ class RequestService
         return true;
     }
 
-     /**
+    public function updateWithParams(array $params)
+    {
+        $client = $this->client;
+
+        if (!(array_key_exists('id', $params) || (array_key_exists('data_source_uuid', $params) && array_key_exists('external_id', $params)))) {
+            $client->getBasicAuthHeader();
+            $client->getUserAgent();
+            throw new \ChartMogul\Exceptions\SchemaInvalidException("Param id or params external_id and data_source_uuid required.");
+
+            return false;
+        }
+
+        $class = $this->resourceClass;
+        $response = $client->setResourceKey($class::RESOURCE_NAME)
+                            ->send($this->applyResourcePath($id), 'PATCH', $params);
+
+        return $class::fromArray($response, $this->client);
+    }
+
+    /**
      * @return boolean
      */
-    public function destroyWithParams($params)
+    public function destroyWithParams(array $params)
     {
         $obj = $this->resource;
+        $client = $obj->getClient();
 
-        $obj->getClient()
-            ->setResourceKey($obj::RESOURCE_NAME)
-            ->send($this->getResourcePath($obj->toArray($params)), 'DELETE');
+        if (!(array_key_exists('id', $params) || (array_key_exists('data_source_uuid', $params) && array_key_exists('external_id', $params)))) {
+            $client->getBasicAuthHeader();
+            $client->getUserAgent();
+            throw new \ChartMogul\Exceptions\SchemaInvalidException("Param id or params external_id and data_source_uuid required.");
+
+            return false;
+        }
+
+        $response = $client->setResourceKey($obj::RESOURCE_NAME)
+                            ->send($this->getResourcePath($obj->toArray($params)), 'DELETE');
 
         return true;
     }

@@ -13,7 +13,7 @@ trait DestroyWithParamsTrait
      * Delete a resource
      * @return boolean
      */
-    public function destroy(array $params = [], ClientInterface $client = null)
+    public function destroyWithParams(array $params = [], ClientInterface $client = null)
     {
         return (new RequestService($client))
             ->setResource($this)

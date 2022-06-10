@@ -9,11 +9,17 @@ use ChartMogul\Http\ClientInterface;
 */
 trait UpdateWithParamsTrait
 {
-    public static function update(array $id = [], array $data = [], ClientInterface $client = null)
+    /**
+     * Update a Resource
+     * @param  array                $params
+     * @param  ClientInterface|null $client
+     * @return self
+     */
+    public static function updateWithParams(array $params = [], ClientInterface $client = null)
     {
         return (new RequestService($client))
             ->setResourceClass(static::class)
             ->setResourcePath(static::RESOURCE_PATH)
-            ->update($id, $data);
+            ->updateWithParams($params);
     }
 }

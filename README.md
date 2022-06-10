@@ -370,22 +370,23 @@ ChartMogul\SubscriptionEvent::create([
 ]);
 ```
 
-**Update Subscription Event**
-
-```php
-$plan = ChartMogul\SubscriptionEvent::update([
-    "id" => $sub_ev->id
-        ], [
-    "currency" => "EUR",``
-    "amount_in_cents" => "100"
-]);
-```
-
 **Delete Subscription Event**
 
 ```php
 $sub_ev = ChartMogul\SubscriptionEvent::all()->last();
-$sub_ev->destroy();
+$sub_ev->destroyWithParams([
+    "id" => $sub_ev->id
+]);
+```
+
+**Update Subscription Event**
+
+```php
+$sub_ev = ChartMogul\SubscriptionEvent::updateWithParams([
+    "id" => $sub_ev->id,
+    "currency" => "EUR",
+    "amount_in_cents" => "100"
+]);
 ```
 
 

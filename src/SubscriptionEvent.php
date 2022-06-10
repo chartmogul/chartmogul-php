@@ -21,7 +21,6 @@ class SubscriptionEvent extends AbstractResource
      * @ignore
      */
     public const RESOURCE_PATH = '/v1/subscription_events';
-    public const RESOURCE_ID = 'id';
 
     /**
      * @ignore
@@ -34,16 +33,14 @@ class SubscriptionEvent extends AbstractResource
     public const ROOT_KEY = 'subscription_events';
 
     protected $id;
-
-    public $external_id;
-    public $data_source_uuid;
-    public $customer_external_id;
-    public $event_type;
-    public $event_date;
-    public $effective_date;
-    public $currency;
-    public $amount_in_cents;
-    public $subscription_external_id;
-    public $plan_external_id;
-
+    protected $external_id;
+    protected $data_source_uuid;
+    protected $customer_external_id;
+    protected $event_type;
+    protected $event_date;
+    protected $effective_date;
+    protected $currency;
+    protected $amount_in_cents;
+    protected $subscription_external_id;
+    protected $plan_external_id;
 }
