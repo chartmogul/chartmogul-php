@@ -51,7 +51,7 @@ Setup the default configuration with your ChartMogul api key:
 require('./vendor/autoload.php');
 
 ChartMogul\Configuration::getDefaultConfiguration()
-    ->setApiKey('<YOUR_API_KEY>');
+    ->setAccountToken('<YOUR_API_TOKEN>');
 ```
 
 
