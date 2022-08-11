@@ -154,8 +154,9 @@ class SubscriptionEventTest extends TestCase
      $id = 73966836;
      $new_amount = 100;
 
-     $result = SubscriptionEvent::updateWithParams(
-       ["id" => $id, 'amount_in_cents' => $new_amount],
+     $result = SubscriptionEvent::updateWithParams(['subscription_event' => [
+        "id" => $id, 'amount_in_cents' => $new_amount
+       ]],
        $cmClient
      );
 
@@ -177,8 +178,9 @@ class SubscriptionEventTest extends TestCase
      $external_id = "ex_id_1";
      $new_amount = 100;
 
-     $result = SubscriptionEvent::updateWithParams(
-       ["data_source_uuid" => $data_source_uuid, "external_id" => $external_id, 'amount_in_cents' => $new_amount],
+     $result = SubscriptionEvent::updateWithParams(['subscription_event' => [
+       "data_source_uuid" => $data_source_uuid, "external_id" => $external_id, 'amount_in_cents' => $new_amount
+       ]],
        $cmClient
      );
 
@@ -210,7 +212,7 @@ class SubscriptionEventTest extends TestCase
      list($cmClient, $mockClient) = $this->getMockClient(0, [204]);
      $id = 73966836;
 
-     $result = (new SubscriptionEvent(["id" => $id], $cmClient))->destroyWithParams(["id" => $id]);
+     $result = (new SubscriptionEvent(["id" => $id], $cmClient))->destroyWithParams(['subscription_event' => ["id" => $id]]);
      $request = $mockClient->getRequests()[0];
      $this->assertEquals("DELETE", $request->getMethod());
      $uri = $request->getUri();
@@ -225,7 +227,9 @@ class SubscriptionEventTest extends TestCase
       $external_id = "ex_id_1";
       $id = 73966836;
 
-      $result = (new SubscriptionEvent(["id" => $id], $cmClient))->destroyWithParams(["data_source_uuid" => $data_source_uuid, "external_id" => $external_id]);
+      $result = (new SubscriptionEvent(["id" => $id], $cmClient))->destroyWithParams(['subscription_event' => [
+        "data_source_uuid" => $data_source_uuid, "external_id" => $external_id]
+      ]);
       $request = $mockClient->getRequests()[0];
       $this->assertEquals("DELETE", $request->getMethod());
       $uri = $request->getUri();

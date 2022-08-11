@@ -356,7 +356,7 @@ $subscription_events = ChartMogul\SubscriptionEvent::all();
 **Create Subscription Event**
 
 ```php
-ChartMogul\SubscriptionEvent::create([
+ChartMogul\SubscriptionEvent::create(['subscription_event' => [
     "external_id" => "evnt_026",
     "customer_external_id" => "cus_0003",
     "data_source_uuid" => $ds->uuid,
@@ -367,26 +367,26 @@ ChartMogul\SubscriptionEvent::create([
     "plan_external_id" => "plan_0001",
     "currency" => "USD",
     "amount_in_cents" => 1000
-]);
+    "quantity" => 1
+]]);
 ```
 
 **Delete Subscription Event**
 
 ```php
-$sub_ev = ChartMogul\SubscriptionEvent::all()->last();
-$sub_ev->destroyWithParams([
-    "id" => $sub_ev->id
-]);
+(new ChartMogul\SubscriptionEvent)->destroyWithParams(['subscription_event' => [
+    "id" => "some_event_id"
+]]);
 ```
 
 **Update Subscription Event**
 
 ```php
-$sub_ev = ChartMogul\SubscriptionEvent::updateWithParams([
-    "id" => $sub_ev->id,
+ChartMogul\SubscriptionEvent::updateWithParams(['subscription_event' => [
+    "id" => "some_event_id",
     "currency" => "EUR",
     "amount_in_cents" => "100"
-]);
+]]);
 ```
 
 
