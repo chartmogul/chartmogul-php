@@ -193,20 +193,6 @@ class SubscriptionEventTest extends TestCase
      $this->assertEquals($result->amount_in_cents, $new_amount);
    }
 
-   public function testUpdateSubscriptionEventWithBadParams()
-   {
-     $stream = Psr7\stream_for(SubscriptionEventTest::UPDATE_SUBSCRIPTION_EVENT);
-     list($cmClient, $mockClient) = $this->getMockClient(0, [400], $stream);
-
-     $new_amount = 100;
-
-     $this->expectException(\ChartMogul\Exceptions\SchemaInvalidException::class);
-     $result = SubscriptionEvent::updateWithParams(
-       ['amount_in_cents' => $new_amount],
-       $cmClient
-     );
-   }
-
    public function testDestroySubscriptionEventWithId()
    {
      list($cmClient, $mockClient) = $this->getMockClient(0, [204]);
@@ -235,17 +221,5 @@ class SubscriptionEventTest extends TestCase
       $uri = $request->getUri();
       $this->assertEquals("", $uri->getQuery());
       $this->assertEquals("/v1/subscription_events", $uri->getPath());
-   }
-
-   public function testDestroySubscriptionEventWithBadParams()
-   {
-      $data_source_uuid = "ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba";
-      $id = 73966836;
-
-      $stream = Psr7\stream_for('{invoices: [{errors: {"plan_id": "doesn\'t exist"}}]}');
-      list($cmClient, $mockClient) = $this->getMockClient(0, [400]);
-
-      $this->expectException(\ChartMogul\Exceptions\SchemaInvalidException::class);
-      (new SubscriptionEvent(["id" => $id], $cmClient))->destroyWithParams(["data_source_uuid" => $data_source_uuid], $cmClient);
    }
 }
