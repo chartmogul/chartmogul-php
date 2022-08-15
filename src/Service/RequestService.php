@@ -164,8 +164,7 @@ class RequestService
      */
     public function destroyWithParams(array $params)
     {
-        $obj = $this->resource;
-        $client = $obj->getClient();
+        $client = $this->client;
 
         if (!(array_key_exists('subscription_event', $params))) {
             throw new \ChartMogul\Exceptions\SchemaInvalidException("Data is not in the good format, 'subscription_event' is missing.");

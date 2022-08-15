@@ -374,7 +374,7 @@ ChartMogul\SubscriptionEvent::create(['subscription_event' => [
 **Delete Subscription Event**
 
 ```php
-(new ChartMogul\SubscriptionEvent)->destroyWithParams(['subscription_event' => [
+ChartMogul\SubscriptionEvent::destroyWithParams(['subscription_event' => [
     "id" => "some_event_id"
 ]]);
 ```

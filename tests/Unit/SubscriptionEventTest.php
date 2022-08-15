@@ -180,8 +180,7 @@ class SubscriptionEventTest extends TestCase
 
      $result = SubscriptionEvent::updateWithParams(['subscription_event' => [
        "data_source_uuid" => $data_source_uuid, "external_id" => $external_id, 'amount_in_cents' => $new_amount
-       ]],
-       $cmClient
+       ]],$cmClient
      );
 
      $request = $mockClient->getRequests()[0];
@@ -198,12 +197,14 @@ class SubscriptionEventTest extends TestCase
      list($cmClient, $mockClient) = $this->getMockClient(0, [204]);
      $id = 73966836;
 
-     $result = (new SubscriptionEvent(["id" => $id], $cmClient))->destroyWithParams(['subscription_event' => ["id" => $id]]);
+     $result = SubscriptionEvent::destroyWithParams(['subscription_event' => ["id" => $id]], $cmClient);
+
      $request = $mockClient->getRequests()[0];
      $this->assertEquals("DELETE", $request->getMethod());
      $uri = $request->getUri();
      $this->assertEquals("", $uri->getQuery());
      $this->assertEquals("/v1/subscription_events", $uri->getPath());
+     $this->assertEquals($result, true);
    }
 
    public function testDestroySubscriptionEventWithDataSourceUuidAndExternalId()
@@ -211,15 +212,15 @@ class SubscriptionEventTest extends TestCase
       list($cmClient, $mockClient) = $this->getMockClient(0, [204]);
       $data_source_uuid = "ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba";
       $external_id = "ex_id_1";
-      $id = 73966836;
 
-      $result = (new SubscriptionEvent(["id" => $id], $cmClient))->destroyWithParams(['subscription_event' => [
+      $result = SubscriptionEvent::destroyWithParams(['subscription_event' => [
         "data_source_uuid" => $data_source_uuid, "external_id" => $external_id]
-      ]);
+      ],$cmClient);
       $request = $mockClient->getRequests()[0];
       $this->assertEquals("DELETE", $request->getMethod());
       $uri = $request->getUri();
       $this->assertEquals("", $uri->getQuery());
       $this->assertEquals("/v1/subscription_events", $uri->getPath());
+      $this->assertEquals($result, true);
    }
 }
