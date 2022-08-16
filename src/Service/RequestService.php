@@ -6,6 +6,7 @@ use ChartMogul\Http\Client;
 use ChartMogul\Http\ClientInterface;
 use ChartMogul\Resource\AbstractResource;
 use ReflectionClass;
+use ChartMogul\Exceptions\ChartMogulException;
 
 class RequestService
 {
@@ -107,7 +108,6 @@ class RequestService
     {
         $class = $this->resourceClass;
 
-
         $response = $this->client
             ->setResourceKey($class::RESOURCE_NAME)
             ->send($this->applyResourcePath($id), 'PATCH', $data);
@@ -135,6 +135,51 @@ class RequestService
         $obj->getClient()
             ->setResourceKey($obj::RESOURCE_NAME)
             ->send($this->getResourcePath($obj->toArray()).'/'.$obj->uuid, 'DELETE');
+        return true;
+    }
+
+    public function updateWithParams(array $params)
+    {
+        $client = $this->client;
+
+        if (!(array_key_exists('subscription_event', $params))) {
+            throw new \ChartMogul\Exceptions\SchemaInvalidException("Data is not in the good format, 'subscription_event' is missing.");
+        }
+
+        $sub_ev = $params['subscription_event'];
+
+        if (!(array_key_exists('id', $sub_ev) || (array_key_exists('data_source_uuid', $sub_ev) && array_key_exists('external_id', $sub_ev)))) {
+            throw new \ChartMogul\Exceptions\SchemaInvalidException("Param id or params external_id and data_source_uuid required.");
+        }
+
+        $class = $this->resourceClass;
+        $response = $client->setResourceKey($class::RESOURCE_NAME)
+                            ->send($this->applyResourcePath($id), 'PATCH', $params);
+
+        return $class::fromArray($response, $this->client);
+    }
+
+    /**
+     * @return boolean
+     */
+    public function destroyWithParams(array $params)
+    {
+        $client = $this->client;
+
+        if (!(array_key_exists('subscription_event', $params))) {
+            throw new \ChartMogul\Exceptions\SchemaInvalidException("Data is not in the good format, 'subscription_event' is missing.");
+        }
+
+        $sub_ev = $params['subscription_event'];
+
+        if (!(array_key_exists('id', $sub_ev) || (array_key_exists('data_source_uuid', $sub_ev) && array_key_exists('external_id', $sub_ev)))) {
+            throw new \ChartMogul\Exceptions\SchemaInvalidException("Param id or params external_id and data_source_uuid required.");
+        }
+
+        $class = $this->resourceClass;
+        $response = $client->setResourceKey($class::RESOURCE_NAME)
+                            ->send($this->applyResourcePath($id), 'DELETE', $params);
+
         return true;
     }
 
