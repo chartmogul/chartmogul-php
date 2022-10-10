@@ -10,13 +10,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['7.3', '7.4', '8.0']
+        php-versions: ['7.4', '8.0', '8.1']
         phpunit-versions: ['latest']
-        include:
-        - php-versions: '7.2'
-          phpunit-versions: '8.5.13'
-        - php-versions: '7.1'
-          phpunit-versions: '7.5.20'
     steps:
       - uses: actions/checkout@v2
 
