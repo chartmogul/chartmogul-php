@@ -31,9 +31,9 @@
 
 This library requires php 5.5 or above.
 
-For older php versions (`< 7.1`) use `1.x.x` releases of this library.
+For older php versions (`< 7.4`) use `1.x.x` releases of this library.
 
-For php version `>=7.1` use the latest releases (`4.x.x`) of the library
+For php version `>=7.4` use the latest releases (`5.x.x`) of the library
 
 
 The library doesn't depend on any concrete HTTP client libraries. Follow the instructions [here](http://docs.php-http.org/en/latest/httplug/users.html) to find out how to include a HTTP client.
@@ -41,7 +41,7 @@ The library doesn't depend on any concrete HTTP client libraries. Follow the ins
 Here's an example with `Guzzle HTTP client`:
 
 ```sh
-composer require chartmogul/chartmogul-php:^4.0 php-http/guzzle6-adapter:^2.0.1 http-interop/http-factory-guzzle:^1.0
+composer require chartmogul/chartmogul-php:^5.0 php-http/guzzle6-adapter:^2.0.1 http-interop/http-factory-guzzle:^1.0
 ```
 
 ## Configuration
