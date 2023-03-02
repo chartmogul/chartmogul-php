@@ -23,6 +23,7 @@ class AbstractModelTest extends \PHPUnit\Framework\TestCase
     {
         $mock = $this->getMockBuilder(AbstractModel::class)
             ->setConstructorArgs([$in])
+            ->onlyMethods([])
             ->getMock();
 
         $output = $mock->toArray();
