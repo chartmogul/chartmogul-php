@@ -32,7 +32,6 @@ class ClientTest extends TestCase
     {
         $mock = $this->getMockBuilder(Client::class)
             ->disableOriginalConstructor()
-            ->setMethods(null)
             ->getMock();
 
         $this->assertEquals("chartmogul-php/5.0.1/PHP-".PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION, $mock->getUserAgent());
@@ -58,7 +57,6 @@ class ClientTest extends TestCase
     {
         $mock = $this->getMockBuilder(Client::class)
             ->disableOriginalConstructor()
-            ->setMethods(null)
             ->getMock();
 
         $res = MessageFactoryDiscovery::find()->createResponse(
@@ -71,7 +69,7 @@ class ClientTest extends TestCase
         $this->assertEquals($data, ['result' => 'json']);
     }
 
-    public function provider()
+    public static function provider()
     {
         return array(
             array(200, \ChartMogul\Exceptions\ChartMogulException::class),
@@ -91,7 +89,6 @@ class ClientTest extends TestCase
         $this->expectException($exception);
         $mock = $this->getMockBuilder(Client::class)
             ->disableOriginalConstructor()
-            ->setMethods(null)
             ->getMock();
 
         $res = MessageFactoryDiscovery::find()->createResponse(
@@ -103,7 +100,7 @@ class ClientTest extends TestCase
         $mock->handleResponse($res);
     }
 
-    public function providerSend()
+    public static function providerSend()
     {
         return [
             [

@@ -16,7 +16,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     protected function getMockClient($retries, $statuses, $stream = null, $exceptions = []){
         $mock = $this->getMockBuilder(Client::class)
-            ->setMethods(['getBasicAuthHeader', 'getUserAgent'])
+            ->onlyMethods(['getBasicAuthHeader', 'getUserAgent'])
             ->getMock();
 
         $mock->expects($this->once())

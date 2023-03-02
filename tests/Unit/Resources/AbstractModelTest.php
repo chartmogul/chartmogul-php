@@ -7,7 +7,7 @@ class AbstractModelTest extends \PHPUnit\Framework\TestCase
 
 
 
-    public function provider()
+    public static function provider()
     {
         return [
             [ ['a' => 'b'], ['a' => 'b'] ],
@@ -23,7 +23,6 @@ class AbstractModelTest extends \PHPUnit\Framework\TestCase
     {
         $mock = $this->getMockBuilder(AbstractModel::class)
             ->setConstructorArgs([$in])
-            ->setMethods(null)
             ->getMock();
 
         $output = $mock->toArray();
