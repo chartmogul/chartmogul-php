@@ -1,1 +1,6 @@
-/coverage export-ignore php.ini
+/coverage export-ignore
+/tests export-ignore
+/php.ini export-ignore
+/phpdoc.dist.xml export-ignore
+/phpunit.xml.dist export-ignore
+/phpstan.neon export-ignore
