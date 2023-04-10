@@ -67,7 +67,7 @@ class Contact extends AbstractResource
      * @param  string               $into
      * @param  string               $from
      * @param  ClientInterface|null $client
-     * @return bool
+     * @return Contact
      */
     public static function merge($into, $from, ClientInterface $client = null)
     {
@@ -88,33 +88,21 @@ class Contact extends AbstractResource
     public static function fromArray(array $data, ClientInterface $client = null)
     {
         if (isset($data[static::ROOT_KEY])) {
-          $array = new CollectionWithCursor(array_map(function ($data) use ($client) {
-              return static::fromArray($data, $client);
-          }, $data[static::ROOT_KEY]));
-          $array = static::allDataWithCursor($data, $array);
+            $array = new CollectionWithCursor(array_map(function ($data) use ($client) {
+                return static::fromArray($data, $client);
+            }, $data[static::ROOT_KEY]));
 
-          return $array;
+            if (isset($data["cursor"])) {
+                $array->cursor = $data["cursor"];
+            }
+
+            if (isset($data["has_more"])) {
+                $array->has_more = $data["has_more"];
+            }
+
+            return $array;
         }
 
         return new static($data, $client);
-    }
-
-    /**
-     * Updates all data's metadata to include cursor and has_more.
-     * 
-     * @param array $data
-     * @param ClientInterface|null $client
-     * @return CollectionWithCursor|static
-     */
-    private static function allDataWithCursor(array $data, CollectionWithCursor $array)
-    {
-        if (isset($data["cursor"])) {
-            $array->cursor = $data["cursor"];
-        }
-        if (isset($data["has_more"])) {
-            $array->has_more = $data["has_more"];
-        }
-
-        return $array;
     }
 }
