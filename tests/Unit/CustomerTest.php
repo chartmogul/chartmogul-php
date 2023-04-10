@@ -3,6 +3,7 @@ namespace ChartMogul\Tests;
 
 use ChartMogul\Http\Client;
 use ChartMogul\Customer;
+use ChartMogul\Contact;
 use ChartMogul\Resource\Collection;
 use ChartMogul\Exceptions\ChartMogulException;
 use GuzzleHttp\Psr7;
@@ -156,6 +157,51 @@ class CustomerTest extends TestCase
       "page":1
     }';
 
+    const LIST_CONTACTS_JSON= '{
+      "entries": [
+        {
+          "uuid": "con_00000000-0000-0000-0000-000000000000",
+          "customer_uuid": "cus_00000000-0000-0000-0000-000000000000",
+          "customer_external_id": "123",
+          "data_source_uuid": "ds_00000000-0000-0000-0000-000000000000",
+          "position": 1,
+          "first_name": "Adam",
+          "last_name": "Smith",
+          "title": "CEO",
+          "email": "adam@smith.com",
+          "phone": "Lead",
+          "linked_in": null,
+          "twitter": null,
+          "notes": null,
+          "custom": {
+            "Facebook": "https://www.facebook.com/adam.smith/",
+            "date_of_birth": "1985-01-22"
+          }
+        }
+      ],
+      "cursor": "cursor==",
+      "has_more": true
+    }';
+
+    const CONTACT_JSON= '{
+      "uuid": "con_00000000-0000-0000-0000-000000000000",
+      "customer_uuid": "cus_00000000-0000-0000-0000-000000000000",
+      "customer_external_id": "customer_001",
+      "data_source_uuid": "ds_00000000-0000-0000-0000-000000000000",
+      "position": 9,
+      "first_name": "Adam",
+      "last_name": "Smith",
+      "title": "CEO",
+      "email": "adam@example.com",
+      "phone": "+1234567890",
+      "linked_in": "https://linkedin.com/linkedin",
+      "twitter": "https://twitter.com/twitter",
+      "notes": "Heading\nBody\nFooter",
+      "custom": {
+        "Facebook": "https://www.facebook.com/adam.smith",
+        "date_of_birth": "1985-01-22"
+      }
+    }';
 
     public function testRetrieveCustomer()
     {
@@ -263,4 +309,57 @@ class CustomerTest extends TestCase
 
         $this->assertTrue($result instanceof Customer);
     }
+
+    public function testListCustomersContacts()
+    {
+      $stream = Psr7\stream_for(CustomerTest::LIST_CONTACTS_JSON);
+      list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+      $uuid = "cus_00000000-0000-0000-0000-000000000000";
+
+      $result = (new Customer(["uuid" => $uuid], $cmClient))->contacts();
+      $request = $mockClient->getRequests()[0];
+
+      $this->assertEquals("GET", $request->getMethod());
+      $uri = $request->getUri();
+      $this->assertEquals("/v1/customers/".$uuid."/contacts", $uri->getPath());
+
+      $this->assertTrue($result[0] instanceof Contact);
+      $this->assertEquals("cursor==", $result->cursor);
+      $this->assertEquals(true, $result->has_more);
+  }
+
+  public function testCreateCustomersContact()
+    {
+      $stream = Psr7\stream_for(CustomerTest::CONTACT_JSON);
+      list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+      $uuid = "cus_00000000-0000-0000-0000-000000000000";
+
+      $result = (new Customer(["uuid" => $uuid], $cmClient))->createContact([
+        "customer_uuid" => "cus_00000000-0000-0000-0000-000000000000",
+        "data_source_uuid" => "ds_00000000-0000-0000-0000-000000000000",
+        "first_name" => "Adam",
+        "last_name" => "Smith",
+        "position" => 9,
+        "title" => "CEO",
+        "email" => "adam@example.com",
+        "phone" => "+1234567890",
+        "linked_in" => "https://linkedin.com/linkedin",
+        "twitter" => "https://twitter.com/twitter",
+        "notes" => "Heading\nBody\nFooter",
+        "custom" => [
+          [ "key" => "Facebook", "value" => "https://www.facebook.com/adam.smith" ],
+          [ "key" => "date_of_birth", "value" => "1985-01-22" ]
+        ],
+      ]);
+      $request = $mockClient->getRequests()[0];
+
+      $this->assertEquals("POST", $request->getMethod());
+      $uri = $request->getUri();
+      $this->assertEquals("/v1/customers/".$uuid."/contacts", $uri->getPath());
+
+      $this->assertTrue($result instanceof Contact);
+      $this->assertEquals("con_00000000-0000-0000-0000-000000000000", $result->uuid);
+  }
 }
