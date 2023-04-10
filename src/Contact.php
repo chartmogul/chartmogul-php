@@ -80,7 +80,7 @@ class Contact extends AbstractResource
 
     /**
      * Overrides fromArray so that it will return a collection with cursor instead.
-     * 
+     *
      * @param array $data
      * @param ClientInterface|null $client
      * @return CollectionWithCursor|static
