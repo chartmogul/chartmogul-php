@@ -309,7 +309,7 @@ $contacts = $customer->contacts([
 ]);
 ```
 
-**Create a Contact**
+**Create a Contact from a customer**
 
 ```php
 $customer = ChartMogul\Customer::retrieve($uuid);
