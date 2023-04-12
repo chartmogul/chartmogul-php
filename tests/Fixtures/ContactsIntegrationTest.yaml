@@ -1,0 +1,164 @@
+
+-
+    request:
+        method: POST
+        url: 'https://api.chartmogul.com/v1/contacts'
+        headers:
+            Host: api.chartmogul.com
+            Authorization: hidden
+            content-type: application/json
+            user-agent: chartmogul-php/5.0.1/PHP-7.4
+            Expect: ''
+        body: '{"customer_uuid":"cus_80ec0c06-bef5-11ed-a88c-974c518fc467","data_source_uuid":"ds_80251880-bef5-11ed-a88b-db28feaa7eba","first_name":"Adam","last_name":"Smith","position":9,"email":"adam@example.com","title":"CEO","notes":"Heading\nBody\nFooter","phone":"+1234567890","linked_in":"https:\/\/linkedin.com\/linkedin","twitter":"https:\/\/twitter.com\/twitter","custom":[{"key":"Facebook","value":"https:\/\/www.facebook.com\/adam.smith"},{"key":"date_of_birth","value":"1985-01-22"}]}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '201'
+            message: Created
+        headers:
+            Access-Control-Allow-Credentials: 'true'
+            Content-Type: application/json
+            Date: 'Wed, 12 Apr 2023 08:10:36 GMT'
+            Content-Length: '523'
+            Connection: keep-alive
+        body: '{"uuid":"con_814a03dc-d909-11ed-9ecf-0b1b3758a895","customer_uuid":"cus_80ec0c06-bef5-11ed-a88c-974c518fc467","customer_external_id":"X1234","data_source_uuid":"ds_80251880-bef5-11ed-a88b-db28feaa7eba","position":9,"first_name":"Adam","last_name":"Smith","title":"CEO","email":"adam@example.com","phone":"+1234567890","linked_in":"https://linkedin.com/linkedin","twitter":"https://twitter.com/twitter","notes":"Heading\nBody\nFooter","custom":{"Facebook":"https://www.facebook.com/adam.smith","date_of_birth":"1985-01-22"}}'
+    index: 0
+-
+    request:
+        method: GET
+        url: 'https://api.chartmogul.com/v1/contacts/con_814a03dc-d909-11ed-9ecf-0b1b3758a895'
+        headers:
+            Host: api.chartmogul.com
+            Authorization: hidden
+            content-type: application/json
+            user-agent: chartmogul-php/5.0.1/PHP-7.4
+            Expect: ''
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Access-Control-Allow-Credentials: 'true'
+            Content-Type: application/json
+            Date: 'Wed, 12 Apr 2023 08:10:37 GMT'
+            Content-Length: '523'
+            Connection: keep-alive
+        body: '{"uuid":"con_814a03dc-d909-11ed-9ecf-0b1b3758a895","customer_uuid":"cus_80ec0c06-bef5-11ed-a88c-974c518fc467","customer_external_id":"X1234","data_source_uuid":"ds_80251880-bef5-11ed-a88b-db28feaa7eba","position":9,"first_name":"Adam","last_name":"Smith","title":"CEO","email":"adam@example.com","phone":"+1234567890","linked_in":"https://linkedin.com/linkedin","twitter":"https://twitter.com/twitter","notes":"Heading\nBody\nFooter","custom":{"Facebook":"https://www.facebook.com/adam.smith","date_of_birth":"1985-01-22"}}'
+    index: 0
+-
+    request:
+        method: PATCH
+        url: 'https://api.chartmogul.com/v1/contacts/con_814a03dc-d909-11ed-9ecf-0b1b3758a895'
+        headers:
+            Host: api.chartmogul.com
+            Authorization: hidden
+            content-type: application/json
+            user-agent: chartmogul-php/5.0.1/PHP-7.4
+            Expect: ''
+        body: '{"first_name":"Bill","last_name":"Thompson","position":10,"title":"CTO","email":"bill@example.com","phone":"+987654321","linked_in":"https:\/\/linkedin.com\/bill-linkedin","twitter":"https:\/\/twitter.com\/bill-twitter","notes":"New Heading\nBody\nFooter","custom":[{"key":"Facebook","value":"https:\/\/www.facebook.com\/bill.thompson"},{"key":"date_of_birth","value":"1990-01-01"}]}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Access-Control-Allow-Credentials: 'true'
+            Content-Type: application/json
+            Date: 'Wed, 12 Apr 2023 08:10:39 GMT'
+            Content-Length: '543'
+            Connection: keep-alive
+        body: '{"uuid":"con_814a03dc-d909-11ed-9ecf-0b1b3758a895","customer_uuid":"cus_80ec0c06-bef5-11ed-a88c-974c518fc467","customer_external_id":"X1234","data_source_uuid":"ds_80251880-bef5-11ed-a88b-db28feaa7eba","position":10,"first_name":"Bill","last_name":"Thompson","title":"CTO","email":"bill@example.com","phone":"+987654321","linked_in":"https://linkedin.com/bill-linkedin","twitter":"https://twitter.com/bill-twitter","notes":"New Heading\nBody\nFooter","custom":{"Facebook":"https://www.facebook.com/bill.thompson","date_of_birth":"1990-01-01"}}'
+    index: 0
+-
+    request:
+        method: POST
+        url: 'https://api.chartmogul.com/v1/contacts'
+        headers:
+            Host: api.chartmogul.com
+            Authorization: hidden
+            content-type: application/json
+            user-agent: chartmogul-php/5.0.1/PHP-7.4
+            Expect: ''
+        body: '{"customer_uuid":"cus_80ec0c06-bef5-11ed-a88c-974c518fc467","data_source_uuid":"ds_80251880-bef5-11ed-a88b-db28feaa7eba"}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '201'
+            message: Created
+        headers:
+            Access-Control-Allow-Credentials: 'true'
+            Content-Type: application/json
+            Date: 'Wed, 12 Apr 2023 08:10:40 GMT'
+            Content-Length: '347'
+            Connection: keep-alive
+        body: '{"uuid":"con_83b90e6a-d909-11ed-96e9-3369ce767b9d","customer_uuid":"cus_80ec0c06-bef5-11ed-a88c-974c518fc467","customer_external_id":"X1234","data_source_uuid":"ds_80251880-bef5-11ed-a88b-db28feaa7eba","position":11,"first_name":null,"last_name":null,"title":null,"email":null,"phone":null,"linked_in":null,"twitter":null,"notes":null,"custom":{}}'
+    index: 0
+-
+    request:
+        method: POST
+        url: 'https://api.chartmogul.com/v1/contacts/con_83b90e6a-d909-11ed-96e9-3369ce767b9d/merge/con_814a03dc-d909-11ed-9ecf-0b1b3758a895'
+        headers:
+            Host: api.chartmogul.com
+            Authorization: hidden
+            content-type: application/json
+            user-agent: chartmogul-php/5.0.1/PHP-7.4
+            Expect: ''
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Access-Control-Allow-Credentials: 'true'
+            Content-Type: application/json
+            Date: 'Wed, 12 Apr 2023 08:10:42 GMT'
+            Content-Length: '505'
+            Connection: keep-alive
+        body: '{"uuid":"con_83b90e6a-d909-11ed-96e9-3369ce767b9d","customer_uuid":null,"customer_external_id":"X1234","data_source_uuid":"ds_80251880-bef5-11ed-a88b-db28feaa7eba","position":11,"first_name":"Bill","last_name":"Thompson","title":"CTO","email":"bill@example.com","phone":"+987654321","linked_in":"https://linkedin.com/bill-linkedin","twitter":"https://twitter.com/bill-twitter","notes":"New Heading\nBody\nFooter","custom":{"Facebook":"https://www.facebook.com/bill.thompson","date_of_birth":"1990-01-01"}}'
+    index: 0
+-
+    request:
+        method: DELETE
+        url: 'https://api.chartmogul.com/v1/contacts/con_83b90e6a-d909-11ed-96e9-3369ce767b9d'
+        headers:
+            Host: api.chartmogul.com
+            Authorization: hidden
+            content-type: application/json
+            user-agent: chartmogul-php/5.0.1/PHP-7.4
+            Expect: ''
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Access-Control-Allow-Credentials: 'true'
+            Content-Type: application/json
+            Date: 'Wed, 12 Apr 2023 08:10:43 GMT'
+            Content-Length: '2'
+            Connection: keep-alive
+        body: '{}'
+    index: 0
+-
+    request:
+        method: GET
+        url: 'https://api.chartmogul.com/v1/contacts/con_83b90e6a-d909-11ed-96e9-3369ce767b9d'
+        headers:
+            Host: api.chartmogul.com
+            Authorization: hidden
+            content-type: application/json
+            user-agent: chartmogul-php/5.0.1/PHP-7.4
+            Expect: ''
+    response:
+        status:
+            http_version: '1.1'
+            code: '404'
+            message: 'Not Found'
+        headers:
+            Content-Type: application/json
+            Date: 'Wed, 12 Apr 2023 08:10:44 GMT'
+            Content-Length: '111'
+            Connection: keep-alive
+        body: '{"code":404,"message":"Contact \"83b90e6a-d909-11ed-96e9-3369ce767b9d\" does not exist","param":"contact_uuid"}'
+    index: 0
