@@ -20,7 +20,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "ChartMogul\\Tests\\": "tests/Unit"
+            "ChartMogul\\Tests\\": "tests/Unit",
+            "ChartMogul\\IntegrationTests\\": "tests/Integration"
         }
     },
     "require": {
@@ -34,6 +35,13 @@
     "require-dev": {
         "php-http/mock-client": "^1.5",
         "guzzlehttp/psr7": "^1.0",
-        "http-interop/http-factory-guzzle": "^1.0"
+        "http-interop/http-factory-guzzle": "^1.0",
+        "php-vcr/php-vcr": "^1.5",
+        "php-http/curl-client": "^2.2"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": false
+        }
     }
 }

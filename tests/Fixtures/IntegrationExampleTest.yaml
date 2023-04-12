@@ -1,0 +1,24 @@
+
+-
+    request:
+        method: GET
+        url: 'https://api.chartmogul.com/v1/ping'
+        headers:
+            Host: api.chartmogul.com
+            Authorization: hidden
+            content-type: application/json
+            user-agent: chartmogul-php/5.0.1/PHP-7.4
+            Expect: ''
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Access-Control-Allow-Credentials: 'true'
+            Content-Type: application/json
+            Date: 'Wed, 12 Apr 2023 07:13:41 GMT'
+            Content-Length: '16'
+            Connection: keep-alive
+        body: '{"data":"pong!"}'
+    index: 0

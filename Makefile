@@ -11,7 +11,7 @@ composer:
 dependencies:
 	make -s composer update -- --prefer-dist
 test:
-	$(RUNNER) "phpunit --coverage-text --coverage-html ./coverage"
+	$(RUNNER) "XDEBUG_MODE=coverage phpunit --coverage-text --coverage-html ./coverage"
 phpunit:
 	$(RUNNER) "phpunit $(filter-out $@,$(MAKECMDGOALS))"
 php:

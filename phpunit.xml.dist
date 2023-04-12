@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" colors="true" stderr="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" stopOnFailure="false" verbose="true" bootstrap="tests/bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
-  <coverage>
-    <include>
+  <filter>
+    <whitelist>
       <directory suffix=".php">./src</directory>
-    </include>
-  </coverage>
+    </whitelist>
+  </filter>
   <testsuites>
     <testsuite name="ChartMogul PHP SDK Test Suite">
       <directory suffix="Test.php">./tests</directory>
