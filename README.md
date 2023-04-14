@@ -300,6 +300,76 @@ $customer = ChartMogul\Customer::retrieve($cus->uuid);
 $tags = $customer->removeCustomAttributes("age", "channel");
 ```
 
+**List Contacts from a customer**
+
+```php
+$customer = ChartMogul\Customer::retrieve($uuid);
+$contacts = $customer->contacts([
+  'cursor' => 'aabbccdd...'
+]);
+```
+
+**Create a Contact from a customer**
+
+```php
+$customer = ChartMogul\Customer::retrieve($uuid);
+$new_customer = $customer->createContact([
+  "data_source_uuid" => "ds_00000000-0000-0000-0000-000000000000",
+  "first_name" => "Adam",
+  "last_name" => "Smith",
+]);
+```
+
+### Contacts
+
+**List Contacts**
+
+```php
+$contacts = ChartMogul\Contacts::all([
+  'cursor' => 'aabbccdd...'
+]);
+```
+
+**Create a Contact**
+
+```php
+$new_contact = ChartMogul\Contact::create([
+  "customer_uuid" => "cus_00000000-0000-0000-0000-000000000000",
+  "data_source_uuid" => "ds_00000000-0000-0000-0000-000000000000",
+  "first_name" => "Adam",
+  "last_name" => "Smith",
+]);
+```
+
+**Get a Contact**
+
+```php
+$contact = ChartMogul\Contact::retrieve($uuid);
+```
+
+**Delete A Contact**
+
+```php
+$contact = ChartMogul\Contact::retrieve($uuid);
+$contact->destroy();
+```
+
+**Update a Contact**
+
+```php
+$updated_contact = ChartMogul\Contact::update([
+    'contact_uuid' => $uuid
+        ], [
+    'first_name' => 'New Name'
+]);
+```
+
+**Merge Contacts**
+
+```php
+$merged_contact = ChartMogul\Contact::merge($into_contact_uuid, $from_contact_uuid);
+```
+
 ### Plans
 
 **Import a Plan**
@@ -747,7 +817,7 @@ You need `Docker` installed locally to use our `Makefile` workflow.
 * Fork it.
 * Create your feature branch (`git checkout -b my-new-feature`).
 * Install dependencies: `make build`.
-* Fix bugs or add features. Make sure the changes pass the coding guidelines by runing PHP CodeSniffer: `make cs`. You can also run `make cbf` to fix some errors automatically.
+* Install Composer vendor dependencies with `make composer install`
 * Write tests for your new features. Run tests and check test coverage with `make test`.
 * To run any composer commands or php scripts, use `make composer <commands>` or `make php <script>`.
 * If all tests are passed, push to the branch (`git push origin my-new-feature`).

@@ -4,6 +4,7 @@ namespace ChartMogul;
 
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Resource\Collection;
+use ChartMogul\Resource\CollectionWithCursor;
 use ChartMogul\Http\ClientInterface;
 use ChartMogul\Service\UpdateTrait;
 use ChartMogul\Service\CreateTrait;
@@ -289,5 +290,31 @@ class Customer extends AbstractResource
             $this->invoices = CustomerInvoices::all($options)->invoices;
         }
         return $this->invoices;
+    }
+
+    /**
+     * Find all contacts in a customer
+     * @param  array  $options
+     * @return CollectionWithCursor
+     */
+    public function contacts(array $options = [])
+    {
+        $client = $this->getClient();
+        $result = $client->send("/v1/customers/".$this->uuid."/contacts", "GET", $options);
+
+        return Contact::fromArray($result, $client);
+    }
+
+    /**
+     * Creates a contact from the customer.
+     * @param  array  $data
+     * @return Contact
+     */
+    public function createContact(array $data = [])
+    {
+        $client = $this->getClient();
+        $result = $client->send("/v1/customers/".$this->uuid."/contacts", "POST", $data);
+
+        return new Contact($result, $client);
     }
 }
