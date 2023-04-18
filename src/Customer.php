@@ -20,7 +20,7 @@ use ChartMogul\Service\GetTrait;
  * @property-read string $email
  * @property-read string $status
  * @property-read string $customer_since
- * @property-read string $attributes
+ * @property-read array $attributes
  * @property-read string $address
  * @property-read string $mrr
  * @property-read string $arr
