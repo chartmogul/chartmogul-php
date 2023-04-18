@@ -30,7 +30,7 @@ class Client implements ClientInterface
     /**
     * @var string
     */
-    private $apiVersion = '5.0.1';
+    private $apiVersion = '5.1.0';
 
     /**
     * @var string
