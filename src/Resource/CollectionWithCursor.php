@@ -14,4 +14,8 @@ class CollectionWithCursor extends ArrayCollection
     * @var string
     */
     public $cursor;
+    /**
+    * @var string
+    */
+    public $customer_uuid;
 }

@@ -3,7 +3,7 @@
 namespace ChartMogul;
 
 use ChartMogul\Resource\AbstractResource;
-use ChartMogul\Resource\Collection;
+use ChartMogul\Resource\CollectionWithCursor;
 use ChartMogul\Http\ClientInterface;
 use ChartMogul\Resource\EntryTrait;
 use ChartMogul\Service\AllTrait;
@@ -56,7 +56,7 @@ class Customers extends AbstractResource
      * Search for Customers
      * @param  string                $email
      * @param  ClientInterface|null $client
-     * @return Collection|static
+     * @return CollectionWithCursor|static
      * @deprecated Use Customer.
      */
     public static function search($email, ClientInterface $client = null)

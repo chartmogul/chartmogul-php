@@ -3,7 +3,7 @@ namespace ChartMogul\Tests;
 
 use ChartMogul\Http\Client;
 use ChartMogul\Contact;
-use ChartMogul\Resource\Collection;
+use ChartMogul\Resource\CollectionWithCursor;
 use ChartMogul\Exceptions\ChartMogulException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
@@ -141,6 +141,7 @@ class ContactTest extends TestCase
         $this->assertEquals("", $uri->getQuery());
         $this->assertEquals("/v1/contacts", $uri->getPath());
 
+        $this->assertTrue($result instanceof CollectionWithCursor);
         $this->assertTrue($result[0] instanceof Contact);
         $this->assertEquals("cursor==", $result->cursor);
         $this->assertEquals(true, $result->has_more);

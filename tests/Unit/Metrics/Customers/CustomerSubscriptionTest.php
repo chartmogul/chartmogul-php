@@ -30,8 +30,7 @@ class CustomerSubscriptionTest extends TestCase
             }
         ],
         "has_more":false,
-        "per_page":200,
-        "page":1
+        "cursor": "cursor=="
     }';
 
 
@@ -49,6 +48,7 @@ class CustomerSubscriptionTest extends TestCase
 
         $this->assertTrue($result->entries[0] instanceof Subscription);
         $this->assertEquals($result->entries[0]->external_id, "sub_0001");
-
+        $this->assertEquals($result->cursor, "cursor==");
+        $this->assertEquals($result->has_more, false);
     }
 }

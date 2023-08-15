@@ -67,27 +67,27 @@ abstract class AbstractResource extends AbstractModel
     /**
      * @param array $data
      * @param ClientInterface|null $client
-     * @return Collection|static
+     * @return Collection|CollectionWithCursor|static
      */
     public static function fromArray(array $data, ClientInterface $client = null)
     {
         if (isset($data[static::ROOT_KEY])) {
-            if (static::ROOT_KEY != "subscription_events") {
-                $array = new Collection(array_map(function ($data) use ($client) {
-                    return static::fromArray($data, $client);
-                }, $data[static::ROOT_KEY]));
-                // The following are subject to change soon, so they are optional.
-                $array = static::allData($data, $array);
-            } else {
-                $array = new SubscriptionEventCollection(array_map(function ($data) use ($client) {
+            if (isset($data["cursor"])) {
+                $array = new CollectionWithCursor(array_map(function ($data) use ($client) {
                     return static::fromArray($data, $client);
                 }, $data[static::ROOT_KEY]));
 
-                if (isset($data["meta"])) {
-                    $meta = $data['meta'];
-                    $array->meta = static::metaData($meta);
-                }
+                $array->cursor = $data["cursor"];
+                $array->has_more = $data["has_more"];
+            } else {
+                $array = new Collection(array_map(function ($data) use ($client) {
+                    return static::fromArray($data, $client);
+                }, $data[static::ROOT_KEY]));
+                // The following are deprecated and we should not hit here, but
+                // let's keep it around just in case of regression on the server
+                $array = static::allData($data, $array);
             }
+
             return $array;
         }
 
@@ -113,27 +113,5 @@ abstract class AbstractResource extends AbstractModel
         }
 
         return $array;
-    }
-
-    public static function metaData(array $meta)
-    {
-        $array_meta = new MetaCollection();
-        if (isset($meta['page'])) {
-            $array_meta->page = $meta["page"];
-        }
-        if (isset($meta['next_key'])) {
-            $array_meta->next_key = $meta["next_key"];
-        }
-        if (isset($meta['prev_key'])) {
-            $array_meta->prev_key = $meta["prev_key"];
-        }
-        if (isset($meta['before_key'])) {
-            $array_meta->before_key = $meta["before_key"];
-        }
-        if (isset($meta['total_pages'])) {
-            $array_meta->total_pages = $meta["total_pages"];
-        }
-
-        return $array_meta;
     }
 }

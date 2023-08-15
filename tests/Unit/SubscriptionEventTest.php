@@ -5,11 +5,11 @@ use ChartMogul\Http\Client;
 use ChartMogul\SubscriptionEvent;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
-use ChartMogul\Exceptions\ChartMogulException;
+use ChartMogul\Resource\CollectionWithCursor;
 
 class SubscriptionEventTest extends TestCase
 {
-    const ALL_SUBSCRIPTION_EVENT_JSON = '{
+  const ALL_SUBSCRIPTION_EVENT_JSON = '{
     "subscription_events": [
       {
         "id": 73966836,
@@ -48,14 +48,8 @@ class SubscriptionEventTest extends TestCase
       	"amount_in_cents": 1000
       }
     ],
-    "meta":
-    {
-        "next_key": 67048503,
-        "prev_key": null,
-        "before_key": "2022-04-10T22:27:35.834Z",
-        "page": 1,
-        "total_pages": 166
-    }
+    "has_more": false,
+    "cursor": "cursor=="
   }';
   const RETRIEVE_SUBSCRIPTION_EVENT = '{
     "id": 73966836,
@@ -74,7 +68,6 @@ class SubscriptionEventTest extends TestCase
     "currency": "USD",
     "amount_in_cents": 1000
   }';
-
   const UPDATE_SUBSCRIPTION_EVENT = '{
     "id": 73966836,
     "data_source_uuid": "ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba",

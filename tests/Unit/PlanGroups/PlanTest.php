@@ -3,6 +3,7 @@ namespace ChartMogul\Tests;
 
 use ChartMogul\Http\Client;
 use ChartMogul\PlanGroups\Plan;
+use ChartMogul\Resource\CollectionWithCursor;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
 
@@ -27,8 +28,8 @@ class PlanGroupsPlanTest extends TestCase
         "external_id": "3011ead0-3633-0138-f020-62b37fb4c770"
       }
     ],
-    "current_page": 1,
-    "total_pages": 1
+    "cursor": "cursor==",
+    "has_more": false
   }';
 
     public function testAllPlanGroups()
@@ -51,11 +52,12 @@ class PlanGroupsPlanTest extends TestCase
       $this->assertEquals("/v1/plan_groups/$planGroupUuid/plans", $uri->getPath());
       $this->assertEquals("page=1&per_page=2", $uri->getQuery());
 
+      $this->assertTrue($result instanceof CollectionWithCursor);
       $this->assertEquals(2, sizeof($result));
       $this->assertTrue($result[0] instanceof Plan);
       $this->assertEquals("pl_2f7f4360-3633-0138-f01f-62b37fb4c770", $result[0]->uuid);
       $this->assertEquals("ds_424b9628-5405-11ea-ab18-e3a0f4f45097", $result[0]->data_source_uuid);
-      $this->assertEquals(1, $result->current_page);
-      $this->assertEquals(1, $result->total_pages);
+      $this->assertEquals("cursor==", $result->cursor);
+      $this->assertEquals(false, $result->has_more);
     }
 }

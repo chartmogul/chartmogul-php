@@ -27,8 +27,7 @@ class CustomerActivityTest extends TestCase
             }
         ],
         "has_more":false,
-        "per_page":200,
-        "page":1
+        "cursor": "cursor=="
     }';
 
 
@@ -46,6 +45,7 @@ class CustomerActivityTest extends TestCase
 
         $this->assertTrue($result->entries[0] instanceof Activity);
         $this->assertEquals($result->entries[0]->type, "new_biz");
-
+        $this->assertEquals("cursor==", $result->cursor);
+        $this->assertEquals(false, $result->has_more);
     }
 }

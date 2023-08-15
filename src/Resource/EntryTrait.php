@@ -2,7 +2,7 @@
 
 namespace ChartMogul\Resource;
 
-use ChartMogul\Resource\Collection;
+use ChartMogul\Resource\CollectionWithCursor;
 
 trait EntryTrait
 {
@@ -10,13 +10,11 @@ trait EntryTrait
 
     protected function setEntries(array $entries = [])
     {
-        $this->entries = new Collection($entries);
-
         $entryClass = static::getEntryClass();
 
         foreach ($this->entries as $key => $item) {
             if ($item instanceof $entryClass) {
-                //do nothing
+                $this->entries[$key] = $item;
             } elseif (is_array($item)) {
                 $this->entries[$key] = new $entryClass($item);
             }

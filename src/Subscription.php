@@ -3,7 +3,7 @@
 namespace ChartMogul;
 
 use ChartMogul\Resource\AbstractResource;
-use ChartMogul\Resource\Collection;
+use ChartMogul\Resource\CollectionWithCursor;
 use ChartMogul\Service\CreateTrait;
 use ChartMogul\Service\AllTrait;
 use ChartMogul\Http\ClientInterface;
@@ -90,7 +90,7 @@ class Subscription extends AbstractResource
     public static function fromArray(array $data, ClientInterface $client = null)
     {
         $result = parent::fromArray($data, $client);
-        if (isset($data["customer_uuid"]) && $result instanceof Collection) {
+        if (isset($data["customer_uuid"]) && $result instanceof CollectionWithCursor) {
             $result->customer_uuid = $data["customer_uuid"];
         }
         return $result;

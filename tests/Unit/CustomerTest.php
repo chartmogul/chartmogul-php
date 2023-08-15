@@ -4,7 +4,7 @@ namespace ChartMogul\Tests;
 use ChartMogul\Http\Client;
 use ChartMogul\Customer;
 use ChartMogul\Contact;
-use ChartMogul\Resource\Collection;
+use ChartMogul\Resource\CollectionWithCursor;
 use ChartMogul\Exceptions\ChartMogulException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
@@ -153,8 +153,7 @@ class CustomerTest extends TestCase
         }
       ],
       "has_more":false,
-      "per_page":200,
-      "page":1
+      "cursor": "cursor=="
     }';
 
     const LIST_CONTACTS_JSON= '{
@@ -221,6 +220,7 @@ class CustomerTest extends TestCase
         $this->assertTrue($result instanceof Customer);
         $this->assertEquals($uuid, $result->uuid);
     }
+
     public function testCreateCustomer()
     {
         $stream = Psr7\stream_for(CustomerTest::CREATE_CUSTOMER_JSON);
@@ -245,11 +245,11 @@ class CustomerTest extends TestCase
 
         $this->assertTrue($result instanceof Customer);
     }
-    public function testSearchCustomer(){
 
+    public function testSearchCustomer()
+    {
         $stream = Psr7\stream_for(CustomerTest::SEARCH_CUSTOMER_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
-
 
         $email = "bob@examplecompany.com";
         $result = Customer::search($email, $cmClient);
@@ -260,12 +260,12 @@ class CustomerTest extends TestCase
         $this->assertEquals("email=".urlencode($email), $uri->getQuery());
         $this->assertEquals("/v1/customers/search", $uri->getPath());
 
-        $this->assertTrue($result instanceof Collection);
+        $this->assertTrue($result instanceof CollectionWithCursor);
         $this->assertTrue($result[0] instanceof Customer);
         $this->assertEquals($result->has_more, false);
-        $this->assertEquals($result->page, 1);
-        $this->assertEquals($result->per_page, 200);
+        $this->assertEquals($result->cursor, "cursor==");
     }
+
     public function testConnectSubscriptions()
     {
         $stream = Psr7\stream_for('{}');
@@ -293,8 +293,8 @@ class CustomerTest extends TestCase
         $this->assertEquals($result, true);
     }
 
-    public function testFindByExternalId(){
-
+    public function testFindByExternalId()
+    {
         $stream = Psr7\stream_for(CustomerTest::SEARCH_CUSTOMER_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
@@ -327,9 +327,9 @@ class CustomerTest extends TestCase
       $this->assertTrue($result[0] instanceof Contact);
       $this->assertEquals("cursor==", $result->cursor);
       $this->assertEquals(true, $result->has_more);
-  }
+    }
 
-  public function testCreateCustomersContact()
+    public function testCreateCustomersContact()
     {
       $stream = Psr7\stream_for(CustomerTest::CONTACT_JSON);
       list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
@@ -361,5 +361,5 @@ class CustomerTest extends TestCase
 
       $this->assertTrue($result instanceof Contact);
       $this->assertEquals("con_00000000-0000-0000-0000-000000000000", $result->uuid);
-  }
+    }
 }

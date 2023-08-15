@@ -4,6 +4,7 @@ namespace ChartMogul\Tests;
 use ChartMogul\Http\Client;
 use ChartMogul\Metrics;
 use ChartMogul\Metrics\Activity;
+use ChartMogul\Resource\CollectionWithCursor;
 use ChartMogul\Exceptions\ChartMogulException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
@@ -31,8 +32,7 @@ class ActivityTest extends TestCase
             }
         ],
         "has_more":false,
-        "per_page":200,
-        "page":1
+        "cursor": "cursor=="
     }';
 
 
@@ -50,6 +50,7 @@ class ActivityTest extends TestCase
 
         $this->assertTrue($result->entries[0] instanceof Activity);
         $this->assertEquals($result->entries[0]->type, "new_biz");
-
+        $this->assertEquals($result->has_more, false);
+        $this->assertEquals($result->cursor, "cursor==");
     }
 }

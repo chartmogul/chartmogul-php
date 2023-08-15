@@ -305,7 +305,7 @@ $tags = $customer->removeCustomAttributes("age", "channel");
 ```php
 $customer = ChartMogul\Customer::retrieve($uuid);
 $contacts = $customer->contacts([
-  'cursor' => 'aabbccdd...'
+  'cursor' => 'cursor=='
 ]);
 ```
 
@@ -326,7 +326,7 @@ $new_customer = $customer->createContact([
 
 ```php
 $contacts = ChartMogul\Contacts::all([
-  'cursor' => 'aabbccdd...'
+  'cursor' => 'cursor=='
 ]);
 ```
 
@@ -394,7 +394,7 @@ ChartMogul\Plan::retrieve($uuid);
 
 ```php
 $plans = ChartMogul\Plan::all([
-  'page' => 1
+  'per_page' => 1
 ]);
 ```
 
@@ -481,7 +481,7 @@ ChartMogul\PlanGroup::retrieve($uuid);
 
 ```php
 $plan_groups = ChartMogul\PlanGroup::all([
-  'page' => 1
+  'per_page' => 10
 ]);
 ```
 
@@ -571,8 +571,8 @@ $ci = ChartMogul\CustomerInvoices::create([
 ```php
 $ci = ChartMogul\CustomerInvoices::all([
     'customer_uuid' => $cus->uuid,
-    'page' => 1,
-    'per_page' => 200
+    'per_page' => 200,
+    'cursor' => 'cursor=='
 ]);
 ```
 
@@ -581,8 +581,8 @@ $ci = ChartMogul\CustomerInvoices::all([
 ```php
 $invoices = ChartMogul\Invoice::all([
     'external_id' => 'my_invoice',
-    'page' => 1,
-    'per_page' => 200
+    'per_page' => 200,
+    'cursor' => 'cursor=='
 ]);
 ```
 

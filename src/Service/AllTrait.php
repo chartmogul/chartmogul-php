@@ -3,7 +3,7 @@
 namespace ChartMogul\Service;
 
 use ChartMogul\Http\ClientInterface;
-use ChartMogul\Resource\Collection;
+use ChartMogul\Resource\CollectionWithCursor;
 
 /**
 * @codeCoverageIgnore
@@ -14,7 +14,7 @@ trait AllTrait
      * Returns a list of objects
      * @param  array $data
      * @param  ClientInterface|null $client 0
-     * @return Collection|self[]|self
+     * @return CollectionWithCursor|self[]|self
 
      */
     public static function all(array $data = [], ClientInterface $client = null)

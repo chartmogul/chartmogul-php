@@ -8,9 +8,8 @@ use ChartMogul\Service\AllTrait;
 use ChartMogul\Service\CreateTrait;
 use ChartMogul\Service\UpdateWithParamsTrait;
 use ChartMogul\Service\DestroyWithParamsTrait;
-use ChartMogul\Resource\Collection;
+use ChartMogul\Resource\CollectionWithCursor;
 use ChartMogul\Resource\SubscriptionEventCollection;
-use ChartMogul\Resource\MetaCollection;
 
 class SubscriptionEvent extends AbstractResource
 {

@@ -3,7 +3,6 @@
 namespace ChartMogul;
 
 use ChartMogul\Resource\AbstractResource;
-use ChartMogul\Resource\Collection;
 use ChartMogul\Resource\CollectionWithCursor;
 use ChartMogul\Http\ClientInterface;
 use ChartMogul\Service\UpdateTrait;
@@ -115,7 +114,7 @@ class Customer extends AbstractResource
         $response = self::all($externalId, $client);
 
         if (
-            $response instanceof Collection
+            $response instanceof CollectionWithCursor
             && !$response->isEmpty()
         ) {
             return $response->first();
@@ -128,7 +127,7 @@ class Customer extends AbstractResource
      * Search for Customers
      * @param  string                $email
      * @param  ClientInterface|null $client
-     * @return Collection|static
+     * @return CollectionWithCursor|static
      */
     public static function search($email, ClientInterface $client = null)
     {
@@ -265,7 +264,7 @@ class Customer extends AbstractResource
     /**
      * Find a Customer Subscriptions
      * @param  array  $options
-     * @return Collection | Customer
+     * @return CollectionWithCursor | Customer
      * @deprecated Use Import\Subscription.
      */
     public function subscriptions(array $options = [])
@@ -280,7 +279,7 @@ class Customer extends AbstractResource
     /**
      * Find customer's invoices
      * @param  array  $options
-     * @return Collection | Customer
+     * @return CollectionWithCursor | Customer
      * @deprecated Use Import\CustomerInvoices.
      */
     public function invoices(array $options = [])

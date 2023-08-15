@@ -4,6 +4,7 @@ namespace ChartMogul\Tests;
 use ChartMogul\Http\Client;
 use ChartMogul\PlanGroup;
 use ChartMogul\Exceptions\ChartMogulException;
+use ChartMogul\Resource\CollectionWithCursor;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
 use ChartMogul\Exceptions\NotFoundException;
@@ -16,8 +17,8 @@ class PlanGroupTest extends TestCase
         "uuid": "plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab",
         "plans_count": 2
       }],
-      "current_page": 2,
-      "total_pages": 3
+      "cursor": "cursor==",
+      "has_more": false
     }';
     const RETRIEVE_PLAN_GROUP = '{
       "name": "My plan group",
@@ -40,11 +41,12 @@ class PlanGroupTest extends TestCase
       $this->assertEquals("page=2&per_page=1", $uri->getQuery());
       $this->assertEquals("/v1/plan_groups", $uri->getPath());
 
+      $this->assertTrue($result instanceof CollectionWithCursor);
       $this->assertEquals(1, sizeof($result));
       $this->assertTrue($result[0] instanceof PlanGroup);
       $this->assertEquals("plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab", $result[0]->uuid);
-      $this->assertEquals(2, $result->current_page);
-      $this->assertEquals(3, $result->total_pages);
+      $this->assertEquals("cursor==", $result->cursor);
+      $this->assertEquals(false, $result->has_more);
     }
 
     public function testDestroyPlanGroup()

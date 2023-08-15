@@ -5,6 +5,7 @@ use ChartMogul\Http\Client;
 use ChartMogul\Invoice;
 use ChartMogul\CustomerInvoices;
 use ChartMogul\Exceptions\ChartMogulException;
+use ChartMogul\Resource\CollectionWithCursor;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
 use ChartMogul\Exceptions\NotFoundException;
@@ -65,8 +66,8 @@ class InvoiceTest extends TestCase
           ]
         }
       ],
-      "current_page": 2,
-      "total_pages": 3
+      "cursor": "cursor==",
+      "has_more": true
     }';
 
     const RETRIEVE_INVOICE_JSON = '{
@@ -146,11 +147,12 @@ class InvoiceTest extends TestCase
         $this->assertEquals("page=2&external_id=INV0001", $uri->getQuery());
         $this->assertEquals("/v1/invoices", $uri->getPath());
 
+        $this->assertTrue($result instanceof CollectionWithCursor);
         $this->assertEquals(1, sizeof($result));
         $this->assertTrue($result[0] instanceof Invoice);
         $this->assertEquals("cus_f466e33d-ff2b-4a11-8f85-417eb02157a7", $result[0]->customer_uuid);
-        $this->assertEquals(2, $result->current_page);
-        $this->assertEquals(3, $result->total_pages);
+        $this->assertEquals("cursor==", $result->cursor);
+        $this->assertEquals(true, $result->has_more);
     }
 
     public function testDestroyInvoice()

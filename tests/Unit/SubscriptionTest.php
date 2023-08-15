@@ -22,8 +22,8 @@ class SubscriptionTest extends TestCase
             "data_source_uuid": "ds_637442a6-8319-11e7-a280-1f28ec01465c"
         }
     ],
-    "current_page": 2,
-    "total_pages": 3
+    "cursor": "cursor==",
+    "has_more": false
 }';
 
     const CANCEL_SUBSCRIPTION = '{
@@ -49,8 +49,8 @@ class SubscriptionTest extends TestCase
         $this->assertEquals("cus_f466e33d-ff2b-4a11-8f85-417eb02157a7", $result->customer_uuid);
         $this->assertEquals("sub_dd169c42-e127-4637-8b8f-a239b248e3cd", $result[0]->uuid);
         $this->assertEquals("set_001", $result[0]->subscription_set_external_id);
-        $this->assertEquals(2, $result->current_page);
-        $this->assertEquals(3, $result->total_pages);
+        $this->assertEquals("cursor==", $result->cursor);
+        $this->assertEquals(false, $result->has_more);
     }
     public function testCancel(){
         $stream = Psr7\stream_for(SubscriptionTest::CANCEL_SUBSCRIPTION);
