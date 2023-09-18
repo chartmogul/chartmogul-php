@@ -20,7 +20,7 @@ class PlanTest extends TestCase
         "data_source_uuid": "ds_d02c7c42-2d1d-11ee-8e58-3fa5919351b4",
         "external_id": "plan_001"
       }],
-      "cursor": "cursor==",
+      "cursor": "MjAyMy0wNy0yO",
       "has_more": false
     }';
     const RETRIEVE_PLAN = '{
@@ -45,21 +45,21 @@ class PlanTest extends TestCase
       $stream = Psr7\stream_for(PlanTest::ALL_PLANS_JSON);
       list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-      $query = ["page" => 2, "per_page" => 1];
+      $query = ["cursor" => "MjAyMy0wNy0yO", "per_page" => 1];
 
       $result = Plan::all($query, $cmClient);
       $request = $mockClient->getRequests()[0];
 
       $this->assertEquals("GET", $request->getMethod());
       $uri = $request->getUri();
-      $this->assertEquals("page=2&per_page=1", $uri->getQuery());
+      $this->assertEquals("cursor=MjAyMy0wNy0yO&per_page=1", $uri->getQuery());
       $this->assertEquals("/v1/plans", $uri->getPath());
 
       $this->assertTrue($result instanceof CollectionWithCursor);
       $this->assertEquals(1, sizeof($result));
       $this->assertTrue($result[0] instanceof Plan);
       $this->assertEquals("pl_93756449-aaea-4662-9e3a-004e52f14adc", $result[0]->uuid);
-      $this->assertEquals("cursor==", $result->cursor);
+      $this->assertEquals("MjAyMy0wNy0yO", $result->cursor);
       $this->assertEquals(false, $result->has_more);
     }
 

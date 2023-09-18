@@ -134,7 +134,6 @@ ChartMogul\Customer::create([
 
 ```php
 ChartMogul\Customer::all([
-  'page' => 1,
   'data_source_uuid' => $ds->uuid
 ]);
 ```
@@ -785,6 +784,7 @@ The library throws following Exceptions:
 - `ChartMogul\Exceptions\NotFoundException`
 - `ChartMogul\Exceptions\ResourceInvalidException`
 - `ChartMogul\Exceptions\SchemaInvalidException`
+- `ChartMogul\Exceptions\InvalidParamException`
 
 The following table describes the public methods of the error object.
 

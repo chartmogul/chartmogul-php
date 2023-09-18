@@ -163,6 +163,12 @@ class Client implements ClientInterface
     {
         $query = '';
         if ($method === 'GET') {
+            if (array_key_exists('page', $data)) {
+                throw new \ChartMogul\Exceptions\InvalidParamException(
+                    "'page' parameter is deprecated."
+                );
+            }
+
             $query = http_build_query($data);
             $data = [];
         }

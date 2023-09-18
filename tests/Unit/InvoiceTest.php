@@ -66,7 +66,7 @@ class InvoiceTest extends TestCase
           ]
         }
       ],
-      "cursor": "cursor==",
+      "cursor": "MjAyMy0wNy0yO",
       "has_more": true
     }';
 
@@ -138,20 +138,20 @@ class InvoiceTest extends TestCase
         $stream = Psr7\stream_for(InvoiceTest::ALL_INVOICE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-        $query = ["page" => 2, "external_id" => "INV0001"];
+        $query = ["cursor" => "MjAyMy0wNy0yO", "external_id" => "INV0001"];
         $result = Invoice::all($query, $cmClient);
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals("GET", $request->getMethod());
         $uri = $request->getUri();
-        $this->assertEquals("page=2&external_id=INV0001", $uri->getQuery());
+        $this->assertEquals("cursor=MjAyMy0wNy0yO&external_id=INV0001", $uri->getQuery());
         $this->assertEquals("/v1/invoices", $uri->getPath());
 
         $this->assertTrue($result instanceof CollectionWithCursor);
         $this->assertEquals(1, sizeof($result));
         $this->assertTrue($result[0] instanceof Invoice);
         $this->assertEquals("cus_f466e33d-ff2b-4a11-8f85-417eb02157a7", $result[0]->customer_uuid);
-        $this->assertEquals("cursor==", $result->cursor);
+        $this->assertEquals("MjAyMy0wNy0yO", $result->cursor);
         $this->assertEquals(true, $result->has_more);
     }
 

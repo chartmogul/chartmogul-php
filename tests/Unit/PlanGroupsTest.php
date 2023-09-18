@@ -17,7 +17,7 @@ class PlanGroupTest extends TestCase
         "uuid": "plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab",
         "plans_count": 2
       }],
-      "cursor": "cursor==",
+      "cursor": "MjAyMy0wNy0yO",
       "has_more": false
     }';
     const RETRIEVE_PLAN_GROUP = '{
@@ -31,21 +31,21 @@ class PlanGroupTest extends TestCase
       $stream = Psr7\stream_for(PlanGroupTest::ALL_PLAN_GROUPS_JSON);
       list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-      $query = ["page" => 2, "per_page" => 1];
+      $query = ["cursor" => "MjAyMy0wNy0yO", "per_page" => 1];
 
       $result = PlanGroup::all($query, $cmClient);
       $request = $mockClient->getRequests()[0];
 
       $this->assertEquals("GET", $request->getMethod());
       $uri = $request->getUri();
-      $this->assertEquals("page=2&per_page=1", $uri->getQuery());
+      $this->assertEquals("cursor=MjAyMy0wNy0yO&per_page=1", $uri->getQuery());
       $this->assertEquals("/v1/plan_groups", $uri->getPath());
 
       $this->assertTrue($result instanceof CollectionWithCursor);
       $this->assertEquals(1, sizeof($result));
       $this->assertTrue($result[0] instanceof PlanGroup);
       $this->assertEquals("plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab", $result[0]->uuid);
-      $this->assertEquals("cursor==", $result->cursor);
+      $this->assertEquals("MjAyMy0wNy0yO", $result->cursor);
       $this->assertEquals(false, $result->has_more);
     }
 

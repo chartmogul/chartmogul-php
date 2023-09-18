@@ -40,7 +40,6 @@ class PlanGroupsPlanTest extends TestCase
       $planGroupUuid = 'plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab';
       $query = [
         "plan_group_uuid" => $planGroupUuid,
-        "page" => 1,
         "per_page" => 2
       ];
 
@@ -50,7 +49,7 @@ class PlanGroupsPlanTest extends TestCase
       $this->assertEquals("GET", $request->getMethod());
       $uri = $request->getUri();
       $this->assertEquals("/v1/plan_groups/$planGroupUuid/plans", $uri->getPath());
-      $this->assertEquals("page=1&per_page=2", $uri->getQuery());
+      $this->assertEquals("per_page=2", $uri->getQuery());
 
       $this->assertTrue($result instanceof CollectionWithCursor);
       $this->assertEquals(2, sizeof($result));

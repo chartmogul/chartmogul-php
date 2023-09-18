@@ -138,6 +138,28 @@ class ClientTest extends TestCase
         $this->assertEquals($request->getBody()->getContents(), $rBody);
     }
 
+    public static function invalidProviderSend()
+    {
+        return [
+            [
+                //$path, $method, $data
+                'foo',   'GET',   ['page' => 1]
+            ]
+        ];
+    }
+    /**
+     * @dataProvider invalidProviderSend
+     */
+    public function testInvalidSend($path, $method, $data)
+    {
+        $this->expectException(\ChartMogul\Exceptions\ChartMogulException::class);
+        $mock = $this->getMockBuilder(Client::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods([])
+            ->getMock();
+        $mock->send($path, $method, $data);
+    }
+
     public function testNoRetry()
     {
         $this->expectException(ChartMogulException::class);
