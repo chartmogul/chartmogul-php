@@ -67,51 +67,21 @@ abstract class AbstractResource extends AbstractModel
     /**
      * @param array $data
      * @param ClientInterface|null $client
-     * @return Collection|CollectionWithCursor|static
+     * @return CollectionWithCursor|static
      */
     public static function fromArray(array $data, ClientInterface $client = null)
     {
         if (isset($data[static::ROOT_KEY])) {
-            if (isset($data["cursor"])) {
-                $array = new CollectionWithCursor(array_map(function ($data) use ($client) {
-                    return static::fromArray($data, $client);
-                }, $data[static::ROOT_KEY]));
+            $array = new CollectionWithCursor(array_map(function ($data) use ($client) {
+                return static::fromArray($data, $client);
+            }, $data[static::ROOT_KEY]));
 
-                $array->cursor = $data["cursor"];
-                $array->has_more = $data["has_more"];
-            } else {
-                $array = new Collection(array_map(function ($data) use ($client) {
-                    return static::fromArray($data, $client);
-                }, $data[static::ROOT_KEY]));
-                // The following are deprecated and we should not hit here, but
-                // let's keep it around just in case of regression on the server
-                $array = static::allData($data, $array);
-            }
+            $array->cursor = $data["cursor"];
+            $array->has_more = $data["has_more"];
 
             return $array;
+        } else {
+            return new static($data, $client);
         }
-
-        return new static($data, $client);
-    }
-
-    public static function allData(array $data, Collection $array)
-    {
-        if (isset($data["current_page"])) {
-            $array->current_page = $data["current_page"];
-        }
-        if (isset($data["total_pages"])) {
-            $array->total_pages = $data["total_pages"];
-        }
-        if (isset($data["has_more"])) {
-            $array->has_more = $data["has_more"];
-        }
-        if (isset($data["per_page"])) {
-            $array->per_page = $data["per_page"];
-        }
-        if (isset($data["page"])) {
-            $array->page = $data["page"];
-        }
-
-        return $array;
     }
 }

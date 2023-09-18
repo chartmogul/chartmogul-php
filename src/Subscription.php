@@ -105,7 +105,7 @@ class Subscription extends AbstractResource
     public function connect($customerUUID, array $subscriptions)
     {
         $arr = [];
-        for ($i=0; $i < count($subscriptions); $i++) {
+        for ($i = 0; $i < count($subscriptions); $i++) {
             $arr[$i] = $subscriptions[$i];
             if ($subscriptions[$i] instanceof Subscription) {
                 $arr[$i] = $subscriptions[$i]->toArray();
