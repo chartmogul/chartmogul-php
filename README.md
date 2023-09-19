@@ -29,11 +29,11 @@
 
 ## Installation
 
-This library requires php 5.5 or above.
+This library requires php `8.0` or above.
 
 For older php versions (`< 7.4`) use `1.x.x` releases of this library.
 
-For php version `>=7.4` use the latest releases (`5.x.x`) of the library
+For php version `>=7.4` but `< 8.0` use the `5.x.x` releases of the library.
 
 
 The library doesn't depend on any concrete HTTP client libraries. Follow the instructions [here](http://docs.php-http.org/en/latest/httplug/users.html) to find out how to include a HTTP client.

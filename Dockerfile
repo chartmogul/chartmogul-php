@@ -5,10 +5,7 @@ RUN mv composer.phar /usr/local/bin/composer
 RUN chmod a+x /usr/local/bin/composer
 RUN apt-get update && apt-get  install -y git unzip
 ARG VERSION
-RUN if [ "$VERSION" = "7.4" ]; then \
-        composer global require phpunit/phpunit:^8 && \
-        pecl install xdebug-2.9.8; \
-    elif [ "$VERSION" = "8.0" ]; then \
+RUN if [ "$VERSION" = "8.0" ]; then \
         composer global require phpunit/phpunit:^9 && \
         pecl install xdebug-3.0.0; \
     elif [ "$VERSION" = "8.1" ]; then \

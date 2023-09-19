@@ -13,3 +13,10 @@ and this project adheres to [Semantic Versioning].
 ### Added
 - Support for cursor based pagination to `::all()` endpoints.
 - Changelog and 6.0.0 upgrade instructions.
+- PHP 8.2 support #112
+
+### Fixed
+- Undefined constant `ChartMogul\DEFAULT_MAX_RETRIES` #112
+
+### Removed
+- Support for PHP 7.x as 7.4 reached EOL in 2022.

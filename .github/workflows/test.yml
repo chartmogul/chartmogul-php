@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['7.4', '8.0', '8.1']
+        php-versions: ['8.0', '8.1', '8.2']
         phpunit-versions: ['9.6']
     steps:
       - uses: actions/checkout@v2
@@ -70,7 +70,7 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         if: |
-            matrix.php-versions == '7.4' && success() && 
+            matrix.php-versions == '8.0' && success() &&
             github.event.pull_request.head.repo.full_name == 'chartmogul/chartmogul-php'
         run: ./cc-test-reporter after-build
 
@@ -84,7 +84,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.0'
           tools: cs2pr, php-cs-fixer
 
       - name: "Run php-cs-fixer"
@@ -99,7 +99,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.0'
           tools: phpstan, cs2pr
 
       - name: Install dependencies

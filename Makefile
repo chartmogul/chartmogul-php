@@ -3,7 +3,6 @@ RUNNER=docker run -it --rm --workdir "/src" -v "$(PWD):/src" -v "$(HOME)/.compos
 .PHONY: build composer php
 
 build:
-	@docker build --build-arg VERSION=7.4 --tag=chartmogulphp74 .
 	@docker build --build-arg VERSION=8.0 --tag=chartmogulphp80 .
 	@docker build --build-arg VERSION=8.1 --tag=chartmogulphp81 .
 	@docker build --build-arg VERSION=8.2 --tag=chartmogulphp82 .
