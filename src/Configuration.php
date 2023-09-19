@@ -2,14 +2,14 @@
 
 namespace ChartMogul;
 
-const DEFAULT_MAX_RETRIES = 20;
-
 /**
  *
  * @codeCoverageIgnore
  */
 class Configuration
 {
+	const DEFAULT_MAX_RETRIES = 20;
+
     /**
      * @var null|Configuration
      */
@@ -23,13 +23,13 @@ class Configuration
      * @var int
      * maximum retry attempts
      */
-    private $retries = DEFAULT_MAX_RETRIES;
+    private $retries = self::DEFAULT_MAX_RETRIES;
 
     /**
      * Creates new config object from apiKey
      * @param string $apiKey
      */
-    public function __construct($apiKey = '', $retries = DEFAULT_MAX_RETRIES)
+    public function __construct($apiKey = '', $retries = self::DEFAULT_MAX_RETRIES)
     {
         $this->apiKey = $apiKey;
         $this->retries = $retries;
