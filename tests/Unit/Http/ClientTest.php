@@ -3,30 +3,30 @@ namespace ChartMogul\Tests;
 
 use ChartMogul\Http\Client;
 use ChartMogul\Exceptions\ChartMogulException;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Psr7;
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7\Response;
 use Http\Client\Exception\NetworkException;
 use Http\Client\HttpClient;
-use Http\Discovery\MessageFactoryDiscovery;
 
 class ClientTest extends TestCase
 {
-    public function setUp(): void
-    {
-        parent::setUp();
-        $this->emptyStream = Psr7\stream_for('{}');
-    }
+	public function setUp(): void
+	{
+		parent::setUp();
+		$psr17Factory = new Psr17Factory();
+		$this->emptyStream = $psr17Factory->createStream('{}');
+	}
 
-    public function testConstructor()
-    {
-        $configStub = $this->getMockBuilder(\ChartMogul\Configuration::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+	public function testConstructor()
+	{
+		$configStub = $this->getMockBuilder(\ChartMogul\Configuration::class)
+		                   ->disableOriginalConstructor()
+		                   ->getMock();
 
-        $client = new Client($configStub);
-        $this->assertEquals($configStub, $client->getConfiguration());
-        $this->assertInstanceOf(HttpClient::class, $client->getHttpClient());
-    }
+		$client = new Client($configStub);
+		$this->assertEquals($configStub, $client->getConfiguration());
+		$this->assertInstanceOf(HttpClient::class, $client->getHttpClient());
+	}
 
     public function testGetUserAgent()
     {
@@ -54,22 +54,17 @@ class ClientTest extends TestCase
     }
 
 
-    public function testHandleResponseOK()
-    {
-        $mock = $this->getMockBuilder(Client::class)
-            ->disableOriginalConstructor()
-            ->onlyMethods([])
-            ->getMock();
+	public function testHandleResponseOK()
+	{
+		$mock = $this->getMockBuilder(Client::class)
+		             ->disableOriginalConstructor()
+		             ->onlyMethods([])
+		             ->getMock();
 
-        $res = MessageFactoryDiscovery::find()->createResponse(
-            200,
-            null,
-            [],
-            '{"result": "json"}'
-        );
-        $data = $mock->handleResponse($res);
-        $this->assertEquals($data, ['result' => 'json']);
-    }
+		$res = new Response(200, [], '{"result": "json"}');
+		$data = $mock->handleResponse($res);
+		$this->assertEquals($data, ['result' => 'json']);
+	}
 
     public static function provider()
     {
@@ -86,22 +81,17 @@ class ClientTest extends TestCase
     /**
      * @dataProvider provider
      */
-    public function testHandleResponseExceptions($status, $exception)
-    {
-        $this->expectException($exception);
-        $mock = $this->getMockBuilder(Client::class)
-            ->disableOriginalConstructor()
-            ->onlyMethods([])
-            ->getMock();
+	public function testHandleResponseExceptions($status, $exception)
+	{
+		$this->expectException($exception);
+		$mock = $this->getMockBuilder(Client::class)
+		             ->disableOriginalConstructor()
+		             ->onlyMethods([])
+		             ->getMock();
 
-        $res = MessageFactoryDiscovery::find()->createResponse(
-            $status,
-            null,
-            [],
-            'plain text'
-        );
-        $mock->handleResponse($res);
-    }
+		$res = new Response($status, [], 'plain text');
+		$mock->handleResponse($res);
+	}
 
     public static function providerSend()
     {
