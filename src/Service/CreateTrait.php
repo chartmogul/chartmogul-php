@@ -11,6 +11,7 @@ trait CreateTrait
 {
     /**
      * Create a Resource
+     *
      * @param  array                $data
      * @param  ClientInterface|null $client
      * @return self

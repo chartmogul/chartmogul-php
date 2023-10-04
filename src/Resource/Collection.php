@@ -7,27 +7,31 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Collection extends ArrayCollection
 {
     /**
-    * @var int
-    */
+     * @var int
+     */
     public $current_page;
     /**
-    * @var int
-    */
+     * @var int
+     */
     public $per_page;
     /**
-    * @var int
-    */
+     * @var int
+     */
     public $page;
     /**
-    * @var int
-    */
+     * @var int
+     */
     public $has_more;
     /**
-    * @var int
-    */
+     * @var string
+     */
+    public $cursor;
+    /**
+     * @var int
+     */
     public $total_pages;
     /**
-    * @var string
-    */
+     * @var string
+     */
     public $customer_uuid;
 }

@@ -519,7 +519,7 @@ $plan_group_plans = ChartMogul\PlanGroups\Plan::all(
 $plan = ChartMogul\Plan::all()->first();
 $cus = ChartMogul\Customer::all()->first();
 
-$line_itme_1 = new ChartMogul\LineItems\Subscription([
+$line_item_1 = new ChartMogul\LineItems\Subscription([
     'subscription_external_id' => "sub_0001",
     'subscription_set_external_id' => 'set_0001',
     'plan_uuid' =>  $plan->uuid,
@@ -534,7 +534,7 @@ $line_itme_1 = new ChartMogul\LineItems\Subscription([
     'discount_description' => "5 EUR"
 ]);
 
-$line_itme_2 = new ChartMogul\LineItems\OneTime([
+$line_item_2 = new ChartMogul\LineItems\OneTime([
     "description" => "Setup Fees",
     "amount_in_cents" => 2500,
     "quantity" => 1,
@@ -555,7 +555,7 @@ $invoice = new ChartMogul\Invoice([
     'date' =>  "2015-11-01 00:00:00",
     'currency' => 'USD',
     'due_date' => "2015-11-15 00:00:00",
-    'line_items' => [$line_itme_1, $line_itme_2],
+    'line_items' => [$line_item_1, $line_item_2],
     'transactions' => [$transaction]
 ]);
 

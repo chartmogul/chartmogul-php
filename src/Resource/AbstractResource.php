@@ -8,31 +8,31 @@ use ChartMogul\Http\ClientInterface;
 abstract class AbstractResource extends AbstractModel
 {
     /**
-    * @ignore
-    */
+     * @ignore
+     */
     public const ROOT_KEY = null;
 
     /**
-    * @ignore
-    */
+     * @ignore
+     */
     public const RESOURCE_PATH = null;
 
     /**
-    * @ignore
-    */
+     * @ignore
+     */
     public const RESOURCE_NAME = null;
 
 
     /**
-    * @var ClientInterface
-    */
+     * @var ClientInterface
+     */
     private $client = null;
 
     /**
      * @codeCoverageIgnore
-     * @param array|array $attr
-     * @param ClientInterface|null $client
-     * @return self
+     * @param              array|array          $attr
+     * @param              ClientInterface|null $client
+     * @return             self
      */
     public function __construct(array $attr = [], ClientInterface $client = null)
     {
@@ -45,7 +45,7 @@ abstract class AbstractResource extends AbstractModel
     }
 
     /**
-     * @return ClientInterface
+     * @return             ClientInterface
      * @codeCoverageIgnore
      */
     public function getClient()
@@ -54,8 +54,8 @@ abstract class AbstractResource extends AbstractModel
     }
 
     /**
-     * @param ClientInterface $client
-     * @return self
+     * @param              ClientInterface $client
+     * @return             self
      * @codeCoverageIgnore
      */
     public function setClient(ClientInterface $client)
@@ -65,28 +65,35 @@ abstract class AbstractResource extends AbstractModel
     }
 
     /**
-     * @param array $data
-     * @param ClientInterface|null $client
+     * @param  array                $data
+     * @param  ClientInterface|null $client
      * @return Collection|static
      */
     public static function fromArray(array $data, ClientInterface $client = null)
     {
         if (isset($data[static::ROOT_KEY])) {
             if (static::ROOT_KEY != "subscription_events") {
-                $array = new Collection(array_map(function ($data) use ($client) {
-                    return static::fromArray($data, $client);
-                }, $data[static::ROOT_KEY]));
+                $array = new Collection(
+                    array_map(
+                        function ($data) use ($client) {
+                            return static::fromArray($data, $client);
+                        },
+                        $data[static::ROOT_KEY]
+                    )
+                );
                 // The following are subject to change soon, so they are optional.
                 $array = static::allData($data, $array);
             } else {
-                $array = new SubscriptionEventCollection(array_map(function ($data) use ($client) {
-                    return static::fromArray($data, $client);
-                }, $data[static::ROOT_KEY]));
+                $array = new SubscriptionEventCollection(
+                    array_map(
+                        function ($data) use ($client) {
+                            return static::fromArray($data, $client);
+                        },
+                        $data[static::ROOT_KEY]
+                    )
+                );
 
-                if (isset($data["meta"])) {
-                    $meta = $data['meta'];
-                    $array->meta = static::metaData($meta);
-                }
+                $array = static::allMetaAndCursorData($data, $array);
             }
             return $array;
         }
@@ -110,6 +117,9 @@ abstract class AbstractResource extends AbstractModel
         }
         if (isset($data["page"])) {
             $array->page = $data["page"];
+        }
+        if (isset($data["cursor"])) {
+            $array->cursor = $data["cursor"];
         }
 
         return $array;
@@ -135,5 +145,21 @@ abstract class AbstractResource extends AbstractModel
         }
 
         return $array_meta;
+    }
+
+    public static function allMetaAndCursorData(array $data, SubscriptionEventCollection $array)
+    {
+        if (isset($data["meta"])) {
+            $meta = $data["meta"];
+            $array->meta = static::metaData($meta);
+        }
+        if (isset($data["cursor"])) {
+            $array->cursor = $data["cursor"];
+        }
+        if (isset($data["has_more"])) {
+            $array->has_more = $data["has_more"];
+        }
+
+        return $array;
     }
 }

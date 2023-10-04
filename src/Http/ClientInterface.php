@@ -6,8 +6,8 @@ use ChartMogul\Configuration;
 use Psr\Http\Client\ClientInterface as HttpClient;
 
 /**
-* @codeCoverageIgnore
-*/
+ * @codeCoverageIgnore
+ */
 interface ClientInterface
 {
     public function getConfiguration();

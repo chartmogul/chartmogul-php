@@ -29,7 +29,6 @@ use ChartMogul\Service\GetTrait;
  * @property-read string $billing_system_type
  * @property-read string $currency
  * @property-read string $currency_sign
-
  */
 class Customer extends AbstractResource
 {
@@ -84,6 +83,7 @@ class Customer extends AbstractResource
 
     /**
      * Get Customer Tags
+     *
      * @return array
      */
     public function tags()
@@ -93,6 +93,7 @@ class Customer extends AbstractResource
 
     /**
      * Get Customer Custom Attributes
+     *
      * @return array
      */
     public function customAttributes()
@@ -102,7 +103,8 @@ class Customer extends AbstractResource
 
     /**
      * Find a Customer by External ID. Returns only first result!
-     * @param string $externalId
+     *
+     * @param  string               $externalId
      * @param  ClientInterface|null $client
      * @return Customer|null
      */
@@ -114,8 +116,7 @@ class Customer extends AbstractResource
 
         $response = self::all($externalId, $client);
 
-        if (
-            $response instanceof Collection
+        if ($response instanceof Collection
             && !$response->isEmpty()
         ) {
             return $response->first();
@@ -126,7 +127,8 @@ class Customer extends AbstractResource
 
     /**
      * Search for Customers
-     * @param  string                $email
+     *
+     * @param  string               $email
      * @param  ClientInterface|null $client
      * @return Collection|static
      */
@@ -142,8 +144,9 @@ class Customer extends AbstractResource
 
     /**
      * Merge Customers
-     * @param  array               $from
-     * @param  array               $into
+     *
+     * @param  array                $from
+     * @param  array                $into
      * @param  ClientInterface|null $client
      * @return bool
      */
@@ -152,15 +155,20 @@ class Customer extends AbstractResource
         (new static([], $client))
             ->getClient()
             ->setResourcekey(static::class)
-            ->send('/v1/customers/merges', 'POST', [
+            ->send(
+                '/v1/customers/merges',
+                'POST',
+                [
                 'from' => $from,
                 'into' => $into
-            ]);
+                ]
+            );
         return true;
     }
 
     /**
      * Connect Subscriptions
+     *
      * @param  string               $customerUUID
      * @param  array                $data
      * @param  ClientInterface|null $client
@@ -178,15 +186,20 @@ class Customer extends AbstractResource
 
     /**
      * Add tags to a customer
-     * @param mixed $tags,...
-     * @return  array
+     *
+     * @param  mixed $tags,...
+     * @return array
      */
     public function addTags($tags)
     {
         $result = $this->getClient()
-            ->send('/v1/customers/'.$this->uuid.'/attributes/tags', 'POST', [
+            ->send(
+                '/v1/customers/'.$this->uuid.'/attributes/tags',
+                'POST',
+                [
                 'tags' => func_get_args()
-            ]);
+                ]
+            );
 
         $this->attributes['tags'] = $result['tags'];
         return $result['tags'];
@@ -195,15 +208,20 @@ class Customer extends AbstractResource
 
     /**
      * Remove Tags from a Customer
-     * @param mixed $tags,...
+     *
+     * @param  mixed $tags,...
      * @return array
      */
     public function removeTags($tags)
     {
         $result = $this->getClient()
-            ->send('/v1/customers/'.$this->uuid.'/attributes/tags', 'DELETE', [
+            ->send(
+                '/v1/customers/'.$this->uuid.'/attributes/tags',
+                'DELETE',
+                [
                 'tags' => func_get_args()
-            ]);
+                ]
+            );
 
         $this->attributes['tags'] = $result['tags'];
         return $result['tags'];
@@ -211,15 +229,20 @@ class Customer extends AbstractResource
 
     /**
      * Add Custom Attributes to a Customer
-     * @param mixed $custom,...
+     *
+     * @param  mixed $custom,...
      * @return array
      */
     public function addCustomAttributes($custom)
     {
         $result = $this->getClient()
-            ->send('/v1/customers/'.$this->uuid.'/attributes/custom', 'POST', [
+            ->send(
+                '/v1/customers/'.$this->uuid.'/attributes/custom',
+                'POST',
+                [
                 'custom' => func_get_args()
-            ]);
+                ]
+            );
 
         $this->attributes['custom'] = $result['custom'];
         return $result['custom'];
@@ -228,15 +251,20 @@ class Customer extends AbstractResource
 
     /**
      * Remove Custom Attributes from a Customer
-     * @param mixed $custom,...
+     *
+     * @param  mixed $custom,...
      * @return array
      */
     public function removeCustomAttributes($custom)
     {
         $result = $this->getClient()
-            ->send('/v1/customers/'.$this->uuid.'/attributes/custom', 'DELETE', [
+            ->send(
+                '/v1/customers/'.$this->uuid.'/attributes/custom',
+                'DELETE',
+                [
                 'custom' => func_get_args()
-            ]);
+                ]
+            );
 
         $this->attributes['custom'] = $result['custom'];
         return $result['custom'];
@@ -244,7 +272,8 @@ class Customer extends AbstractResource
 
     /**
      * Update Custom Attributes of a Customer
-     * @param mixed $custom,...
+     *
+     * @param  mixed $custom,...
      * @return array
      */
     public function updateCustomAttributes($custom)
@@ -254,9 +283,13 @@ class Customer extends AbstractResource
             $data = array_merge($data, $value);
         }
         $result = $this->getClient()
-            ->send('/v1/customers/'.$this->uuid.'/attributes/custom', 'PUT', [
+            ->send(
+                '/v1/customers/'.$this->uuid.'/attributes/custom',
+                'PUT',
+                [
                 'custom' => $data
-            ]);
+                ]
+            );
 
         $this->attributes['custom'] = $result['custom'];
         return $result['custom'];
@@ -264,8 +297,9 @@ class Customer extends AbstractResource
 
     /**
      * Find a Customer Subscriptions
-     * @param  array  $options
-     * @return Collection | Customer
+     *
+     * @param      array $options
+     * @return     Collection | Customer
      * @deprecated Use Import\Subscription.
      */
     public function subscriptions(array $options = [])
@@ -279,8 +313,9 @@ class Customer extends AbstractResource
 
     /**
      * Find customer's invoices
-     * @param  array  $options
-     * @return Collection | Customer
+     *
+     * @param      array $options
+     * @return     Collection | Customer
      * @deprecated Use Import\CustomerInvoices.
      */
     public function invoices(array $options = [])
@@ -294,7 +329,8 @@ class Customer extends AbstractResource
 
     /**
      * Find all contacts in a customer
-     * @param  array  $options
+     *
+     * @param  array $options
      * @return CollectionWithCursor
      */
     public function contacts(array $options = [])
@@ -307,7 +343,8 @@ class Customer extends AbstractResource
 
     /**
      * Creates a contact from the customer.
-     * @param  array  $data
+     *
+     * @param  array $data
      * @return Contact
      */
     public function createContact(array $data = [])

@@ -6,9 +6,9 @@ use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Service\AllTrait;
 
 /**
-* @codeCoverageIgnore
-* @property-read string $uuid
-*/
+ * @codeCoverageIgnore
+ * @property-read      string $uuid
+ */
 class Plan extends AbstractResource
 {
     use AllTrait;

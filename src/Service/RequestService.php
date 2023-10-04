@@ -41,7 +41,8 @@ class RequestService
 
     /**
      * Use only when default class resource path must be overridden.
-     * @param string $resourcePath
+     *
+     * @param  string $resourcePath
      * @return $this
      */
     public function setResourcePath($resourcePath)
@@ -52,11 +53,17 @@ class RequestService
 
     private function getNamedParams($path)
     {
-        return array_map(function ($item) {
-            return substr($item, 1);
-        }, array_filter(explode('/', $path), function ($part) {
-            return strpos($part, ':') === 0;
-        }));
+        return array_map(
+            function ($item) {
+                return substr($item, 1);
+            },
+            array_filter(
+                explode('/', $path),
+                function ($part) {
+                    return strpos($part, ':') === 0;
+                }
+            )
+        );
     }
 
     private function applyResourcePath(&$data)
@@ -154,7 +161,7 @@ class RequestService
 
         $class = $this->resourceClass;
         $response = $client->setResourceKey($class::RESOURCE_NAME)
-                            ->send($this->applyResourcePath($id), 'PATCH', $params);
+            ->send($this->applyResourcePath($id), 'PATCH', $params);
 
         return $class::fromArray($response, $this->client);
     }
@@ -178,7 +185,7 @@ class RequestService
 
         $class = $this->resourceClass;
         $response = $client->setResourceKey($class::RESOURCE_NAME)
-                            ->send($this->applyResourcePath($id), 'DELETE', $params);
+            ->send($this->applyResourcePath($id), 'DELETE', $params);
 
         return true;
     }

@@ -37,7 +37,8 @@ class Subscription extends AbstractModel
 
     /**
      * Returns a list of subscriptions for a given customer.
-     * @param  array $options array with `customer_uuid`
+     *
+     * @param  array                $options array with `customer_uuid`
      * @param  ClientInterface|null $client
      * @return Subscriptions
      */

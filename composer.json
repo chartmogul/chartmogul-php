@@ -38,7 +38,9 @@
         "guzzlehttp/psr7": "^1.0",
         "http-interop/http-factory-guzzle": "^1.0",
         "php-vcr/php-vcr": "^1.5",
-        "php-http/curl-client": "^2.2"
+        "php-http/curl-client": "^2.2",
+        "squizlabs/php_codesniffer": "*",
+        "friendsofphp/php-cs-fixer": "^3.34"
     },
     "config": {
         "allow-plugins": {

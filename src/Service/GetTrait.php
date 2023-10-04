@@ -11,6 +11,7 @@ trait GetTrait
 {
     /**
      * Get a single resource by UUID.
+     *
      * @return resource
      */
     public static function retrieve($uuid, ClientInterface $client = null)

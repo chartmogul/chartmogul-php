@@ -26,7 +26,6 @@ use ChartMogul\Service\GetTrait;
  * @property-read string $linked_in
  * @property-read string $twitter
  * @property-read string $custom
-
  */
 class Contact extends AbstractResource
 {
@@ -64,6 +63,7 @@ class Contact extends AbstractResource
 
     /**
      * Merge Contacts
+     *
      * @param  string               $into
      * @param  string               $from
      * @param  ClientInterface|null $client
@@ -81,16 +81,21 @@ class Contact extends AbstractResource
     /**
      * Overrides fromArray so that it will return a collection with cursor instead.
      *
-     * @param array $data
-     * @param ClientInterface|null $client
+     * @param  array                $data
+     * @param  ClientInterface|null $client
      * @return CollectionWithCursor|static
      */
     public static function fromArray(array $data, ClientInterface $client = null)
     {
         if (isset($data[static::ROOT_KEY])) {
-            $array = new CollectionWithCursor(array_map(function ($data) use ($client) {
-                return static::fromArray($data, $client);
-            }, $data[static::ROOT_KEY]));
+            $array = new CollectionWithCursor(
+                array_map(
+                    function ($data) use ($client) {
+                        return static::fromArray($data, $client);
+                    },
+                    $data[static::ROOT_KEY]
+                )
+            );
 
             if (isset($data["cursor"])) {
                 $array->cursor = $data["cursor"];

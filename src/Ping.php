@@ -7,9 +7,9 @@ use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Service\AllTrait;
 
 /**
-* @codeCoverageIgnore
-* @property-read string $uuid
-*/
+ * @codeCoverageIgnore
+ * @property-read      string $uuid
+ */
 class Ping extends AbstractResource
 {
     use AllTrait;

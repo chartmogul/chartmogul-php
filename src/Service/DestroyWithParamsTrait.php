@@ -11,6 +11,7 @@ trait DestroyWithParamsTrait
 {
     /**
      * Delete a resource
+     *
      * @return boolean
      */
     public static function destroyWithParams(array $params = [], ClientInterface $client = null)

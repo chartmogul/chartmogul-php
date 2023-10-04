@@ -23,9 +23,10 @@ class ChartMogulException extends \RuntimeException implements ResponseException
     /**
      * ChartMogulException
      * You can match against subclasses or parsed response.
-     * @param string $message Exception message
-     * @param ResponseInterface|null $response  ResponseInterface object
-     * @param \Exception|null $previous
+     *
+     * @param string                 $message  Exception message
+     * @param ResponseInterface|null $response ResponseInterface object
+     * @param \Exception|null        $previous
      */
     public function __construct($message, ResponseInterface $response = null, \Exception $previous = null)
     {

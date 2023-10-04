@@ -10,21 +10,37 @@ use GuzzleHttp\Psr7\Response;
 class SubscriptionTest extends TestCase
 {
 
-  const ALL_SUBS_JSON = '{
-    "customer_uuid": "cus_f466e33d-ff2b-4a11-8f85-417eb02157a7",
-    "subscriptions": [
-        {
-            "uuid": "sub_dd169c42-e127-4637-8b8f-a239b248e3cd",
-            "external_id": "abc",
-            "subscription_set_external_id": "set_001",
-            "cancellation_dates": [],
-            "plan_uuid": "pl_d6fe6904-8319-11e7-82b4-ffedd86c182a",
-            "data_source_uuid": "ds_637442a6-8319-11e7-a280-1f28ec01465c"
-        }
-    ],
-    "current_page": 2,
-    "total_pages": 3
-}';
+    const ALL_SUBS_JSON = '{
+      "customer_uuid": "cus_f466e33d-ff2b-4a11-8f85-417eb02157a7",
+      "subscriptions": [
+          {
+              "uuid": "sub_dd169c42-e127-4637-8b8f-a239b248e3cd",
+              "external_id": "abc",
+              "subscription_set_external_id": "set_001",
+              "cancellation_dates": [],
+              "plan_uuid": "pl_d6fe6904-8319-11e7-82b4-ffedd86c182a",
+              "data_source_uuid": "ds_637442a6-8319-11e7-a280-1f28ec01465c"
+          }
+      ],
+      "current_page": 2,
+      "total_pages": 3
+    }';
+
+    const ALL_SUBS_NEW_PAGINATION_JSON = '{
+      "customer_uuid": "cus_f466e33d-ff2b-4a11-8f85-417eb02157a7",
+      "subscriptions": [
+          {
+              "uuid": "sub_dd169c42-e127-4637-8b8f-a239b248e3cd",
+              "external_id": "abc",
+              "subscription_set_external_id": "set_001",
+              "cancellation_dates": [],
+              "plan_uuid": "pl_d6fe6904-8319-11e7-82b4-ffedd86c182a",
+              "data_source_uuid": "ds_637442a6-8319-11e7-a280-1f28ec01465c"
+          }
+      ],
+      "has_more": true,
+      "cursor": "cursor=="
+    }';
 
     const CANCEL_SUBSCRIPTION = '{
       "cancellation_dates": ["2016-01-01T10:00:00.000Z", "2017-01-01T10:00:00.000Z"]
@@ -52,7 +68,22 @@ class SubscriptionTest extends TestCase
         $this->assertEquals(2, $result->current_page);
         $this->assertEquals(3, $result->total_pages);
     }
-    public function testCancel(){
+
+    public function testAllSubscriptionsNewPagination()
+    {
+        $stream = Psr7\stream_for(SubscriptionTest::ALL_SUBS_NEW_PAGINATION_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $query = ['customer_uuid' => 'cus_f466e33d-ff2b-4a11-8f85-417eb02157a7'];
+        $result = Subscription::all($query, $cmClient);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("cursor==", $result->cursor);
+        $this->assertTrue($result->has_more);
+    }
+
+    public function testCancel()
+    {
         $stream = Psr7\stream_for(SubscriptionTest::CANCEL_SUBSCRIPTION);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
@@ -69,7 +100,9 @@ class SubscriptionTest extends TestCase
 
         $this->assertTrue($result instanceof Subscription);
     }
-    public function testConnect(){
+
+    public function testConnect()
+    {
         $stream = Psr7\stream_for('{}');
         list($cmClient, $mockClient) = $this->getMockClient(0, [202], $stream);
 
@@ -94,9 +127,11 @@ class SubscriptionTest extends TestCase
             ]
         ];
 
-        $result = $subscription1->connect("cus_5915ee5a-babd-406b-b8ce-d207133fb4cb", [ 
+        $result = $subscription1->connect(
+            "cus_5915ee5a-babd-406b-b8ce-d207133fb4cb", [
             $subscription2, $subscription3,
-        ]);
+            ]
+        );
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals("POST", $request->getMethod());

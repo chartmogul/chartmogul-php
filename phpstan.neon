@@ -4,3 +4,4 @@ parameters:
    - src
   ignoreErrors:
    - '#Unsafe usage of new static\(\).#'
+  treatPhpDocTypesAsCertain: false
