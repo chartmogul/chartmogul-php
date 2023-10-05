@@ -7,11 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 class CollectionWithCursor extends ArrayCollection
 {
     /**
-    * @var boolean
-    */
+     * @var boolean
+     */
     public $has_more;
     /**
-    * @var string
-    */
+     * @var string
+     */
     public $cursor;
 }

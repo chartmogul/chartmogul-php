@@ -12,10 +12,10 @@ trait AllTrait
 {
     /**
      * Returns a list of objects
-     * @param  array $data
+     *
+     * @param  array                $data
      * @param  ClientInterface|null $client 0
      * @return Collection|self[]|self
-
      */
     public static function all(array $data = [], ClientInterface $client = null)
     {

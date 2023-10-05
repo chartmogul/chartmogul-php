@@ -7,12 +7,12 @@ use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Service\ShowTrait;
 
 /**
-* @codeCoverageIgnore
-* @property-read string $name
-* @property-read string $currency
-* @property-read string $time_zone
-* @property-read string $week_start_on
-*/
+ * @codeCoverageIgnore
+ * @property-read      string $name
+ * @property-read      string $currency
+ * @property-read      string $time_zone
+ * @property-read      string $week_start_on
+ */
 class Account extends AbstractResource
 {
     use ShowTrait;

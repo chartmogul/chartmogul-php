@@ -44,7 +44,7 @@ class Retry
         if ($this->retries === 0) {
             return $callback();
         }
-        $backoff = new Backoff($this->retries, new ExponentialStrategy(), 60*1000, true);
+        $backoff = new Backoff($this->retries, new ExponentialStrategy(), 60 * 1000, true);
         $backoff->setDecider($this);
         return $backoff->run($callback);
     }

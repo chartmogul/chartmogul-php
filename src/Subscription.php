@@ -62,26 +62,32 @@ class Subscription extends AbstractResource
 
     /**
      * Cancels a subscription that was generated from an imported invoice.
+     *
      * @param  string $cancelledAt The time at which the subscription was cancelled.
      * @return Subscription
      */
     public function cancel($cancelledAt)
     {
-        return $this->cancellation([
+        return $this->cancellation(
+            [
             'cancelled_at' => $cancelledAt
-        ]);
+            ]
+        );
     }
 
     /**
      * Changes dates of cancellation for a subscription.
+     *
      * @param  array $cancellationDates The array of times (strings) at which the subscription was cancelled.
      * @return Subscription
      */
     public function setCancellationDates($cancellationDates)
     {
-        return $this->cancellation([
+        return $this->cancellation(
+            [
             'cancellation_dates' => $cancellationDates
-        ]);
+            ]
+        );
     }
 
     /**
@@ -98,14 +104,15 @@ class Subscription extends AbstractResource
 
     /**
      * Connect Subscriptions
-     * @param  string               $customerUUID Customer UUID
-     * @param  Subscription[]       $subscriptions Array of Subscription to connect this subscription with
+     *
+     * @param  string         $customerUUID  Customer UUID
+     * @param  Subscription[] $subscriptions Array of Subscription to connect this subscription with
      * @return bool
      */
     public function connect($customerUUID, array $subscriptions)
     {
         $arr = [];
-        for ($i=0; $i < count($subscriptions); $i++) {
+        for ($i = 0; $i < count($subscriptions); $i++) {
             $arr[$i] = $subscriptions[$i];
             if ($subscriptions[$i] instanceof Subscription) {
                 $arr[$i] = $subscriptions[$i]->toArray();
@@ -115,9 +122,13 @@ class Subscription extends AbstractResource
         array_unshift($arr, $this->toArray());
 
         $this->getClient()
-            ->send('/v1/customers/'.$customerUUID.'/connect_subscriptions', 'POST', [
+            ->send(
+                '/v1/customers/'.$customerUUID.'/connect_subscriptions',
+                'POST',
+                [
                 'subscriptions' => $arr,
-            ]);
+                ]
+            );
         return true;
     }
 }

@@ -7,8 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 abstract class AbstractModel
 {
     /**
-    * @codeCoverageIgnore
-    */
+     * @codeCoverageIgnore
+     */
     public function __construct(array $attributes = [])
     {
         foreach ($attributes as $key => $value) {
@@ -39,17 +39,17 @@ abstract class AbstractModel
         return $data;
     }
     /**
-    * @codeCoverageIgnore
-    * @return  array
-    */
+     * @codeCoverageIgnore
+     * @return             array
+     */
     public function toArray()
     {
         return $this->objectToArray($this);
     }
 
     /**
-     * @param array $data
-     * @return self
+     * @param              array $data
+     * @return             self
      * @codeCoverageIgnore
      */
     public static function fromArray(array $data)
@@ -58,9 +58,9 @@ abstract class AbstractModel
     }
 
     /**
-    * @ignore
-    * @codeCoverageIgnore
-    */
+     * @ignore
+     * @codeCoverageIgnore
+     */
     public function __get($name)
     {
         if (isset($this->$name)) {

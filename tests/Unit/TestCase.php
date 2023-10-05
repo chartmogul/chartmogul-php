@@ -14,7 +14,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
         HttpClientDiscovery::prependStrategy(MockClientStrategy::class);
     }
 
-    protected function getMockClient($retries, $statuses, $stream = null, $exceptions = []){
+    protected function getMockClient($retries, $statuses, $stream = null, $exceptions = [])
+    {
         $mock = $this->getMockBuilder(Client::class)
             ->onlyMethods(['getBasicAuthHeader', 'getUserAgent'])
             ->getMock();

@@ -10,10 +10,10 @@ use ChartMogul\Service\GetTrait;
 
 /**
  * @codeCoverageIgnore
- * @property-read string $uuid
- * @property-read string $status
- * @property-read string $created_at
- * @property-read string $system
+ * @property-read      string $uuid
+ * @property-read      string $status
+ * @property-read      string $created_at
+ * @property-read      string $system
  */
 class DataSource extends AbstractResource
 {

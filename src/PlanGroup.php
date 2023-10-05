@@ -10,9 +10,9 @@ use ChartMogul\Service\UpdateTrait;
 use ChartMogul\Service\DestroyTrait;
 
 /**
-* @codeCoverageIgnore
-* @property-read string $uuid
-*/
+ * @codeCoverageIgnore
+ * @property-read      string $uuid
+ */
 class PlanGroup extends AbstractResource
 {
     use AllTrait;

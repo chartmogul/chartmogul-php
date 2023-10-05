@@ -3,9 +3,9 @@
 namespace ChartMogul\LineItems;
 
 /**
-* @codeCoverageIgnore
-* @property-read string $uuid
-*/
+ * @codeCoverageIgnore
+ * @property-read      string $uuid
+ */
 abstract class AbstractLineItem extends \ChartMogul\Resource\AbstractModel
 {
     protected $uuid;

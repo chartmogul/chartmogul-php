@@ -11,6 +11,7 @@ trait UpdateWithParamsTrait
 {
     /**
      * Update a Resource
+     *
      * @param  array                $params
      * @param  ClientInterface|null $client
      * @return self

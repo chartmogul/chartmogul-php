@@ -10,23 +10,23 @@ use Http\Client\HttpClient;
 
 class ClientTest extends TestCase
 {
-	public function setUp(): void
-	{
-		parent::setUp();
-		$psr17Factory = new Psr17Factory();
-		$this->emptyStream = $psr17Factory->createStream('{}');
-	}
+    public function setUp(): void
+    {
+        parent::setUp();
+        $psr17Factory = new Psr17Factory();
+        $this->emptyStream = $psr17Factory->createStream('{}');
+    }
 
-	public function testConstructor()
-	{
-		$configStub = $this->getMockBuilder(\ChartMogul\Configuration::class)
-		                   ->disableOriginalConstructor()
-		                   ->getMock();
+    public function testConstructor()
+    {
+        $configStub = $this->getMockBuilder(\ChartMogul\Configuration::class)
+            ->disableOriginalConstructor()
+            ->getMock();
 
-		$client = new Client($configStub);
-		$this->assertEquals($configStub, $client->getConfiguration());
-		$this->assertInstanceOf(HttpClient::class, $client->getHttpClient());
-	}
+        $client = new Client($configStub);
+        $this->assertEquals($configStub, $client->getConfiguration());
+        $this->assertInstanceOf(HttpClient::class, $client->getHttpClient());
+    }
 
     public function testGetUserAgent()
     {
@@ -35,7 +35,7 @@ class ClientTest extends TestCase
             ->onlyMethods([])
             ->getMock();
 
-        $this->assertEquals("chartmogul-php/5.1.2/PHP-".PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION, $mock->getUserAgent());
+        $this->assertEquals("chartmogul-php/5.1.3/PHP-".PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION, $mock->getUserAgent());
     }
 
     public function testGetBasicAuthHeader()
@@ -54,17 +54,17 @@ class ClientTest extends TestCase
     }
 
 
-	public function testHandleResponseOK()
-	{
-		$mock = $this->getMockBuilder(Client::class)
-		             ->disableOriginalConstructor()
-		             ->onlyMethods([])
-		             ->getMock();
+    public function testHandleResponseOK()
+    {
+        $mock = $this->getMockBuilder(Client::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods([])
+            ->getMock();
 
-		$res = new Response(200, [], '{"result": "json"}');
-		$data = $mock->handleResponse($res);
-		$this->assertEquals($data, ['result' => 'json']);
-	}
+        $res = new Response(200, [], '{"result": "json"}');
+        $data = $mock->handleResponse($res);
+        $this->assertEquals($data, ['result' => 'json']);
+    }
 
     public static function provider()
     {
@@ -81,17 +81,17 @@ class ClientTest extends TestCase
     /**
      * @dataProvider provider
      */
-	public function testHandleResponseExceptions($status, $exception)
-	{
-		$this->expectException($exception);
-		$mock = $this->getMockBuilder(Client::class)
-		             ->disableOriginalConstructor()
-		             ->onlyMethods([])
-		             ->getMock();
+    public function testHandleResponseExceptions($status, $exception)
+    {
+        $this->expectException($exception);
+        $mock = $this->getMockBuilder(Client::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods([])
+            ->getMock();
 
-		$res = new Response($status, [], 'plain text');
-		$mock->handleResponse($res);
-	}
+        $res = new Response($status, [], 'plain text');
+        $mock->handleResponse($res);
+    }
 
     public static function providerSend()
     {
@@ -146,9 +146,11 @@ class ClientTest extends TestCase
     }
     public function testRetryNetworkError()
     {
-        list($mock, $mockClient) = $this->getMockClient(10, [200], $this->emptyStream, [
+        list($mock, $mockClient) = $this->getMockClient(
+            10, [200], $this->emptyStream, [
             new \Http\Client\Exception\NetworkException("some error", $this->createMock('Psr\Http\Message\RequestInterface')),
-        ]);
+            ]
+        );
 
         $mock->send('', 'GET', []);
         $this->assertEquals(count($mockClient->getRequests()), 2);
@@ -157,10 +159,12 @@ class ClientTest extends TestCase
     public function testRetryMaxAttemptReached()
     {
         $this->expectException(NetworkException::class);
-        list($mock, $mockClient) = $this->getMockClient(1, [200], $this->emptyStream, [
+        list($mock, $mockClient) = $this->getMockClient(
+            1, [200], $this->emptyStream, [
             new \Http\Client\Exception\NetworkException("some error", $this->createMock('Psr\Http\Message\RequestInterface')),
             new \Http\Client\Exception\NetworkException("some error", $this->createMock('Psr\Http\Message\RequestInterface')),
-        ]);
+            ]
+        );
 
 
         $returnedResponse = $mock->send('', 'GET', []);

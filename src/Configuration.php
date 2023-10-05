@@ -8,7 +8,7 @@ namespace ChartMogul;
  */
 class Configuration
 {
-	const DEFAULT_MAX_RETRIES = 20;
+    public const DEFAULT_MAX_RETRIES = 20;
 
     /**
      * @var null|Configuration
@@ -27,6 +27,7 @@ class Configuration
 
     /**
      * Creates new config object from apiKey
+     *
      * @param string $apiKey
      */
     public function __construct($apiKey = '', $retries = self::DEFAULT_MAX_RETRIES)
@@ -37,6 +38,7 @@ class Configuration
 
     /**
      * Get Api Key
+     *
      * @return string
      */
     public function getApiKey()
@@ -46,7 +48,8 @@ class Configuration
 
     /**
      * Set Api Key
-     * @param string $apiKey
+     *
+     * @param  string $apiKey
      * @return self
      */
     public function setApiKey($apiKey)
@@ -57,6 +60,7 @@ class Configuration
 
     /**
      * Get retries
+     *
      * @return int
      */
     public function getRetries()
@@ -66,7 +70,8 @@ class Configuration
 
     /**
      * Set max retries
-     * @param int $retries
+     *
+     * @param  int $retries
      * @return self
      */
     public function setRetries($retries)
@@ -77,7 +82,8 @@ class Configuration
 
     /**
      * Set Default Config object. Default config object is used when no config object is passed during resource call
-     * @return  Configuration
+     *
+     * @return Configuration
      */
     public static function getDefaultConfiguration()
     {
@@ -89,8 +95,9 @@ class Configuration
 
     /**
      * Get the default config object.
-     * @param Configuration $config
-     * @return  Configuration
+     *
+     * @param  Configuration $config
+     * @return Configuration
      */
     public static function setDefaultConfiguration(Configuration $config)
     {

@@ -42,6 +42,7 @@ class Customers extends AbstractResource
 
     /**
      * Constructor
+     *
      * @param array                $attr
      * @param ClientInterface|null $client
      */
@@ -54,9 +55,10 @@ class Customers extends AbstractResource
 
     /**
      * Search for Customers
-     * @param  string                $email
-     * @param  ClientInterface|null $client
-     * @return Collection|static
+     *
+     * @param      string               $email
+     * @param      ClientInterface|null $client
+     * @return     Collection|static
      * @deprecated Use Customer.
      */
     public static function search($email, ClientInterface $client = null)

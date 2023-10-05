@@ -100,7 +100,8 @@ class ContactTest extends TestCase
         $stream = Psr7\stream_for(ContactTest::CONTACT_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-        $result = Contact::create([
+        $result = Contact::create(
+            [
             "customer_uuid" => "cus_00000000-0000-0000-0000-000000000000",
             "data_source_uuid" => "ds_00000000-0000-0000-0000-000000000000",
             "first_name" => "Adam",
@@ -116,7 +117,8 @@ class ContactTest extends TestCase
               [ "key" => "Facebook", "value" => "https://www.facebook.com/adam.smith" ],
               [ "key" => "date_of_birth", "value" => "1985-01-22" ]
             ],
-        ], $cmClient);
+            ], $cmClient
+        );
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals("POST", $request->getMethod());
@@ -153,7 +155,8 @@ class ContactTest extends TestCase
 
         $uuid = "con_00000000-0000-0000-0000-000000000000";
 
-        $result = Contact::update([
+        $result = Contact::update(
+            [
             "contact_uuid" => $uuid,
             ], [
             "first_name" => "Bill",
@@ -169,7 +172,8 @@ class ContactTest extends TestCase
               [ "key" => "Facebook", "value" => "https://www.facebook.com/bill.thompson" ],
               [ "key" => "date_of_birth", "value" => "1990-01-01" ]
             ],
-        ], $cmClient);
+            ], $cmClient
+        );
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals("PATCH", $request->getMethod());

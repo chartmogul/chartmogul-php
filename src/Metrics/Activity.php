@@ -40,7 +40,8 @@ class Activity extends AbstractModel
 
     /**
      * Returns a list of activities for a given customer.
-     * @param  array $options array with `customer_uuid`
+     *
+     * @param  array                $options array with `customer_uuid`
      * @param  ClientInterface|null $client
      * @return Activities
      */

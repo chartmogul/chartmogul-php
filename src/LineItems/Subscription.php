@@ -3,8 +3,8 @@
 namespace ChartMogul\LineItems;
 
 /**
-* @codeCoverageIgnore
-*/
+ * @codeCoverageIgnore
+ */
 class Subscription extends AbstractLineItem
 {
     public $type = 'subscription';

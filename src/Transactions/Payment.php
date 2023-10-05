@@ -3,11 +3,11 @@
 namespace ChartMogul\Transactions;
 
 /**
-* @codeCoverageIgnore
-*/
+ * @codeCoverageIgnore
+ */
 class Payment extends AbstractTransaction
 {
-    public const RESOURCE_NAME= 'Payment Transaction';
+    public const RESOURCE_NAME = 'Payment Transaction';
 
 
     public $type = 'payment';

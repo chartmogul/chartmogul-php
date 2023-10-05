@@ -13,39 +13,39 @@ use Http\Discovery\Psr17FactoryDiscovery;
 class Client implements ClientInterface
 {
     /**
-    * @var HttpClient
-    */
+     * @var HttpClient
+     */
     private $client;
 
     /**
-    * @var Configuration
-    */
+     * @var Configuration
+     */
     private $config;
 
     /**
-    * @var string
-    */
+     * @var string
+     */
     private $resourceKey = 'resource';
 
     /**
-    * @var string
-    */
-    private $apiVersion = '5.1.2';
+     * @var string
+     */
+    private $apiVersion = '5.1.3';
 
     /**
-    * @var string
-    */
+     * @var string
+     */
     private $apiBase = 'https://api.chartmogul.com';
 
     /**
-    * @var RequestFactoryInterface
-    */
+     * @var RequestFactoryInterface
+     */
     private $requestFactory;
 
     /**
-     * @param Configuration|null $config Configuration Object
-     * @param HttpClient|null $client psr/http-client-implementaion object
-     * @param RequestFactoryInterface|null $requestFactory
+     * @param              Configuration|null           $config         Configuration Object
+     * @param              HttpClient|null              $client         psr/http-client-implementaion object
+     * @param              RequestFactoryInterface|null $requestFactory
      * @codeCoverageIgnore
      */
     public function __construct(
@@ -60,7 +60,7 @@ class Client implements ClientInterface
 
 
     /**
-     * @return Configuration
+     * @return             Configuration
      * @codeCoverageIgnore
      */
     public function getConfiguration()
@@ -69,7 +69,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * @param Configuration $config Set config
+     * @param              Configuration $config Set config
      * @codeCoverageIgnore
      */
     public function setConfiguration(Configuration $config)
@@ -79,8 +79,8 @@ class Client implements ClientInterface
     }
 
     /**
-     * @param HttpClient $client
-     * @return self
+     * @param              HttpClient $client
+     * @return             self
      * @codeCoverageIgnore
      */
     public function setHttpClient(HttpClient $client)
@@ -90,7 +90,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * @return HttpClient
+     * @return             HttpClient
      * @codeCoverageIgnore
      */
     public function getHttpClient()
@@ -99,8 +99,8 @@ class Client implements ClientInterface
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @codeCoverageIgnore
+     */
     public function setResourceKey($key)
     {
         $this->resourceKey = $key;
@@ -108,24 +108,24 @@ class Client implements ClientInterface
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @codeCoverageIgnore
+     */
     public function getResourceKey()
     {
         return $this->resourceKey;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @codeCoverageIgnore
+     */
     public function getApiVersion()
     {
         return $this->apiVersion;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @codeCoverageIgnore
+     */
     public function getApiBase()
     {
         return $this->apiBase;
@@ -153,9 +153,11 @@ class Client implements ClientInterface
     protected function sendWithRetry(RequestInterface $request)
     {
         $backoff = new Retry($this->config->getRetries());
-        $response =  $backoff->retry(function () use ($request) {
-            return $this->client->sendRequest($request);
-        });
+        $response =  $backoff->retry(
+            function () use ($request) {
+                return $this->client->sendRequest($request);
+            }
+        );
         return $this->handleResponse($response);
     }
 
@@ -184,7 +186,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * @param ResponseInterface $response
+     * @param  ResponseInterface $response
      * @throws \ChartMogul\Exceptions\ChartMogulException
      * @return array
      */

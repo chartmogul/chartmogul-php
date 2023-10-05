@@ -4,9 +4,6 @@ use ChartMogul\Resource\AbstractModel;
 
 class AbstractModelTest extends \PHPUnit\Framework\TestCase
 {
-
-
-
     public static function provider()
     {
         return [

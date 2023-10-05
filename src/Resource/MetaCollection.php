@@ -7,23 +7,23 @@ use Doctrine\Common\Collections\ArrayCollection;
 class MetaCollection extends ArrayCollection
 {
     /**
-    * @var int
-    */
+     * @var int
+     */
     public $next_key;
     /**
-    * @var int
-    */
+     * @var int
+     */
     public $prev_key;
     /**
-    * @var int
-    */
+     * @var int
+     */
     public $page;
     /**
-    * @var int
-    */
+     * @var int
+     */
     public $total_pages;
     /**
-    * @var string
-    */
+     * @var string
+     */
     public $before_key;
 }

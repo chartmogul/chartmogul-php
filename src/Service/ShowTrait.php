@@ -11,6 +11,7 @@ trait ShowTrait
 {
     /**
      * Show details of current resource.
+     *
      * @return resource
      */
 

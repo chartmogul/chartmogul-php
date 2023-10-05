@@ -67,7 +67,7 @@ class MetricsTest extends TestCase
         $stream = Psr7\stream_for(MetricsTest::ALL_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-        $result = Metrics::all(["interval" => "month"],$cmClient);
+        $result = Metrics::all(["interval" => "month"], $cmClient);
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals("GET", $request->getMethod());
@@ -79,15 +79,18 @@ class MetricsTest extends TestCase
         $this->assertEquals($result->entries[0]->date, "2015-01-31");
 
     }
-    public function testLtv(){
+    public function testLtv()
+    {
 
         $stream = Psr7\stream_for(MetricsTest::LTV_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-        $result = Metrics::ltv([
+        $result = Metrics::ltv(
+            [
             "start-date" => "2015-01-01",
             "end-date" => "2015-11-01",
-        ],$cmClient);
+            ], $cmClient
+        );
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals("GET", $request->getMethod());

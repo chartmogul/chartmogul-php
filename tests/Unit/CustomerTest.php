@@ -157,6 +157,35 @@ class CustomerTest extends TestCase
       "page":1
     }';
 
+    const SEARCH_CUSTOMER_NEW_PAGINATION_JSON = '{
+      "entries":[
+        {
+          "id": 25647,
+          "uuid": "cus_de305d54-75b4-431b-adb2-eb6b9e546012",
+          "external_id": "34916129",
+          "email": "bob@examplecompany.com",
+          "name": "Example Company",
+          "address": {
+            "address_zip": "0185128",
+            "city": "Nowhereville",
+            "country": "US",
+            "state": "Alaska"
+          },
+          "mrr": 3000,
+          "arr": 36000,
+          "status": "Active",
+          "customer-since": "2015-06-09T13:16:00-04:00",
+          "billing-system-url": "https:\/\/dashboard.stripe.com\/customers\/cus_4Z2ZpyJFuQ0XMb",
+          "chartmogul-url": "https:\/\/app.chartmogul.com\/#customers\/25647-Example_Company",
+          "billing-system-type": "Stripe",
+          "currency": "USD",
+          "currency-sign": "$"
+        }
+      ],
+      "has_more":false,
+      "cursor": "cursor=="
+    }';
+
     const LIST_CONTACTS_JSON= '{
       "entries": [
         {
@@ -226,7 +255,8 @@ class CustomerTest extends TestCase
         $stream = Psr7\stream_for(CustomerTest::CREATE_CUSTOMER_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-        $result = Customer::create([
+        $result = Customer::create(
+            [
             "data_source_uuid" => "ds_fef05d54-47b4-431b-aed2-eb6b9e545430",
             "external_id" => "cus_0001",
             "name" => "Adam Smith",
@@ -235,7 +265,8 @@ class CustomerTest extends TestCase
             "city" => "New York",
             "lead_created_at" => "2016-10-01T00:00:00.000Z",
             "free_trial_started_at" => "2016-11-02T00:00:00.000Z"
-        ], $cmClient);
+            ], $cmClient
+        );
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals("POST", $request->getMethod());
@@ -245,7 +276,8 @@ class CustomerTest extends TestCase
 
         $this->assertTrue($result instanceof Customer);
     }
-    public function testSearchCustomer(){
+    public function testSearchCustomer()
+    {
 
         $stream = Psr7\stream_for(CustomerTest::SEARCH_CUSTOMER_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
@@ -266,12 +298,34 @@ class CustomerTest extends TestCase
         $this->assertEquals($result->page, 1);
         $this->assertEquals($result->per_page, 200);
     }
+    public function testSearchCustomerNewPagination()
+    {
+
+        $stream = Psr7\stream_for(CustomerTest::SEARCH_CUSTOMER_NEW_PAGINATION_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+
+        $email = "bob@examplecompany.com";
+        $result = Customer::search($email, $cmClient);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("email=".urlencode($email), $uri->getQuery());
+        $this->assertEquals("/v1/customers/search", $uri->getPath());
+
+        $this->assertTrue($result instanceof Collection);
+        $this->assertTrue($result[0] instanceof Customer);
+        $this->assertEquals($result->has_more, false);
+        $this->assertEquals($result->cursor, "cursor==");
+    }
     public function testConnectSubscriptions()
     {
         $stream = Psr7\stream_for('{}');
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-        $result = Customer::connectSubscriptions("cus_5915ee5a-babd-406b-b8ce-d207133fb4cb", [
+        $result = Customer::connectSubscriptions(
+            "cus_5915ee5a-babd-406b-b8ce-d207133fb4cb", [
             "subscriptions" => [
                 [
                     "data_source_uuid" => "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213",
@@ -282,7 +336,8 @@ class CustomerTest extends TestCase
                     "external_id" => "9db5f4a1-1695-44c0-8bd4-de7ce4d0f1d4",
                 ],
             ]
-        ], $cmClient);
+            ], $cmClient
+        );
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals("POST", $request->getMethod());
@@ -293,7 +348,8 @@ class CustomerTest extends TestCase
         $this->assertEquals($result, true);
     }
 
-    public function testFindByExternalId(){
+    public function testFindByExternalId()
+    {
 
         $stream = Psr7\stream_for(CustomerTest::SEARCH_CUSTOMER_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
@@ -312,54 +368,56 @@ class CustomerTest extends TestCase
 
     public function testListCustomersContacts()
     {
-      $stream = Psr7\stream_for(CustomerTest::LIST_CONTACTS_JSON);
-      list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+        $stream = Psr7\stream_for(CustomerTest::LIST_CONTACTS_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-      $uuid = "cus_00000000-0000-0000-0000-000000000000";
+        $uuid = "cus_00000000-0000-0000-0000-000000000000";
 
-      $result = (new Customer(["uuid" => $uuid], $cmClient))->contacts();
-      $request = $mockClient->getRequests()[0];
+        $result = (new Customer(["uuid" => $uuid], $cmClient))->contacts();
+        $request = $mockClient->getRequests()[0];
 
-      $this->assertEquals("GET", $request->getMethod());
-      $uri = $request->getUri();
-      $this->assertEquals("/v1/customers/".$uuid."/contacts", $uri->getPath());
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/customers/".$uuid."/contacts", $uri->getPath());
 
-      $this->assertTrue($result[0] instanceof Contact);
-      $this->assertEquals("cursor==", $result->cursor);
-      $this->assertEquals(true, $result->has_more);
-  }
+        $this->assertTrue($result[0] instanceof Contact);
+        $this->assertEquals("cursor==", $result->cursor);
+        $this->assertEquals(true, $result->has_more);
+    }
 
-  public function testCreateCustomersContact()
+    public function testCreateCustomersContact()
     {
-      $stream = Psr7\stream_for(CustomerTest::CONTACT_JSON);
-      list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+        $stream = Psr7\stream_for(CustomerTest::CONTACT_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-      $uuid = "cus_00000000-0000-0000-0000-000000000000";
+        $uuid = "cus_00000000-0000-0000-0000-000000000000";
 
-      $result = (new Customer(["uuid" => $uuid], $cmClient))->createContact([
-        "customer_uuid" => "cus_00000000-0000-0000-0000-000000000000",
-        "data_source_uuid" => "ds_00000000-0000-0000-0000-000000000000",
-        "first_name" => "Adam",
-        "last_name" => "Smith",
-        "position" => 9,
-        "title" => "CEO",
-        "email" => "adam@example.com",
-        "phone" => "+1234567890",
-        "linked_in" => "https://linkedin.com/linkedin",
-        "twitter" => "https://twitter.com/twitter",
-        "notes" => "Heading\nBody\nFooter",
-        "custom" => [
-          [ "key" => "Facebook", "value" => "https://www.facebook.com/adam.smith" ],
-          [ "key" => "date_of_birth", "value" => "1985-01-22" ]
-        ],
-      ]);
-      $request = $mockClient->getRequests()[0];
+        $result = (new Customer(["uuid" => $uuid], $cmClient))->createContact(
+            [
+            "customer_uuid" => "cus_00000000-0000-0000-0000-000000000000",
+            "data_source_uuid" => "ds_00000000-0000-0000-0000-000000000000",
+            "first_name" => "Adam",
+            "last_name" => "Smith",
+            "position" => 9,
+            "title" => "CEO",
+            "email" => "adam@example.com",
+            "phone" => "+1234567890",
+            "linked_in" => "https://linkedin.com/linkedin",
+            "twitter" => "https://twitter.com/twitter",
+            "notes" => "Heading\nBody\nFooter",
+            "custom" => [
+            [ "key" => "Facebook", "value" => "https://www.facebook.com/adam.smith" ],
+            [ "key" => "date_of_birth", "value" => "1985-01-22" ]
+            ],
+            ]
+        );
+        $request = $mockClient->getRequests()[0];
 
-      $this->assertEquals("POST", $request->getMethod());
-      $uri = $request->getUri();
-      $this->assertEquals("/v1/customers/".$uuid."/contacts", $uri->getPath());
+        $this->assertEquals("POST", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/customers/".$uuid."/contacts", $uri->getPath());
 
-      $this->assertTrue($result instanceof Contact);
-      $this->assertEquals("con_00000000-0000-0000-0000-000000000000", $result->uuid);
-  }
+        $this->assertTrue($result instanceof Contact);
+        $this->assertEquals("con_00000000-0000-0000-0000-000000000000", $result->uuid);
+    }
 }
