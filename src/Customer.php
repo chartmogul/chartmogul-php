@@ -104,7 +104,7 @@ class Customer extends AbstractResource
     /**
      * Find a Customer by External ID. Returns only first result!
      *
-     * @param  string               $externalId
+     * @param  string|array         $externalId
      * @param  ClientInterface|null $client
      * @return Customer|null
      */
