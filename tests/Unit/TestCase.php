@@ -41,4 +41,19 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $mock->setHttpClient($mockClient);
         return [$mock, $mockClient];
     }
+
+    protected function getMockClientException($retries, $statuses, $stream = null, $exceptions = [])
+    {
+        foreach($exceptions as $exception) {
+            $this->expectException($exception);
+        }
+
+        $mock = $this->getMockBuilder(Client::class)
+            ->onlyMethods(['getBasicAuthHeader', 'getUserAgent'])
+            ->getMock();
+        $mock->setConfiguration(\ChartMogul\Configuration::getDefaultConfiguration()->setRetries($retries));
+        $mockClient = $mock->getHttpClient();
+        $mock->setHttpClient($mockClient);
+        return [$mock, $mockClient];
+    }
 }

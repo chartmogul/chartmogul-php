@@ -30,7 +30,7 @@ class Client implements ClientInterface
     /**
      * @var string
      */
-    private $apiVersion = '5.1.3';
+    private $apiVersion = '6.0.0';
 
     /**
      * @var string
@@ -163,6 +163,12 @@ class Client implements ClientInterface
 
     public function send($path = '', $method = 'GET', $data = [])
     {
+        if (isset($data['page'])) {
+            throw new \ChartMogul\Exceptions\DeprecatedParameterException(
+                "The 'page' query parameter is deprecated"
+            );
+        }
+
         $query = '';
         if ($method === 'GET') {
             $query = http_build_query($data);

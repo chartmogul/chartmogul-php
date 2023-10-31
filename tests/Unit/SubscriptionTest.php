@@ -9,24 +9,7 @@ use GuzzleHttp\Psr7\Response;
 
 class SubscriptionTest extends TestCase
 {
-
     const ALL_SUBS_JSON = '{
-      "customer_uuid": "cus_f466e33d-ff2b-4a11-8f85-417eb02157a7",
-      "subscriptions": [
-          {
-              "uuid": "sub_dd169c42-e127-4637-8b8f-a239b248e3cd",
-              "external_id": "abc",
-              "subscription_set_external_id": "set_001",
-              "cancellation_dates": [],
-              "plan_uuid": "pl_d6fe6904-8319-11e7-82b4-ffedd86c182a",
-              "data_source_uuid": "ds_637442a6-8319-11e7-a280-1f28ec01465c"
-          }
-      ],
-      "current_page": 2,
-      "total_pages": 3
-    }';
-
-    const ALL_SUBS_NEW_PAGINATION_JSON = '{
       "customer_uuid": "cus_f466e33d-ff2b-4a11-8f85-417eb02157a7",
       "subscriptions": [
           {
@@ -65,21 +48,22 @@ class SubscriptionTest extends TestCase
         $this->assertEquals("cus_f466e33d-ff2b-4a11-8f85-417eb02157a7", $result->customer_uuid);
         $this->assertEquals("sub_dd169c42-e127-4637-8b8f-a239b248e3cd", $result[0]->uuid);
         $this->assertEquals("set_001", $result[0]->subscription_set_external_id);
-        $this->assertEquals(2, $result->current_page);
-        $this->assertEquals(3, $result->total_pages);
+        $this->assertTrue($result->has_more);
+        $this->assertEquals("cursor==", $result->cursor);
     }
 
-    public function testAllSubscriptionsNewPagination()
+    public function testAllSubscriptionsDeprecatedPagination()
     {
-        $stream = Psr7\stream_for(SubscriptionTest::ALL_SUBS_NEW_PAGINATION_JSON);
-        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+        $stream = Psr7\stream_for(SubscriptionTest::ALL_SUBS_JSON);
+        list($cmClient, $mockClient) = $this->getMockClientException(
+          0, [200], $stream, [\ChartMogul\Exceptions\DeprecatedParameterException::class]
+        );
 
-        $query = ['customer_uuid' => 'cus_f466e33d-ff2b-4a11-8f85-417eb02157a7'];
+        $query = [
+            "customer_uuid" => "cus_f466e33d-ff2b-4a11-8f85-417eb02157a7",
+            "page" => 1
+        ];
         $result = Subscription::all($query, $cmClient);
-        $request = $mockClient->getRequests()[0];
-
-        $this->assertEquals("cursor==", $result->cursor);
-        $this->assertTrue($result->has_more);
     }
 
     public function testCancel()
@@ -141,7 +125,6 @@ class SubscriptionTest extends TestCase
         $this->assertEquals(json_encode($expected), $body->getContents());
         $this->assertEquals("", $uri->getQuery());
         $this->assertEquals("/v1/customers/cus_5915ee5a-babd-406b-b8ce-d207133fb4cb/connect_subscriptions", $uri->getPath());
-
         $this->assertEquals($result, true);
     }
 }

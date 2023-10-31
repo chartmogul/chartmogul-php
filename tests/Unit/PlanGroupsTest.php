@@ -16,15 +16,6 @@ class PlanGroupTest extends TestCase
         "uuid": "plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab",
         "plans_count": 2
       }],
-      "current_page": 2,
-      "total_pages": 3
-    }';
-    const ALL_PLAN_GROUPS_NEW_PAGINATION_JSON = '{
-      "plan_groups": [{
-        "name": "My plan group",
-        "uuid": "plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab",
-        "plans_count": 2
-      }],
       "cursor": "cursor==",
       "has_more": false
     }';
@@ -39,35 +30,31 @@ class PlanGroupTest extends TestCase
         $stream = Psr7\stream_for(PlanGroupTest::ALL_PLAN_GROUPS_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-        $query = ["page" => 2, "per_page" => 1];
-
+        $query = ["per_page" => 1];
         $result = PlanGroup::all($query, $cmClient);
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals("GET", $request->getMethod());
         $uri = $request->getUri();
-        $this->assertEquals("page=2&per_page=1", $uri->getQuery());
+        $this->assertEquals("per_page=1", $uri->getQuery());
         $this->assertEquals("/v1/plan_groups", $uri->getPath());
 
         $this->assertEquals(1, sizeof($result));
         $this->assertTrue($result[0] instanceof PlanGroup);
         $this->assertEquals("plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab", $result[0]->uuid);
-        $this->assertEquals(2, $result->current_page);
-        $this->assertEquals(3, $result->total_pages);
+        $this->assertEquals("cursor==", $result->cursor);
+        $this->assertFalse($result->has_more);
     }
 
-    public function testAllPlanGroupsNewPagination()
+    public function testAllPlanGroupsDeprecatedPagination()
     {
-        $stream = Psr7\stream_for(PlanGroupTest::ALL_PLAN_GROUPS_NEW_PAGINATION_JSON);
-        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+        $stream = Psr7\stream_for(PlanGroupTest::ALL_PLAN_GROUPS_JSON);
+        list($cmClient, $mockClient) = $this->getMockClientException(
+          0, [200], $stream, [\ChartMogul\Exceptions\DeprecatedParameterException::class]
+        );
 
         $query = ["page" => 2, "per_page" => 1];
-
         $result = PlanGroup::all($query, $cmClient);
-        $request = $mockClient->getRequests()[0];
-
-        $this->assertEquals($result->cursor, "cursor==");
-        $this->assertFalse($result->has_more);
     }
 
     public function testDestroyPlanGroup()
