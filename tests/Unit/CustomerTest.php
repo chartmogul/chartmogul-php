@@ -153,36 +153,6 @@ class CustomerTest extends TestCase
         }
       ],
       "has_more":false,
-      "per_page":200,
-      "page":1
-    }';
-
-    const SEARCH_CUSTOMER_NEW_PAGINATION_JSON = '{
-      "entries":[
-        {
-          "id": 25647,
-          "uuid": "cus_de305d54-75b4-431b-adb2-eb6b9e546012",
-          "external_id": "34916129",
-          "email": "bob@examplecompany.com",
-          "name": "Example Company",
-          "address": {
-            "address_zip": "0185128",
-            "city": "Nowhereville",
-            "country": "US",
-            "state": "Alaska"
-          },
-          "mrr": 3000,
-          "arr": 36000,
-          "status": "Active",
-          "customer-since": "2015-06-09T13:16:00-04:00",
-          "billing-system-url": "https:\/\/dashboard.stripe.com\/customers\/cus_4Z2ZpyJFuQ0XMb",
-          "chartmogul-url": "https:\/\/app.chartmogul.com\/#customers\/25647-Example_Company",
-          "billing-system-type": "Stripe",
-          "currency": "USD",
-          "currency-sign": "$"
-        }
-      ],
-      "has_more":false,
       "cursor": "cursor=="
     }';
 
@@ -250,6 +220,7 @@ class CustomerTest extends TestCase
         $this->assertTrue($result instanceof Customer);
         $this->assertEquals($uuid, $result->uuid);
     }
+
     public function testCreateCustomer()
     {
         $stream = Psr7\stream_for(CustomerTest::CREATE_CUSTOMER_JSON);
@@ -276,34 +247,11 @@ class CustomerTest extends TestCase
 
         $this->assertTrue($result instanceof Customer);
     }
+
     public function testSearchCustomer()
     {
-
         $stream = Psr7\stream_for(CustomerTest::SEARCH_CUSTOMER_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
-
-
-        $email = "bob@examplecompany.com";
-        $result = Customer::search($email, $cmClient);
-        $request = $mockClient->getRequests()[0];
-
-        $this->assertEquals("GET", $request->getMethod());
-        $uri = $request->getUri();
-        $this->assertEquals("email=".urlencode($email), $uri->getQuery());
-        $this->assertEquals("/v1/customers/search", $uri->getPath());
-
-        $this->assertTrue($result instanceof Collection);
-        $this->assertTrue($result[0] instanceof Customer);
-        $this->assertEquals($result->has_more, false);
-        $this->assertEquals($result->page, 1);
-        $this->assertEquals($result->per_page, 200);
-    }
-    public function testSearchCustomerNewPagination()
-    {
-
-        $stream = Psr7\stream_for(CustomerTest::SEARCH_CUSTOMER_NEW_PAGINATION_JSON);
-        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
-
 
         $email = "bob@examplecompany.com";
         $result = Customer::search($email, $cmClient);
@@ -319,6 +267,7 @@ class CustomerTest extends TestCase
         $this->assertEquals($result->has_more, false);
         $this->assertEquals($result->cursor, "cursor==");
     }
+
     public function testConnectSubscriptions()
     {
         $stream = Psr7\stream_for('{}');
@@ -350,10 +299,8 @@ class CustomerTest extends TestCase
 
     public function testFindByExternalId()
     {
-
         $stream = Psr7\stream_for(CustomerTest::SEARCH_CUSTOMER_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
-
 
         $result = Customer::findByExternalId("34916129", $cmClient);
         $request = $mockClient->getRequests()[0];
@@ -362,7 +309,6 @@ class CustomerTest extends TestCase
         $uri = $request->getUri();
         $this->assertEquals("external_id=34916129", $uri->getQuery());
         $this->assertEquals("/v1/customers", $uri->getPath());
-
         $this->assertTrue($result instanceof Customer);
     }
 

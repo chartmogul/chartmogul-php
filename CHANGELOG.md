@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning].
 [Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
 
+## [6.0.0] - 2023-10-30
+
+### Removed
+- Support for old pagination using `page` query params.
+
 ## [5.1.3] - 2023-10-03
 
 ### Added
