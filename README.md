@@ -370,6 +370,53 @@ $updated_contact = ChartMogul\Contact::update([
 $merged_contact = ChartMogul\Contact::merge($into_contact_uuid, $from_contact_uuid);
 ```
 
+### Customer Notes and Call Logs
+
+**List Customer Notes**
+
+```php
+$contacts = ChartMogul\CustomerNote::all([
+  'cursor' => 'aabbccdd...'
+]);
+```
+
+**Create a Customer Note**
+
+```php
+$new_contact = ChartMogul\CustomerNote::create([
+  'customer_uuid' => 'cus_00000000-0000-0000-0000-000000000000',
+  'type' => 'note',
+  'text' => 'Some note',
+]);
+```
+
+**Get a Customer Note**
+
+```php
+$contact = ChartMogul\CustomerNote::retrieve([
+    'customer_uuid' => 'cus_00000000-0000-0000-0000-000000000000',
+    'note_uuid' => $uuid,
+]);
+```
+
+**Update a Customer Note**
+
+```php
+$updated_contact = ChartMogul\CustomerNote::update([
+    'customer_uuid' => 'cus_00000000-0000-0000-0000-000000000000',
+    'note_uuid' => $uuid,
+], [
+    'text' => 'Updated note'
+]);
+```
+
+**Delete A Customer Note**
+
+```php
+$contact = ChartMogul\CustomerNote::retrieve($uuid);
+$contact->destroy();
+```
+
 ### Plans
 
 **Import a Plan**
