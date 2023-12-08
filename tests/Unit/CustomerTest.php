@@ -506,7 +506,5 @@ class CustomerTest extends TestCase
         $this->assertEquals("DELETE", $request->getMethod());
         $uri = $request->getUri();
         $this->assertEquals("/v1/customers/".$uuid."/notes/".$note_uuid, $uri->getPath());
-
-        $this->assertEquals(true, $result);
     }
 }

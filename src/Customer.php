@@ -420,6 +420,6 @@ class Customer extends AbstractResource
         $client = $this->getClient();
         $result = $client->send("/v1/customers/".$this->uuid."/notes/".$note_uuid, "DELETE");
 
-        return true;
+        return new CustomerNote($result, $client);
     }
 }
