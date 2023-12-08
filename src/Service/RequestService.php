@@ -193,16 +193,12 @@ class RequestService
     public function get($uuid = null)
     {
         $class = $this->resourceClass;
-        $path = $class::RESOURCE_PATH;
-        if ($uuid && is_array($uuid)) {
-            $this->resourcePath = $class::RESOURCE_PATH.'/:'.$class::RESOURCE_ID;
-            $path = $this->applyResourcePath($uuid);
-        } else if ($uuid) {
-            $path = $class::RESOURCE_PATH.'/'.$uuid;
-        }
         $response = $this->client
             ->setResourceKey($class::RESOURCE_NAME)
-            ->send($path, 'GET');
+            ->send(
+                $uuid ? $class::RESOURCE_PATH.'/'.$uuid : $class::RESOURCE_PATH,
+                'GET'
+            );
 
         return $class::fromArray($response, $this->client);
     }

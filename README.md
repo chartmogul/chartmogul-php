@@ -320,6 +320,43 @@ $new_customer = $customer->createContact([
 ]);
 ```
 
+**List Customer Notes from a customer**
+```php
+$customer = ChartMogul\Customer::retrieve($uuid);
+$customer_notes = $customer->customer_notes([
+  'cursor' => 'aabbccdd...'
+]);
+```
+
+**Create a Customer Note from a customer**
+```php
+$customer = ChartMogul\Customer::retrieve($uuid);
+$new_customer_note = $customer->createCustomerNote([
+  'type' => 'note',
+  'text' => 'This is a note'
+]);
+```
+
+**Get a Customer Note from a customer**
+```php
+$customer = ChartMogul\Customer::retrieve($uuid);
+$customer_note = $customer->retrieveCustomerNote($note_uuid);
+```
+
+**Update a Customer Note from a customer**
+```php
+$customer = ChartMogul\Customer::retrieve($uuid);
+$updated_customer_note = $customer->updateCustomerNote($note_uuid, [
+  'text' => 'This is a new note'
+]);
+```
+
+**Delete a Customer Note from a customer**
+```php
+$customer = ChartMogul\Customer::retrieve($uuid);
+$updated_customer_note = $customer->deleteCustomerNote($note_uuid)
+```
+
 ### Contacts
 
 **List Contacts**
@@ -368,53 +405,6 @@ $updated_contact = ChartMogul\Contact::update([
 
 ```php
 $merged_contact = ChartMogul\Contact::merge($into_contact_uuid, $from_contact_uuid);
-```
-
-### Customer Notes and Call Logs
-
-**List Customer Notes**
-
-```php
-$contacts = ChartMogul\CustomerNote::all([
-  'cursor' => 'aabbccdd...'
-]);
-```
-
-**Create a Customer Note**
-
-```php
-$new_contact = ChartMogul\CustomerNote::create([
-  'customer_uuid' => 'cus_00000000-0000-0000-0000-000000000000',
-  'type' => 'note',
-  'text' => 'Some note',
-]);
-```
-
-**Get a Customer Note**
-
-```php
-$contact = ChartMogul\CustomerNote::retrieve([
-    'customer_uuid' => 'cus_00000000-0000-0000-0000-000000000000',
-    'note_uuid' => $uuid,
-]);
-```
-
-**Update a Customer Note**
-
-```php
-$updated_contact = ChartMogul\CustomerNote::update([
-    'customer_uuid' => 'cus_00000000-0000-0000-0000-000000000000',
-    'note_uuid' => $uuid,
-], [
-    'text' => 'Updated note'
-]);
-```
-
-**Delete A Customer Note**
-
-```php
-$contact = ChartMogul\CustomerNote::retrieve($uuid);
-$contact->destroy();
 ```
 
 ### Plans
