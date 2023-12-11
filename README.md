@@ -323,7 +323,7 @@ $new_customer = $customer->createContact([
 **List Customer Notes from a customer**
 ```php
 $customer = ChartMogul\Customer::retrieve($uuid);
-$customer_notes = $customer->customer_notes([
+$customer_notes = $customer->notes([
   'cursor' => 'aabbccdd...'
 ]);
 ```
@@ -331,30 +331,39 @@ $customer_notes = $customer->customer_notes([
 **Create a Customer Note from a customer**
 ```php
 $customer = ChartMogul\Customer::retrieve($uuid);
-$new_customer_note = $customer->createCustomerNote([
+$new_customer_note = $customer->createNote([
   'type' => 'note',
   'text' => 'This is a note'
 ]);
 ```
 
-**Get a Customer Note from a customer**
+### Customer Notes
+
+**Create a Customer Note**
 ```php
-$customer = ChartMogul\Customer::retrieve($uuid);
-$customer_note = $customer->retrieveCustomerNote($note_uuid);
+$new_customer_note = ChartMogul\CustomerNote::create([
+  "customer_uuid" => "cus_00000000-0000-0000-0000-000000000000",
+  "type" => "call",
+  "text" => "This is a call"
+]);
 ```
 
-**Update a Customer Note from a customer**
+**Get a Customer Note**
 ```php
-$customer = ChartMogul\Customer::retrieve($uuid);
-$updated_customer_note = $customer->updateCustomerNote($note_uuid, [
+$customer_note = ChartMogul\CustomerNote::retrieve($note_uuid)
+```
+
+**Update a Customer Note**
+```php
+$updated_customer_note = ChartMogul\CustomerNote::update($note_uuid, [
   'text' => 'This is a new note'
 ]);
 ```
 
-**Delete a Customer Note from a customer**
+**Delete a Customer Note**
 ```php
-$customer = ChartMogul\Customer::retrieve($uuid);
-$updated_customer_note = $customer->deleteCustomerNote($note_uuid)
+$customer_note = ChartMogul\CustomerNote::retrieve($note_uuid)
+$customer_note->destroy();
 ```
 
 ### Contacts

@@ -36,7 +36,7 @@ class CustomerNote extends AbstractResource
     /**
      * @ignore
      */
-    public const RESOURCE_PATH = '/v1/customers/:customer_uuid/notes';
+    public const RESOURCE_PATH = '/v1/customer_notes';
     public const RESOURCE_ID = 'note_uuid';
     public const ROOT_KEY = 'entries';
 

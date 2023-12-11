@@ -229,16 +229,6 @@ class CustomerTest extends TestCase
       "updated_at": "2015-06-09T13:16:00-04:00"
     }';
 
-    const UPDATED_NOTE_JSON= '{
-      "uuid": "note_00000000-0000-0000-0000-000000000000",
-      "customer_uuid": "cus_00000000-0000-0000-0000-000000000000",
-      "type": "note",
-      "author": "John Doe (john@example.com)",
-      "text": "This is a new note",
-      "created_at": "2015-06-09T13:16:00-04:00",
-      "updated_at": "2015-06-09T13:16:00-04:00"
-    }';
-
     public function testRetrieveCustomer()
     {
         $stream = Psr7\stream_for(CustomerTest::RETRIEVE_CUSTOMER_JSON);
@@ -411,7 +401,7 @@ class CustomerTest extends TestCase
 
         $uuid = "cus_00000000-0000-0000-0000-000000000000";
 
-        $result = (new Customer(["uuid" => $uuid], $cmClient))->customer_notes();
+        $result = (new Customer(["uuid" => $uuid], $cmClient))->notes();
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals("GET", $request->getMethod());
@@ -423,14 +413,14 @@ class CustomerTest extends TestCase
         $this->assertEquals(true, $result->has_more);
     }
 
-    public function testCreateCustomerNote()
+    public function testCreateNote()
     {
         $stream = Psr7\stream_for(CustomerTest::NOTE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "cus_00000000-0000-0000-0000-000000000000";
 
-        $result = (new Customer(["uuid" => $uuid], $cmClient))->createCustomerNote(
+        $result = (new Customer(["uuid" => $uuid], $cmClient))->createNote(
             [
             "type" => "note",
             "author_email" => "john@example.com",
@@ -445,66 +435,5 @@ class CustomerTest extends TestCase
 
         $this->assertTrue($result instanceof CustomerNote);
         $this->assertEquals("note_00000000-0000-0000-0000-000000000000", $result->uuid);
-    }
-
-    public function testUpdateCustomerNote()
-    {
-        $stream = Psr7\stream_for(CustomerTest::UPDATED_NOTE_JSON);
-        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
-
-        $uuid = "cus_00000000-0000-0000-0000-000000000000";
-        $note_uuid = "note_00000000-0000-0000-0000-000000000000";
-
-        $result = (new Customer(["uuid" => $uuid], $cmClient))->updateCustomerNote(
-            $note_uuid,
-            [
-            "text" => "This is a new note",
-            ]
-        );
-        $request = $mockClient->getRequests()[0];
-
-        $this->assertEquals("PATCH", $request->getMethod());
-        $uri = $request->getUri();
-        $this->assertEquals("/v1/customers/".$uuid."/notes/".$note_uuid, $uri->getPath());
-        $this->assertEquals("This is a new note", $result->text);
-    }
-
-    public function testRetrieveCustomerNote()
-    {
-        $stream = Psr7\stream_for(CustomerTest::NOTE_JSON);
-        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
-
-        $uuid = "cus_00000000-0000-0000-0000-000000000000";
-        $note_uuid = "note_00000000-0000-0000-0000-000000000000";
-
-        $result = (new Customer(["uuid" => $uuid], $cmClient))->retrieveCustomerNote(
-            $note_uuid
-        );
-        $request = $mockClient->getRequests()[0];
-
-        $this->assertEquals("GET", $request->getMethod());
-        $uri = $request->getUri();
-        $this->assertEquals("/v1/customers/".$uuid."/notes/".$note_uuid, $uri->getPath());
-
-        $this->assertTrue($result instanceof CustomerNote);
-        $this->assertEquals("note_00000000-0000-0000-0000-000000000000", $result->uuid);
-    }
-
-    public function testDeleteCustomerNote()
-    {
-        $stream = Psr7\stream_for('{}');
-        list($cmClient, $mockClient) = $this->getMockClient(0, [204], $stream);
-
-        $uuid = "cus_00000000-0000-0000-0000-000000000000";
-        $note_uuid = "note_00000000-0000-0000-0000-000000000000";
-
-        $result = (new Customer(["uuid" => $uuid], $cmClient))->deleteCustomerNote(
-            $note_uuid
-        );
-        $request = $mockClient->getRequests()[0];
-
-        $this->assertEquals("DELETE", $request->getMethod());
-        $uri = $request->getUri();
-        $this->assertEquals("/v1/customers/".$uuid."/notes/".$note_uuid, $uri->getPath());
     }
 }

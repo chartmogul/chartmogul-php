@@ -361,7 +361,7 @@ class Customer extends AbstractResource
      * @param  array $options
      * @return CollectionWithCursor
      */
-    public function customer_notes(array $options = [])
+    public function notes(array $options = [])
     {
         $client = $this->getClient();
         $result = $client->send("/v1/customers/".$this->uuid."/notes", "GET", $options);
@@ -375,50 +375,10 @@ class Customer extends AbstractResource
      * @param  array $data
      * @return CustomerNote
      */
-    public function createCustomerNote(array $data = [])
+    public function createNote(array $data = [])
     {
         $client = $this->getClient();
         $result = $client->send("/v1/customers/".$this->uuid."/notes", "POST", $data);
-
-        return new CustomerNote($result, $client);
-    }
-
-    /**
-     * Retrieves a customer note from the customer.
-     * @param  string $note_uuid
-     * @return CustomerNote
-     */
-    public function retrieveCustomerNote(string $note_uuid)
-    {
-        $client = $this->getClient();
-        $result = $client->send("/v1/customers/".$this->uuid."/notes/".$note_uuid, "GET");
-
-        return new CustomerNote($result, $client);
-    }
-
-    /**
-     * Updates a customer note from the customer.
-     * @param  string $note_uuid
-     * @param  array $data
-     * @return CustomerNote
-     */
-    public function updateCustomerNote(string $note_uuid, array $data = [])
-    {
-        $client = $this->getClient();
-        $result = $client->send("/v1/customers/".$this->uuid."/notes/".$note_uuid, "PATCH", $data);
-
-        return new CustomerNote($result, $client);
-    }
-
-    /**
-     * Deletes a customer note from the customer.
-     * @param  string $note_uuid
-     * @return CustomerNote
-     */
-    public function deleteCustomerNote(string $note_uuid)
-    {
-        $client = $this->getClient();
-        $result = $client->send("/v1/customers/".$this->uuid."/notes/".$note_uuid, "DELETE");
 
         return new CustomerNote($result, $client);
     }
