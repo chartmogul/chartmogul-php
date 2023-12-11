@@ -4,6 +4,7 @@ namespace ChartMogul\Service;
 
 use ChartMogul\Resource\CollectionWithCursor;
 use ChartMogul\Http\ClientInterface;
+
 /**
 * @codeCoverageIgnore
 */
@@ -42,4 +43,3 @@ trait FromArrayTrait
         return new static($data, $client);
     }
 }
-
