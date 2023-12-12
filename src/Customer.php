@@ -364,7 +364,7 @@ class Customer extends AbstractResource
     public function notes(array $options = [])
     {
         $client = $this->getClient();
-        $result = $client->send("/v1/customers/".$this->uuid."/notes", "GET", $options);
+        $result = $client->send("/v1/customer_notes", "GET", [$options, "customer_uuid" => $this->uuid]);
 
         return CustomerNote::fromArray($result, $client);
     }
@@ -378,7 +378,7 @@ class Customer extends AbstractResource
     public function createNote(array $data = [])
     {
         $client = $this->getClient();
-        $result = $client->send("/v1/customers/".$this->uuid."/notes", "POST", $data);
+        $result = $client->send("/v1/customer_notes", "POST", [$data, "customer_uuid" => $this->uuid]);
 
         return new CustomerNote($result, $client);
     }

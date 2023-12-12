@@ -4,8 +4,8 @@ namespace ChartMogul;
 
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Service\AllTrait;
-use ChartMogul\Service\UpdateTrait;
 use ChartMogul\Service\CreateTrait;
+use ChartMogul\Service\UpdateTrait;
 use ChartMogul\Service\DestroyTrait;
 use ChartMogul\Service\GetTrait;
 use ChartMogul\Service\FromArrayTrait;
@@ -22,8 +22,8 @@ use ChartMogul\Service\FromArrayTrait;
  */
 class CustomerNote extends AbstractResource
 {
-    use CreateTrait;
     use AllTrait;
+    use CreateTrait;
     use GetTrait;
     use DestroyTrait;
     use UpdateTrait;

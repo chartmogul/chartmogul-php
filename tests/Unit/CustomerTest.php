@@ -406,7 +406,7 @@ class CustomerTest extends TestCase
 
         $this->assertEquals("GET", $request->getMethod());
         $uri = $request->getUri();
-        $this->assertEquals("/v1/customers/".$uuid."/notes", $uri->getPath());
+        $this->assertEquals("/v1/customer_notes", $uri->getPath());
 
         $this->assertTrue($result[0] instanceof CustomerNote);
         $this->assertEquals("cursor==", $result->cursor);
@@ -422,6 +422,8 @@ class CustomerTest extends TestCase
 
         $result = (new Customer(["uuid" => $uuid], $cmClient))->createNote(
             [
+            "customer_uuid" => $uuid,
+            ], [
             "type" => "note",
             "author_email" => "john@example.com",
             "text" => "This is a note",
@@ -431,7 +433,7 @@ class CustomerTest extends TestCase
 
         $this->assertEquals("POST", $request->getMethod());
         $uri = $request->getUri();
-        $this->assertEquals("/v1/customers/".$uuid."/notes", $uri->getPath());
+        $this->assertEquals("/v1/customer_notes", $uri->getPath());
 
         $this->assertTrue($result instanceof CustomerNote);
         $this->assertEquals("note_00000000-0000-0000-0000-000000000000", $result->uuid);

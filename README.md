@@ -339,15 +339,6 @@ $new_customer_note = $customer->createNote([
 
 ### Customer Notes
 
-**Create a Customer Note**
-```php
-$new_customer_note = ChartMogul\CustomerNote::create([
-  "customer_uuid" => "cus_00000000-0000-0000-0000-000000000000",
-  "type" => "call",
-  "text" => "This is a call"
-]);
-```
-
 **Get a Customer Note**
 ```php
 $customer_note = ChartMogul\CustomerNote::retrieve($note_uuid)
