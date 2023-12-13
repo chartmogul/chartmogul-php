@@ -320,6 +320,60 @@ $new_customer = $customer->createContact([
 ]);
 ```
 
+**List Customer Notes from a customer**
+```php
+$customer = ChartMogul\Customer::retrieve($uuid);
+$customer_notes = $customer->notes([
+  'cursor' => 'aabbccdd...'
+]);
+```
+
+**Create a Customer Note from a customer**
+```php
+$customer = ChartMogul\Customer::retrieve($uuid);
+$new_customer_note = $customer->createNote([
+  'type' => 'note',
+  'text' => 'This is a note'
+]);
+```
+
+### Customer Notes
+
+**List Customer Notes**
+```php
+$customer_notes = ChartMogul\CustomerNote::all([
+    'customer_uuid' => $uuid,
+    'cursor' => 'aabbccdd...'
+])
+```
+
+**Create a Customer Note**
+```php
+$customer_note = ChartMogul\CustomerNote::create([
+    'customer_uuid': $uuid,
+    'type' => 'note',
+    'text' => 'This is a note'
+])
+```
+
+**Get a Customer Note**
+```php
+$customer_note = ChartMogul\CustomerNote::retrieve($note_uuid)
+```
+
+**Update a Customer Note**
+```php
+$updated_customer_note = ChartMogul\CustomerNote::update($note_uuid, [
+  'text' => 'This is a new note'
+]);
+```
+
+**Delete a Customer Note**
+```php
+$customer_note = ChartMogul\CustomerNote::retrieve($note_uuid)
+$customer_note->destroy();
+```
+
 ### Contacts
 
 **List Contacts**

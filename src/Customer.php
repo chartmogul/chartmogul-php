@@ -354,4 +354,32 @@ class Customer extends AbstractResource
 
         return new Contact($result, $client);
     }
+
+    /**
+     * Find all customer notes in a customer
+     *
+     * @param  array $options
+     * @return CollectionWithCursor
+     */
+    public function notes(array $options = [])
+    {
+        $client = $this->getClient();
+        $result = $client->send("/v1/customer_notes", "GET", [$options, "customer_uuid" => $this->uuid]);
+
+        return CustomerNote::fromArray($result, $client);
+    }
+
+    /**
+     * Creates a customer note from the customer.
+     *
+     * @param  array $data
+     * @return CustomerNote
+     */
+    public function createNote(array $data = [])
+    {
+        $client = $this->getClient();
+        $result = $client->send("/v1/customer_notes", "POST", [$data, "customer_uuid" => $this->uuid]);
+
+        return new CustomerNote($result, $client);
+    }
 }

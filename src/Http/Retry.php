@@ -27,7 +27,7 @@ class Retry
 
     protected function shouldRetry($attempt, $maxAttempts, ResponseInterface $response = null, \Exception $ex = null)
     {
-        if ($attempt >= $maxAttempts && ! is_null($ex)) {
+        if ($attempt >= $maxAttempts && !is_null($ex)) {
             throw  $ex;
         }
 
