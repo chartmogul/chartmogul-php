@@ -433,7 +433,6 @@ class CustomerTest extends TestCase
         $uri = $request->getUri();
         $this->assertEquals("/v1/customer_notes", $uri->getPath());
         $requestBody = (string) $request->getBody();
-        print_r($requestBody);
         $this->assertEquals('{"type":"note","author_email":"john@example.com","text":"This is a note","customer_uuid":"cus_00000000-0000-0000-0000-000000000000"}', $requestBody);
 
         $this->assertTrue($result instanceof CustomerNote);
