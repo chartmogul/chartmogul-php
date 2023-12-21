@@ -378,7 +378,8 @@ class Customer extends AbstractResource
     public function createNote(array $data = [])
     {
         $client = $this->getClient();
-        $result = $client->send("/v1/customer_notes", "POST", [$data, "customer_uuid" => $this->uuid]);
+        $data["customer_uuid"] = $this->uuid;
+        $result = $client->send("/v1/customer_notes", "POST", $data);
 
         return new CustomerNote($result, $client);
     }

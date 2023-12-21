@@ -421,19 +421,20 @@ class CustomerTest extends TestCase
         $uuid = "cus_00000000-0000-0000-0000-000000000000";
 
         $result = (new Customer(["uuid" => $uuid], $cmClient))->createNote(
-            [
-            "customer_uuid" => $uuid,
-            ], [
+          [
             "type" => "note",
             "author_email" => "john@example.com",
             "text" => "This is a note",
-            ]
+          ]
         );
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals("POST", $request->getMethod());
         $uri = $request->getUri();
         $this->assertEquals("/v1/customer_notes", $uri->getPath());
+        $requestBody = (string) $request->getBody();
+        print_r($requestBody);
+        $this->assertEquals('{"type":"note","author_email":"john@example.com","text":"This is a note","customer_uuid":"cus_00000000-0000-0000-0000-000000000000"}', $requestBody);
 
         $this->assertTrue($result instanceof CustomerNote);
         $this->assertEquals("note_00000000-0000-0000-0000-000000000000", $result->uuid);
