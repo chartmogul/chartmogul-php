@@ -28,7 +28,7 @@ class SubscriptionEventTest extends TestCase
         	"quantity": 1,
         	"currency": "USD",
         	"amount_in_cents": 1000,
-          "event_order": 123
+        	"event_order": 123
         },
         {
           "id": 73966837,
