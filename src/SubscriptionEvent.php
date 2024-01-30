@@ -45,4 +45,5 @@ class SubscriptionEvent extends AbstractResource
     protected $amount_in_cents;
     protected $subscription_external_id;
     protected $plan_external_id;
+    protected $event_order;
 }

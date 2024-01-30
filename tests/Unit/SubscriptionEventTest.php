@@ -27,7 +27,8 @@ class SubscriptionEventTest extends TestCase
         	"updated_at": "2022-04-09T11:17:14Z",
         	"quantity": 1,
         	"currency": "USD",
-        	"amount_in_cents": 1000
+        	"amount_in_cents": 1000,
+        	"event_order": 123
         },
         {
           "id": 73966837,
@@ -153,6 +154,7 @@ class SubscriptionEventTest extends TestCase
         $this->assertTrue($result[0] instanceof SubscriptionEvent);
         $this->assertEquals("ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba", $result[0]->data_source_uuid);
         $this->assertEquals("scus_023", $result[0]->customer_external_id);
+        $this->assertEquals(123, $result[0]->event_order);
         $this->assertEquals(166, $result->meta->total_pages);
         $this->assertEquals(1, $result->meta->page);
         $this->assertEquals("2022-04-10T22:27:35.834Z", $result->meta->before_key);
