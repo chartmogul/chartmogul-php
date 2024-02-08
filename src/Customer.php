@@ -77,6 +77,7 @@ class Customer extends AbstractResource
     protected $zip;
     protected $lead_created_at;
     protected $free_trial_started_at;
+    protected $website_url;
 
     private $subscriptions;
     private $invoices;

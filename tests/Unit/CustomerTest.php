@@ -58,7 +58,8 @@ class CustomerTest extends TestCase
       "chartmogul-url": "https://app.chartmogul.com/#customers/74596-Adam_Smith",
       "billing-system-type": "Import API",
       "currency": "USD",
-      "currency-sign": "$"
+      "currency-sign": "$",
+      "website_url": "http://www.adamsmith.com"
     }';
 
     const RETRIEVE_CUSTOMER_JSON = '{
@@ -125,7 +126,8 @@ class CustomerTest extends TestCase
       "chartmogul-url": "https:\/\/app.chartmogul.com\/#customers\/25647-Example_Company",
       "billing-system-type": "Stripe",
       "currency": "USD",
-      "currency-sign": "$"
+      "currency-sign": "$",
+      "website_url": "http://www.adamsmith.com"
     }';
 
     const SEARCH_CUSTOMER_JSON = '{
@@ -262,7 +264,8 @@ class CustomerTest extends TestCase
             "country" => "US",
             "city" => "New York",
             "lead_created_at" => "2016-10-01T00:00:00.000Z",
-            "free_trial_started_at" => "2016-11-02T00:00:00.000Z"
+            "free_trial_started_at" => "2016-11-02T00:00:00.000Z",
+            "website_url" => "http://www.adamsmith.com"
             ], $cmClient
         );
         $request = $mockClient->getRequests()[0];
