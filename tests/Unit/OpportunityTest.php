@@ -22,7 +22,7 @@ class OpportunityTest extends TestCase
       "type": "recurring",
       "forecast_category": "pipeline",
       "win_likelihood": 3,
-      "custom": {"from_campaign": "true"},
+      "custom": {"from_campaign": true},
       "created_at": "2024-03-13T07:33:28.356Z",
       "updated_at": "2024-03-13T07:33:28.356Z"
     }';
@@ -39,7 +39,7 @@ class OpportunityTest extends TestCase
       "type": "recurring",
       "forecast_category": "pipeline",
       "win_likelihood": 3,
-      "custom": {"from_campaign": "true"},
+      "custom": {"from_campaign": true},
       "created_at": "2024-03-13T07:33:28.356Z",
       "updated_at": "2024-03-14T07:33:28.356Z"
     }';
@@ -58,7 +58,7 @@ class OpportunityTest extends TestCase
             "type": "recurring",
             "forecast_category": "pipeline",
             "win_likelihood": 3,
-            "custom": {"from_campaign": "true"},
+            "custom": {"from_campaign": true},
             "created_at": "2024-03-13T07:33:28.356Z",
             "updated_at": "2024-03-13T07:33:28.356Z"
           }
@@ -129,7 +129,7 @@ class OpportunityTest extends TestCase
         $this->assertEquals("recurring", $result->type);
         $this->assertEquals("pipeline", $result->forecast_category);
         $this->assertEquals(3, $result->win_likelihood);
-        $this->assertEquals(["from_campaign" => "true"], $result->custom);
+        $this->assertEquals(["from_campaign" => True], $result->custom);
         $this->assertEquals("2024-03-13T07:33:28.356Z", $result->created_at);
         $this->assertEquals("2024-03-13T07:33:28.356Z", $result->updated_at);
     }
@@ -160,7 +160,7 @@ class OpportunityTest extends TestCase
         $this->assertEquals("recurring", $result->type);
         $this->assertEquals("pipeline", $result->forecast_category);
         $this->assertEquals(3, $result->win_likelihood);
-        $this->assertEquals(["from_campaign" => "true"], $result->custom);
+        $this->assertEquals(["from_campaign" => True], $result->custom);
         $this->assertEquals("2024-03-13T07:33:28.356Z", $result->created_at);
         $this->assertEquals("2024-03-13T07:33:28.356Z", $result->updated_at);
     }
