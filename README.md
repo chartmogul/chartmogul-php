@@ -475,7 +475,7 @@ $opportunity = ChartMogul\Opportunity::create([
     'type' => 'recurring',
     'forecast_category' => 'pipeline',
     'win_likelihood' => 3,
-    'custom' => [{ 'key': 'from_campaign', 'value': 'true' }]
+    'custom' => [{ 'key': 'from_campaign', 'value': true }]
 ])
 ```
 

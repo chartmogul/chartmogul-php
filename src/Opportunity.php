@@ -10,7 +10,6 @@ use ChartMogul\Service\DestroyTrait;
 use ChartMogul\Service\GetTrait;
 use ChartMogul\Service\FromArrayTrait;
 
-
 /**
  * @property-read string $uuid
  * @property-read string $customer_uuid
