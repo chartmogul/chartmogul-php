@@ -7,6 +7,7 @@ use ChartMogul\Contact;
 use ChartMogul\CustomerNote;
 use ChartMogul\Resource\Collection;
 use ChartMogul\Exceptions\ChartMogulException;
+use ChartMogul\Opportunity;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
 
@@ -231,6 +232,46 @@ class CustomerTest extends TestCase
       "updated_at": "2015-06-09T13:16:00-04:00"
     }';
 
+    const LIST_OPPORTUNITIES_JSON= '{
+      "entries": [
+        {
+          "uuid": "00000000-0000-0000-0000-000000000000",
+          "customer_uuid": "cus_00000000-0000-0000-0000-000000000000",
+          "owner": "test1@example.org",
+          "pipeline": "New business 1",
+          "pipeline_stage": "Discovery",
+          "estimated_close_date": "2023-12-22",
+          "currency": "USD",
+          "amount_in_cents": 100,
+          "type": "recurring",
+          "forecast_category": "pipeline",
+          "win_likelihood": 3,
+          "custom": {"from_campaign": "true"},
+          "created_at": "2024-03-13T07:33:28.356Z",
+          "updated_at": "2024-03-13T07:33:28.356Z"
+        }
+      ],
+      "cursor": "cursor==",
+      "has_more": true
+    }';
+
+    const OPPORTUNITY_JSON= '{
+      "uuid": "00000000-0000-0000-0000-000000000000",
+      "customer_uuid": "cus_00000000-0000-0000-0000-000000000000",
+      "owner": "test1@example.org",
+      "pipeline": "New business 1",
+      "pipeline_stage": "Discovery",
+      "estimated_close_date": "2023-12-22",
+      "currency": "USD",
+      "amount_in_cents": 100,
+      "type": "recurring",
+      "forecast_category": "pipeline",
+      "win_likelihood": 3,
+      "custom": {"from_campaign": "true"},
+      "created_at": "2024-03-13T07:33:28.356Z",
+      "updated_at": "2024-03-13T07:33:28.356Z"
+    }';
+
     public function testRetrieveCustomer()
     {
         $stream = Psr7\stream_for(CustomerTest::RETRIEVE_CUSTOMER_JSON);
@@ -440,5 +481,59 @@ class CustomerTest extends TestCase
 
         $this->assertTrue($result instanceof CustomerNote);
         $this->assertEquals("note_00000000-0000-0000-0000-000000000000", $result->uuid);
+    }
+
+    public function testListOpportunities()
+    {
+        $stream = Psr7\stream_for(CustomerTest::LIST_OPPORTUNITIES_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
+
+        $result = (new Customer(["uuid" => $customer_uuid], $cmClient))->opportunities();
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/opportunities", $uri->getPath());
+
+        $this->assertTrue($result[0] instanceof Opportunity);
+        $this->assertEquals("cursor==", $result->cursor);
+        $this->assertEquals(true, $result->has_more);
+    }
+
+    public function testCreateOpportunity()
+    {
+        $stream = Psr7\stream_for(CustomerTest::OPPORTUNITY_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
+
+        $result = (new Customer(["uuid" => $customer_uuid], $cmClient))->createOpportunity(
+          [
+            "owner" => "test1@example.org",
+            "pipeline" => "New business 1",
+            "pipeline_stage" => "Discovery",
+            "estimated_close_date" => "2023-12-22",
+            "currency" => "USD",
+            "amount_in_cents" => 100,
+            "type" => "recurring",
+            "forecast_category" => "pipeline",
+            "win_likelihood" => 3,
+            "custom" => [
+              [ "key" => "from_campaign", "value" => true ],
+            ]
+          ]
+        );
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("POST", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/opportunities", $uri->getPath());
+        $requestBody = (string) $request->getBody();
+        $this->assertEquals('{"owner":"test1@example.org","pipeline":"New business 1","pipeline_stage":"Discovery","estimated_close_date":"2023-12-22","currency":"USD","amount_in_cents":100,"type":"recurring","forecast_category":"pipeline","win_likelihood":3,"custom":[{"key":"from_campaign","value":true}],"customer_uuid":"cus_00000000-0000-0000-0000-000000000000"}', $requestBody);
+
+        $this->assertTrue($result instanceof Opportunity);
+        $this->assertEquals("00000000-0000-0000-0000-000000000000", $result->uuid);
     }
 }

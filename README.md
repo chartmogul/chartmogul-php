@@ -337,6 +337,33 @@ $new_customer_note = $customer->createNote([
 ]);
 ```
 
+**List Opportunities from a customer**
+
+```php
+$customer = ChartMogul\Customer::retrieve($uuid);
+$opportunities = $customer->opportunities([
+  'cursor' => 'aabbccdd...'
+]);
+```
+
+**Create an Opportunity from a customer**
+
+```php
+$customer = ChartMogul\Customer::retrieve($uuid);
+$new_opportunity = $customer->createOpportunity([
+  'owner' => 'owner@example.com',
+  'pipeline' => 'Sales',
+  'pipeline_stage' => 'Qualified',
+  'estimated_close_date' => '2022-03-30',
+  'currency' => 'USD',
+  'amount_in_cents' => 10000,
+  'type' => 'one-time',
+  'forecast_category' => 'Best Case',
+  'win_likelihood' => 80,
+  'custom' => [{key: 'custom_key', value: 'custom_value'}]
+]);
+```
+
 ### Customer Notes
 
 **List Customer Notes**
@@ -422,6 +449,55 @@ $updated_contact = ChartMogul\Contact::update([
 
 ```php
 $merged_contact = ChartMogul\Contact::merge($into_contact_uuid, $from_contact_uuid);
+```
+
+### Opportunities
+
+**List Opportunities**
+
+```php
+$opportunities = ChartMogul\Opportunity::all([
+    'cursor' => 'aabbccdd...'
+])
+```
+
+**Create an Opportunity**
+
+```php
+$opportunity = ChartMogul\Opportunity::create([
+    'customer_uuid' => $uuid,
+    'owner' => 'test1@example.org',
+    'pipeline' => 'New business 1',
+    'pipeline_stage' => 'Discovery',
+    'estimated_close_date' => '2023-12-22',
+    'currency' => 'USD',
+    'amount_in_cents' => 100,
+    'type' => 'recurring',
+    'forecast_category' => 'pipeline',
+    'win_likelihood' => 3,
+    'custom' => [{ 'key': 'from_campaign', 'value': 'true' }]
+])
+```
+
+**Get an Opportunity**
+
+```php
+$opportunity = ChartMogul\Opportunity::retrieve($opportunity_uuid)
+```
+
+**Update an Opportunity**
+
+```php
+$updated_opportunity = ChartMogul\Opportunity::update($opportunity_uuid, [
+  'estimated_close_date' => '2024-12-22',
+]);
+```
+
+**Delete an Opportunity**
+
+```php
+$opportunity = ChartMogul\Opportunity::retrieve($opportunity_uuid)
+$opportunity->destroy();
 ```
 
 ### Plans

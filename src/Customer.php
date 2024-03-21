@@ -384,4 +384,33 @@ class Customer extends AbstractResource
 
         return new CustomerNote($result, $client);
     }
+
+    /**
+     * Find all opportunities for a customer
+     *
+     * @param  array $options
+     * @return CollectionWithCursor
+     */
+    public function opportunities(array $options = [])
+    {
+        $client = $this->getClient();
+        $result = $client->send("/v1/opportunities", "GET", [$options, "customer_uuid" => $this->uuid]);
+
+        return Opportunity::fromArray($result, $client);
+    }
+
+    /**
+     * Creates an opportunity from the customer.
+     *
+     * @param  array $data
+     * @return Opportunity
+     */
+    public function createOpportunity(array $data = [])
+    {
+        $client = $this->getClient();
+        $data["customer_uuid"] = $this->uuid;
+        $result = $client->send("/v1/opportunities", "POST", $data);
+
+        return new Opportunity($result, $client);
+    }
 }
