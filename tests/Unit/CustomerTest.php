@@ -532,8 +532,20 @@ class CustomerTest extends TestCase
         $this->assertEquals("/v1/opportunities", $uri->getPath());
         $requestBody = (string) $request->getBody();
         $this->assertEquals('{"owner":"test1@example.org","pipeline":"New business 1","pipeline_stage":"Discovery","estimated_close_date":"2023-12-22","currency":"USD","amount_in_cents":100,"type":"recurring","forecast_category":"pipeline","win_likelihood":3,"custom":[{"key":"from_campaign","value":true}],"customer_uuid":"cus_00000000-0000-0000-0000-000000000000"}', $requestBody);
-
         $this->assertTrue($result instanceof Opportunity);
         $this->assertEquals("00000000-0000-0000-0000-000000000000", $result->uuid);
+        $this->assertEquals("cus_00000000-0000-0000-0000-000000000000", $result->customer_uuid);
+        $this->assertEquals("test1@example.org", $result->owner);
+        $this->assertEquals("New business 1", $result->pipeline);
+        $this->assertEquals("Discovery", $result->pipeline_stage);
+        $this->assertEquals("2023-12-22", $result->estimated_close_date);
+        $this->assertEquals("USD", $result->currency);
+        $this->assertEquals(100, $result->amount_in_cents);
+        $this->assertEquals("recurring", $result->type);
+        $this->assertEquals("pipeline", $result->forecast_category);
+        $this->assertEquals(3, $result->win_likelihood);
+        $this->assertEquals(["from_campaign" => true], $result->custom);
+        $this->assertEquals("2024-03-13T07:33:28.356Z", $result->created_at);
+        $this->assertEquals("2024-03-13T07:33:28.356Z", $result->updated_at);
     }
 }
