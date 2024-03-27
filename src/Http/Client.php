@@ -7,7 +7,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Client\ClientInterface as HttpClient;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\RequestFactoryInterface;
-use Http\Discovery\HttpClientDiscovery;
+use Http\Discovery\Psr18ClientDiscovery;
 use Http\Discovery\Psr17FactoryDiscovery;
 
 class Client implements ClientInterface
@@ -54,7 +54,7 @@ class Client implements ClientInterface
         RequestFactoryInterface $requestFactory = null
     ) {
         $this->config = $config ?: Configuration::getDefaultConfiguration();
-        $this->client = $client ?: HttpClientDiscovery::find();
+        $this->client = $client ?: Psr18ClientDiscovery::find();
         $this->requestFactory = $requestFactory ?: Psr17FactoryDiscovery::findRequestFactory();
     }
 
