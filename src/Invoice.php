@@ -51,6 +51,8 @@ class Invoice extends AbstractResource
     public $line_items = [];
     public $transactions = [];
 
+    public $errors;
+
     public function __construct(array $attr = [], ClientInterface $client = null)
     {
         parent::__construct($attr, $client);

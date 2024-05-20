@@ -17,4 +17,8 @@ class Subscription extends AbstractLineItem
 
     protected $subscription_uuid;
     public $plan_uuid;
+
+    protected $description;
+    protected $account_code;
+    protected $proration_type;
 }

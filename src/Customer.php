@@ -82,6 +82,9 @@ class Customer extends AbstractResource
     private $subscriptions;
     private $invoices;
 
+    protected $owner;
+    protected $source;
+
     /**
      * Get Customer Tags
      *
