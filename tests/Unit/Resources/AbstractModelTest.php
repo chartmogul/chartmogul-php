@@ -2,6 +2,11 @@
 
 use ChartMogul\Resource\AbstractModel;
 
+class TestClassAbstractModel extends AbstractModel
+{
+    protected $a;
+}
+
 class AbstractModelTest extends \PHPUnit\Framework\TestCase
 {
     public static function provider()
@@ -18,7 +23,7 @@ class AbstractModelTest extends \PHPUnit\Framework\TestCase
      */
     public function testObjectToArray($in, $out)
     {
-        $mock = $this->getMockBuilder(AbstractModel::class)
+        $mock = $this->getMockBuilder(TestClassAbstractModel::class)
             ->setConstructorArgs([$in])
             ->onlyMethods([])
             ->getMock();
