@@ -10,6 +10,8 @@ use Http\Client\HttpClient;
 
 class ClientTest extends TestCase
 {
+    protected $emptyStream;
+
     public function setUp(): void
     {
         parent::setUp();
