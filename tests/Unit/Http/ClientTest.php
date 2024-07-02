@@ -37,7 +37,7 @@ class ClientTest extends TestCase
             ->onlyMethods([])
             ->getMock();
 
-        $this->assertEquals("chartmogul-php/6.3.0/PHP-".PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION, $mock->getUserAgent());
+        $this->assertEquals("chartmogul-php/".$mock->getApiVersion()."/PHP-".PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION, $mock->getUserAgent());
     }
 
     public function testGetBasicAuthHeader()
