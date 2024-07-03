@@ -6,6 +6,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 abstract class AbstractModel
 {
+    protected $has_more;
+    protected $per_page;
+    protected $page;
+    protected $cursor;
+
     /**
      * @codeCoverageIgnore
      */
