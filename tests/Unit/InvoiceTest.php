@@ -129,7 +129,7 @@ class InvoiceTest extends TestCase
         $result = CustomerInvoices::create(
             [
             'customer_uuid' => 'some_id',
-            'invoices' => [['mock' => 'invoice']]
+            'invoices' => [['external_id' => 'some invoice']]
             ], $cmClient
         );
     }

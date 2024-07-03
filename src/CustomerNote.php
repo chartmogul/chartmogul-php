@@ -41,11 +41,13 @@ class CustomerNote extends AbstractResource
     public const ROOT_KEY = 'entries';
 
     protected $uuid;
-    protected $customer_uuid;
-    protected $type;
-    protected $text;
-    protected $call_duration;
+
     protected $author;
+    protected $author_email;
+    protected $call_duration;
     protected $created_at;
+    protected $customer_uuid;
+    protected $text;
+    protected $type;
     protected $updated_at;
 }

@@ -19,14 +19,16 @@ use ChartMogul\Http\ClientInterface;
 class Activity extends AbstractModel
 {
     protected $id;
-    protected $description;
-    protected $type;
-    protected $date;
+
     protected $activity_arr;
     protected $activity_mrr;
     protected $activity_mrr_movement;
     protected $currency;
     protected $currency_sign;
+    protected $date;
+    protected $description;
+    protected $subscription_external_id;
+    protected $type;
 
     /**
      * Returns a list of activities for a given customer.

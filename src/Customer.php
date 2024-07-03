@@ -51,36 +51,39 @@ class Customer extends AbstractResource
 
     protected $id;
     protected $uuid;
-    protected $external_id;
-    protected $name;
-    protected $email;
-    protected $company;
-    protected $status;
-    protected $customer_since;
-    protected $attributes;
+
     protected $address;
-    protected $mrr;
     protected $arr;
+    protected $attributes;
+    protected $billing_system_type;
     protected $billing_system_url;
     protected $chartmogul_url;
-    protected $billing_system_type;
+    protected $company;
     protected $currency;
     protected $currency_sign;
+    protected $customer_since;
+    protected $email;
+    protected $external_id;
+    protected $mrr;
+    protected $name;
+    protected $owner;
+    protected $status;
 
     // PATCH = Update a customer
     protected $data_source_uuid;
     protected $data_source_uuids;
     protected $external_ids;
+    protected $free_trial_started_at;
+    protected $lead_created_at;
+    protected $website_url;
+
     protected $city;
     protected $country;
     protected $state;
     protected $zip;
-    protected $lead_created_at;
-    protected $free_trial_started_at;
-    protected $website_url;
 
-    private $subscriptions;
     private $invoices;
+    private $subscriptions;
 
     /**
      * Get Customer Tags
