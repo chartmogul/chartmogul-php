@@ -339,6 +339,46 @@ class CustomerTest extends TestCase
         $this->assertEquals($result->cursor, "cursor==");
     }
 
+    public function testMergeCustomers()
+    {
+        $stream = Psr7\stream_for('{}');
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $from_customer_uuid = "cus_de305d54-75b4-431b-adb2-eb6b9e546012";
+        $into_customer_uuid = "cus_ab223d54-75b4-431b-adb2-eb6b9e234571";
+
+        $result = Customer::merge($from_customer_uuid, $into_customer_uuid, $cmClient);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("POST", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("", $uri->getQuery());
+        $this->assertEquals("/v1/customers/merges", $uri->getPath());
+
+        $this->assertEquals($result, true);
+    }
+
+    public function testUnmergeCustomers()
+    {
+        $stream = Psr7\stream_for('{}');
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $customer_uuid = "cus_cd9e5f29-6299-40e5-b343-0bd1ed228b4f";
+        $external_id = "cus_O075O8NH0LrtG8";
+        $data_source_uuid = "ds_788ec6ae-dd51-11ee-bd46-a3ec952dc041";
+        $move_to_new_customer = [];
+
+        $result = Customer::unmerge($customer_uuid, $external_id, $data_source_uuid, $move_to_new_customer, $cmClient);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("POST", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("", $uri->getQuery());
+        $this->assertEquals("/v1/customers/unmerges", $uri->getPath());
+
+        $this->assertEquals($result, true);
+    }
+
     public function testConnectSubscriptions()
     {
         $stream = Psr7\stream_for('{}');
