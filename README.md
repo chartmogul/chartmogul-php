@@ -186,6 +186,17 @@ ChartMogul\Customer::merge([
 ]);
 ```
 
+**Unmerge Customers**
+
+```php
+ChartMogul\Customer::unmerge(
+    $cus->uuid,
+    $cus->external_id,
+    $ds->uuid,
+    ["tasks", "opportunities", "notes"]
+);
+```
+
 **Update a Customer**
 
 ```php
