@@ -171,6 +171,34 @@ class Customer extends AbstractResource
     }
 
     /**
+     * Unmerge Customers
+     *
+     * @param  string               $customer_uuid
+     * @param  string               $external_id
+     * @param  string               $data_source_uuid
+     * @param  array                $move_to_new_customer
+     * @param  ClientInterface|null $client
+     * @return bool
+     */
+    public static function unmerge($customer_uuid, $external_id, $data_source_uuid, array $move_to_new_customer = [], ClientInterface $client = null)
+    {
+        (new static([], $client))
+            ->getClient()
+            ->setResourcekey(static::class)
+            ->send(
+                '/v1/customers/unmerges',
+                'POST',
+                [
+                'customer_uuid' => $customer_uuid,
+                'external_id' => $external_id,
+                'data_source_uuid' => $data_source_uuid,
+                'move_to_new_customer' => $move_to_new_customer
+                ]
+            );
+        return true;
+    }
+
+    /**
      * Connect Subscriptions
      *
      * @param  string               $customerUUID
