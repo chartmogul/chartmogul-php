@@ -16,7 +16,7 @@ trait UpdateTrait
      * @param  ClientInterface|null $client
      * @return self
      */
-    public static function update(array $id = [], array $data = [], ClientInterface $client = null)
+    public static function update(array $id = [], array $data = [], ?ClientInterface $client = null)
     {
         return (new RequestService($client))
             ->setResourceClass(static::class)

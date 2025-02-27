@@ -49,9 +49,9 @@ class Client implements ClientInterface
      * @codeCoverageIgnore
      */
     public function __construct(
-        Configuration $config = null,
-        HttpClient $client = null,
-        RequestFactoryInterface $requestFactory = null
+        ?Configuration $config = null,
+        ?HttpClient $client = null,
+        ?RequestFactoryInterface $requestFactory = null
     ) {
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         $this->client = $client ?: Psr18ClientDiscovery::find();

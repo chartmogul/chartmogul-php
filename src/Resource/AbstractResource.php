@@ -34,7 +34,7 @@ abstract class AbstractResource extends AbstractModel
      * @param              ClientInterface|null $client
      * @return             self
      */
-    public function __construct(array $attr = [], ClientInterface $client = null)
+    public function __construct(array $attr = [], ?ClientInterface $client = null)
     {
         parent::__construct($attr);
 
@@ -69,7 +69,7 @@ abstract class AbstractResource extends AbstractModel
      * @param  ClientInterface|null $client
      * @return Collection|static
      */
-    public static function fromArray(array $data, ClientInterface $client = null)
+    public static function fromArray(array $data, ?ClientInterface $client = null)
     {
         if (isset($data[static::ROOT_KEY])) {
             if (static::ROOT_KEY != "subscription_events") {

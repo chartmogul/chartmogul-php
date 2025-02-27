@@ -14,7 +14,7 @@ trait DestroyWithParamsTrait
      *
      * @return boolean
      */
-    public static function destroyWithParams(array $params = [], ClientInterface $client = null)
+    public static function destroyWithParams(array $params = [], ?ClientInterface $client = null)
     {
         return (new RequestService($client))
             ->setResourceClass(static::class)

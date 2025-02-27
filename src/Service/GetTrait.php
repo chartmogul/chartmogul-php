@@ -14,14 +14,14 @@ trait GetTrait
      *
      * @return resource
      */
-    public static function retrieve($uuid, ClientInterface $client = null)
+    public static function retrieve($uuid, ?ClientInterface $client = null)
     {
         return (new RequestService($client))
             ->setResourceClass(static::class)
             ->get($uuid);
     }
 
-    public static function get($uuid, ClientInterface $client = null)
+    public static function get($uuid, ?ClientInterface $client = null)
     {
         return static::retrieve($uuid, $client);
     }

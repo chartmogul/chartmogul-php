@@ -25,7 +25,7 @@ class Retry
         return $status == 429 || ($status >= 500 && $status < 600);
     }
 
-    protected function shouldRetry($attempt, $maxAttempts, ResponseInterface $response = null, \Exception $ex = null)
+    protected function shouldRetry($attempt, $maxAttempts, ?ResponseInterface $response = null, ?\Exception $ex = null)
     {
         if ($attempt >= $maxAttempts && !is_null($ex)) {
             throw  $ex;

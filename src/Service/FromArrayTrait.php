@@ -17,7 +17,7 @@ trait FromArrayTrait
      * @param  ClientInterface|null $client
      * @return CollectionWithCursor|static
      */
-    public static function fromArray(array $data, ClientInterface $client = null)
+    public static function fromArray(array $data, ?ClientInterface $client = null)
     {
         if (isset($data[static::ROOT_KEY])) {
             $array = new CollectionWithCursor(

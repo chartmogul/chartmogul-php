@@ -15,7 +15,7 @@ trait ShowTrait
      * @return resource
      */
 
-    public static function retrieve(ClientInterface $client = null)
+    public static function retrieve(?ClientInterface $client = null)
     {
         return (new RequestService($client))
             ->setResourceClass(static::class)

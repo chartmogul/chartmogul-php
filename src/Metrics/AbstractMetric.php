@@ -24,7 +24,7 @@ class AbstractMetric extends AbstractResource
         return static::ENTRY_CLASS;
     }
 
-    public function __construct(array $attr = [], ClientInterface $client = null)
+    public function __construct(array $attr = [], ?ClientInterface $client = null)
     {
         parent::__construct($attr, $client);
 

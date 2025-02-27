@@ -45,7 +45,7 @@ class Activity extends AbstractModel
      * @param  ClientInterface|null $client
      * @return Activities
      */
-    public static function all(array $options = [], ClientInterface $client = null)
+    public static function all(array $options = [], ?ClientInterface $client = null)
     {
         return Activities::all($options, $client);
     }

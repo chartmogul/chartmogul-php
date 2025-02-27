@@ -112,7 +112,7 @@ class Customer extends AbstractResource
      * @param  ClientInterface|null $client
      * @return Customer|null
      */
-    public static function findByExternalId($externalId, ClientInterface $client = null)
+    public static function findByExternalId($externalId, ?ClientInterface $client = null)
     {
         if (gettype($externalId) == 'string') {
             $externalId = ['external_id' => $externalId];
@@ -136,7 +136,7 @@ class Customer extends AbstractResource
      * @param  ClientInterface|null $client
      * @return Collection|static
      */
-    public static function search($email, ClientInterface $client = null)
+    public static function search($email, ?ClientInterface $client = null)
     {
         $response = (new static([], $client))
             ->getClient()
@@ -154,7 +154,7 @@ class Customer extends AbstractResource
      * @param  ClientInterface|null $client
      * @return bool
      */
-    public static function merge($from, $into, ClientInterface $client = null)
+    public static function merge($from, $into, ?ClientInterface $client = null)
     {
         (new static([], $client))
             ->getClient()
@@ -180,7 +180,7 @@ class Customer extends AbstractResource
      * @param  ClientInterface|null $client
      * @return bool
      */
-    public static function unmerge($customer_uuid, $external_id, $data_source_uuid, array $move_to_new_customer = [], ClientInterface $client = null)
+    public static function unmerge($customer_uuid, $external_id, $data_source_uuid, array $move_to_new_customer = [], ?ClientInterface $client = null)
     {
         (new static([], $client))
             ->getClient()
@@ -206,7 +206,7 @@ class Customer extends AbstractResource
      * @param  ClientInterface|null $client
      * @return bool
      */
-    public static function connectSubscriptions($customerUUID, array $data = [], ClientInterface $client = null)
+    public static function connectSubscriptions($customerUUID, array $data = [], ?ClientInterface $client = null)
     {
         (new static([], $client))
             ->getClient()
