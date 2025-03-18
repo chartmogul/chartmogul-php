@@ -408,6 +408,35 @@ class CustomerTest extends TestCase
         $this->assertEquals($result, true);
     }
 
+    public function testDisconnectSubscriptions()
+    {
+        $stream = Psr7\stream_for('{}');
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $result = Customer::disconnectSubscriptions(
+            "cus_5915ee5a-babd-406b-b8ce-d207133fb4cb", [
+            "subscriptions" => [
+                [
+                    "data_source_uuid" => "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213",
+                    "external_id" => "d1c0c885-add0-48db-8fa9-0bdf5017d6b0",
+                ],
+                [
+                    "data_source_uuid" => "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213",
+                    "external_id" => "9db5f4a1-1695-44c0-8bd4-de7ce4d0f1d4",
+                ],
+            ]
+            ], $cmClient
+        );
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("POST", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("", $uri->getQuery());
+        $this->assertEquals("/v1/customers/cus_5915ee5a-babd-406b-b8ce-d207133fb4cb/disconnect_subscriptions", $uri->getPath());
+
+        $this->assertEquals($result, true);
+    }
+
     public function testFindByExternalId()
     {
         $stream = Psr7\stream_for(CustomerTest::SEARCH_CUSTOMER_JSON);
