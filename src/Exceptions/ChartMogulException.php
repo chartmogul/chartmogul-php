@@ -28,7 +28,7 @@ class ChartMogulException extends \RuntimeException implements ResponseException
      * @param ResponseInterface|null $response ResponseInterface object
      * @param \Exception|null        $previous
      */
-    public function __construct($message, ResponseInterface $response = null, \Exception $previous = null)
+    public function __construct($message, ?ResponseInterface $response = null, ?\Exception $previous = null)
     {
         if ($response) {
             $response->getBody()->rewind();

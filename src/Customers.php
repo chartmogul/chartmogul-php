@@ -46,7 +46,7 @@ class Customers extends AbstractResource
      * @param array                $attr
      * @param ClientInterface|null $client
      */
-    public function __construct(array $attr = [], ClientInterface $client = null)
+    public function __construct(array $attr = [], ?ClientInterface $client = null)
     {
         parent::__construct($attr, $client);
 
@@ -61,7 +61,7 @@ class Customers extends AbstractResource
      * @return     Collection|static
      * @deprecated Use Customer.
      */
-    public static function search($email, ClientInterface $client = null)
+    public static function search($email, ?ClientInterface $client = null)
     {
         return Customer::search($email, $client);
     }

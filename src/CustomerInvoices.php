@@ -24,7 +24,7 @@ class CustomerInvoices extends AbstractResource
 
     public $customer_uuid;
 
-    public function __construct(array $attr = [], ClientInterface $client = null)
+    public function __construct(array $attr = [], ?ClientInterface $client = null)
     {
         parent::__construct($attr, $client);
 
@@ -34,7 +34,7 @@ class CustomerInvoices extends AbstractResource
         }
     }
 
-    public static function destroyAll($dataSourceUUID, $customerUUID, ClientInterface $client = null)
+    public static function destroyAll($dataSourceUUID, $customerUUID, ?ClientInterface $client = null)
     {
         (new static([], $client))
             ->getClient()

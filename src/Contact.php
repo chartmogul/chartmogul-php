@@ -70,7 +70,7 @@ class Contact extends AbstractResource
      * @param  ClientInterface|null $client
      * @return Contact
      */
-    public static function merge($into, $from, ClientInterface $client = null)
+    public static function merge($into, $from, ?ClientInterface $client = null)
     {
         $result = (new static([], $client))
             ->getClient()

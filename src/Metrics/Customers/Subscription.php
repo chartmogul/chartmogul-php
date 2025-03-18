@@ -42,7 +42,7 @@ class Subscription extends AbstractModel
      * @param  ClientInterface|null $client
      * @return Subscriptions
      */
-    public static function all(array $options = [], ClientInterface $client = null)
+    public static function all(array $options = [], ?ClientInterface $client = null)
     {
         return Subscriptions::all($options, $client);
     }

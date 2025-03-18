@@ -15,7 +15,7 @@ class RequestService
     private $resourcePath;
     private $client;
 
-    public function __construct(ClientInterface $client = null)
+    public function __construct(?ClientInterface $client = null)
     {
         if (is_null($client)) {
             $client = new Client();

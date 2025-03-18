@@ -25,7 +25,7 @@ class Ping extends AbstractResource
 
     public $data;
 
-    public static function ping(ClientInterface $client = null)
+    public static function ping(?ClientInterface $client = null)
     {
         return Ping::all([], $client);
     }

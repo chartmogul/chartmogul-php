@@ -17,7 +17,7 @@ trait AllTrait
      * @param  ClientInterface|null $client 0
      * @return Collection|self[]|self
      */
-    public static function all(array $data = [], ClientInterface $client = null)
+    public static function all(array $data = [], ?ClientInterface $client = null)
     {
         return (new RequestService($client))
             ->setResourceClass(static::class)

@@ -17,7 +17,7 @@ class Metrics
      * @param  ClientInterface|null $client
      * @return NSMetrics\AllKeyMetrics
      */
-    public static function all(array $options = [], ClientInterface $client = null)
+    public static function all(array $options = [], ?ClientInterface $client = null)
     {
         return NSMetrics\AllKeyMetrics::all($options, $client);
     }
@@ -26,7 +26,7 @@ class Metrics
      *
      * @inheritDoc
      */
-    public static function arpa(array $options = [], ClientInterface $client = null)
+    public static function arpa(array $options = [], ?ClientInterface $client = null)
     {
         return NSMetrics\ARPAs::all($options, $client);
     }
@@ -36,7 +36,7 @@ class Metrics
      *
      * @inheritDoc
      */
-    public static function arr(array $options = [], ClientInterface $client = null)
+    public static function arr(array $options = [], ?ClientInterface $client = null)
     {
         return NSMetrics\ARRs::all($options, $client);
     }
@@ -46,7 +46,7 @@ class Metrics
      *
      * @inheritDoc
      */
-    public static function asp(array $options = [], ClientInterface $client = null)
+    public static function asp(array $options = [], ?ClientInterface $client = null)
     {
         return NSMetrics\ASPs::all($options, $client);
     }
@@ -56,7 +56,7 @@ class Metrics
      *
      * @inheritDoc
      */
-    public static function customerChurnRate(array $options = [], ClientInterface $client = null)
+    public static function customerChurnRate(array $options = [], ?ClientInterface $client = null)
     {
         return NSMetrics\CustomerChurnRates::all($options, $client);
     }
@@ -66,7 +66,7 @@ class Metrics
      *
      * @inheritDoc
      */
-    public static function customerCount(array $options = [], ClientInterface $client = null)
+    public static function customerCount(array $options = [], ?ClientInterface $client = null)
     {
         return NSMetrics\CustomerCounts::all($options, $client);
     }
@@ -76,7 +76,7 @@ class Metrics
      *
      * @inheritDoc
      */
-    public static function mrr(array $options = [], ClientInterface $client = null)
+    public static function mrr(array $options = [], ?ClientInterface $client = null)
     {
         return NSMetrics\MRRs::all($options, $client);
     }
@@ -86,7 +86,7 @@ class Metrics
      *
      * @inheritDoc
      */
-    public static function ltv(array $options = [], ClientInterface $client = null)
+    public static function ltv(array $options = [], ?ClientInterface $client = null)
     {
         return NSMetrics\LTVs::all($options, $client);
     }
@@ -96,7 +96,7 @@ class Metrics
      *
      * @inheritDoc
      */
-    public static function mrrChurnRate(array $options = [], ClientInterface $client = null)
+    public static function mrrChurnRate(array $options = [], ?ClientInterface $client = null)
     {
         return NSMetrics\MRRChurnRates::all($options, $client);
     }

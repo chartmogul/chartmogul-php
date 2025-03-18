@@ -93,7 +93,7 @@ class Subscription extends AbstractResource
     /**
      * @inheritDoc
      */
-    public static function fromArray(array $data, ClientInterface $client = null)
+    public static function fromArray(array $data, ?ClientInterface $client = null)
     {
         $result = parent::fromArray($data, $client);
         if (isset($data["customer_uuid"]) && $result instanceof Collection) {
