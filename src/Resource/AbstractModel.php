@@ -19,7 +19,9 @@ abstract class AbstractModel
         foreach ($attributes as $key => $value) {
             // replace property names with dash with underscores
             $key = str_replace('-', '_', $key);
-            $this->$key = $value;
+            if (property_exists($this, $key)) {
+                $this->$key = $value;
+            }
         }
     }
 
