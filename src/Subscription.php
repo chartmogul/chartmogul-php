@@ -131,4 +131,34 @@ class Subscription extends AbstractResource
             );
         return true;
     }
+
+    /**
+     * Disconnect Subscriptions
+     *
+     * @param  string         $customerUUID  Customer UUID
+     * @param  Subscription[] $subscriptions Array of Subscription to disconnect this subscription from
+     * @return bool
+     */
+    public function disconnect($customerUUID, array $subscriptions)
+    {
+        $arr = [];
+        for ($i = 0; $i < count($subscriptions); $i++) {
+            $arr[$i] = $subscriptions[$i];
+            if ($subscriptions[$i] instanceof Subscription) {
+                $arr[$i] = $subscriptions[$i]->toArray();
+            }
+        }
+
+        array_unshift($arr, $this->toArray());
+
+        $this->getClient()
+            ->send(
+                '/v1/customers/'.$customerUUID.'/disconnect_subscriptions',
+                'POST',
+                [
+                'subscriptions' => $arr,
+                ]
+            );
+        return true;
+    }
 }

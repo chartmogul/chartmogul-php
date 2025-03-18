@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning].
 [Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
 
+## [6.5.0] - 2025-03-18
+- Adds support for disconnecting subscriptions
+- Adds support for transaction fees on transactions
+
 ## [6.4.0] - 2024-10-24
 - Adds support for unmerging customers
 

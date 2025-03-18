@@ -231,6 +231,30 @@ $subscription1->connect("cus_5915ee5a-babd-406b-b8ce-d207133fb4cb", $subscriptio
 
 ```
 
+**Disconnect Subscriptions**
+
+```php
+ChartMogul\Customer::disconnectSubscriptions("cus_5915ee5a-babd-406b-b8ce-d207133fb4cb", [
+    "subscriptions" => [
+        [
+            "data_source_uuid" => "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213",
+            "external_id" => "d1c0c885-add0-48db-8fa9-0bdf5017d6b0",
+        ],
+        [
+            "data_source_uuid" => "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213",
+            "external_id" => "9db5f4a1-1695-44c0-8bd4-de7ce4d0f1d4",
+        ],
+    ]
+]);
+```
+
+OR
+
+```php
+$subscription1->disconnect("cus_5915ee5a-babd-406b-b8ce-d207133fb4cb", $subscriptions);
+
+```
+
 #### Customer Attributes
 
 **Retrieve Customer's Attributes**
