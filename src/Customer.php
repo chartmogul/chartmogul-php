@@ -223,7 +223,7 @@ class Customer extends AbstractResource
      * @param  ClientInterface|null $client
      * @return bool
      */
-    public static function disconnectSubscriptions($customerUUID, array $data = [], ClientInterface $client = null)
+    public static function disconnectSubscriptions($customerUUID, array $data = [], ?ClientInterface $client = null)
     {
         (new static([], $client))
             ->getClient()
