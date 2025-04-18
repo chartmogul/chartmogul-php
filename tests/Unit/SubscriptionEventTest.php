@@ -138,6 +138,25 @@ class SubscriptionEventTest extends TestCase
       "amount_in_cents": 100
     }';
 
+    public function testBuildSubscriptionEvent()
+    {
+        $subscriptionEvent = new SubscriptionEvent(["subscription_event" => [
+          "external_id" => "ex_id_1",
+          "event_date" => "2022-04-09T11:17:14Z",
+          "effective_date" => "2022-04-09T10:04:13Z",
+          "event_type" => "subscription_cancelled",
+          "data_source_uuid" => "ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba",
+          "customer_external_id" => "cus_023",
+          
+        ]]);
+        $this->assertEquals("ex_id_1", $subscriptionEvent->external_id);
+        $this->assertEquals("2022-04-09T11:17:14Z", $subscriptionEvent->event_date);
+        $this->assertEquals("2022-04-09T10:04:13Z", $subscriptionEvent->effective_date);
+        $this->assertEquals("subscription_cancelled", $subscriptionEvent->event_type);
+        $this->assertEquals("ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba", $subscriptionEvent->data_source_uuid);
+        $this->assertEquals("cus_023", $subscriptionEvent->customer_external_id);
+    }
+
     public function testAllSubscriptionEvents()
     {
         $stream = Psr7\stream_for(SubscriptionEventTest::ALL_SUBSCRIPTION_EVENT_JSON);
