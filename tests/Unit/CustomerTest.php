@@ -8,6 +8,7 @@ use ChartMogul\CustomerNote;
 use ChartMogul\Resource\Collection;
 use ChartMogul\Exceptions\ChartMogulException;
 use ChartMogul\Opportunity;
+use ChartMogul\Task;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
 
@@ -270,6 +271,34 @@ class CustomerTest extends TestCase
       "custom": {"from_campaign": true},
       "created_at": "2024-03-13T07:33:28.356Z",
       "updated_at": "2024-03-13T07:33:28.356Z"
+    }';
+
+    const LIST_TASKS_JSON = '{
+      "entries": [
+        {
+          "uuid": "00000000-0000-0000-0000-000000000000",
+          "customer_uuid": "cus_00000000-0000-0000-0000-000000000000",
+          "task_details": "This is some task details text.",
+          "assignee": "customer@example.com",
+          "due_date": "2025-04-30T00:00:00Z",
+          "completed_at": "2025-04-20T00:00:00Z",
+          "created_at": "2025-04-01T12:00:00.000Z",
+          "updated_at": "2025-04-01T12:00:00.000Z"
+        }
+      ],
+      "cursor": "cursor==",
+      "has_more": true
+    }';
+
+    const TASK_JSON = '{
+      "uuid": "00000000-0000-0000-0000-000000000000",
+      "customer_uuid": "cus_00000000-0000-0000-0000-000000000000",
+      "task_details": "This is some task details text.",
+      "assignee": "customer@example.com",
+      "due_date": "2025-04-30T00:00:00Z",
+      "completed_at": "2025-04-20T00:00:00Z",
+      "created_at": "2025-04-01T12:00:00.000Z",
+      "updated_at": "2025-04-01T12:00:00.000Z"
     }';
 
     public function testRetrieveCustomer()
@@ -616,5 +645,57 @@ class CustomerTest extends TestCase
         $this->assertEquals(["from_campaign" => true], $result->custom);
         $this->assertEquals("2024-03-13T07:33:28.356Z", $result->created_at);
         $this->assertEquals("2024-03-13T07:33:28.356Z", $result->updated_at);
+    }
+
+    public function testListTasks()
+    {
+        $stream = Psr7\stream_for(CustomerTest::LIST_TASKS_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
+
+        $result = (new Customer(["uuid" => $customer_uuid], $cmClient))->tasks();
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/tasks", $uri->getPath());
+
+        $this->assertTrue($result[0] instanceof Task);
+        $this->assertEquals("cursor==", $result->cursor);
+        $this->assertEquals(true, $result->has_more);
+    }
+
+    public function testCreateTask()
+    {
+        $stream = Psr7\stream_for(CustomerTest::TASK_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
+
+        $result = (new Customer(["uuid" => $customer_uuid], $cmClient))->createTask(
+          [
+            "assignee" => "customer@example.com",
+            "task_details" => "This is some task details text.",
+            "due_date" => "2025-04-30T00:00:00Z",
+            "completed_at" => "2025-04-20T00:00:00Z",
+          ]
+        );
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("POST", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/tasks", $uri->getPath());
+        $requestBody = (string) $request->getBody();
+        $this->assertEquals('{"assignee":"customer@example.com","task_details":"This is some task details text.","due_date":"2025-04-30T00:00:00Z","completed_at":"2025-04-20T00:00:00Z","customer_uuid":"cus_00000000-0000-0000-0000-000000000000"}', $requestBody);
+        $this->assertTrue($result instanceof Task);
+        $this->assertEquals("00000000-0000-0000-0000-000000000000", $result->uuid);
+        $this->assertEquals("cus_00000000-0000-0000-0000-000000000000", $result->customer_uuid);
+        $this->assertEquals("customer@example.com", $result->assignee);
+        $this->assertEquals("This is some task details text.", $result->task_details);
+        $this->assertEquals("2025-04-30T00:00:00Z", $result->due_date);
+        $this->assertEquals("2025-04-20T00:00:00Z", $result->completed_at);
+        $this->assertEquals("2025-04-01T12:00:00.000Z", $result->created_at);
+        $this->assertEquals("2025-04-01T12:00:00.000Z", $result->updated_at);
     }
 }
