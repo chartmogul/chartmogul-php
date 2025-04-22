@@ -26,7 +26,7 @@ abstract class AbstractModel
     }
 
 
-    private function objectToArray($obj)
+    protected function objectToArray($obj)
     {
         if ($obj instanceof ArrayCollection) {
             $obj = $obj->toArray();
@@ -45,6 +45,7 @@ abstract class AbstractModel
 
         return $data;
     }
+
     /**
      * @codeCoverageIgnore
      * @return             array
