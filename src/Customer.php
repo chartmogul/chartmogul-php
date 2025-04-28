@@ -461,4 +461,33 @@ class Customer extends AbstractResource
 
         return new Opportunity($result, $client);
     }
+
+    /**
+     * Find all tasks for a customer.
+     *
+     * @param  array $options
+     * @return CollectionWithCursor
+     */
+    public function tasks(array $options = [])
+    {
+        $client = $this->getClient();
+        $result = $client->send("/v1/tasks", "GET", [$options, "customer_uuid" => $this->uuid]);
+
+        return Task::fromArray($result, $client);
+    }
+
+    /**
+     * Creates a task for a customer.
+     *
+     * @param  array $data
+     * @return Task
+     */
+    public function createTask(array $data = [])
+    {
+        $client = $this->getClient();
+        $data["customer_uuid"] = $this->uuid;
+        $result = $client->send("/v1/tasks", "POST", $data);
+
+        return new Task($result, $client);
+    }
 }

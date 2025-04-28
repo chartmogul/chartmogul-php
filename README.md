@@ -83,7 +83,7 @@ All array results are wrapped with [`Doctrine\Common\Collections\ArrayCollection
 
 Available methods in Import API:
 
-### [Data Sources](https://dev.chartmogul.com/docs/data-sources)
+### [Data Sources](https://dev.chartmogul.com/reference/sources/)
 
 **Create Datasources**
 
@@ -399,6 +399,25 @@ $new_opportunity = $customer->createOpportunity([
 ]);
 ```
 
+**List Tasks for a customer**
+```php
+$customer = ChartMogul\Customer::retrieve($customer_uuid);
+$tasks = $customer->tasks([
+  'cursor' => 'aabbccdd...'
+]);
+```
+
+**Create a Task for a customer**
+```php
+$customer = ChartMogul\Customer::retrieve($customer_uuid);
+$new_task = $customer->createTask([
+  'assignee' => 'customer@example.com',
+  'task_details' => 'This is some task details text.',
+  'due_date' => '2025-04-30T00:00:00Z',
+  'completed_at' => '2025-04-20T00:00:00Z',
+]);
+```
+
 ### Customer Notes
 
 **List Customer Notes**
@@ -533,6 +552,45 @@ $updated_opportunity = ChartMogul\Opportunity::update($opportunity_uuid, [
 ```php
 $opportunity = ChartMogul\Opportunity::retrieve($opportunity_uuid)
 $opportunity->destroy();
+```
+
+### Tasks
+
+**List Tasks**
+```php
+$tasks = ChartMogul\Task::all([
+    'customer_uuid' => $customer_uuid,
+    'cursor' => 'aabbccdd...'
+])
+```
+
+**Create a Task**
+```php
+$task = ChartMogul\Task::create([
+    'customer_uuid' => $customer_uuid,
+    'task_details' => 'This is some task details text.',
+    'assignee' => 'customer@example.com',
+    'due_date' => '2025-04-30T00:00:00Z',
+    'completed_at' => '2025-04-20T00:00:00Z',
+])
+```
+
+**Get a Task**
+```php
+$task = ChartMogul\Task::retrieve($task_uuid)
+```
+
+**Update a Task**
+```php
+$updated_task = ChartMogul\Task::update($task_uuid, [
+  'task_details' => 'This is some other task details text.'
+]);
+```
+
+**Delete a Task**
+```php
+$task = ChartMogul\Task::retrieve($task_uuid)
+$task->destroy();
 ```
 
 ### Plans
