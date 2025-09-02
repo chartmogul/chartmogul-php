@@ -39,6 +39,9 @@ jobs:
       - name: Install dependencies
         run: composer update --no-interaction --no-progress --prefer-dist
 
+      - name: Run tests
+        run: phpunit --coverage-text --coverage-clover ./build/logs/clover.xml
+
   coding-guidelines:
     name: "Coding Guidelines"
     runs-on: "ubuntu-latest"
