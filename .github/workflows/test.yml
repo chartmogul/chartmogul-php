@@ -39,41 +39,6 @@ jobs:
       - name: Install dependencies
         run: composer update --no-interaction --no-progress --prefer-dist
 
-      - name: Set ENV for codeclimate (pull_request)
-        run: |
-          git fetch --no-tags --prune --depth=1 origin +refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
-          echo "GIT_BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
-          echo "GIT_COMMIT_SHA=$(git rev-parse origin/$GITHUB_HEAD_REF)" >> $GITHUB_ENV
-        if: |
-          github.event_name == 'pull_request' &&
-          github.event.pull_request.head.repo.full_name == 'chartmogul/chartmogul-php'
-
-
-      - name: Set ENV for codeclimate (push)
-        run: |
-          echo "GIT_BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
-          echo "GIT_COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
-        if: |
-          github.event_name == 'push' &&
-          github.event.pull_request.head.repo.full_name == 'chartmogul/chartmogul-php'
-
-      - name: Install Code Climate test report
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
-
-      - name: Run tests
-        run: phpunit --coverage-text --coverage-clover ./build/logs/clover.xml
-
-      - name: Send Report to Code Climate
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        if: |
-            matrix.php-versions == '7.4' && success() && 
-            github.event.pull_request.head.repo.full_name == 'chartmogul/chartmogul-php'
-        run: ./cc-test-reporter after-build
-
   coding-guidelines:
     name: "Coding Guidelines"
     runs-on: "ubuntu-latest"
