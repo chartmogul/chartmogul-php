@@ -31,6 +31,7 @@ class Activity extends AbstractModel
     protected $activity_mrr_movement;
     protected $currency;
     protected $subscription_external_id;
+    protected $subscription_set_external_id;
     protected $plan_external_id;
     protected $customer_name;
     protected $customer_uuid;
