@@ -202,4 +202,18 @@ class RequestService
 
         return $class::fromArray($response, $this->client);
     }
+
+    public function getWithQuery($uuid = null, $query = [])
+    {
+        $class = $this->resourceClass;
+        $response = $this->client
+            ->setResourceKey($class::RESOURCE_NAME)
+            ->send(
+                $uuid ? $class::RESOURCE_PATH.'/'.$uuid : $class::RESOURCE_PATH,
+                'GET',
+                $query
+            );
+
+        return $class::fromArray($response, $this->client);
+    }
 }

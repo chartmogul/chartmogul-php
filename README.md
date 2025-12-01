@@ -99,10 +99,30 @@ $ds = ChartMogul\DataSource::create([
 ChartMogul\DataSource::retrieve($uuid);
 ```
 
+Include extra fields:
+
+```php
+ChartMogul\DataSource::retrieve($uuid, [
+    'with_processing_status' => true,
+    'with_auto_churn_subscription_setting' => true,
+    'with_invoice_handling_setting' => true
+]);
+```
+
 **List Datasources**
 
 ```php
 ChartMogul\DataSource::all();
+```
+
+Include extra fields:
+
+```php
+ChartMogul\DataSource::all([
+    'with_processing_status' => true,
+    'with_auto_churn_subscription_setting' => true,
+    'with_invoice_handling_setting' => true
+]);
 ```
 
 **Delete a Datasource**
