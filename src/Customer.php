@@ -397,11 +397,9 @@ class Customer extends AbstractResource
         // Handle different input formats
         if (count($args) === 1) {
             if (is_array($custom)) {
-                // Check if it's a single attribute object (has 'type', 'key', 'value' etc.)
-                // or an array of attribute objects
-                $firstKey = array_key_first($custom);
-                if (is_numeric($firstKey) || (is_string($firstKey) && is_array($custom[$firstKey]))) {
-                    // Array of attributes OR indexed array of attributes
+                // Use similar detection logic as other methods
+                if (is_array(reset($custom))) {
+                    // Array of attribute objects
                     $data = [];
                     foreach ($custom as $attr) {
                         if (is_array($attr)) {

@@ -180,7 +180,53 @@ class CustomerArrayAttributesTest extends TestCase
         $this->assertEquals($attribute, $requestBody['custom']);
     }
 
-    /**
+    public function testUpdateCustomAttributesWithArrayOfAttributes()
+    {
+        $stream = Psr7\stream_for(self::CUSTOM_ATTRIBUTES_RESPONSE);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $customer = new Customer(['uuid' => 'cus_test'], $cmClient);
+
+        // Test with array of attribute objects
+        $attributes = [
+            ['type' => 'String', 'key' => 'channel', 'value' => 'Facebook'],
+            ['type' => 'Integer', 'key' => 'age', 'value' => 25]
+        ];
+
+        $result = $customer->updateCustomAttributes($attributes);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("PUT", $request->getMethod());
+
+        // Verify the request body contains merged attributes
+        $requestBody = json_decode((string) $request->getBody(), true);
+        $expectedMerged = [
+            'type' => 'Integer', // Last one wins in merge
+            'key' => 'age',
+            'value' => 25
+        ];
+        $this->assertEquals($expectedMerged, $requestBody['custom']);
+    }
+
+    public function testUpdateCustomAttributesWithNumericKeys()
+    {
+        $stream = Psr7\stream_for(self::CUSTOM_ATTRIBUTES_RESPONSE);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $customer = new Customer(['uuid' => 'cus_test'], $cmClient);
+
+        // Test edge case: single attribute with numeric keys (should NOT be treated as array of attributes)
+        $attribute = [0 => 'value1', 1 => 'value2', 'key' => 'channel'];
+
+        $result = $customer->updateCustomAttributes($attribute);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("PUT", $request->getMethod());
+
+        // Verify it's treated as single attribute, not array of attributes
+        $requestBody = json_decode((string) $request->getBody(), true);
+        $this->assertEquals($attribute, $requestBody['custom']);
+    }    /**
      * Test the exact scenario from the customer ticket
      */
     public function testCustomerTicketScenario()
