@@ -321,7 +321,7 @@ class Customer extends AbstractResource
         $args = func_get_args();
 
         // Detect if first argument is an array of attributes vs individual attribute
-        if (count($args) === 1 && is_array($custom) && !isset($custom['type'])) {
+        if (count($args) === 1 && is_array($custom) && (empty($custom) || is_array(reset($custom)))) {
             // New behavior: Array of attribute objects passed
             $attributesToSend = $custom;
         } else {
