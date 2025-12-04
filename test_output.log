@@ -1,0 +1,4 @@
+Unable to find image 'chartmogul/php-sdk:latest-test' locally
+docker: Error response from daemon: pull access denied for chartmogul/php-sdk, repository does not exist or may require 'docker login'
+
+Run 'docker run --help' for more information

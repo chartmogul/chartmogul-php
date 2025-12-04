@@ -321,7 +321,8 @@ class Customer extends AbstractResource
         $args = func_get_args();
 
         // Detect if first argument is an array of attributes vs individual attribute
-        if (count($args) === 1 && is_array($custom) && (empty($custom) || is_array(reset($custom)))) {
+        $firstKey = array_key_first($custom);
+        if (count($args) === 1 && is_array($custom) && $firstKey !== null && is_array($custom[$firstKey])) {
             // New behavior: Array of attribute objects passed
             $attributesToSend = $custom;
         } else {
@@ -358,7 +359,8 @@ class Customer extends AbstractResource
         $args = func_get_args();
 
         // Detect if first argument is an array of attributes vs individual attribute
-        if (count($args) === 1 && is_array($custom) && (empty($custom) || is_array(reset($custom)))) {
+        $firstKey = array_key_first($custom);
+        if (count($args) === 1 && is_array($custom) && $firstKey !== null && is_array($custom[$firstKey])) {
             // New behavior: Array of attribute objects passed
             $attributesToSend = $custom;
         } else {
@@ -397,8 +399,12 @@ class Customer extends AbstractResource
         // Handle different input formats
         if (count($args) === 1) {
             if (is_array($custom)) {
-                // Use similar detection logic as other methods
-                if (is_array(reset($custom))) {
+                // Check if this is an array of attribute objects vs single attribute object
+                // An array of attributes will have sub-arrays as values
+                $firstKey = array_key_first($custom);
+                $isArrayOfAttributes = $firstKey !== null && is_array($custom[$firstKey]);
+
+                if ($isArrayOfAttributes) {
                     // Array of attribute objects
                     $data = [];
                     foreach ($custom as $attr) {

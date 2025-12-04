@@ -356,8 +356,8 @@ foreach ($customers->entries as $customer) {
 ```php
 $customer = ChartMogul\Customer::retrieve($cus->uuid);
 $custom = $customer->updateCustomAttributes(
-    ['channel' => 'Twitter'],
-    ['age' => 18]
+    ['type' => 'String', 'key' => 'channel', 'value' => 'Twitter'],
+    ['type' => 'Integer', 'key' => 'age', 'value' => 18]
 );
 ```
 
@@ -366,8 +366,8 @@ $custom = $customer->updateCustomAttributes(
 ```php
 $customer = ChartMogul\Customer::retrieve($cus->uuid);
 $attributeUpdates = [
-    ['channel' => 'Twitter'],
-    ['age' => 18]
+    ['type' => 'String', 'key' => 'channel', 'value' => 'Twitter'],
+    ['type' => 'Integer', 'key' => 'age', 'value' => 18]
 ];
 $custom = $customer->updateCustomAttributes($attributeUpdates);
 ```
