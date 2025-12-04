@@ -42,11 +42,28 @@ class Retry
     public function retry($callback)
     {
         if ($this->retries === 0) {
-            return $callback();
+            $result = $callback();
+            // Ensure we never return null for HTTP responses
+            if ($result === null) {
+                throw new \ChartMogul\Exceptions\NetworkException(
+                    'Request failed with no response'
+                );
+            }
+            return $result;
         }
+
         $backoff = new Backoff($this->retries, new ExponentialStrategy(), 60 * 1000, true);
         $backoff->setDecider($this);
-        return $backoff->run($callback);
+        $result = $backoff->run($callback);
+
+        // Validate result is not null after all retries
+        if ($result === null) {
+            throw new \ChartMogul\Exceptions\NetworkException(
+                'All retry attempts failed with no response'
+            );
+        }
+
+        return $result;
     }
 
     public function __invoke($attempt, $maxAttempts, $response, $exception)

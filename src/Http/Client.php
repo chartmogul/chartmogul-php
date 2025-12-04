@@ -158,6 +158,14 @@ class Client implements ClientInterface
                 return $this->client->sendRequest($request);
             }
         );
+
+        // Handle null response from retry mechanism
+        if ($response === null) {
+            throw new \ChartMogul\Exceptions\NetworkException(
+                'No response received - request failed after all retry attempts'
+            );
+        }
+
         return $this->handleResponse($response);
     }
 
@@ -192,12 +200,19 @@ class Client implements ClientInterface
     }
 
     /**
-     * @param  ResponseInterface $response
+     * @param  ResponseInterface|null $response
      * @throws \ChartMogul\Exceptions\ChartMogulException
      * @return array
      */
-    public function handleResponse(ResponseInterface $response)
+    public function handleResponse(?ResponseInterface $response)
     {
+        // Handle null response
+        if ($response === null) {
+            throw new \ChartMogul\Exceptions\NetworkException(
+                'No response received from server'
+            );
+        }
+
         $response->getBody()->rewind();
         $data = json_decode($response->getBody()->getContents(), true);
         switch ($response->getStatusCode()) {
