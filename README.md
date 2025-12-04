@@ -275,6 +275,14 @@ $customer = ChartMogul\Customer::retrieve($cus->uuid);
 $tags = $customer->addTags("important", "Prio1");
 ```
 
+**Add Tags Using Array (Alternative)**
+
+```php
+$customer = ChartMogul\Customer::retrieve($cus->uuid);
+$tagsArray = ["important", "Prio1", "enterprise"];
+$tags = $customer->addTags($tagsArray);
+```
+
 **Add Tags to Customers with email**
 
 ```php
@@ -292,6 +300,14 @@ $customer = ChartMogul\Customer::retrieve($cus->uuid);
 $tags = $customer->removeTags("important", "Prio1");
 ```
 
+**Remove Tags Using Array (Alternative)**
+
+```php
+$customer = ChartMogul\Customer::retrieve($cus->uuid);
+$tagsToRemove = ["important", "Prio1"];
+$tags = $customer->removeTags($tagsToRemove);
+```
+
 #### Custom Attributes
 
 **Add Custom Attributes to a Customer**
@@ -302,6 +318,23 @@ $custom = $customer->addCustomAttributes(
     ['type' => 'String', 'key' => 'channel', 'value' => 'Facebook'],
     ['type' => 'Integer', 'key' => 'age', 'value' => 8 ]
 );
+```
+
+**Add Custom Attributes Using Array (Alternative)**
+
+```php
+$customer = ChartMogul\Customer::retrieve($cus->uuid);
+
+// Build attributes array dynamically
+$attributes = [];
+if (!empty($channel)) {
+    $attributes[] = ['type' => 'String', 'key' => 'channel', 'value' => $channel];
+}
+if (!empty($age)) {
+    $attributes[] = ['type' => 'Integer', 'key' => 'age', 'value' => $age];
+}
+
+$custom = $customer->addCustomAttributes($attributes);
 ```
 
 
@@ -328,11 +361,33 @@ $custom = $customer->updateCustomAttributes(
 );
 ```
 
+**Update Custom Attributes Using Array (Alternative)**
+
+```php
+$customer = ChartMogul\Customer::retrieve($cus->uuid);
+$attributeUpdates = [
+    ['channel' => 'Twitter'],
+    ['age' => 18]
+];
+$custom = $customer->updateCustomAttributes($attributeUpdates);
+```
+
 **Remove Custom Attributes from a Customer**
 
 ```php
 $customer = ChartMogul\Customer::retrieve($cus->uuid);
 $tags = $customer->removeCustomAttributes("age", "channel");
+```
+
+**Remove Custom Attributes Using Array (Alternative)**
+
+```php
+$customer = ChartMogul\Customer::retrieve($cus->uuid);
+$attributesToRemove = [
+    ['key' => 'age'],
+    ['key' => 'channel']
+];
+$tags = $customer->removeCustomAttributes($attributesToRemove);
 ```
 
 **List Contacts from a customer**
@@ -1005,6 +1060,7 @@ The library throws following Exceptions:
 - `ChartMogul\Exceptions\ChartMogulException`
 - `ChartMogul\Exceptions\ConfigurationException`
 - `ChartMogul\Exceptions\ForbiddenException`
+- `ChartMogul\Exceptions\NetworkException`
 - `ChartMogul\Exceptions\NotFoundException`
 - `ChartMogul\Exceptions\ResourceInvalidException`
 - `ChartMogul\Exceptions\SchemaInvalidException`
