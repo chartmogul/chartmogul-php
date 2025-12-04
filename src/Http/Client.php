@@ -159,13 +159,6 @@ class Client implements ClientInterface
             }
         );
 
-        // Handle null response from retry mechanism
-        if ($response === null) {
-            throw new \ChartMogul\Exceptions\NetworkException(
-                'No response received - request failed after all retry attempts'
-            );
-        }
-
         return $this->handleResponse($response);
     }
 
