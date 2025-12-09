@@ -15,9 +15,9 @@ use ChartMogul\Service\RequestService;
  * @property-read      string $status
  * @property-read      string $created_at
  * @property-read      string $system
- * @property-read      string $processing_status
- * @property-read      string $auto_churn_subscription_setting
- * @property-read      string $invoice_handling_setting
+ * @property-read      array  $processing_status
+ * @property-read      array  $auto_churn_subscription_setting
+ * @property-read      array  $invoice_handling_setting
  */
 class DataSource extends AbstractResource
 {

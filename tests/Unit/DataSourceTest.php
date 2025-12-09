@@ -29,7 +29,10 @@ class DataSourceTest extends TestCase
             "failed": 3,
             "pending": 0
         },
-        "auto_churn_subscription_setting": true,
+        "auto_churn_subscription_setting": {
+            "enabled": true,
+            "interval": 30
+        },
         "invoice_handling_setting": {
             "manual": {
                 "create_subscription_when_invoice_is": "open",
@@ -61,7 +64,10 @@ class DataSourceTest extends TestCase
                     "failed": 3,
                     "pending": 0
                 },
-                "auto_churn_subscription_setting": true,
+                "auto_churn_subscription_setting": {
+                    "enabled": true,
+                    "interval": 30
+                },
                 "invoice_handling_setting": {
                     "manual": {
                         "create_subscription_when_invoice_is": "open",
@@ -90,7 +96,10 @@ class DataSourceTest extends TestCase
                     "failed": 3,
                     "pending": 0
                 },
-                "auto_churn_subscription_setting": "disabled",
+                "auto_churn_subscription_setting": {
+                    "enabled": false,
+                    "interval": null
+                },
                 "invoice_handling_setting": "multiple_invoices_per_subscription"
             }
         ],
@@ -149,7 +158,9 @@ class DataSourceTest extends TestCase
         $this->assertEquals("custom", $result->system);
         $this->assertEquals("2016-01-10T15:34:05.000Z", $result->created_at);
         $this->assertEquals(["processed" => 61, "failed" => 3, "pending" => 0], $result->processing_status);
-        $this->assertEquals(true, $result->auto_churn_subscription_setting);
+        $this->assertIsArray($result->auto_churn_subscription_setting);
+        $this->assertEquals(true, $result->auto_churn_subscription_setting['enabled']);
+        $this->assertEquals(30, $result->auto_churn_subscription_setting['interval']);
         $this->assertIsArray($result->invoice_handling_setting);
         $this->assertArrayHasKey('manual', $result->invoice_handling_setting);
         $this->assertArrayHasKey('automatic', $result->invoice_handling_setting);
@@ -243,7 +254,10 @@ class DataSourceTest extends TestCase
             'created_at' => '2023-01-01T00:00:00.000Z',
             'system' => 'custom',
             'processing_status' => ['processed' => 61, 'failed' => 3, 'pending' => 0],
-            'auto_churn_subscription_setting' => true,
+            'auto_churn_subscription_setting' => [
+                'enabled' => true,
+                'interval' => 30
+            ],
             'invoice_handling_setting' => [
                 'manual' => [
                     'create_subscription_when_invoice_is' => 'open',
@@ -268,7 +282,9 @@ class DataSourceTest extends TestCase
         $this->assertEquals('2023-01-01T00:00:00.000Z', $dataSource->created_at);
         $this->assertEquals('custom', $dataSource->system);
         $this->assertEquals(['processed' => 61, 'failed' => 3, 'pending' => 0], $dataSource->processing_status);
-        $this->assertEquals(true, $dataSource->auto_churn_subscription_setting);
+        $this->assertIsArray($dataSource->auto_churn_subscription_setting);
+        $this->assertEquals(true, $dataSource->auto_churn_subscription_setting['enabled']);
+        $this->assertEquals(30, $dataSource->auto_churn_subscription_setting['interval']);
         $this->assertIsArray($dataSource->invoice_handling_setting);
         $this->assertArrayHasKey('manual', $dataSource->invoice_handling_setting);
         $this->assertArrayHasKey('automatic', $dataSource->invoice_handling_setting);
