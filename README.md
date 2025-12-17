@@ -939,7 +939,8 @@ ChartMogul\Metrics::all([
     'end-date' => '2015-11-24',
     'interval' => 'month',
     'geo' => 'GB',
-    'plans' => $plan->name
+    'plans' => $plan->name,
+    'filters' => "currency~ANY~'USD'"
 ]);
 ```
 
@@ -952,7 +953,8 @@ ChartMogul\Metrics::mrr([
     'end-date' => '2015-11-24',
     'interval' => 'month',
     'geo' => 'GB',
-    'plans' => $plan->name
+    'plans' => $plan->name,
+    'filters' => "currency~ANY~'USD'"
 ]);
 ```
 
