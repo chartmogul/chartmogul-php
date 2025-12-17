@@ -8,18 +8,6 @@ use GuzzleHttp\Psr7\Response;
 
 class ClientNullResponseTest extends TestCase
 {
-    public function testHandleResponseWithNull()
-    {
-        $this->expectException(NetworkException::class);
-        $this->expectExceptionMessage('No response received from server');
-
-        $config = new Configuration('test_key');
-        $client = new Client($config);
-
-        // Test handleResponse directly with null
-        $client->handleResponse(null);
-    }
-
     public function testSendWithValidResponse()
     {
         $stream = \GuzzleHttp\Psr7\stream_for('{"test": "data"}');

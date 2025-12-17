@@ -193,19 +193,12 @@ class Client implements ClientInterface
     }
 
     /**
-     * @param  ResponseInterface|null $response
+     * @param  ResponseInterface $response
      * @throws \ChartMogul\Exceptions\ChartMogulException
      * @return array
      */
-    public function handleResponse(?ResponseInterface $response)
+    public function handleResponse(ResponseInterface $response)
     {
-        // Handle null response
-        if ($response === null) {
-            throw new \ChartMogul\Exceptions\NetworkException(
-                'No response received from server'
-            );
-        }
-
         $response->getBody()->rewind();
         $data = json_decode($response->getBody()->getContents(), true);
         switch ($response->getStatusCode()) {
