@@ -158,6 +158,7 @@ class Client implements ClientInterface
                 return $this->client->sendRequest($request);
             }
         );
+
         return $this->handleResponse($response);
     }
 

@@ -236,17 +236,32 @@ class Customer extends AbstractResource
     /**
      * Add tags to a customer
      *
-     * @param  mixed $tags,...
+     * Supports both individual arguments and array input:
+     * - Individual args: $customer->addTags($tag1, $tag2, ...)
+     * - Array input: $customer->addTags($tagsArray)
+     *
+     * @param  mixed $tags,... Individual tag strings OR array of tags
      * @return array
      */
     public function addTags($tags)
     {
+        $args = func_get_args();
+
+        // Detect if first argument is an array of tags vs individual tag
+        if (count($args) === 1 && is_array($tags)) {
+            // New behavior: Array of tags passed
+            $tagsToSend = $tags;
+        } else {
+            // Existing behavior: Individual arguments (maintain backwards compatibility)
+            $tagsToSend = $args;
+        }
+
         $result = $this->getClient()
             ->send(
                 '/v1/customers/'.$this->uuid.'/attributes/tags',
                 'POST',
                 [
-                'tags' => func_get_args()
+                'tags' => $tagsToSend
                 ]
             );
 
@@ -258,17 +273,32 @@ class Customer extends AbstractResource
     /**
      * Remove Tags from a Customer
      *
-     * @param  mixed $tags,...
+     * Supports both individual arguments and array input:
+     * - Individual args: $customer->removeTags($tag1, $tag2, ...)
+     * - Array input: $customer->removeTags($tagsArray)
+     *
+     * @param  mixed $tags,... Individual tag strings OR array of tags
      * @return array
      */
     public function removeTags($tags)
     {
+        $args = func_get_args();
+
+        // Detect if first argument is an array of tags vs individual tag
+        if (count($args) === 1 && is_array($tags)) {
+            // New behavior: Array of tags passed
+            $tagsToSend = $tags;
+        } else {
+            // Existing behavior: Individual arguments (maintain backwards compatibility)
+            $tagsToSend = $args;
+        }
+
         $result = $this->getClient()
             ->send(
                 '/v1/customers/'.$this->uuid.'/attributes/tags',
                 'DELETE',
                 [
-                'tags' => func_get_args()
+                'tags' => $tagsToSend
                 ]
             );
 
@@ -279,17 +309,33 @@ class Customer extends AbstractResource
     /**
      * Add Custom Attributes to a Customer
      *
-     * @param  mixed $custom,...
+     * Supports both individual arguments and array input:
+     * - Individual args: $customer->addCustomAttributes($attr1, $attr2, ...)
+     * - Array input: $customer->addCustomAttributes($attributesArray)
+     *
+     * @param  mixed $custom,... Individual attribute objects OR array of attributes
      * @return array
      */
     public function addCustomAttributes($custom)
     {
+        $args = func_get_args();
+
+        // Detect if first argument is an array of attributes vs individual attribute
+        $firstKey = array_key_first($custom);
+        if (count($args) === 1 && is_array($custom) && $firstKey !== null && is_array($custom[$firstKey])) {
+            // New behavior: Array of attribute objects passed
+            $attributesToSend = $custom;
+        } else {
+            // Existing behavior: Individual arguments (maintain backwards compatibility)
+            $attributesToSend = $args;
+        }
+
         $result = $this->getClient()
             ->send(
                 '/v1/customers/'.$this->uuid.'/attributes/custom',
                 'POST',
                 [
-                'custom' => func_get_args()
+                'custom' => $attributesToSend
                 ]
             );
 
@@ -301,17 +347,33 @@ class Customer extends AbstractResource
     /**
      * Remove Custom Attributes from a Customer
      *
-     * @param  mixed $custom,...
+     * Supports both individual arguments and array input:
+     * - Individual args: $customer->removeCustomAttributes($attr1, $attr2, ...)
+     * - Array input: $customer->removeCustomAttributes($attributesArray)
+     *
+     * @param  mixed $custom,... Individual attribute objects OR array of attributes
      * @return array
      */
     public function removeCustomAttributes($custom)
     {
+        $args = func_get_args();
+
+        // Detect if first argument is an array of attributes vs individual attribute
+        $firstKey = array_key_first($custom);
+        if (count($args) === 1 && is_array($custom) && $firstKey !== null && is_array($custom[$firstKey])) {
+            // New behavior: Array of attribute objects passed
+            $attributesToSend = $custom;
+        } else {
+            // Existing behavior: Individual arguments (maintain backwards compatibility)
+            $attributesToSend = $args;
+        }
+
         $result = $this->getClient()
             ->send(
                 '/v1/customers/'.$this->uuid.'/attributes/custom',
                 'DELETE',
                 [
-                'custom' => func_get_args()
+                'custom' => $attributesToSend
                 ]
             );
 
@@ -322,15 +384,52 @@ class Customer extends AbstractResource
     /**
      * Update Custom Attributes of a Customer
      *
-     * @param  mixed $custom,...
+     * Supports multiple input formats:
+     * - Individual attribute arrays: $customer->updateCustomAttributes($attr1, $attr2, ...)
+     * - Array of attributes: $customer->updateCustomAttributes($attributesArray)
+     * - Single attribute array: $customer->updateCustomAttributes($singleAttribute)
+     *
+     * @param  mixed $custom,... Individual attribute arrays OR array of attributes
      * @return array
      */
     public function updateCustomAttributes($custom)
     {
-        $data = [];
-        foreach (func_get_args() as $value) {
-            $data = array_merge($data, $value);
+        $args = func_get_args();
+
+        // Handle different input formats
+        if (count($args) === 1) {
+            if (is_array($custom)) {
+                // Check if this is an array of attribute objects vs single attribute object
+                // An array of attributes will have sub-arrays as values
+                $firstKey = array_key_first($custom);
+                $isArrayOfAttributes = $firstKey !== null && is_array($custom[$firstKey]);
+
+                if ($isArrayOfAttributes) {
+                    // Array of attribute objects
+                    $data = [];
+                    foreach ($custom as $attr) {
+                        if (is_array($attr)) {
+                            $data = array_merge($data, $attr);
+                        }
+                    }
+                } else {
+                    // Single attribute object
+                    $data = $custom;
+                }
+            } else {
+                // Single non-array argument (shouldn't happen but handle gracefully)
+                $data = [$custom];
+            }
+        } else {
+            // Multiple arguments - existing behavior
+            $data = [];
+            foreach ($args as $value) {
+                if (is_array($value)) {
+                    $data = array_merge($data, $value);
+                }
+            }
         }
+
         $result = $this->getClient()
             ->send(
                 '/v1/customers/'.$this->uuid.'/attributes/custom',
