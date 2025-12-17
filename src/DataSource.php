@@ -2,11 +2,12 @@
 
 namespace ChartMogul;
 
+use ChartMogul\Http\ClientInterface;
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Service\CreateTrait;
 use ChartMogul\Service\AllTrait;
 use ChartMogul\Service\DestroyTrait;
-use ChartMogul\Service\GetTrait;
+use ChartMogul\Service\RequestService;
 
 /**
  * @codeCoverageIgnore
@@ -14,13 +15,15 @@ use ChartMogul\Service\GetTrait;
  * @property-read      string $status
  * @property-read      string $created_at
  * @property-read      string $system
+ * @property-read      array  $processing_status
+ * @property-read      array  $auto_churn_subscription_setting
+ * @property-read      array  $invoice_handling_setting
  */
 class DataSource extends AbstractResource
 {
     use CreateTrait;
     use AllTrait;
     use DestroyTrait;
-    use GetTrait;
 
     /**
      * @ignore
@@ -41,6 +44,21 @@ class DataSource extends AbstractResource
     protected $status;
     protected $created_at;
     protected $system;
+    protected $processing_status;
+    protected $auto_churn_subscription_setting;
+    protected $invoice_handling_setting;
 
     public $name;
+
+    public static function retrieve($uuid, $query = [], ?ClientInterface $client = null)
+    {
+        return (new RequestService($client))
+            ->setResourceClass(static::class)
+            ->getWithQuery($uuid, $query);
+    }
+
+    public static function get($uuid, $query = [], ?ClientInterface $client = null)
+    {
+        return static::retrieve($uuid, $query, $client);
+    }
 }
