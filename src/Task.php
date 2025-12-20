@@ -48,4 +48,12 @@ class Task extends AbstractResource
     protected $completed_at;
     protected $created_at;
     protected $updated_at;
+
+    public function __construct(array $attr = [], ?ClientInterface $client = null)
+    {
+        if (isset($attr['task_uuid'])) {
+            $attr['uuid'] = $attr['task_uuid'];
+        }
+        parent::__construct($attr);
+    }
 }
