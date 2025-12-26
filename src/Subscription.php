@@ -20,7 +20,9 @@ use ChartMogul\Http\ClientInterface;
 class Subscription extends AbstractResource
 {
     use CreateTrait;
-    use AllTrait;
+    use AllTrait {
+        AllTrait::all as private traitAll;
+    }
 
     /**
      * @ignore
@@ -43,6 +45,22 @@ class Subscription extends AbstractResource
     protected $data_source_uuid;
     protected $customer_uuid;
 
+    /**
+     * Returns a list of objects
+     *
+     * @param  array                $data
+     * @param  ClientInterface|null $client
+     * @return Collection|self[]|self
+     * @deprecated Use Customer->subscriptions() instead
+     */
+    public static function all(array $data = [], ?ClientInterface $client = null)
+    {
+        @trigger_error(
+            'Subscription::all() is deprecated. Use Customer->subscriptions() instead.',
+            E_USER_DEPRECATED
+        );
+        return self::traitAll($data, $client);
+    }
 
 
     private function cancellation($payload)
@@ -108,9 +126,15 @@ class Subscription extends AbstractResource
      * @param  string         $customerUUID  Customer UUID
      * @param  Subscription[] $subscriptions Array of Subscription to connect this subscription with
      * @return bool
+     * @deprecated Use \ChartMogul\Metrics\Customers\Subscription::connect() instead
      */
     public function connect($customerUUID, array $subscriptions)
     {
+        @trigger_error(
+            'Subscription->connect() is deprecated. Use \ChartMogul\Metrics\Customers\Subscription::connect() instead.',
+            E_USER_DEPRECATED
+        );
+
         $arr = [];
         for ($i = 0; $i < count($subscriptions); $i++) {
             $arr[$i] = $subscriptions[$i];
@@ -138,9 +162,15 @@ class Subscription extends AbstractResource
      * @param  string         $customerUUID  Customer UUID
      * @param  Subscription[] $subscriptions Array of Subscription to disconnect this subscription from
      * @return bool
+     * @deprecated Use \ChartMogul\Metrics\Customers\Subscription::disconnect() instead
      */
     public function disconnect($customerUUID, array $subscriptions)
     {
+        @trigger_error(
+            'Subscription->disconnect() is deprecated. Use \ChartMogul\Metrics\Customers\Subscription::disconnect() instead.',
+            E_USER_DEPRECATED
+        );
+
         $arr = [];
         for ($i = 0; $i < count($subscriptions); $i++) {
             $arr[$i] = $subscriptions[$i];

@@ -244,7 +244,23 @@ ChartMogul\Customer::connectSubscriptions("cus_5915ee5a-babd-406b-b8ce-d207133fb
 ]);
 ```
 
-OR
+OR (Recommended)
+
+```php
+use ChartMogul\Metrics\Customers\Subscription;
+
+// Fetch customer subscriptions
+$subscriptions = $customer->subscriptions();
+
+// Connect subscriptions
+Subscription::connect(
+    "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213",  // data source UUID
+    "cus_5915ee5a-babd-406b-b8ce-d207133fb4cb",  // customer UUID
+    $subscriptions->entries  // array of Subscription objects
+);
+```
+
+OR (Deprecated)
 
 ```php
 $subscription1->connect("cus_5915ee5a-babd-406b-b8ce-d207133fb4cb", $subscriptions);
@@ -268,7 +284,23 @@ ChartMogul\Customer::disconnectSubscriptions("cus_5915ee5a-babd-406b-b8ce-d20713
 ]);
 ```
 
-OR
+OR (Recommended)
+
+```php
+use ChartMogul\Metrics\Customers\Subscription;
+
+// Fetch customer subscriptions
+$subscriptions = $customer->subscriptions();
+
+// Disconnect subscriptions
+Subscription::disconnect(
+    "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213",  // data source UUID
+    "cus_5915ee5a-babd-406b-b8ce-d207133fb4cb",  // customer UUID
+    $subscriptions->entries  // array of Subscription objects
+);
+```
+
+OR (Deprecated)
 
 ```php
 $subscription1->disconnect("cus_5915ee5a-babd-406b-b8ce-d207133fb4cb", $subscriptions);
@@ -911,6 +943,8 @@ The same can be done with Payment class.
 ```php
 $subscriptions = $cus->subscriptions();
 ```
+
+**Note:** The following methods are deprecated. Use `ChartMogul\Metrics\Customers\Subscription::connect()` and `ChartMogul\Metrics\Customers\Subscription::disconnect()` instead. See the Connect/Disconnect Subscriptions section above for recommended usage.
 
 **Cancel Customer Subscriptions**
 
