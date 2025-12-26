@@ -7,6 +7,7 @@ use ChartMogul\Http\ClientInterface;
 
 /**
  * @property-read string $id;
+ * @property-read string $uuid;
  * @property-read string $plan;
  * @property-read string $quantity;
  * @property-read string $mrr;
@@ -22,6 +23,7 @@ use ChartMogul\Http\ClientInterface;
 class Subscription extends AbstractModel
 {
     protected $id;
+    protected $uuid;
     protected $external_id;
     protected $plan;
     protected $quantity;
@@ -45,5 +47,72 @@ class Subscription extends AbstractModel
     public static function all(array $options = [], ?ClientInterface $client = null)
     {
         return Subscriptions::all($options, $client);
+    }
+
+    /**
+     * Connect Subscriptions
+     *
+     * @param  string         $dataSourceUUID Data Source UUID
+     * @param  string         $customerUUID  Customer UUID
+     * @param  array|\ChartMogul\Resource\Collection|\Traversable $subscriptions Array or Collection of subscriptions to connect
+     * @param  ClientInterface|null $client
+     * @return bool
+     */
+    public static function connect($dataSourceUUID, $customerUUID, $subscriptions, ?ClientInterface $client = null)
+    {
+        $clientObj = $client ?? new \ChartMogul\Http\Client();
+
+        $arr = self::getSubscriptionsForConnectDisconnect($dataSourceUUID, $subscriptions);
+
+        $clientObj->send(
+            '/v1/customers/' . $customerUUID . '/connect_subscriptions',
+            'POST',
+            ['subscriptions' => $arr]
+        );
+
+        return true;
+    }
+
+    /**
+     * Disconnect Subscriptions
+     *
+     * @param  string         $dataSourceUUID Data Source UUID
+     * @param  string         $customerUUID  Customer UUID
+     * @param  array|\ChartMogul\Resource\Collection|\Traversable $subscriptions Array or Collection of subscriptions to disconnect
+     * @param  ClientInterface|null $client
+     * @return bool
+     */
+    public static function disconnect($dataSourceUUID, $customerUUID, $subscriptions, ?ClientInterface $client = null)
+    {
+        $clientObj = $client ?? new \ChartMogul\Http\Client();
+
+        $arr = self::getSubscriptionsForConnectDisconnect($dataSourceUUID, $subscriptions);
+
+        $clientObj->send(
+            '/v1/customers/' . $customerUUID . '/disconnect_subscriptions',
+            'POST',
+            ['subscriptions' => $arr]
+        );
+
+        return true;
+    }
+
+    /**
+     * Prepare subscriptions array for API request
+     *
+     * @param  string $dataSourceUUID Data Source UUID
+     * @param  array|\ChartMogul\Resource\Collection|\Traversable $subscriptions Subscriptions to prepare
+     * @return array
+     */
+    private static function getSubscriptionsForConnectDisconnect($dataSourceUUID, $subscriptions)
+    {
+        $arr = [];
+        foreach ($subscriptions as $subscription) {
+            $arr[] = [
+                'data_source_uuid' => $dataSourceUUID,
+                'uuid' => $subscription->uuid
+            ];
+        }
+        return $arr;
     }
 }
