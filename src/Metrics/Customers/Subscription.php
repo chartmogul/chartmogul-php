@@ -46,4 +46,68 @@ class Subscription extends AbstractModel
     {
         return Subscriptions::all($options, $client);
     }
+
+    /**
+     * Connect Subscriptions
+     *
+     * @param  string         $dataSourceUUID Data Source UUID
+     * @param  string         $customerUUID  Customer UUID
+     * @param  array          $subscriptions Array of subscriptions to connect
+     * @param  ClientInterface|null $client
+     * @return bool
+     */
+    public static function connect($dataSourceUUID, $customerUUID, array $subscriptions, ?ClientInterface $client = null)
+    {
+        $clientObj = $client ?? new \ChartMogul\Http\Client();
+
+        $arr = [];
+        foreach ($subscriptions as $subscription) {
+            if ($subscription instanceof Subscription) {
+                $arr[] = [
+                    'data_source_uuid' => $dataSourceUUID,
+                    'uuid' => $subscription->uuid ?? null
+                ];
+            }
+        }
+
+        $clientObj->send(
+            '/v1/customers/' . $customerUUID . '/connect_subscriptions',
+            'POST',
+            ['subscriptions' => $arr]
+        );
+
+        return true;
+    }
+
+    /**
+     * Disconnect Subscriptions
+     *
+     * @param  string         $dataSourceUUID Data Source UUID
+     * @param  string         $customerUUID  Customer UUID
+     * @param  array          $subscriptions Array of subscriptions to disconnect
+     * @param  ClientInterface|null $client
+     * @return bool
+     */
+    public static function disconnect($dataSourceUUID, $customerUUID, array $subscriptions, ?ClientInterface $client = null)
+    {
+        $clientObj = $client ?? new \ChartMogul\Http\Client();
+
+        $arr = [];
+        foreach ($subscriptions as $subscription) {
+            if ($subscription instanceof Subscription) {
+                $arr[] = [
+                    'data_source_uuid' => $dataSourceUUID,
+                    'uuid' => $subscription->uuid ?? null
+                ];
+            }
+        }
+
+        $clientObj->send(
+            '/v1/customers/' . $customerUUID . '/disconnect_subscriptions',
+            'POST',
+            ['subscriptions' => $arr]
+        );
+
+        return true;
+    }
 }
