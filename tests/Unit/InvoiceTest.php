@@ -206,4 +206,84 @@ class InvoiceTest extends TestCase
         $this->assertTrue($result instanceof Invoice);
         $this->assertEquals($uuid, $result->uuid);
     }
+
+    public function testRetrieveInvoiceWithValidationType()
+    {
+        $stream = Psr7\stream_for(InvoiceTest::RETRIEVE_INVOICE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9';
+
+        $result = Invoice::retrieve($uuid, $cmClient, ['validation_type' => 'all']);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("validation_type=all", $uri->getQuery());
+        $this->assertEquals("/v1/invoices/".$uuid, $uri->getPath());
+
+        $this->assertTrue($result instanceof Invoice);
+        $this->assertEquals($uuid, $result->uuid);
+    }
+
+    public function testRetrieveInvoiceWithAllParams()
+    {
+        $stream = Psr7\stream_for(InvoiceTest::RETRIEVE_INVOICE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9';
+
+        $result = Invoice::retrieve($uuid, $cmClient, [
+            'validation_type' => 'invalid',
+            'include_edit_histories' => true,
+            'with_disabled' => true
+        ]);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        parse_str($uri->getQuery(), $queryParams);
+        $this->assertEquals('invalid', $queryParams['validation_type']);
+        $this->assertEquals('1', $queryParams['include_edit_histories']);
+        $this->assertEquals('1', $queryParams['with_disabled']);
+        $this->assertEquals("/v1/invoices/".$uuid, $uri->getPath());
+
+        $this->assertTrue($result instanceof Invoice);
+        $this->assertEquals($uuid, $result->uuid);
+    }
+
+    public function testAllInvoicesWithValidationType()
+    {
+        $stream = Psr7\stream_for(InvoiceTest::ALL_INVOICES_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $result = Invoice::all(['validation_type' => 'all'], $cmClient);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("validation_type=all", $uri->getQuery());
+        $this->assertEquals("/v1/invoices", $uri->getPath());
+    }
+
+    public function testAllInvoicesWithAllParams()
+    {
+        $stream = Psr7\stream_for(InvoiceTest::ALL_INVOICES_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $result = Invoice::all([
+            'validation_type' => 'valid',
+            'include_edit_histories' => false,
+            'with_disabled' => true
+        ], $cmClient);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        parse_str($uri->getQuery(), $queryParams);
+        $this->assertEquals('valid', $queryParams['validation_type']);
+        $this->assertEquals('0', $queryParams['include_edit_histories']);
+        $this->assertEquals('1', $queryParams['with_disabled']);
+        $this->assertEquals("/v1/invoices", $uri->getPath());
+    }
 }

@@ -139,11 +139,11 @@ class DataSourceTest extends TestCase
 
         $uuid = 'ds_fef05d54-47b4-431b-aed2-eb6b9e545430';
 
-        $result = DataSource::retrieve($uuid, [
+        $result = DataSource::retrieve($uuid, $cmClient, [
           'with_processing_status' => true,
           'with_auto_churn_subscription_setting' => true,
           'with_invoice_handling_setting' => true
-        ], $cmClient);
+        ]);
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals("GET", $request->getMethod());
@@ -174,7 +174,7 @@ class DataSourceTest extends TestCase
         $uuid = 'ds_fef05d54-47b4-431b-aed2-eb6b9e545430';
 
         // Test the alias method get()
-        $result = DataSource::get($uuid, [], $cmClient);
+        $result = DataSource::get($uuid, $cmClient);
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals("GET", $request->getMethod());
@@ -184,6 +184,70 @@ class DataSourceTest extends TestCase
 
         $this->assertTrue($result instanceof DataSource);
         $this->assertEquals($uuid, $result->uuid);
+    }
+
+    public function testRetrieveDataSourceWithProcessingStatus()
+    {
+        $stream = Psr7\stream_for(DataSourceTest::RETRIEVE_DATA_SOURCE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = 'ds_fef05d54-47b4-431b-aed2-eb6b9e545430';
+
+        $result = DataSource::retrieve($uuid, $cmClient, ['with_processing_status' => true]);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("with_processing_status=1", $uri->getQuery());
+        $this->assertEquals("/v1/data_sources/".$uuid, $uri->getPath());
+    }
+
+    public function testRetrieveDataSourceWithAutoChurnSubscriptionSetting()
+    {
+        $stream = Psr7\stream_for(DataSourceTest::RETRIEVE_DATA_SOURCE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = 'ds_fef05d54-47b4-431b-aed2-eb6b9e545430';
+
+        $result = DataSource::retrieve($uuid, $cmClient, ['with_auto_churn_subscription_setting' => true]);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("with_auto_churn_subscription_setting=1", $uri->getQuery());
+        $this->assertEquals("/v1/data_sources/".$uuid, $uri->getPath());
+    }
+
+    public function testRetrieveDataSourceWithInvoiceHandlingSetting()
+    {
+        $stream = Psr7\stream_for(DataSourceTest::RETRIEVE_DATA_SOURCE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = 'ds_fef05d54-47b4-431b-aed2-eb6b9e545430';
+
+        $result = DataSource::retrieve($uuid, $cmClient, ['with_invoice_handling_setting' => true]);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("with_invoice_handling_setting=1", $uri->getQuery());
+        $this->assertEquals("/v1/data_sources/".$uuid, $uri->getPath());
+    }
+
+    public function testRetrieveDataSourceWithProcessingStatusFalse()
+    {
+        $stream = Psr7\stream_for(DataSourceTest::RETRIEVE_DATA_SOURCE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = 'ds_fef05d54-47b4-431b-aed2-eb6b9e545430';
+
+        $result = DataSource::retrieve($uuid, $cmClient, ['with_processing_status' => false]);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("with_processing_status=0", $uri->getQuery());
+        $this->assertEquals("/v1/data_sources/".$uuid, $uri->getPath());
     }
 
     public function testListDataSources()
