@@ -20,6 +20,20 @@ class InvoiceTest extends TestCase
           "date": "2015-11-01T00:00:00.000Z",
           "due_date": "2015-11-15T00:00:00.000Z",
           "currency": "USD",
+          "disabled": false,
+          "disabled_at": null,
+          "disabled_by": null,
+          "edit_history_summary": {
+            "values_changed": {
+              "amount_in_cents": {
+                "original_value": 4500,
+                "edited_value": 5000
+              }
+            },
+            "latest_edit_author": "admin@example.com",
+            "latest_edit_performed_at": "2024-01-10T12:00:00.000Z"
+          },
+          "errors": null,
           "line_items": [
             {
               "uuid": "li_d72e6843-5793-41d0-bfdf-0269514c9c56",
@@ -75,6 +89,27 @@ class InvoiceTest extends TestCase
       "date": "2015-11-01T00:00:00.000Z",
       "due_date": "2015-11-15T00:00:00.000Z",
       "currency": "USD",
+      "disabled": true,
+      "disabled_at": "2024-01-15T10:30:00.000Z",
+      "disabled_by": "user@example.com",
+      "edit_history_summary": {
+        "values_changed": {
+          "currency": {
+            "original_value": "EUR",
+            "edited_value": "USD"
+          },
+          "date": {
+            "original_value": "2024-01-01T00:00:00.000Z",
+            "edited_value": "2024-01-02T00:00:00.000Z"
+          }
+        },
+        "latest_edit_author": "editor@example.com",
+        "latest_edit_performed_at": "2024-01-20T15:45:00.000Z"
+      },
+      "errors": {
+        "currency": ["Currency is invalid", "Currency must be supported"],
+        "date": ["Date is in the future"]
+      },
       "line_items": [
         {
           "uuid": "li_d72e6843-5793-41d0-bfdf-0269514c9c56",
@@ -250,6 +285,30 @@ class InvoiceTest extends TestCase
 
         $this->assertTrue($result instanceof Invoice);
         $this->assertEquals($uuid, $result->uuid);
+
+        // Verify new fields are present
+        $this->assertTrue($result->disabled);
+        $this->assertEquals('2024-01-15T10:30:00.000Z', $result->disabled_at);
+        $this->assertEquals('user@example.com', $result->disabled_by);
+        $this->assertNotNull($result->edit_history_summary);
+        $this->assertIsArray($result->edit_history_summary);
+        $this->assertArrayHasKey('values_changed', $result->edit_history_summary);
+        $this->assertArrayHasKey('currency', $result->edit_history_summary['values_changed']);
+        $this->assertEquals('EUR', $result->edit_history_summary['values_changed']['currency']['original_value']);
+        $this->assertEquals('USD', $result->edit_history_summary['values_changed']['currency']['edited_value']);
+        $this->assertEquals('editor@example.com', $result->edit_history_summary['latest_edit_author']);
+        $this->assertEquals('2024-01-20T15:45:00.000Z', $result->edit_history_summary['latest_edit_performed_at']);
+        $this->assertNotNull($result->errors);
+        $this->assertIsArray($result->errors);
+        $this->assertArrayHasKey('currency', $result->errors);
+        $this->assertIsArray($result->errors['currency']);
+        $this->assertCount(2, $result->errors['currency']);
+        $this->assertEquals('Currency is invalid', $result->errors['currency'][0]);
+        $this->assertEquals('Currency must be supported', $result->errors['currency'][1]);
+        $this->assertArrayHasKey('date', $result->errors);
+        $this->assertIsArray($result->errors['date']);
+        $this->assertCount(1, $result->errors['date']);
+        $this->assertEquals('Date is in the future', $result->errors['date'][0]);
     }
 
     public function testAllInvoicesWithValidationType()
