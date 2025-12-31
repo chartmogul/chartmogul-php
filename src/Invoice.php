@@ -17,6 +17,20 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @property-read string $uuid
+ * @property-read string $customer_uuid
+ * @property-read string $external_id
+ * @property-read string $data_source_uuid
+ * @property-read string $customer_external_id
+ * @property-read string $currency
+ * @property-read string $date
+ * @property-read string $due_date
+ * @property-read bool $disabled
+ * @property-read string $disabled_at
+ * @property-read string $disabled_by
+ * @property-read array $edit_history_summary
+ * @property-read array $errors
+ * @property-read ArrayCollection $line_items
+ * @property-read ArrayCollection $transactions
  */
 class Invoice extends AbstractResource
 {
@@ -47,6 +61,12 @@ class Invoice extends AbstractResource
     public $currency;
     public $date;
     public $due_date;
+
+    public $disabled;
+    public $disabled_at;
+    public $disabled_by;
+    public $edit_history_summary;
+    public $errors;
 
     public $line_items = [];
     public $transactions = [];
