@@ -7,7 +7,7 @@ use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Service\CreateTrait;
 use ChartMogul\Service\AllTrait;
 use ChartMogul\Service\DestroyTrait;
-use ChartMogul\Service\RequestService;
+use ChartMogul\Service\GetTrait;
 
 /**
  * @codeCoverageIgnore
@@ -24,6 +24,7 @@ class DataSource extends AbstractResource
     use CreateTrait;
     use AllTrait;
     use DestroyTrait;
+    use GetTrait;
 
     /**
      * @ignore
@@ -49,16 +50,4 @@ class DataSource extends AbstractResource
     protected $invoice_handling_setting;
 
     public $name;
-
-    public static function retrieve($uuid, $query = [], ?ClientInterface $client = null)
-    {
-        return (new RequestService($client))
-            ->setResourceClass(static::class)
-            ->getWithQuery($uuid, $query);
-    }
-
-    public static function get($uuid, $query = [], ?ClientInterface $client = null)
-    {
-        return static::retrieve($uuid, $query, $client);
-    }
 }
