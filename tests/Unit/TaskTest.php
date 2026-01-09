@@ -49,6 +49,17 @@ class TaskTest extends TestCase
       "has_more": true
     }';
 
+    const TASK_ALTERNATIVE_JSON = '{
+      "task_uuid": "00000000-1111-2222-3333-000000000000",
+      "customer_uuid": "cus_00000000-0000-0000-0000-000000000000",
+      "task_details": "This is some task details text.",
+      "assignee": "customer@example.com",
+      "due_date": "2025-04-30T00:00:00Z",
+      "completed_at": "2025-04-20T00:00:00Z",
+      "created_at": "2025-04-01T12:00:00.000Z",
+      "updated_at": "2025-04-01T12:00:00.000Z"
+    }';
+
     public function testListTasks()
     {
         $stream = Psr7\stream_for(TaskTest::LIST_TASKS_JSON);
@@ -125,6 +136,24 @@ class TaskTest extends TestCase
         $this->assertEquals("2025-04-20T00:00:00Z", $result->completed_at);
         $this->assertEquals("2025-04-01T12:00:00.000Z", $result->created_at);
         $this->assertEquals("2025-04-01T12:00:00.000Z", $result->updated_at);
+    }
+
+    public function testRetrieveAlternativeJsonTask()
+    {
+        $stream = Psr7\stream_for(TaskTest::TASK_ALTERNATIVE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = "00000000-1111-2222-3333-000000000000";
+
+        $result = Task::retrieve($uuid, $cmClient);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/tasks/".$uuid, $uri->getPath());
+
+        $this->assertTrue($result instanceof Task);
+        $this->assertEquals("00000000-1111-2222-3333-000000000000", $result->uuid);
     }
 
     public function testUpdateTask()
