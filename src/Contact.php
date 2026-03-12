@@ -16,6 +16,7 @@ use ChartMogul\Service\FromArrayTrait;
  * @property-read string $customer_uuid
  * @property-read string $data_source_uuid
  * @property-read string $customer_external_id
+ * @property-read string|null $external_id
  * @property-read string $first_name
  * @property-read string $last_name
  * @property-read integer $position
@@ -51,6 +52,7 @@ class Contact extends AbstractResource
     protected $customer_uuid;
     protected $data_source_uuid;
     protected $customer_external_id;
+    protected $external_id;
     protected $first_name;
     protected $last_name;
     protected $position;
