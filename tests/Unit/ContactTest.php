@@ -16,6 +16,7 @@ class ContactTest extends TestCase
           "uuid": "con_00000000-0000-0000-0000-000000000000",
           "customer_uuid": "cus_00000000-0000-0000-0000-000000000000",
           "customer_external_id": "123",
+          "external_id": null,
           "data_source_uuid": "ds_00000000-0000-0000-0000-000000000000",
           "position": 1,
           "first_name": "Adam",
@@ -40,6 +41,28 @@ class ContactTest extends TestCase
       "uuid": "con_00000000-0000-0000-0000-000000000000",
       "customer_uuid": "cus_00000000-0000-0000-0000-000000000000",
       "customer_external_id": "customer_001",
+      "external_id": "contact_external_id_001",
+      "data_source_uuid": "ds_00000000-0000-0000-0000-000000000000",
+      "position": 9,
+      "first_name": "Adam",
+      "last_name": "Smith",
+      "title": "CEO",
+      "email": "adam@example.com",
+      "phone": "+1234567890",
+      "linked_in": "https://linkedin.com/linkedin",
+      "twitter": "https://twitter.com/twitter",
+      "notes": "Heading\nBody\nFooter",
+      "custom": {
+        "Facebook": "https://www.facebook.com/adam.smith",
+        "date_of_birth": "1985-01-22"
+      }
+    }';
+
+    const CONTACT_NULL_EXTERNAL_ID_JSON= '{
+      "uuid": "con_00000000-0000-0000-0000-000000000000",
+      "customer_uuid": "cus_00000000-0000-0000-0000-000000000000",
+      "customer_external_id": "customer_001",
+      "external_id": null,
       "data_source_uuid": "ds_00000000-0000-0000-0000-000000000000",
       "position": 9,
       "first_name": "Adam",
@@ -60,6 +83,7 @@ class ContactTest extends TestCase
       "uuid": "con_00000000-0000-0000-0000-000000000000",
       "customer_uuid": "cus_00000000-0000-0000-0000-000000000000",
       "customer_external_id": "customer_001",
+      "external_id": "contact_external_id_002",
       "data_source_uuid": "ds_00000000-0000-0000-0000-000000000000",
       "first_name": "Bill",
       "last_name": "Thompson",
@@ -93,6 +117,7 @@ class ContactTest extends TestCase
 
         $this->assertTrue($result instanceof Contact);
         $this->assertEquals($uuid, $result->uuid);
+        $this->assertEquals("contact_external_id_001", $result->external_id);
     }
 
     public function testCreateContact()
@@ -104,6 +129,7 @@ class ContactTest extends TestCase
             [
             "customer_uuid" => "cus_00000000-0000-0000-0000-000000000000",
             "data_source_uuid" => "ds_00000000-0000-0000-0000-000000000000",
+            "external_id" => "contact_external_id_001",
             "first_name" => "Adam",
             "last_name" => "Smith",
             "position" => 9,
@@ -128,6 +154,42 @@ class ContactTest extends TestCase
 
         $this->assertTrue($result instanceof Contact);
         $this->assertEquals("Adam", $result->first_name);
+        $this->assertEquals("contact_external_id_001", $result->external_id);
+    }
+
+    public function testCreateContactWithNullExternalId()
+    {
+        $stream = Psr7\stream_for(ContactTest::CONTACT_NULL_EXTERNAL_ID_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $result = Contact::create(
+            [
+            "customer_uuid" => "cus_00000000-0000-0000-0000-000000000000",
+            "data_source_uuid" => "ds_00000000-0000-0000-0000-000000000000",
+            "first_name" => "Adam",
+            "external_id" => null,
+            ], $cmClient
+        );
+
+        $this->assertTrue($result instanceof Contact);
+        $this->assertNull($result->external_id);
+    }
+
+    public function testCreateContactWithoutExternalId()
+    {
+        $stream = Psr7\stream_for(ContactTest::CONTACT_NULL_EXTERNAL_ID_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $result = Contact::create(
+            [
+            "customer_uuid" => "cus_00000000-0000-0000-0000-000000000000",
+            "data_source_uuid" => "ds_00000000-0000-0000-0000-000000000000",
+            "first_name" => "Adam",
+            ], $cmClient
+        );
+
+        $this->assertTrue($result instanceof Contact);
+        $this->assertNull($result->external_id);
     }
 
     public function testListContacts()
@@ -159,6 +221,7 @@ class ContactTest extends TestCase
             [
             "contact_uuid" => $uuid,
             ], [
+            "external_id" => "contact_external_id_002",
             "first_name" => "Bill",
             "last_name" => "Thomposon",
             "position" => 10,
@@ -183,6 +246,24 @@ class ContactTest extends TestCase
 
         $this->assertTrue($result instanceof Contact);
         $this->assertEquals("Bill", $result->first_name);
+        $this->assertEquals("contact_external_id_002", $result->external_id);
+    }
+
+    public function testUpdateContactWithNullExternalId()
+    {
+        $stream = Psr7\stream_for(ContactTest::CONTACT_NULL_EXTERNAL_ID_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = "con_00000000-0000-0000-0000-000000000000";
+
+        $result = Contact::update(
+            ["contact_uuid" => $uuid],
+            ["external_id" => null],
+            $cmClient
+        );
+
+        $this->assertTrue($result instanceof Contact);
+        $this->assertNull($result->external_id);
     }
 
     public function testDeleteContact()

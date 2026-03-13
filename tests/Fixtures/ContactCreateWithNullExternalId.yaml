@@ -1,0 +1,21 @@
+
+-
+    request:
+        method: POST
+        url: 'https://api.chartmogul.com/v1/contacts'
+        headers:
+            Host: api.chartmogul.com
+            Authorization: hidden
+            content-type: application/json
+            user-agent: 'chartmogul-php/6.7.0/PHP-8.4'
+            Expect: ''
+        body: '{"customer_uuid":"cus_00000000-0000-0000-0000-000000000000","data_source_uuid":"ds_00000000-0000-0000-0000-000000000000"}'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Content-Type: application/json
+        body: '{"uuid":"con_00000000-0000-0000-0000-000000000000","customer_uuid":"cus_00000000-0000-0000-0000-000000000000","customer_external_id":"customer_001","external_id":null,"data_source_uuid":"ds_00000000-0000-0000-0000-000000000000","position":9,"first_name":"Adam","last_name":"Smith","title":"CEO","email":"adam@example.com","phone":"+1234567890","linked_in":null,"twitter":null,"notes":null,"custom":{}}'
+    index: 0
