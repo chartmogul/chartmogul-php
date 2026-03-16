@@ -41,7 +41,7 @@ The library doesn't depend on any concrete HTTP client libraries. Follow the ins
 Here's an example with `Guzzle HTTP client`:
 
 ```sh
-composer require chartmogul/chartmogul-php:^5.0 php-http/guzzle6-adapter:^2.0.1 http-interop/http-factory-guzzle:^1.0
+composer require chartmogul/chartmogul-php:^5.0 php-http/guzzle7-adapter:^1.0 http-interop/http-factory-guzzle:^1.0
 ```
 
 ## Configuration
