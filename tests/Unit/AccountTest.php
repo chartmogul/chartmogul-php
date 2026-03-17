@@ -11,6 +11,7 @@ use ChartMogul\Exceptions\NotFoundException;
 class AccountTest extends TestCase
 {
     const RETRIEVE_ACCOUNT = '{
+    "id": "acct_00000000-0000-0000-0000-000000000000",
     "name": "Example Test Company",
     "currency": "EUR",
     "time_zone": "Europe/Berlin",
@@ -31,9 +32,32 @@ class AccountTest extends TestCase
         $this->assertEquals("/v1/account", $uri->getPath());
 
         $this->assertTrue($result instanceof Account);
-        $this->assertEquals($result->name, "Example Test Company");
-        $this->assertEquals($result->currency, "EUR");
-        $this->assertEquals($result->time_zone, "Europe/Berlin");
-        $this->assertEquals($result->week_start_on, "sunday");
+        $this->assertEquals("acct_00000000-0000-0000-0000-000000000000", $result->id);
+        $this->assertEquals("Example Test Company", $result->name);
+        $this->assertEquals("EUR", $result->currency);
+        $this->assertEquals("Europe/Berlin", $result->time_zone);
+        $this->assertEquals("sunday", $result->week_start_on);
+    }
+
+    public function testRetrieveAccountWithIncludeParams()
+    {
+        $stream = Psr7\stream_for(AccountTest::RETRIEVE_ACCOUNT);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $result = Account::retrieve($cmClient, [
+            'churn_recognition' => true,
+            'churn_when_zero_mrr' => true,
+        ]);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        parse_str($uri->getQuery(), $queryParams);
+        $this->assertEquals('1', $queryParams['churn_recognition']);
+        $this->assertEquals('1', $queryParams['churn_when_zero_mrr']);
+        $this->assertEquals("/v1/account", $uri->getPath());
+
+        $this->assertTrue($result instanceof Account);
+        $this->assertEquals("Example Test Company", $result->name);
     }
 }
