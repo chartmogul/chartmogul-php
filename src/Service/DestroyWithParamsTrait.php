@@ -10,7 +10,7 @@ use ChartMogul\Http\ClientInterface;
 trait DestroyWithParamsTrait
 {
     /**
-     * Delete a resource
+     * Delete a resource with flat params (no envelope wrapping needed).
      *
      * @return boolean
      */

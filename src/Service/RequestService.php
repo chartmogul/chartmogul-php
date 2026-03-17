@@ -149,19 +149,15 @@ class RequestService
     {
         $client = $this->client;
 
-        if (!(array_key_exists('subscription_event', $params))) {
-            throw new \ChartMogul\Exceptions\SchemaInvalidException("Data is not in the good format, 'subscription_event' is missing.");
-        }
-
-        $sub_ev = $params['subscription_event'];
-
-        if (!(array_key_exists('id', $sub_ev) || (array_key_exists('data_source_uuid', $sub_ev) && array_key_exists('external_id', $sub_ev)))) {
+        if (!(array_key_exists('id', $params) || (array_key_exists('data_source_uuid', $params) && array_key_exists('external_id', $params)))) {
             throw new \ChartMogul\Exceptions\SchemaInvalidException("Param id or params external_id and data_source_uuid required.");
         }
 
         $class = $this->resourceClass;
+        $body = ['subscription_event' => $params];
+        $pathData = [];
         $response = $client->setResourceKey($class::RESOURCE_NAME)
-            ->send($this->applyResourcePath($id), 'PATCH', $params);
+            ->send($this->applyResourcePath($pathData), 'PATCH', $body);
 
         return $class::fromArray($response, $this->client);
     }
@@ -173,19 +169,15 @@ class RequestService
     {
         $client = $this->client;
 
-        if (!(array_key_exists('subscription_event', $params))) {
-            throw new \ChartMogul\Exceptions\SchemaInvalidException("Data is not in the good format, 'subscription_event' is missing.");
-        }
-
-        $sub_ev = $params['subscription_event'];
-
-        if (!(array_key_exists('id', $sub_ev) || (array_key_exists('data_source_uuid', $sub_ev) && array_key_exists('external_id', $sub_ev)))) {
+        if (!(array_key_exists('id', $params) || (array_key_exists('data_source_uuid', $params) && array_key_exists('external_id', $params)))) {
             throw new \ChartMogul\Exceptions\SchemaInvalidException("Param id or params external_id and data_source_uuid required.");
         }
 
         $class = $this->resourceClass;
-        $response = $client->setResourceKey($class::RESOURCE_NAME)
-            ->send($this->applyResourcePath($id), 'DELETE', $params);
+        $body = ['subscription_event' => $params];
+        $pathData = [];
+        $client->setResourceKey($class::RESOURCE_NAME)
+            ->send($this->applyResourcePath($pathData), 'DELETE', $body);
 
         return true;
     }

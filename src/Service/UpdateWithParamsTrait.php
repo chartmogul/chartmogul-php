@@ -10,7 +10,7 @@ use ChartMogul\Http\ClientInterface;
 trait UpdateWithParamsTrait
 {
     /**
-     * Update a Resource
+     * Update a Resource with flat params (no envelope wrapping needed).
      *
      * @param  array                $params
      * @param  ClientInterface|null $client
