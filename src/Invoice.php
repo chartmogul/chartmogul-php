@@ -9,6 +9,8 @@ use ChartMogul\LineItems\Subscription as SubsItem;
 use ChartMogul\Service\AllTrait;
 use ChartMogul\Service\DestroyTrait;
 use ChartMogul\Service\GetTrait;
+use ChartMogul\Service\UpdateTrait;
+use ChartMogul\Service\RequestService;
 use ChartMogul\Resource\AbstractResource;
 use ChartMogul\Transactions\AbstractTransaction;
 use ChartMogul\Transactions\Payment;
@@ -37,6 +39,7 @@ class Invoice extends AbstractResource
     use AllTrait;
     use DestroyTrait;
     use GetTrait;
+    use UpdateTrait;
 
     /**
      * @ignore
@@ -46,6 +49,14 @@ class Invoice extends AbstractResource
      * @ignore
      */
     public const ENTRY_CLASS = Invoice::class;
+    /**
+     * @ignore
+     */
+    public const RESOURCE_NAME = 'Invoice';
+    /**
+     * @ignore
+     */
+    public const RESOURCE_ID = 'invoice_uuid';
     /**
      * @ignore
      */
@@ -106,5 +117,36 @@ class Invoice extends AbstractResource
         } elseif (is_array($tr) && isset($tr['type']) && $tr['type'] === 'refund') {
             $this->transactions[$index] = new Refund($tr);
         }
+    }
+
+    /**
+     * Update the status of an invoice.
+     *
+     * @param  string               $uuid
+     * @param  array                $data  e.g. ['status' => 'void']
+     * @param  ClientInterface|null $client
+     * @return self
+     */
+    public static function updateStatus(string $uuid, array $data, ?ClientInterface $client = null)
+    {
+        return (new RequestService($client))
+            ->setResourceClass(static::class)
+            ->setResourcePath(static::RESOURCE_PATH . '/:invoice_uuid/update-status')
+            ->update(['invoice_uuid' => $uuid], $data);
+    }
+
+    /**
+     * Disable an invoice.
+     *
+     * @param  string               $uuid
+     * @param  ClientInterface|null $client
+     * @return self
+     */
+    public static function disable(string $uuid, ?ClientInterface $client = null)
+    {
+        return (new RequestService($client))
+            ->setResourceClass(static::class)
+            ->setResourcePath(static::RESOURCE_PATH . '/:invoice_uuid/disable')
+            ->update(['invoice_uuid' => $uuid], []);
     }
 }
