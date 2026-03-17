@@ -181,6 +181,7 @@ class Client implements ClientInterface
         $request = $request->withUri(
             $request->getUri()->withPath($path)->withQuery($query)
         )
+            ->withProtocolVersion('1.1')
             ->withHeader('Authorization', $this->getBasicAuthHeader())
             ->withHeader('content-type', 'application/json')
             ->withHeader('user-agent', $this->getUserAgent());
