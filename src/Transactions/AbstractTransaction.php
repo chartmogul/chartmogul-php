@@ -23,4 +23,5 @@ abstract class AbstractTransaction extends AbstractResource
     public $transaction_fees_in_cents;
 
     public $invoice_uuid;
+    public $errors;
 }
