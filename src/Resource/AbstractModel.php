@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @property-read int $page;
  * @property-read string $cursor;
  */
+#[\AllowDynamicProperties]
 abstract class AbstractModel
 {
     protected $has_more;
