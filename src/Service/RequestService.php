@@ -149,8 +149,12 @@ class RequestService
     {
         $client = $this->client;
 
+        if (array_key_exists('subscription_event', $params)) {
+            $params = $params['subscription_event'];
+        }
+
         if (!(array_key_exists('id', $params) || (array_key_exists('data_source_uuid', $params) && array_key_exists('external_id', $params)))) {
-            throw new \ChartMogul\Exceptions\SchemaInvalidException("Param id or params external_id and data_source_uuid required.");
+            throw new \ChartMogul\Exceptions\SchemaInvalidException("Either 'id' or both 'data_source_uuid' and 'external_id' are required.");
         }
 
         $class = $this->resourceClass;
@@ -169,8 +173,12 @@ class RequestService
     {
         $client = $this->client;
 
+        if (array_key_exists('subscription_event', $params)) {
+            $params = $params['subscription_event'];
+        }
+
         if (!(array_key_exists('id', $params) || (array_key_exists('data_source_uuid', $params) && array_key_exists('external_id', $params)))) {
-            throw new \ChartMogul\Exceptions\SchemaInvalidException("Param id or params external_id and data_source_uuid required.");
+            throw new \ChartMogul\Exceptions\SchemaInvalidException("Either 'id' or both 'data_source_uuid' and 'external_id' are required.");
         }
 
         $class = $this->resourceClass;

@@ -175,6 +175,50 @@ class SubscriptionEventTest extends TestCase
         $this->assertEquals("cus_023", $subscriptionEvent->customer_external_id);
     }
 
+    public function testBuildSubscriptionEventWithWrappedParams()
+    {
+        $subscriptionEvent = new SubscriptionEvent(["subscription_event" => [
+          "external_id" => "ex_id_1",
+          "event_type" => "subscription_cancelled",
+          "data_source_uuid" => "ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba",
+        ]]);
+        $this->assertEquals("ex_id_1", $subscriptionEvent->external_id);
+        $this->assertEquals("subscription_cancelled", $subscriptionEvent->event_type);
+    }
+
+    public function testUpdateSubscriptionEventWithWrappedParams()
+    {
+        $stream = Psr7\stream_for(SubscriptionEventTest::UPDATE_SUBSCRIPTION_EVENT);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $result = SubscriptionEvent::updateWithParams(
+            ['subscription_event' => ["id" => 73966836, 'amount_in_cents' => 100]],
+            $cmClient
+        );
+
+        $request = $mockClient->getRequests()[0];
+        $this->assertEquals("PATCH", $request->getMethod());
+        $this->assertTrue($result instanceof SubscriptionEvent);
+
+        $body = json_decode((string) $request->getBody(), true);
+        $this->assertArrayHasKey('subscription_event', $body);
+        $this->assertEquals(73966836, $body['subscription_event']['id']);
+    }
+
+    public function testDestroySubscriptionEventWithWrappedParams()
+    {
+        list($cmClient, $mockClient) = $this->getMockClient(0, [204]);
+
+        $result = SubscriptionEvent::destroyWithParams(
+            ['subscription_event' => ["id" => 73966836]],
+            $cmClient
+        );
+
+        $request = $mockClient->getRequests()[0];
+        $this->assertEquals("DELETE", $request->getMethod());
+        $this->assertEquals($result, true);
+    }
+
     public function testAllSubscriptionEvents()
     {
         $stream = Psr7\stream_for(SubscriptionEventTest::ALL_SUBSCRIPTION_EVENT_JSON);

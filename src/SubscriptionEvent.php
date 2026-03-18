@@ -54,6 +54,11 @@ class SubscriptionEvent extends AbstractResource
     protected $updated_at;
     protected $retracted_event_id;
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct(isset($attributes['subscription_event']) ? $attributes['subscription_event'] : $attributes);
+    }
+
     /**
      * @inherit
      */
