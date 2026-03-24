@@ -14,17 +14,12 @@ trait ShowTrait
      *
      * @param  ClientInterface|null $client
      * @param  array                $query  Optional query parameters
-     * @return resource
+     * @return self
      */
     public static function retrieve(?ClientInterface $client = null, array $query = [])
     {
-        $requestService = (new RequestService($client))
-            ->setResourceClass(static::class);
-
-        if (empty($query)) {
-            return $requestService->get();
-        }
-
-        return $requestService->getWithQuery(null, $query);
+        return (new RequestService($client))
+            ->setResourceClass(static::class)
+            ->get(null, $query);
     }
 }

@@ -25,5 +25,5 @@ abstract class AbstractLineItem extends \ChartMogul\Resource\AbstractModel
     public $transaction_fees_currency;
     public $transaction_fees_in_cents;
     public $type;
-    public $errors;
+    public $errors = null;
 }

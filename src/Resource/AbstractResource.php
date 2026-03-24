@@ -22,6 +22,11 @@ abstract class AbstractResource extends AbstractModel
      */
     public const RESOURCE_NAME = null;
 
+    /**
+     * @ignore
+     */
+    public const ENTRY_KEY = null;
+
 
     /**
      * @var ClientInterface

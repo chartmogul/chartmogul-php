@@ -127,7 +127,7 @@ class Invoice extends AbstractResource
      * @param  ClientInterface|null $client
      * @return self
      */
-    public static function updateStatus(string $uuid, array $data, ?ClientInterface $client = null)
+    public static function updateStatus(string $uuid, array $data, ?ClientInterface $client = null): self
     {
         return (new RequestService($client))
             ->setResourceClass(static::class)
@@ -142,11 +142,11 @@ class Invoice extends AbstractResource
      * @param  ClientInterface|null $client
      * @return self
      */
-    public static function disable(string $uuid, ?ClientInterface $client = null)
+    public static function disable(string $uuid, bool $disabled = true, ?ClientInterface $client = null): self
     {
         return (new RequestService($client))
             ->setResourceClass(static::class)
             ->setResourcePath(static::RESOURCE_PATH . '/:invoice_uuid/disable')
-            ->update(['invoice_uuid' => $uuid], []);
+            ->update(['invoice_uuid' => $uuid], ['disabled' => $disabled]);
     }
 }

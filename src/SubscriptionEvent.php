@@ -34,6 +34,11 @@ class SubscriptionEvent extends AbstractResource
      */
     public const ROOT_KEY = 'subscription_events';
 
+    /**
+     * @ignore
+     */
+    public const ENTRY_KEY = 'subscription_event';
+
     protected $id;
 
     protected $amount_in_cents;

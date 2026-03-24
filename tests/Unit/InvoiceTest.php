@@ -372,7 +372,7 @@ class InvoiceTest extends TestCase
 
         $uuid = 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9';
 
-        $result = Invoice::disable($uuid, $cmClient);
+        $result = Invoice::disable($uuid, true, $cmClient);
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals("PATCH", $request->getMethod());
@@ -381,7 +381,7 @@ class InvoiceTest extends TestCase
         $this->assertTrue($result instanceof Invoice);
 
         $body = json_decode((string) $request->getBody(), true);
-        $this->assertEmpty($body);
+        $this->assertEquals(['disabled' => true], $body);
     }
 
     public function testUpdateInvoice()
@@ -447,5 +447,16 @@ class InvoiceTest extends TestCase
 
         $this->assertIsArray($result->transactions[0]->errors);
         $this->assertEquals(['is in the future'], $result->transactions[0]->errors['date']);
+    }
+
+    public function testUpdateInvoiceMissingResourceId()
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('invoice_uuid');
+
+        Invoice::update(
+            ['wrong_key' => 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9'],
+            ['currency' => 'EUR']
+        );
     }
 }

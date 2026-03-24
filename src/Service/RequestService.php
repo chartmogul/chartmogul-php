@@ -145,22 +145,35 @@ class RequestService
         return true;
     }
 
-    public function updateWithParams(array $params)
+    /**
+     * Unwrap envelope if present and validate required identification params.
+     *
+     * @param  array  $params
+     * @param  string $envelopeKey
+     * @return array  The normalized (flat) params
+     */
+    private function normalizeEnvelopeParams(array $params, string $envelopeKey): array
     {
-        $client = $this->client;
-
-        if (array_key_exists('subscription_event', $params)) {
-            $params = $params['subscription_event'];
+        if (array_key_exists($envelopeKey, $params)) {
+            $params = $params[$envelopeKey];
         }
 
         if (!(array_key_exists('id', $params) || (array_key_exists('data_source_uuid', $params) && array_key_exists('external_id', $params)))) {
             throw new \ChartMogul\Exceptions\SchemaInvalidException("Either 'id' or both 'data_source_uuid' and 'external_id' are required.");
         }
 
+        return $params;
+    }
+
+    public function updateWithParams(array $params)
+    {
         $class = $this->resourceClass;
-        $body = ['subscription_event' => $params];
+        $envelopeKey = $class::ENTRY_KEY;
+        $params = $this->normalizeEnvelopeParams($params, $envelopeKey);
+
+        $body = [$envelopeKey => $params];
         $pathData = [];
-        $response = $client->setResourceKey($class::RESOURCE_NAME)
+        $response = $this->client->setResourceKey($class::RESOURCE_NAME)
             ->send($this->applyResourcePath($pathData), 'PATCH', $body);
 
         return $class::fromArray($response, $this->client);
@@ -171,39 +184,19 @@ class RequestService
      */
     public function destroyWithParams(array $params)
     {
-        $client = $this->client;
-
-        if (array_key_exists('subscription_event', $params)) {
-            $params = $params['subscription_event'];
-        }
-
-        if (!(array_key_exists('id', $params) || (array_key_exists('data_source_uuid', $params) && array_key_exists('external_id', $params)))) {
-            throw new \ChartMogul\Exceptions\SchemaInvalidException("Either 'id' or both 'data_source_uuid' and 'external_id' are required.");
-        }
-
         $class = $this->resourceClass;
-        $body = ['subscription_event' => $params];
+        $envelopeKey = $class::ENTRY_KEY;
+        $params = $this->normalizeEnvelopeParams($params, $envelopeKey);
+
+        $body = [$envelopeKey => $params];
         $pathData = [];
-        $client->setResourceKey($class::RESOURCE_NAME)
+        $this->client->setResourceKey($class::RESOURCE_NAME)
             ->send($this->applyResourcePath($pathData), 'DELETE', $body);
 
         return true;
     }
 
-    public function get($uuid = null)
-    {
-        $class = $this->resourceClass;
-        $response = $this->client
-            ->setResourceKey($class::RESOURCE_NAME)
-            ->send(
-                $uuid ? $class::RESOURCE_PATH.'/'.$uuid : $class::RESOURCE_PATH,
-                'GET'
-            );
-
-        return $class::fromArray($response, $this->client);
-    }
-
-    public function getWithQuery($uuid = null, $query = [])
+    public function get($uuid = null, array $query = [])
     {
         $class = $this->resourceClass;
         $response = $this->client
