@@ -444,6 +444,58 @@ class Customer extends AbstractResource
     }
 
     /**
+     * Retrieve a customer's tags and custom attributes.
+     *
+     * @return array
+     */
+    public function retrieveAttributes()
+    {
+        $result = $this->getClient()
+            ->send('/v1/customers/' . $this->uuid . '/attributes', 'GET');
+
+        $this->attributes = $result;
+        return $result;
+    }
+
+    /**
+     * Add tags to customers by email address.
+     *
+     * @param  string               $email
+     * @param  array                $tags
+     * @param  ClientInterface|null $client
+     * @return array
+     */
+    public static function addTagsByEmail(string $email, array $tags, ?ClientInterface $client = null)
+    {
+        return (new static([], $client))
+            ->getClient()
+            ->setResourceKey(static::RESOURCE_NAME)
+            ->send('/v1/customers/attributes/tags', 'POST', [
+                'email' => $email,
+                'tags' => $tags,
+            ]);
+    }
+
+    /**
+     * Add custom attributes to customers by email address.
+     *
+     * @param  string               $email
+     * @param  array                $custom
+     * @param  ClientInterface|null $client
+     * @return array
+     */
+    public static function addCustomAttributesByEmail(string $email, array $custom, ?ClientInterface $client = null)
+    {
+        return (new static([], $client))
+            ->getClient()
+            ->setResourceKey(static::RESOURCE_NAME)
+            ->send('/v1/customers/attributes/custom', 'POST', [
+                'email' => $email,
+                'custom' => $custom,
+            ]);
+    }
+
+    /**
      * Find a Customer Subscriptions
      *
      * @param      array $options

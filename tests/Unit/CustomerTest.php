@@ -698,4 +698,58 @@ class CustomerTest extends TestCase
         $this->assertEquals("2025-04-01T12:00:00.000Z", $result->created_at);
         $this->assertEquals("2025-04-01T12:00:00.000Z", $result->updated_at);
     }
+
+    public function testRetrieveAttributes()
+    {
+        $attributesJson = '{"tags": ["important", "Prio1"], "custom": {"channel": "Facebook", "age": 25}}';
+        $stream = Psr7\stream_for($attributesJson);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
+        $result = (new Customer(["uuid" => $customer_uuid], $cmClient))->retrieveAttributes();
+
+        $request = $mockClient->getRequests()[0];
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/customers/" . $customer_uuid . "/attributes", $uri->getPath());
+        $this->assertArrayHasKey('tags', $result);
+        $this->assertArrayHasKey('custom', $result);
+    }
+
+    public function testAddTagsByEmail()
+    {
+        $tagsJson = '{"tags": ["important", "Prio1"]}';
+        $stream = Psr7\stream_for($tagsJson);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $result = Customer::addTagsByEmail('test@example.com', ['important', 'Prio1'], $cmClient);
+
+        $request = $mockClient->getRequests()[0];
+        $this->assertEquals("POST", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/customers/attributes/tags", $uri->getPath());
+
+        $body = json_decode((string) $request->getBody(), true);
+        $this->assertEquals('test@example.com', $body['email']);
+        $this->assertEquals(['important', 'Prio1'], $body['tags']);
+    }
+
+    public function testAddCustomAttributesByEmail()
+    {
+        $customJson = '{"custom": [{"type": "String", "key": "channel", "value": "Facebook"}]}';
+        $stream = Psr7\stream_for($customJson);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $custom = [['type' => 'String', 'key' => 'channel', 'value' => 'Facebook']];
+        $result = Customer::addCustomAttributesByEmail('test@example.com', $custom, $cmClient);
+
+        $request = $mockClient->getRequests()[0];
+        $this->assertEquals("POST", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/customers/attributes/custom", $uri->getPath());
+
+        $body = json_decode((string) $request->getBody(), true);
+        $this->assertEquals('test@example.com', $body['email']);
+        $this->assertCount(1, $body['custom']);
+    }
 }
