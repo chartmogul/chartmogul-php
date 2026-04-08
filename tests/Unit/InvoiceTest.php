@@ -351,18 +351,19 @@ class InvoiceTest extends TestCase
         $stream = Psr7\stream_for(InvoiceTest::RETRIEVE_INVOICE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
-        $uuid = 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9';
+        $dsUuid = 'ds_35542640-d9f1-11ed-9c30-7727168c74a5';
+        $extId = 'inv_0001';
 
-        $result = Invoice::updateStatus($uuid, ['status' => 'void'], $cmClient);
+        $result = Invoice::updateStatus($dsUuid, $extId, ['status' => 'voided'], $cmClient);
         $request = $mockClient->getRequests()[0];
 
-        $this->assertEquals("PATCH", $request->getMethod());
+        $this->assertEquals("PUT", $request->getMethod());
         $uri = $request->getUri();
-        $this->assertEquals("/v1/invoices/".$uuid."/update-status", $uri->getPath());
+        $this->assertEquals("/v1/data_sources/".$dsUuid."/invoices/".$extId."/status", $uri->getPath());
         $this->assertTrue($result instanceof Invoice);
 
         $body = json_decode((string) $request->getBody(), true);
-        $this->assertEquals(['status' => 'void'], $body);
+        $this->assertEquals(['status' => 'voided'], $body);
     }
 
     public function testDisableInvoice()
@@ -377,7 +378,7 @@ class InvoiceTest extends TestCase
 
         $this->assertEquals("PATCH", $request->getMethod());
         $uri = $request->getUri();
-        $this->assertEquals("/v1/invoices/".$uuid."/disable", $uri->getPath());
+        $this->assertEquals("/v1/invoices/".$uuid."/disabled_state", $uri->getPath());
         $this->assertTrue($result instanceof Invoice);
 
         $body = json_decode((string) $request->getBody(), true);

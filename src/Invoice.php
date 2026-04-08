@@ -120,19 +120,30 @@ class Invoice extends AbstractResource
     }
 
     /**
-     * Update the status of an invoice.
+     * Update the status of an invoice by data_source_uuid and invoice_external_id.
      *
-     * @param  string               $uuid
-     * @param  array                $data  e.g. ['status' => 'void']
+     * @param  string               $dataSourceUuid
+     * @param  string               $invoiceExternalId
+     * @param  array                $data  e.g. ['status' => 'voided']
      * @param  ClientInterface|null $client
      * @return self
      */
-    public static function updateStatus(string $uuid, array $data, ?ClientInterface $client = null): self
-    {
-        return (new RequestService($client))
-            ->setResourceClass(static::class)
-            ->setResourcePath(static::RESOURCE_PATH . '/:invoice_uuid/update-status')
-            ->update(['invoice_uuid' => $uuid], $data);
+    public static function updateStatus(
+        string $dataSourceUuid,
+        string $invoiceExternalId,
+        array $data,
+        ?ClientInterface $client = null
+    ): self {
+        $response = (new static([], $client))
+            ->getClient()
+            ->setResourceKey(static::RESOURCE_NAME)
+            ->send(
+                '/v1/data_sources/' . $dataSourceUuid . '/invoices/' . $invoiceExternalId . '/status',
+                'PUT',
+                $data
+            );
+
+        return static::fromArray($response, $client);
     }
 
     /**
@@ -146,7 +157,7 @@ class Invoice extends AbstractResource
     {
         return (new RequestService($client))
             ->setResourceClass(static::class)
-            ->setResourcePath(static::RESOURCE_PATH . '/:invoice_uuid/disable')
+            ->setResourcePath(static::RESOURCE_PATH . '/:invoice_uuid/disabled_state')
             ->update(['invoice_uuid' => $uuid], ['disabled' => $disabled]);
     }
 }
