@@ -125,6 +125,7 @@ class ClientTest extends TestCase
         $this->assertEquals($request->getHeader('Authorization'), ['auth']);
         $this->assertEquals($request->getHeader('content-type'), ['application/json']);
         $this->assertEquals($request->getMethod(), $method);
+        $this->assertEquals('1.1', $request->getProtocolVersion());
         $this->assertEquals($request->getRequestTarget(), $target);
         $request->getBody()->rewind();
         $this->assertEquals($request->getBody()->getContents(), $rBody);

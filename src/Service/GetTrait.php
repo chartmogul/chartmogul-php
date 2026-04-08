@@ -12,18 +12,13 @@ trait GetTrait
     /**
      * Get a single resource by UUID.
      *
-     * @return resource
+     * @return self
      */
     public static function retrieve($uuid, ?ClientInterface $client = null, array $query = [])
     {
-        $requestService = (new RequestService($client))
-            ->setResourceClass(static::class);
-
-        if (empty($query)) {
-            return $requestService->get($uuid);
-        }
-
-        return $requestService->getWithQuery($uuid, $query);
+        return (new RequestService($client))
+            ->setResourceClass(static::class)
+            ->get($uuid, $query);
     }
 
     public static function get($uuid, ?ClientInterface $client = null, array $query = [])

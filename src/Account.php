@@ -8,6 +8,7 @@ use ChartMogul\Service\ShowTrait;
 
 /**
  * @codeCoverageIgnore
+ * @property-read      string $id
  * @property-read      string $name
  * @property-read      string $currency
  * @property-read      string $time_zone
@@ -30,6 +31,7 @@ class Account extends AbstractResource
      */
     public const ROOT_KEY = 'account';
 
+    protected $id;
     public $name;
     public $currency;
     public $time_zone;

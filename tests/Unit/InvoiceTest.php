@@ -345,4 +345,118 @@ class InvoiceTest extends TestCase
         $this->assertEquals('1', $queryParams['with_disabled']);
         $this->assertEquals("/v1/invoices", $uri->getPath());
     }
+
+    public function testUpdateInvoiceStatus()
+    {
+        $stream = Psr7\stream_for(InvoiceTest::RETRIEVE_INVOICE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9';
+
+        $result = Invoice::updateStatus($uuid, ['status' => 'void'], $cmClient);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("PATCH", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/invoices/".$uuid."/update-status", $uri->getPath());
+        $this->assertTrue($result instanceof Invoice);
+
+        $body = json_decode((string) $request->getBody(), true);
+        $this->assertEquals(['status' => 'void'], $body);
+    }
+
+    public function testDisableInvoice()
+    {
+        $stream = Psr7\stream_for(InvoiceTest::RETRIEVE_INVOICE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9';
+
+        $result = Invoice::disable($uuid, true, $cmClient);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("PATCH", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/invoices/".$uuid."/disable", $uri->getPath());
+        $this->assertTrue($result instanceof Invoice);
+
+        $body = json_decode((string) $request->getBody(), true);
+        $this->assertEquals(['disabled' => true], $body);
+    }
+
+    public function testUpdateInvoice()
+    {
+        $stream = Psr7\stream_for(InvoiceTest::RETRIEVE_INVOICE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9';
+
+        $result = Invoice::update(
+            ['invoice_uuid' => $uuid],
+            ['currency' => 'EUR'],
+            $cmClient
+        );
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("PATCH", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/invoices/".$uuid, $uri->getPath());
+        $this->assertTrue($result instanceof Invoice);
+
+        $body = json_decode((string) $request->getBody(), true);
+        $this->assertEquals(['currency' => 'EUR'], $body);
+    }
+
+    public function testRetrieveInvoiceLineItemErrors()
+    {
+        $json = '{
+          "uuid": "inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9",
+          "external_id": "INV0001",
+          "date": "2015-11-01T00:00:00.000Z",
+          "due_date": "2015-11-15T00:00:00.000Z",
+          "currency": "USD",
+          "line_items": [
+            {
+              "uuid": "li_d72e6843-5793-41d0-bfdf-0269514c9c56",
+              "external_id": null,
+              "type": "subscription",
+              "amount_in_cents": 5000,
+              "quantity": 1,
+              "errors": {"amount_in_cents": ["must be positive"]}
+            }
+          ],
+          "transactions": [
+            {
+              "uuid": "tr_879d560a-1bec-41bb-986e-665e38a2f7bc",
+              "external_id": null,
+              "type": "payment",
+              "date": "2015-11-05T00:14:23.000Z",
+              "result": "successful",
+              "errors": {"date": ["is in the future"]}
+            }
+          ]
+        }';
+        $stream = Psr7\stream_for($json);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9';
+        $result = Invoice::retrieve($uuid, $cmClient);
+
+        $this->assertIsArray($result->line_items[0]->errors);
+        $this->assertEquals(['must be positive'], $result->line_items[0]->errors['amount_in_cents']);
+
+        $this->assertIsArray($result->transactions[0]->errors);
+        $this->assertEquals(['is in the future'], $result->transactions[0]->errors['date']);
+    }
+
+    public function testUpdateInvoiceMissingResourceId()
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('invoice_uuid');
+
+        Invoice::update(
+            ['wrong_key' => 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9'],
+            ['currency' => 'EUR']
+        );
+    }
 }
