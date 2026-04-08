@@ -8,6 +8,7 @@ use ChartMogul\Service\CreateTrait;
 use ChartMogul\Service\UpdateTrait;
 use ChartMogul\Service\DestroyTrait;
 use ChartMogul\Service\GetTrait;
+use ChartMogul\Http\ClientInterface;
 use ChartMogul\Service\FromArrayTrait;
 
 /**
@@ -54,6 +55,6 @@ class Task extends AbstractResource
         if (isset($attr['task_uuid'])) {
             $attr['uuid'] = $attr['task_uuid'];
         }
-        parent::__construct($attr);
+        parent::__construct($attr, $client);
     }
 }
