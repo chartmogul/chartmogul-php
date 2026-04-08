@@ -170,10 +170,18 @@ class Client implements ClientInterface
             );
         }
 
+        // Extract query string from path if present (e.g. '/v1/line_items?data_source_uuid=...')
+        $pathParts = explode('?', $path, 2);
+        $path = $pathParts[0];
+        $pathQuery = $pathParts[1] ?? '';
+
         $query = '';
         if ($method === 'GET') {
             $query = http_build_query($data);
             $data = [];
+        }
+        if ($pathQuery) {
+            $query = $query ? $pathQuery . '&' . $query : $pathQuery;
         }
 
         $request = $this->requestFactory

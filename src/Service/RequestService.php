@@ -209,4 +209,82 @@ class RequestService
 
         return $class::fromArray($response, $this->client);
     }
+
+    /**
+     * Retrieve a resource by data_source_uuid and external_id (query-parameter-based).
+     *
+     * @param  array $params  Must contain 'data_source_uuid' and 'external_id'
+     * @return mixed
+     */
+    public function getByExternalId(array $params)
+    {
+        $class = $this->resourceClass;
+        $response = $this->client
+            ->setResourceKey($class::RESOURCE_NAME)
+            ->send($class::RESOURCE_PATH, 'GET', $params);
+
+        return $class::fromArray($response, $this->client);
+    }
+
+    /**
+     * Update a resource by data_source_uuid and external_id (query-parameter-based).
+     *
+     * @param  array $params  Must contain 'data_source_uuid' and 'external_id'
+     * @param  array $data    Fields to update
+     * @return mixed
+     */
+    public function updateByExternalId(array $params, array $data)
+    {
+        $class = $this->resourceClass;
+        $response = $this->client
+            ->setResourceKey($class::RESOURCE_NAME)
+            ->send(
+                $class::RESOURCE_PATH . '?' . http_build_query($params),
+                'PATCH',
+                $data
+            );
+
+        return $class::fromArray($response, $this->client);
+    }
+
+    /**
+     * Delete a resource by data_source_uuid and external_id (query-parameter-based).
+     *
+     * @param  array $params  Must contain 'data_source_uuid' and 'external_id'
+     * @return boolean
+     */
+    public function destroyByExternalId(array $params)
+    {
+        $class = $this->resourceClass;
+        $this->client
+            ->setResourceKey($class::RESOURCE_NAME)
+            ->send(
+                $class::RESOURCE_PATH . '?' . http_build_query($params),
+                'DELETE'
+            );
+
+        return true;
+    }
+
+    /**
+     * PATCH a sub-resource by data_source_uuid and external_id (query-parameter-based).
+     *
+     * @param  string $subresource  e.g. 'disabled_state'
+     * @param  array  $params       Must contain 'data_source_uuid' and 'external_id'
+     * @param  array  $data         Fields to update
+     * @return mixed
+     */
+    public function patchSubresourceByExternalId(string $subresource, array $params, array $data)
+    {
+        $class = $this->resourceClass;
+        $response = $this->client
+            ->setResourceKey($class::RESOURCE_NAME)
+            ->send(
+                $class::RESOURCE_PATH . '/' . $subresource . '?' . http_build_query($params),
+                'PATCH',
+                $data
+            );
+
+        return $class::fromArray($response, $this->client);
+    }
 }
