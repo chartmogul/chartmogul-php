@@ -29,11 +29,11 @@
 
 ## Installation
 
-This library requires php 5.5 or above.
+This library requires PHP 7.1 or above.
 
-For older php versions (`< 7.4`) use `1.x.x` releases of this library.
+For older PHP versions (`< 7.4`) use `1.x.x` releases of this library.
 
-For php version `>=7.4` use the latest releases (`5.x.x`) of the library
+For PHP version `>=7.4` use the latest releases (`6.x.x`) of the library.
 
 
 The library doesn't depend on any concrete HTTP client libraries. Follow the instructions [here](http://docs.php-http.org/en/latest/httplug/users.html) to find out how to include a HTTP client.
@@ -41,8 +41,14 @@ The library doesn't depend on any concrete HTTP client libraries. Follow the ins
 Here's an example with `Guzzle HTTP client`:
 
 ```sh
-composer require chartmogul/chartmogul-php:^5.0 php-http/guzzle7-adapter:^1.0 http-interop/http-factory-guzzle:^1.0
+composer require chartmogul/chartmogul-php:^6.0 php-http/guzzle7-adapter:^1.0 http-interop/http-factory-guzzle:^1.0
 ```
+
+### Security Best Practices
+
+- **Always commit `composer.lock`** to version control so all environments use identical dependency trees.
+- **Run `composer audit`** regularly (or in CI) to detect known vulnerabilities in dependencies.
+- **Verify releases** against the [GitHub Releases page](https://github.com/chartmogul/chartmogul-php/releases), which includes changelog notes for each version.
 
 ## Configuration
 Setup the default configuration with your ChartMogul api key:

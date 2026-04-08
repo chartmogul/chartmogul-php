@@ -1,0 +1,43 @@
+name: Create GitHub Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: "Validate and Release"
+    runs-on: ubuntu-24.04
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Extract and verify versions
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          CLIENT_VERSION=$(grep -oP "apiVersion\s*=\s*'\K[^']+" src/Http/Client.php)
+          if [ "$TAG_VERSION" != "$CLIENT_VERSION" ]; then
+            echo "::error::Tag version ($TAG_VERSION) does not match Client.php version ($CLIENT_VERSION)"
+            exit 1
+          fi
+          echo "Version match confirmed: $TAG_VERSION"
+          echo "RELEASE_VERSION=$TAG_VERSION" >> "$GITHUB_ENV"
+
+      - name: Extract changelog notes
+        run: |
+          # Extract content between this version's header and the next version header
+          awk "/^## \\[$RELEASE_VERSION\\]/{found=1; next} /^## \\[/{if(found) exit} found{print}" CHANGELOG.md > /tmp/release_notes.md
+          if [ ! -s /tmp/release_notes.md ]; then
+            echo "Release $RELEASE_VERSION" > /tmp/release_notes.md
+          fi
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes-file /tmp/release_notes.md --latest
