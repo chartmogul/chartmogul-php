@@ -8,6 +8,7 @@ use ChartMogul\Service\AllTrait;
 use ChartMogul\Service\CreateTrait;
 use ChartMogul\Service\UpdateWithParamsTrait;
 use ChartMogul\Service\DestroyWithParamsTrait;
+use ChartMogul\Service\RequestService;
 use ChartMogul\Resource\Collection;
 use ChartMogul\Resource\SubscriptionEventCollection;
 use ChartMogul\Resource\MetaCollection;
@@ -58,6 +59,31 @@ class SubscriptionEvent extends AbstractResource
     protected $subscription_set_external_id;
     protected $updated_at;
     protected $retracted_event_id;
+    protected $disabled;
+    protected $disabled_at;
+    protected $disabled_by;
+
+    /**
+     * Disable or enable a subscription event by ID.
+     *
+     * @param  int|string           $id
+     * @param  bool                 $disabled
+     * @param  ClientInterface|null $client
+     * @return self
+     */
+    public static function disable($id, bool $disabled = true, ?ClientInterface $client = null): self
+    {
+        $response = (new static([], $client))
+            ->getClient()
+            ->setResourceKey(static::RESOURCE_NAME)
+            ->send(
+                static::RESOURCE_PATH . '/' . $id . '/disabled_state',
+                'PATCH',
+                ['disabled' => $disabled]
+            );
+
+        return static::fromArray($response, $client);
+    }
 
     public function __construct(array $attributes = [])
     {
