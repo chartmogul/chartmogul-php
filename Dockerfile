@@ -1,5 +1,5 @@
-ARG VERSION
-FROM php:${VERSION}
+ARG IMAGE
+FROM ${IMAGE}
 RUN curl -O https://getcomposer.org/composer.phar
 RUN mv composer.phar /usr/local/bin/composer
 RUN chmod a+x /usr/local/bin/composer

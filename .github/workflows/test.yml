@@ -1,4 +1,4 @@
-name: Run specs and generate Code Climate report
+name: CI
 on:
   push:
     branches: [ main ]
