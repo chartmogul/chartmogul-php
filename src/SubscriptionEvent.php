@@ -73,16 +73,10 @@ class SubscriptionEvent extends AbstractResource
      */
     public static function disable($id, bool $disabled = true, ?ClientInterface $client = null): self
     {
-        $response = (new static([], $client))
-            ->getClient()
-            ->setResourceKey(static::RESOURCE_NAME)
-            ->send(
-                static::RESOURCE_PATH . '/' . $id . '/disabled_state',
-                'PATCH',
-                ['disabled' => $disabled]
-            );
-
-        return static::fromArray($response, $client);
+        return (new RequestService($client))
+            ->setResourceClass(static::class)
+            ->setResourcePath(static::RESOURCE_PATH . '/:id/disabled_state')
+            ->update(['id' => $id], ['disabled' => $disabled]);
     }
 
     public function __construct(array $attributes = [])
