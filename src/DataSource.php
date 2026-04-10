@@ -50,24 +50,4 @@ class DataSource extends AbstractResource
     protected $invoice_handling_setting;
 
     public $name;
-
-    /**
-     * Upload CSV data to a data source.
-     *
-     * @param  string               $dataSourceUuid
-     * @param  array                $data  Upload payload
-     * @param  ClientInterface|null $client
-     * @return array
-     */
-    public static function upload(string $dataSourceUuid, array $data, ?ClientInterface $client = null)
-    {
-        return (new static([], $client))
-            ->getClient()
-            ->setResourceKey(static::RESOURCE_NAME)
-            ->send(
-                '/v1/data_sources/' . $dataSourceUuid . '/uploads',
-                'POST',
-                $data
-            );
-    }
 }
