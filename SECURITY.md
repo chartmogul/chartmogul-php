@@ -2,7 +2,7 @@
 
 ## Reporting Vulnerabilities
 
-Please report security vulnerabilities through [GitHub Security Advisories](https://github.com/chartmogul/chartmogul-php/security/advisories/new) rather than public GitHub issues.
+Please report security vulnerabilities via the **"Report a vulnerability"** button on the [Security](https://github.com/chartmogul/chartmogul-php/security) tab of this repository. Do not use public GitHub issues.
 
 ## Supported Versions
 
