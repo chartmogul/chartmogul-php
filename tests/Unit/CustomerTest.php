@@ -732,6 +732,8 @@ class CustomerTest extends TestCase
         $body = json_decode((string) $request->getBody(), true);
         $this->assertEquals('test@example.com', $body['email']);
         $this->assertEquals(['important', 'Prio1'], $body['tags']);
+
+        $this->assertEquals(['important', 'Prio1'], $result['tags']);
     }
 
     public function testAddCustomAttributesByEmail()
@@ -751,5 +753,10 @@ class CustomerTest extends TestCase
         $body = json_decode((string) $request->getBody(), true);
         $this->assertEquals('test@example.com', $body['email']);
         $this->assertCount(1, $body['custom']);
+
+        $this->assertCount(1, $result['custom']);
+        $this->assertEquals('String', $result['custom'][0]['type']);
+        $this->assertEquals('channel', $result['custom'][0]['key']);
+        $this->assertEquals('Facebook', $result['custom'][0]['value']);
     }
 }
