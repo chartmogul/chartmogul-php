@@ -46,34 +46,33 @@ class Transaction extends AbstractResource
     public const ROOT_KEY = 'transactions';
 
     protected $uuid;
+    protected $external_id;
+    protected $type;
+    protected $date;
+    protected $result;
+    protected $amount_in_cents;
+    protected $transaction_fees_in_cents;
+    protected $transaction_fees_currency;
+    protected $invoice_uuid;
+    protected $disabled;
+    protected $disabled_at;
+    protected $disabled_by;
+    protected $user_created;
+    protected $errors;
 
     /**
-     * Disable or enable a transaction by UUID.
+     * Toggle the disabled state of a transaction by UUID.
      *
      * @param  string               $uuid
      * @param  bool                 $disabled
      * @param  ClientInterface|null $client
      * @return self
      */
-    public static function disable(string $uuid, bool $disabled = true, ?ClientInterface $client = null): self
+    public static function toggleDisabled(string $uuid, bool $disabled = true, ?ClientInterface $client = null): self
     {
         return (new RequestService($client))
             ->setResourceClass(static::class)
             ->setResourcePath(static::RESOURCE_PATH . '/:transaction_uuid/disabled_state')
             ->update(['transaction_uuid' => $uuid], ['disabled' => $disabled]);
     }
-
-    public $external_id;
-    public $type;
-    public $date;
-    public $result;
-    public $amount_in_cents;
-    public $transaction_fees_in_cents;
-    public $transaction_fees_currency;
-    public $invoice_uuid;
-    public $disabled;
-    public $disabled_at;
-    public $disabled_by;
-    public $user_created;
-    public $errors = null;
 }

@@ -18,7 +18,8 @@ class TransactionTest extends TestCase
         "invoice_uuid": "inv_25256bdf-6d93-48fa-8df3-b5bd8ec7c514",
         "disabled": false,
         "disabled_at": null,
-        "disabled_by": null
+        "disabled_by": null,
+        "user_created": false
     }';
 
     public function testRetrieveByExternalId()
@@ -164,13 +165,13 @@ class TransactionTest extends TestCase
         $this->assertTrue($result);
     }
 
-    public function testDisableByUuid()
+    public function testToggleDisabledByUuid()
     {
         $stream = Psr7\stream_for(self::TRANSACTION_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'tr_0e4de894-83c3-44d8-b406-2b0f89e67fda';
-        $result = Transaction::disable($uuid, true, $cmClient);
+        $result = Transaction::toggleDisabled($uuid, true, $cmClient);
 
         $request = $mockClient->getRequests()[0];
         $this->assertEquals('PATCH', $request->getMethod());
@@ -180,5 +181,23 @@ class TransactionTest extends TestCase
 
         $body = json_decode((string) $request->getBody(), true);
         $this->assertEquals(['disabled' => true], $body);
+    }
+
+    public function testReEnableByUuid()
+    {
+        $stream = Psr7\stream_for(self::TRANSACTION_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = 'tr_0e4de894-83c3-44d8-b406-2b0f89e67fda';
+        $result = Transaction::toggleDisabled($uuid, false, $cmClient);
+
+        $request = $mockClient->getRequests()[0];
+        $this->assertEquals('PATCH', $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals('/v1/transactions/' . $uuid . '/disabled_state', $uri->getPath());
+        $this->assertTrue($result instanceof Transaction);
+
+        $body = json_decode((string) $request->getBody(), true);
+        $this->assertEquals(['disabled' => false], $body);
     }
 }
