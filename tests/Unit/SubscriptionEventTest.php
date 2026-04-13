@@ -433,4 +433,22 @@ class SubscriptionEventTest extends TestCase
             ['amount_in_cents' => 100]
         );
     }
+
+    public function testDisable()
+    {
+        $stream = Psr7\stream_for(self::RETRIEVE_SUBSCRIPTION_EVENT);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $id = 73966836;
+        $result = SubscriptionEvent::disable($id, true, $cmClient);
+
+        $request = $mockClient->getRequests()[0];
+        $this->assertEquals('PATCH', $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals('/v1/subscription_events/' . $id . '/disabled_state', $uri->getPath());
+        $this->assertTrue($result instanceof SubscriptionEvent);
+
+        $body = json_decode((string) $request->getBody(), true);
+        $this->assertEquals(['disabled' => true], $body);
+    }
 }
