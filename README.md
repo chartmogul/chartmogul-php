@@ -940,6 +940,66 @@ ChartMogul\Invoice::disable('inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9', true);
 ChartMogul\Invoice::disable('inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9', false);
 ```
 
+### Line Items
+
+**Retrieve a Line Item**
+
+```php
+$lineItem = ChartMogul\LineItem::retrieve('li_592f4699-107b-41b9-b7bc-a2aa2ca7a67b');
+```
+
+**Update a Line Item**
+
+```php
+$lineItem = ChartMogul\LineItem::update(
+    ['line_item_uuid' => 'li_592f4699-107b-41b9-b7bc-a2aa2ca7a67b'],
+    ['amount_in_cents' => 5000]
+);
+```
+
+**Delete a Line Item**
+
+```php
+$lineItem = new ChartMogul\LineItem(['uuid' => 'li_592f4699-107b-41b9-b7bc-a2aa2ca7a67b']);
+$lineItem->destroy();
+```
+
+**Disable a Line Item**
+
+```php
+ChartMogul\LineItem::disable('li_592f4699-107b-41b9-b7bc-a2aa2ca7a67b', true);
+// Re-enable:
+ChartMogul\LineItem::disable('li_592f4699-107b-41b9-b7bc-a2aa2ca7a67b', false);
+```
+
+**Retrieve a Line Item by External ID**
+
+```php
+$lineItem = ChartMogul\LineItem::retrieveByExternalId(
+    'ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba',
+    'il_1Srh42DZd9drsue4U2FQKjsb'
+);
+```
+
+**Update a Line Item by External ID**
+
+```php
+$lineItem = ChartMogul\LineItem::updateByExternalId(
+    'ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba',
+    'il_1Srh42DZd9drsue4U2FQKjsb',
+    ['amount_in_cents' => 5000]
+);
+```
+
+**Delete a Line Item by External ID**
+
+```php
+ChartMogul\LineItem::destroyByExternalId(
+    'ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba',
+    'il_1Srh42DZd9drsue4U2FQKjsb'
+);
+```
+
 ### Transactions
 
 **Create a Transaction**
