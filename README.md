@@ -922,6 +922,24 @@ $invoices = ChartMogul\Invoice::all([
 $invoice = ChartMogul\Invoice::retrieve('inv_uuid');
 ```
 
+**Update an Invoice Status**
+
+```php
+ChartMogul\Invoice::updateStatus(
+    'ds_35542640-d9f1-11ed-9c30-7727168c74a5', // data_source_uuid
+    'inv_0001',                                  // invoice_external_id
+    ['status' => 'voided']
+);
+```
+
+**Disable an Invoice**
+
+```php
+ChartMogul\Invoice::disable('inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9', true);
+// Re-enable:
+ChartMogul\Invoice::disable('inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9', false);
+```
+
 ### Transactions
 
 **Create a Transaction**
