@@ -22,7 +22,7 @@ trait ExternalIdOperationsTrait
         string $dataSourceUuid,
         string $externalId,
         ?ClientInterface $client = null
-    ) {
+    ): self {
         return (new RequestService($client))
             ->setResourceClass(static::class)
             ->getByExternalId([
@@ -45,7 +45,7 @@ trait ExternalIdOperationsTrait
         string $externalId,
         array $data,
         ?ClientInterface $client = null
-    ) {
+    ): self {
         return (new RequestService($client))
             ->setResourceClass(static::class)
             ->updateByExternalId(
@@ -66,7 +66,7 @@ trait ExternalIdOperationsTrait
         string $dataSourceUuid,
         string $externalId,
         ?ClientInterface $client = null
-    ) {
+    ): bool {
         return (new RequestService($client))
             ->setResourceClass(static::class)
             ->destroyByExternalId([
@@ -89,7 +89,7 @@ trait ExternalIdOperationsTrait
         string $externalId,
         bool $disabled,
         ?ClientInterface $client = null
-    ) {
+    ): self {
         return (new RequestService($client))
             ->setResourceClass(static::class)
             ->patchSubresourceByExternalId(

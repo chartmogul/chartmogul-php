@@ -168,13 +168,13 @@ class LineItemTest extends TestCase
         $this->assertTrue($result);
     }
 
-    public function testDisableByUuid()
+    public function testToggleDisabledByUuid()
     {
         $stream = Psr7\stream_for(self::LINE_ITEM_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'li_592f4699-107b-41b9-b7bc-a2aa2ca7a67b';
-        $result = LineItem::disable($uuid, true, $cmClient);
+        $result = LineItem::toggleDisabled($uuid, true, $cmClient);
 
         $request = $mockClient->getRequests()[0];
         $this->assertEquals('PATCH', $request->getMethod());
@@ -184,5 +184,23 @@ class LineItemTest extends TestCase
 
         $body = json_decode((string) $request->getBody(), true);
         $this->assertEquals(['disabled' => true], $body);
+    }
+
+    public function testToggleEnabledByUuid()
+    {
+        $stream = Psr7\stream_for(self::LINE_ITEM_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = 'li_592f4699-107b-41b9-b7bc-a2aa2ca7a67b';
+        $result = LineItem::toggleDisabled($uuid, false, $cmClient);
+
+        $request = $mockClient->getRequests()[0];
+        $this->assertEquals('PATCH', $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals('/v1/line_items/' . $uuid . '/disabled_state', $uri->getPath());
+        $this->assertTrue($result instanceof LineItem);
+
+        $body = json_decode((string) $request->getBody(), true);
+        $this->assertEquals(['disabled' => false], $body);
     }
 }
