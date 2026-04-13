@@ -1014,6 +1014,64 @@ ChartMogul\Transactions\Refund::create([
 
 The same can be done with Payment class.
 
+**Retrieve a Transaction**
+
+```php
+$transaction = ChartMogul\Transaction::retrieve('tr_0e4de894-83c3-44d8-b406-2b0f89e67fda');
+```
+
+**Update a Transaction**
+
+```php
+$transaction = ChartMogul\Transaction::update(
+    ['transaction_uuid' => 'tr_0e4de894-83c3-44d8-b406-2b0f89e67fda'],
+    ['date' => '2026-02-01T00:00:00Z']
+);
+```
+
+**Delete a Transaction**
+
+```php
+$transaction = new ChartMogul\Transaction(['uuid' => 'tr_0e4de894-83c3-44d8-b406-2b0f89e67fda']);
+$transaction->destroy();
+```
+
+**Disable a Transaction**
+
+```php
+ChartMogul\Transaction::disable('tr_0e4de894-83c3-44d8-b406-2b0f89e67fda', true);
+// Re-enable:
+ChartMogul\Transaction::disable('tr_0e4de894-83c3-44d8-b406-2b0f89e67fda', false);
+```
+
+**Retrieve a Transaction by External ID**
+
+```php
+$transaction = ChartMogul\Transaction::retrieveByExternalId(
+    'ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba',
+    'ch_3St2vHDZd9drsue42v3rkVMC'
+);
+```
+
+**Update a Transaction by External ID**
+
+```php
+$transaction = ChartMogul\Transaction::updateByExternalId(
+    'ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba',
+    'ch_3St2vHDZd9drsue42v3rkVMC',
+    ['date' => '2026-02-01T00:00:00Z']
+);
+```
+
+**Delete a Transaction by External ID**
+
+```php
+ChartMogul\Transaction::destroyByExternalId(
+    'ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba',
+    'ch_3St2vHDZd9drsue42v3rkVMC'
+);
+```
+
 ### Subscriptions
 
 **List Customer Subscriptions**
