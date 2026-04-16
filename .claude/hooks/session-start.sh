@@ -1,50 +1,62 @@
 #!/bin/bash
 # SessionStart: fast, local-only environment check. Must be <1s and idempotent.
 # No network calls, no installs, no docker run - just detect and report.
-cd "$CLAUDE_PROJECT_DIR" 2>/dev/null || cd "$(dirname "$0")/../.." || exit 0
+cd "$CLAUDE_PROJECT_DIR" || exit 0
 
-WARNINGS=""
-INFO=""
-
-# Git branch
-BRANCH=$(git branch --show-current 2>/dev/null)
-[ -n "$BRANCH" ] && INFO="$INFO\n- Branch: $BRANCH"
-
-# Uncommitted changes
-DIRTY=$(git status --porcelain 2>/dev/null | head -5)
-if [ -n "$DIRTY" ]; then
-  COUNT=$(echo "$DIRTY" | wc -l | tr -d ' ')
-  WARNINGS="$WARNINGS\n- $COUNT uncommitted file(s)"
+# Generate a stable session ID and persist via CLAUDE_ENV_FILE
+# so the edit tracker and stop hook share the same file path
+SESSION_ID="$(date +%s)-$$"
+if [[ -n "$CLAUDE_ENV_FILE" ]]; then
+  echo "export CLAUDE_HOOK_SESSION_ID='$SESSION_ID'" >> "$CLAUDE_ENV_FILE"
 fi
 
-# Lockfile freshness: composer.lock should exist if composer.json does
-if [ -f composer.json ] && [ ! -f composer.lock ] && [ ! -d vendor ]; then
-  WARNINGS="$WARNINGS\n- composer.lock and vendor/ missing. Run: composer install"
-elif [ -f composer.json ] && [ ! -d vendor ]; then
-  WARNINGS="$WARNINGS\n- vendor/ missing. Run: composer install"
+# Clear stale file tracker from previous session
+rm -f /tmp/claude-edited-php-files-* 2>/dev/null
+
+ctx=""
+
+# Lockfile freshness
+if [[ ! -f composer.lock ]]; then
+  ctx+="composer.lock missing - run composer install.\n"
+elif [[ composer.json -nt composer.lock ]]; then
+  ctx+="composer.lock is stale - run composer install before testing.\n"
+fi
+
+# Vendor directory
+if [[ ! -d vendor ]]; then
+  ctx+="vendor/ missing - run composer install.\n"
+fi
+
+# Warn about uncommitted changes
+dirty=$(git diff --name-only 2>/dev/null | head -5)
+if [[ -n "$dirty" ]]; then
+  ctx+="Uncommitted changes:\n$dirty\n"
+fi
+
+# Report current branch
+branch=$(git branch --show-current 2>/dev/null)
+if [[ -n "$branch" ]]; then
+  ctx+="Branch: $branch\n"
 fi
 
 # Docker image presence (inspect is local metadata, no container started)
 if command -v docker &>/dev/null && docker info &>/dev/null 2>&1; then
   if docker image inspect chartmogulphp82 &>/dev/null 2>&1; then
-    INFO="$INFO\n- Docker image chartmogulphp82: available"
+    ctx+="Docker image chartmogulphp82: available\n"
   else
-    WARNINGS="$WARNINGS\n- Docker image chartmogulphp82 not built. Run: make build"
+    ctx+="Docker image chartmogulphp82 not built. Run: make build\n"
   fi
 else
-  WARNINGS="$WARNINGS\n- Docker not available. Docker-based commands (make test/lint/analyse) will not work."
+  ctx+="Docker not available. Docker-based commands (make test/lint/analyse) will not work.\n"
 fi
 
-# Clear stale file tracker from previous session
-rm -f /tmp/claude-php-edited-files 2>/dev/null
-
-# Emit context
-CTX=""
-[ -n "$WARNINGS" ] && CTX="Warnings:$WARNINGS"
-[ -n "$INFO" ] && CTX="$CTX\nEnvironment:$INFO"
-
-if [ -n "$CTX" ]; then
-  echo -e "$CTX"
+if [[ -n "$ctx" ]]; then
+  jq -n --arg ctx "$ctx" '{
+    "hookSpecificOutput": {
+      "hookEventName": "SessionStart",
+      "additionalContext": $ctx
+    }
+  }'
 fi
 
 exit 0
