@@ -44,11 +44,11 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "Edit|Write",
+        "matcher": "Edit|Write|MultiEdit",
         "hooks": [
           {
             "type": "command",
-            "command": "./.claude/hooks/post-edit-lint.sh"
+            "command": "./.claude/hooks/post-edit-record.sh"
           }
         ]
       }
@@ -58,7 +58,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "./.claude/hooks/post-stop-validate.sh"
+            "command": "./.claude/hooks/stop-format.sh"
           }
         ]
       }

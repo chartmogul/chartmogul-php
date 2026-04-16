@@ -1,59 +1,50 @@
 #!/bin/bash
-# SessionStart hook: verify development environment, auto-fix what we can, report status.
-# Output is injected as context into the Claude Code session.
+# SessionStart: fast, local-only environment check. Must be <1s and idempotent.
+# No network calls, no installs, no docker run - just detect and report.
+cd "$CLAUDE_PROJECT_DIR" 2>/dev/null || cd "$(dirname "$0")/../.." || exit 0
 
 WARNINGS=""
 INFO=""
 
-# 1. Docker available?
-if ! command -v docker &>/dev/null; then
-  WARNINGS="$WARNINGS\n- Docker is not installed or not in PATH. Docker-based commands (make test, make lint, make analyse) will not work."
-elif ! docker info &>/dev/null 2>&1; then
-  WARNINGS="$WARNINGS\n- Docker daemon is not running. Start Docker Desktop to use Docker-based commands."
-else
-  INFO="$INFO\n- Docker: available"
+# Git branch
+BRANCH=$(git branch --show-current 2>/dev/null)
+[ -n "$BRANCH" ] && INFO="$INFO\n- Branch: $BRANCH"
 
-  # 2. Docker image built? Build if missing.
-  if ! docker image inspect chartmogulphp82 &>/dev/null 2>&1; then
-    INFO="$INFO\n- Docker image chartmogulphp82 not found, building..."
-    if docker build --build-arg VERSION=8.2 --tag=chartmogulphp82 . &>/dev/null; then
-      INFO="$INFO\n- Docker image chartmogulphp82: built successfully"
-    else
-      WARNINGS="$WARNINGS\n- Failed to build Docker image chartmogulphp82. Run 'make build' manually."
-    fi
-  fi
+# Uncommitted changes
+DIRTY=$(git status --porcelain 2>/dev/null | head -5)
+if [ -n "$DIRTY" ]; then
+  COUNT=$(echo "$DIRTY" | wc -l | tr -d ' ')
+  WARNINGS="$WARNINGS\n- $COUNT uncommitted file(s)"
+fi
 
+# Lockfile freshness: composer.lock should exist if composer.json does
+if [ -f composer.json ] && [ ! -f composer.lock ] && [ ! -d vendor ]; then
+  WARNINGS="$WARNINGS\n- composer.lock and vendor/ missing. Run: composer install"
+elif [ -f composer.json ] && [ ! -d vendor ]; then
+  WARNINGS="$WARNINGS\n- vendor/ missing. Run: composer install"
+fi
+
+# Docker image presence (inspect is local metadata, no container started)
+if command -v docker &>/dev/null && docker info &>/dev/null 2>&1; then
   if docker image inspect chartmogulphp82 &>/dev/null 2>&1; then
-    PHP_VERSION=$(docker run --rm chartmogulphp82 php --version 2>/dev/null | head -1)
-    PHPUNIT_VERSION=$(docker run --rm chartmogulphp82 phpunit --version 2>/dev/null | head -1)
-    INFO="$INFO\n- $PHP_VERSION"
-    INFO="$INFO\n- $PHPUNIT_VERSION"
-
-    # 3. Composer dependencies - install inside container if missing.
-    if [ ! -d vendor ]; then
-      INFO="$INFO\n- vendor/ missing, running composer install..."
-      if docker run --rm -w /src -v "$(pwd):/src" -v "$HOME/.composer/cache:/root/.composer/cache" chartmogulphp82 composer install --no-interaction --quiet 2>/dev/null; then
-        INFO="$INFO\n- Composer dependencies: installed"
-      else
-        WARNINGS="$WARNINGS\n- composer install failed. Run 'make composer install' manually."
-      fi
-    else
-      INFO="$INFO\n- Composer dependencies: installed"
-    fi
+    INFO="$INFO\n- Docker image chartmogulphp82: available"
+  else
+    WARNINGS="$WARNINGS\n- Docker image chartmogulphp82 not built. Run: make build"
   fi
+else
+  WARNINGS="$WARNINGS\n- Docker not available. Docker-based commands (make test/lint/analyse) will not work."
 fi
 
-# Build output
-OUTPUT=""
-if [ -n "$WARNINGS" ]; then
-  OUTPUT="Environment warnings:$WARNINGS"
-fi
-if [ -n "$INFO" ]; then
-  OUTPUT="$OUTPUT\nEnvironment:$INFO"
-fi
+# Clear stale file tracker from previous session
+rm -f /tmp/claude-php-edited-files 2>/dev/null
 
-if [ -n "$OUTPUT" ]; then
-  echo -e "$OUTPUT"
+# Emit context
+CTX=""
+[ -n "$WARNINGS" ] && CTX="Warnings:$WARNINGS"
+[ -n "$INFO" ] && CTX="$CTX\nEnvironment:$INFO"
+
+if [ -n "$CTX" ]; then
+  echo -e "$CTX"
 fi
 
 exit 0
