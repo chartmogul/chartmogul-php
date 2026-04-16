@@ -10,9 +10,6 @@ if [[ -n "$CLAUDE_ENV_FILE" ]]; then
   echo "export CLAUDE_HOOK_SESSION_ID='$SESSION_ID'" >> "$CLAUDE_ENV_FILE"
 fi
 
-# Clear stale file tracker from previous session
-rm -f /tmp/claude-edited-php-files-* 2>/dev/null
-
 ctx=""
 
 # Lockfile freshness

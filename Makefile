@@ -19,8 +19,8 @@ phpunit:
 php:
 	$(RUNNER) "php $(filter-out $@,$(MAKECMDGOALS))"
 lint:
-	$(RUNNER_NI) "composer update --no-interaction --quiet && vendor/bin/php-cs-fixer fix --dry-run --no-interaction src"
+	$(RUNNER_NI) "composer install --no-interaction --quiet && vendor/bin/php-cs-fixer fix --dry-run --no-interaction src"
 analyse:
-	$(RUNNER_NI) "composer update --no-interaction --quiet && composer global require --quiet phpstan/phpstan && phpstan analyse"
+	$(RUNNER_NI) "composer install --no-interaction --quiet && composer global require --quiet phpstan/phpstan && phpstan analyse"
 %:
 	@:

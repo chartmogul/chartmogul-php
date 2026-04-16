@@ -7,7 +7,6 @@
       "Bash(vendor/bin/php-cs-fixer:*)",
       "Bash(vendor/bin/phpstan:*)",
       "Bash(php --version)",
-      "Bash(docker run:*)",
       "Bash(docker image inspect:*)",
       "Bash(make:*)",
       "Bash(git status:*)",
