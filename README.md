@@ -22,6 +22,8 @@
 |
 <b><a href="#contributing">Contributing</a></b>
 |
+<b><a href="#security">Security</a></b>
+|
 <b><a href="#license">License</a></b>
 </p>
 <hr>
@@ -1164,9 +1166,23 @@ You need `Docker` installed locally to use our `Makefile` workflow.
 * If all tests are passed, push to the branch (`git push origin my-new-feature`).
 * Create a new Pull Request.
 
+## Releasing
+
+See [RELEASING.md](RELEASING.md) for the full release process.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/chartmogul/chartmogul-php.
+
+## Security
+
+### Verifying Releases
+
+All releases of this library are published as [immutable GitHub Releases](https://github.com/chartmogul/chartmogul-php/releases) with protected tags and as a package on [Packagist](https://packagist.org/packages/chartmogul/chartmogul-php).
+
+To maximize supply chain security:
+- **Commit your `composer.lock`** to version control - it records content hashes for all dependencies, ensuring reproducible and tamper-evident installs
+- **Use `composer install`** (not `composer update`) in CI environments for deterministic builds from the lockfile
 
 ## License
 
