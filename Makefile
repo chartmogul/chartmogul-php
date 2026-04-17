@@ -1,4 +1,5 @@
 RUNNER=docker run -it --rm --workdir "/src" -v "$(PWD):/src" -v "$(HOME)/.composer/cache:/root/.composer/cache" chartmogulphp82 /bin/bash -c
+RUNNER_NI=docker run --rm --workdir "/src" -v "$(PWD):/src" -v "$(HOME)/.composer/cache:/root/.composer/cache" chartmogulphp82 /bin/bash -c
 
 # Pinned by digest for supply chain security. To update, run:
 #   curl -s "https://hub.docker.com/v2/repositories/library/php/tags/<VERSION>" | python3 -c "import sys,json; print(json.load(sys.stdin)['digest'])"
@@ -7,7 +8,7 @@ PHP80_DIGEST=sha256:0569e384b9064c04dec55dc6e41be41b494a878dfbb6577a7d76bd50cfd5
 PHP81_DIGEST=sha256:76e563191d1ade120313a8736df24154d21da5155c0756f147c0b01bd19d9087
 PHP82_DIGEST=sha256:d4529ca36f2f3c64320c812cd606da2133682065f5c932b054a0755818e7ea01
 
-.PHONY: build composer php
+.PHONY: build composer php lint analyse
 
 build:
 	@docker build --build-arg IMAGE=php@$(PHP74_DIGEST) --build-arg VERSION=7.4 --tag=chartmogulphp74 .
@@ -24,5 +25,9 @@ phpunit:
 	$(RUNNER) "phpunit $(filter-out $@,$(MAKECMDGOALS))"
 php:
 	$(RUNNER) "php $(filter-out $@,$(MAKECMDGOALS))"
+lint:
+	$(RUNNER_NI) "composer install --no-interaction --quiet && vendor/bin/php-cs-fixer fix --dry-run --no-interaction src"
+analyse:
+	$(RUNNER_NI) "composer install --no-interaction --quiet && composer global require --quiet phpstan/phpstan && phpstan analyse"
 %:
 	@:
