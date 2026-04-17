@@ -4,7 +4,7 @@ namespace ChartMogul\Resource;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-/** 
+/**
  * @property-read bool $has_more;
  * @property-read int $per_page;
  * @property-read int $page;

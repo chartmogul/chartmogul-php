@@ -1,6 +1,7 @@
 RUNNER=docker run -it --rm --workdir "/src" -v "$(PWD):/src" -v "$(HOME)/.composer/cache:/root/.composer/cache" chartmogulphp82 /bin/bash -c
+RUNNER_NI=docker run --rm --workdir "/src" -v "$(PWD):/src" -v "$(HOME)/.composer/cache:/root/.composer/cache" chartmogulphp82 /bin/bash -c
 
-.PHONY: build composer php
+.PHONY: build composer php lint analyse
 
 build:
 	@docker build --build-arg VERSION=7.4 --tag=chartmogulphp74 .
@@ -17,5 +18,9 @@ phpunit:
 	$(RUNNER) "phpunit $(filter-out $@,$(MAKECMDGOALS))"
 php:
 	$(RUNNER) "php $(filter-out $@,$(MAKECMDGOALS))"
+lint:
+	$(RUNNER_NI) "composer install --no-interaction --quiet && vendor/bin/php-cs-fixer fix --dry-run --no-interaction src"
+analyse:
+	$(RUNNER_NI) "composer install --no-interaction --quiet && composer global require --quiet phpstan/phpstan && phpstan analyse"
 %:
 	@:
