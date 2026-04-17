@@ -3,9 +3,13 @@
 # No network calls, no installs, no docker run - just detect and report.
 cd "$CLAUDE_PROJECT_DIR" || exit 0
 
-# Generate a stable session ID and persist via CLAUDE_ENV_FILE
+# Use session_id from hook input and persist via CLAUDE_ENV_FILE
 # so the edit tracker and stop hook share the same file path
-SESSION_ID="$(date +%s)-$$"
+INPUT=$(cat)
+SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // empty')
+if [[ -z "$SESSION_ID" ]]; then
+  SESSION_ID="$(date +%s)-$$"
+fi
 if [[ -n "$CLAUDE_ENV_FILE" ]]; then
   echo "export CLAUDE_HOOK_SESSION_ID='$SESSION_ID'" >> "$CLAUDE_ENV_FILE"
 fi
