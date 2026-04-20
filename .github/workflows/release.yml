@@ -57,7 +57,7 @@ jobs:
 
       - name: Verify version matches tag
         run: |
-          FILE_VERSION="v$(grep -oP "apiVersion = '\K[^']+" src/Http/Client.php)"
+          FILE_VERSION="v$(sed -n "s/.*apiVersion = '\([^']*\)'.*/\1/p" src/Http/Client.php)"
           if [ "$FILE_VERSION" != "$GITHUB_REF_NAME" ]; then
             echo "::error::Client.php version ($FILE_VERSION) does not match tag ($GITHUB_REF_NAME)"
             exit 1
