@@ -1,4 +1,4 @@
-name: Run specs and generate Code Climate report
+name: CI
 on:
   push:
     branches: [ main ]
@@ -86,3 +86,23 @@ jobs:
 
       - name: "Run phpstan"
         run: phpstan analyse --error-format=checkstyle | cs2pr
+
+  security-audit:
+    name: "Security Audit"
+    runs-on: ubuntu-24.04
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@accd6127cb78bee3e8082180cb391013d204ef9f # v2.37.0
+        with:
+          php-version: '8.4'
+
+      - name: Install dependencies
+        run: composer update --no-interaction --no-progress --prefer-dist
+
+      - name: Run security audit
+        run: composer audit --format=plain
