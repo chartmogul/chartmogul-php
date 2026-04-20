@@ -97,7 +97,7 @@ fi
 
 # --- Bump version ------------------------------------------------------------
 
-CURRENT_VERSION=$(grep -oP "apiVersion = '\K[^']+" "$VERSION_FILE")
+CURRENT_VERSION=$(sed -n "s/.*apiVersion = '\([^']*\)'.*/\1/p" "$VERSION_FILE")
 IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
 
 case "$BUMP_TYPE" in
