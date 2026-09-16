@@ -69,7 +69,7 @@ class OpportunityTest extends TestCase
 
     public function testListOpportunities()
     {
-        $stream = Psr7\stream_for(OpportunityTest::LIST_OPPORTUNITIES_JSON);
+        $stream = Psr7\Utils::streamFor(OpportunityTest::LIST_OPPORTUNITIES_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
@@ -88,7 +88,7 @@ class OpportunityTest extends TestCase
 
     public function testCreateOpportunity()
     {
-        $stream = Psr7\stream_for(OpportunityTest::OPPORTUNITY_JSON);
+        $stream = Psr7\Utils::streamFor(OpportunityTest::OPPORTUNITY_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
@@ -136,7 +136,7 @@ class OpportunityTest extends TestCase
 
     public function testRetrieveOpportunity()
     {
-        $stream = Psr7\stream_for(OpportunityTest::OPPORTUNITY_JSON);
+        $stream = Psr7\Utils::streamFor(OpportunityTest::OPPORTUNITY_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "00000000-0000-0000-0000-000000000000";
@@ -167,7 +167,7 @@ class OpportunityTest extends TestCase
 
     public function testUpdateOpportunity()
     {
-        $stream = Psr7\stream_for(OpportunityTest::UPDATED_OPPORTUNITY_JSON);
+        $stream = Psr7\Utils::streamFor(OpportunityTest::UPDATED_OPPORTUNITY_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "00000000-0000-0000-0000-000000000000";
@@ -191,7 +191,7 @@ class OpportunityTest extends TestCase
 
     public function testDeleteOpportunity()
     {
-        $stream = Psr7\stream_for("{}");
+        $stream = Psr7\Utils::streamFor("{}");
         list($cmClient, $mockClient) = $this->getMockClient(0, [204], $stream);
 
         $uuid = "00000000-0000-0000-0000-000000000000";

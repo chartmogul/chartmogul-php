@@ -157,7 +157,7 @@ class InvoiceTest extends TestCase
 
     public function testCreateInvoiceFailsOnValidation()
     {
-        $stream = Psr7\stream_for('{invoices: [{errors: {"plan_id": "doesn\'t exist"}}]}');
+        $stream = Psr7\Utils::streamFor('{invoices: [{errors: {"plan_id": "doesn\'t exist"}}]}');
         list($cmClient, $mockClient) = $this->getMockClient(0, [422], $stream);
 
         $this->expectException(\ChartMogul\Exceptions\SchemaInvalidException::class);
@@ -171,7 +171,7 @@ class InvoiceTest extends TestCase
 
     public function testAllInvoicesDeprecatedPagination()
     {
-        $stream = Psr7\stream_for(InvoiceTest::ALL_INVOICES_JSON);
+        $stream = Psr7\Utils::streamFor(InvoiceTest::ALL_INVOICES_JSON);
         list($cmClient, $mockClient) = $this->getMockClientException(
           0, [200], $stream, [\ChartMogul\Exceptions\DeprecatedParameterException::class]
         );
@@ -183,7 +183,7 @@ class InvoiceTest extends TestCase
 
     public function testAllInvoices()
     {
-        $stream = Psr7\stream_for(InvoiceTest::ALL_INVOICES_JSON);
+        $stream = Psr7\Utils::streamFor(InvoiceTest::ALL_INVOICES_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $query = ["per_page" => 2, "external_id" => "INV0001"];
@@ -225,7 +225,7 @@ class InvoiceTest extends TestCase
 
     public function testRetrieveInvoice()
     {
-        $stream = Psr7\stream_for(InvoiceTest::RETRIEVE_INVOICE_JSON);
+        $stream = Psr7\Utils::streamFor(InvoiceTest::RETRIEVE_INVOICE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9';
@@ -244,7 +244,7 @@ class InvoiceTest extends TestCase
 
     public function testRetrieveInvoiceWithValidationType()
     {
-        $stream = Psr7\stream_for(InvoiceTest::RETRIEVE_INVOICE_JSON);
+        $stream = Psr7\Utils::streamFor(InvoiceTest::RETRIEVE_INVOICE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9';
@@ -263,7 +263,7 @@ class InvoiceTest extends TestCase
 
     public function testRetrieveInvoiceWithAllParams()
     {
-        $stream = Psr7\stream_for(InvoiceTest::RETRIEVE_INVOICE_JSON);
+        $stream = Psr7\Utils::streamFor(InvoiceTest::RETRIEVE_INVOICE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9';
@@ -313,7 +313,7 @@ class InvoiceTest extends TestCase
 
     public function testAllInvoicesWithValidationType()
     {
-        $stream = Psr7\stream_for(InvoiceTest::ALL_INVOICES_JSON);
+        $stream = Psr7\Utils::streamFor(InvoiceTest::ALL_INVOICES_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Invoice::all(['validation_type' => 'all'], $cmClient);
@@ -327,7 +327,7 @@ class InvoiceTest extends TestCase
 
     public function testAllInvoicesWithAllParams()
     {
-        $stream = Psr7\stream_for(InvoiceTest::ALL_INVOICES_JSON);
+        $stream = Psr7\Utils::streamFor(InvoiceTest::ALL_INVOICES_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Invoice::all([
@@ -348,7 +348,7 @@ class InvoiceTest extends TestCase
 
     public function testUpdateInvoiceStatus()
     {
-        $stream = Psr7\stream_for(InvoiceTest::RETRIEVE_INVOICE_JSON);
+        $stream = Psr7\Utils::streamFor(InvoiceTest::RETRIEVE_INVOICE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $dsUuid = 'ds_35542640-d9f1-11ed-9c30-7727168c74a5';
@@ -368,7 +368,7 @@ class InvoiceTest extends TestCase
 
     public function testDisableInvoice()
     {
-        $stream = Psr7\stream_for(InvoiceTest::RETRIEVE_INVOICE_JSON);
+        $stream = Psr7\Utils::streamFor(InvoiceTest::RETRIEVE_INVOICE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9';
@@ -387,7 +387,7 @@ class InvoiceTest extends TestCase
 
     public function testUpdateInvoice()
     {
-        $stream = Psr7\stream_for(InvoiceTest::RETRIEVE_INVOICE_JSON);
+        $stream = Psr7\Utils::streamFor(InvoiceTest::RETRIEVE_INVOICE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9';
@@ -437,7 +437,7 @@ class InvoiceTest extends TestCase
             }
           ]
         }';
-        $stream = Psr7\stream_for($json);
+        $stream = Psr7\Utils::streamFor($json);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'inv_565c73b2-85b9-49c9-a25e-2b7df6a677c9';

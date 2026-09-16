@@ -27,7 +27,7 @@ class LineItemTest extends TestCase
 
     public function testRetrieveByExternalId()
     {
-        $stream = Psr7\stream_for(self::LINE_ITEM_JSON);
+        $stream = Psr7\Utils::streamFor(self::LINE_ITEM_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = LineItem::retrieveByExternalId(
@@ -49,7 +49,7 @@ class LineItemTest extends TestCase
 
     public function testUpdateByExternalId()
     {
-        $stream = Psr7\stream_for(self::LINE_ITEM_JSON);
+        $stream = Psr7\Utils::streamFor(self::LINE_ITEM_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = LineItem::updateByExternalId(
@@ -94,7 +94,7 @@ class LineItemTest extends TestCase
 
     public function testToggleDisabledByExternalId()
     {
-        $stream = Psr7\stream_for(self::LINE_ITEM_JSON);
+        $stream = Psr7\Utils::streamFor(self::LINE_ITEM_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = LineItem::toggleDisabledByExternalId(
@@ -119,7 +119,7 @@ class LineItemTest extends TestCase
 
     public function testRetrieveByUuid()
     {
-        $stream = Psr7\stream_for(self::LINE_ITEM_JSON);
+        $stream = Psr7\Utils::streamFor(self::LINE_ITEM_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'li_592f4699-107b-41b9-b7bc-a2aa2ca7a67b';
@@ -135,7 +135,7 @@ class LineItemTest extends TestCase
 
     public function testUpdateByUuid()
     {
-        $stream = Psr7\stream_for(self::LINE_ITEM_JSON);
+        $stream = Psr7\Utils::streamFor(self::LINE_ITEM_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'li_592f4699-107b-41b9-b7bc-a2aa2ca7a67b';
@@ -170,7 +170,7 @@ class LineItemTest extends TestCase
 
     public function testToggleDisabledByUuid()
     {
-        $stream = Psr7\stream_for(self::LINE_ITEM_JSON);
+        $stream = Psr7\Utils::streamFor(self::LINE_ITEM_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'li_592f4699-107b-41b9-b7bc-a2aa2ca7a67b';
@@ -188,7 +188,7 @@ class LineItemTest extends TestCase
 
     public function testToggleEnabledByUuid()
     {
-        $stream = Psr7\stream_for(self::LINE_ITEM_JSON);
+        $stream = Psr7\Utils::streamFor(self::LINE_ITEM_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'li_592f4699-107b-41b9-b7bc-a2aa2ca7a67b';

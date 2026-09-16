@@ -33,7 +33,7 @@ class PlanGroupsPlanTest extends TestCase
 
     public function testAllPlanGroups()
     {
-        $stream = Psr7\stream_for(PlanGroupsPlanTest::ALL_PLAN_GROUPS_PLANS_JSON);
+        $stream = Psr7\Utils::streamFor(PlanGroupsPlanTest::ALL_PLAN_GROUPS_PLANS_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $planGroupUuid = 'plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab';
@@ -60,7 +60,7 @@ class PlanGroupsPlanTest extends TestCase
 
     public function testAllPlanGroupsDeprecatedPagination()
     {
-        $stream = Psr7\stream_for(PlanGroupsPlanTest::ALL_PLAN_GROUPS_PLANS_JSON);
+        $stream = Psr7\Utils::streamFor(PlanGroupsPlanTest::ALL_PLAN_GROUPS_PLANS_JSON);
         list($cmClient, $mockClient) = $this->getMockClientException(
           0, [200], $stream, [\ChartMogul\Exceptions\DeprecatedParameterException::class]
         );

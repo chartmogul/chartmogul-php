@@ -102,7 +102,7 @@ class ContactTest extends TestCase
 
     public function testRetrieveContact()
     {
-        $stream = Psr7\stream_for(ContactTest::CONTACT_JSON);
+        $stream = Psr7\Utils::streamFor(ContactTest::CONTACT_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "con_00000000-0000-0000-0000-000000000000";
@@ -122,7 +122,7 @@ class ContactTest extends TestCase
 
     public function testCreateContact()
     {
-        $stream = Psr7\stream_for(ContactTest::CONTACT_JSON);
+        $stream = Psr7\Utils::streamFor(ContactTest::CONTACT_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Contact::create(
@@ -159,7 +159,7 @@ class ContactTest extends TestCase
 
     public function testCreateContactWithNullExternalId()
     {
-        $stream = Psr7\stream_for(ContactTest::CONTACT_NULL_EXTERNAL_ID_JSON);
+        $stream = Psr7\Utils::streamFor(ContactTest::CONTACT_NULL_EXTERNAL_ID_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Contact::create(
@@ -177,7 +177,7 @@ class ContactTest extends TestCase
 
     public function testCreateContactWithoutExternalId()
     {
-        $stream = Psr7\stream_for(ContactTest::CONTACT_NULL_EXTERNAL_ID_JSON);
+        $stream = Psr7\Utils::streamFor(ContactTest::CONTACT_NULL_EXTERNAL_ID_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Contact::create(
@@ -194,7 +194,7 @@ class ContactTest extends TestCase
 
     public function testListContacts()
     {
-        $stream = Psr7\stream_for(ContactTest::LIST_CONTACTS_JSON);
+        $stream = Psr7\Utils::streamFor(ContactTest::LIST_CONTACTS_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Contact::all([], $cmClient);
@@ -212,7 +212,7 @@ class ContactTest extends TestCase
 
     public function testUpdateContact()
     {
-        $stream = Psr7\stream_for(ContactTest::UPDATED_CONTACT_JSON);
+        $stream = Psr7\Utils::streamFor(ContactTest::UPDATED_CONTACT_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "con_00000000-0000-0000-0000-000000000000";
@@ -251,7 +251,7 @@ class ContactTest extends TestCase
 
     public function testUpdateContactWithNullExternalId()
     {
-        $stream = Psr7\stream_for(ContactTest::CONTACT_NULL_EXTERNAL_ID_JSON);
+        $stream = Psr7\Utils::streamFor(ContactTest::CONTACT_NULL_EXTERNAL_ID_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "con_00000000-0000-0000-0000-000000000000";
@@ -268,7 +268,7 @@ class ContactTest extends TestCase
 
     public function testDeleteContact()
     {
-        $stream = Psr7\stream_for("{}");
+        $stream = Psr7\Utils::streamFor("{}");
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "con_00000000-0000-0000-0000-000000000000";
@@ -286,7 +286,7 @@ class ContactTest extends TestCase
 
     public function testMergeContacts()
     {
-        $stream = Psr7\stream_for(ContactTest::CONTACT_JSON);
+        $stream = Psr7\Utils::streamFor(ContactTest::CONTACT_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $into_contact_uuid = "con_00000000-0000-0000-0000-000000000000";

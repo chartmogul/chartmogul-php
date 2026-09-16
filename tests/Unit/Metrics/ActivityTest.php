@@ -39,7 +39,7 @@ class ActivityTest extends TestCase
 
     public function testAll()
     {
-        $stream = Psr7\stream_for(ActivityTest::ALL_JSON);
+        $stream = Psr7\Utils::streamFor(ActivityTest::ALL_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Activity::all(['type' => 'new_biz'], $cmClient);

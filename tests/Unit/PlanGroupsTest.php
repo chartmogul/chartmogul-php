@@ -27,7 +27,7 @@ class PlanGroupTest extends TestCase
 
     public function testAllPlanGroups()
     {
-        $stream = Psr7\stream_for(PlanGroupTest::ALL_PLAN_GROUPS_JSON);
+        $stream = Psr7\Utils::streamFor(PlanGroupTest::ALL_PLAN_GROUPS_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $query = ["per_page" => 1];
@@ -48,7 +48,7 @@ class PlanGroupTest extends TestCase
 
     public function testAllPlanGroupsDeprecatedPagination()
     {
-        $stream = Psr7\stream_for(PlanGroupTest::ALL_PLAN_GROUPS_JSON);
+        $stream = Psr7\Utils::streamFor(PlanGroupTest::ALL_PLAN_GROUPS_JSON);
         list($cmClient, $mockClient) = $this->getMockClientException(
           0, [200], $stream, [\ChartMogul\Exceptions\DeprecatedParameterException::class]
         );
@@ -80,7 +80,7 @@ class PlanGroupTest extends TestCase
 
     public function testRetrievePlanGroup()
     {
-        $stream = Psr7\stream_for(PlanGroupTest::RETRIEVE_PLAN_GROUP);
+        $stream = Psr7\Utils::streamFor(PlanGroupTest::RETRIEVE_PLAN_GROUP);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab';
@@ -99,7 +99,7 @@ class PlanGroupTest extends TestCase
 
     public function testCreatePlanGroup()
     {
-        $stream = Psr7\stream_for(PlanGroupTest::RETRIEVE_PLAN_GROUP);
+        $stream = Psr7\Utils::streamFor(PlanGroupTest::RETRIEVE_PLAN_GROUP);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $plan_uuid_1 = 'pl_7e7c1bc7-50e0-447d-9750-8d66e9c0c702';
@@ -127,14 +127,14 @@ class PlanGroupTest extends TestCase
 
     public function testUpdatePlanGroup()
     {
-        $stream = Psr7\stream_for(PlanGroupTest::RETRIEVE_PLAN_GROUP);
+        $stream = Psr7\Utils::streamFor(PlanGroupTest::RETRIEVE_PLAN_GROUP);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab';
 
         $plan_group = PlanGroup::retrieve($uuid, $cmClient);
 
-        $stream = Psr7\stream_for(PlanGroupTest::RETRIEVE_PLAN_GROUP);
+        $stream = Psr7\Utils::streamFor(PlanGroupTest::RETRIEVE_PLAN_GROUP);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'plg_b53fdbfc-c5eb-4a61-a589-85146cf8d0ab';

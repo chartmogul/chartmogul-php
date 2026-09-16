@@ -31,7 +31,7 @@ class SubscriptionTest extends TestCase
 
     public function testAllSubscriptions()
     {
-        $stream = Psr7\stream_for(SubscriptionTest::ALL_SUBS_JSON);
+        $stream = Psr7\Utils::streamFor(SubscriptionTest::ALL_SUBS_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $query = ['customer_uuid' => 'cus_f466e33d-ff2b-4a11-8f85-417eb02157a7'];
@@ -54,7 +54,7 @@ class SubscriptionTest extends TestCase
 
     public function testAllSubscriptionsDeprecatedPagination()
     {
-        $stream = Psr7\stream_for(SubscriptionTest::ALL_SUBS_JSON);
+        $stream = Psr7\Utils::streamFor(SubscriptionTest::ALL_SUBS_JSON);
         list($cmClient, $mockClient) = $this->getMockClientException(
           0, [200], $stream, [\ChartMogul\Exceptions\DeprecatedParameterException::class]
         );
@@ -68,7 +68,7 @@ class SubscriptionTest extends TestCase
 
     public function testCancel()
     {
-        $stream = Psr7\stream_for(SubscriptionTest::CANCEL_SUBSCRIPTION);
+        $stream = Psr7\Utils::streamFor(SubscriptionTest::CANCEL_SUBSCRIPTION);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $subsUUID = "sub_e6bc5407-e258-4de0-bb43-61faaf062035";
@@ -87,7 +87,7 @@ class SubscriptionTest extends TestCase
 
     public function testConnect()
     {
-        $stream = Psr7\stream_for('{}');
+        $stream = Psr7\Utils::streamFor('{}');
         list($cmClient, $mockClient) = $this->getMockClient(0, [202], $stream);
 
         $subscription1 = new Subscription(["external_id" => "d1c0c885-add0-48db-8fa9-0bdf5017d6b0", "data_source_uuid" => "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213", "uuid" => "uuid_001"], $cmClient);
@@ -130,7 +130,7 @@ class SubscriptionTest extends TestCase
 
     public function testDisconnect()
     {
-        $stream = Psr7\stream_for('{}');
+        $stream = Psr7\Utils::streamFor('{}');
         list($cmClient, $mockClient) = $this->getMockClient(0, [202], $stream);
 
         $subscription1 = new Subscription(["external_id" => "d1c0c885-add0-48db-8fa9-0bdf5017d6b0", "data_source_uuid" => "ds_ade45e52-47a4-231a-1ed2-eb6b9e541213", "uuid" => "uuid_001"], $cmClient);

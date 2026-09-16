@@ -48,7 +48,7 @@ class CustomerNoteTest extends TestCase
 
     public function testListNotes()
     {
-        $stream = Psr7\stream_for(CustomerNoteTest::LIST_NOTES_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerNoteTest::LIST_NOTES_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "cus_00000000-0000-0000-0000-000000000000";
@@ -67,7 +67,7 @@ class CustomerNoteTest extends TestCase
 
     public function testCreateNote()
     {
-        $stream = Psr7\stream_for(CustomerNoteTest::NOTE_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerNoteTest::NOTE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "cus_00000000-0000-0000-0000-000000000000";
@@ -93,7 +93,7 @@ class CustomerNoteTest extends TestCase
 
     public function testRetrieveNote()
     {
-        $stream = Psr7\stream_for(CustomerNoteTest::NOTE_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerNoteTest::NOTE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "con_00000000-0000-0000-0000-000000000000";
@@ -111,7 +111,7 @@ class CustomerNoteTest extends TestCase
 
     public function testUpdateNote()
     {
-        $stream = Psr7\stream_for(CustomerNoteTest::UPDATED_NOTE_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerNoteTest::UPDATED_NOTE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "note_00000000-0000-0000-0000-000000000000";
@@ -135,7 +135,7 @@ class CustomerNoteTest extends TestCase
 
     public function testDeleteNote()
     {
-        $stream = Psr7\stream_for("{}");
+        $stream = Psr7\Utils::streamFor("{}");
         list($cmClient, $mockClient) = $this->getMockClient(0, [204], $stream);
 
         $uuid = "note_00000000-0000-0000-0000-000000000000";

@@ -110,7 +110,7 @@ class DataSourceTest extends TestCase
 
     public function testCreateDataSource()
     {
-        $stream = Psr7\stream_for(DataSourceTest::CREATE_DATA_SOURCE_JSON);
+        $stream = Psr7\Utils::streamFor(DataSourceTest::CREATE_DATA_SOURCE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = DataSource::create([
@@ -134,7 +134,7 @@ class DataSourceTest extends TestCase
 
     public function testRetrieveDataSource()
     {
-        $stream = Psr7\stream_for(DataSourceTest::RETRIEVE_DATA_SOURCE_JSON);
+        $stream = Psr7\Utils::streamFor(DataSourceTest::RETRIEVE_DATA_SOURCE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'ds_fef05d54-47b4-431b-aed2-eb6b9e545430';
@@ -168,7 +168,7 @@ class DataSourceTest extends TestCase
 
     public function testGetDataSource()
     {
-        $stream = Psr7\stream_for(DataSourceTest::RETRIEVE_DATA_SOURCE_JSON);
+        $stream = Psr7\Utils::streamFor(DataSourceTest::RETRIEVE_DATA_SOURCE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'ds_fef05d54-47b4-431b-aed2-eb6b9e545430';
@@ -188,7 +188,7 @@ class DataSourceTest extends TestCase
 
     public function testRetrieveDataSourceWithProcessingStatus()
     {
-        $stream = Psr7\stream_for(DataSourceTest::RETRIEVE_DATA_SOURCE_JSON);
+        $stream = Psr7\Utils::streamFor(DataSourceTest::RETRIEVE_DATA_SOURCE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'ds_fef05d54-47b4-431b-aed2-eb6b9e545430';
@@ -204,7 +204,7 @@ class DataSourceTest extends TestCase
 
     public function testRetrieveDataSourceWithAutoChurnSubscriptionSetting()
     {
-        $stream = Psr7\stream_for(DataSourceTest::RETRIEVE_DATA_SOURCE_JSON);
+        $stream = Psr7\Utils::streamFor(DataSourceTest::RETRIEVE_DATA_SOURCE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'ds_fef05d54-47b4-431b-aed2-eb6b9e545430';
@@ -220,7 +220,7 @@ class DataSourceTest extends TestCase
 
     public function testRetrieveDataSourceWithInvoiceHandlingSetting()
     {
-        $stream = Psr7\stream_for(DataSourceTest::RETRIEVE_DATA_SOURCE_JSON);
+        $stream = Psr7\Utils::streamFor(DataSourceTest::RETRIEVE_DATA_SOURCE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'ds_fef05d54-47b4-431b-aed2-eb6b9e545430';
@@ -236,7 +236,7 @@ class DataSourceTest extends TestCase
 
     public function testRetrieveDataSourceWithProcessingStatusFalse()
     {
-        $stream = Psr7\stream_for(DataSourceTest::RETRIEVE_DATA_SOURCE_JSON);
+        $stream = Psr7\Utils::streamFor(DataSourceTest::RETRIEVE_DATA_SOURCE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'ds_fef05d54-47b4-431b-aed2-eb6b9e545430';
@@ -252,7 +252,7 @@ class DataSourceTest extends TestCase
 
     public function testListDataSources()
     {
-        $stream = Psr7\stream_for(DataSourceTest::LIST_DATA_SOURCES_JSON);
+        $stream = Psr7\Utils::streamFor(DataSourceTest::LIST_DATA_SOURCES_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = DataSource::all([
@@ -292,7 +292,7 @@ class DataSourceTest extends TestCase
 
     public function testDeleteDataSource()
     {
-        $stream = Psr7\stream_for('{}');
+        $stream = Psr7\Utils::streamFor('{}');
         list($cmClient, $mockClient) = $this->getMockClient(0, [204], $stream);
 
         $uuid = 'ds_fef05d54-47b4-431b-aed2-eb6b9e545430';

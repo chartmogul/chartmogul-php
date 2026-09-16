@@ -62,7 +62,7 @@ class TaskTest extends TestCase
 
     public function testListTasks()
     {
-        $stream = Psr7\stream_for(TaskTest::LIST_TASKS_JSON);
+        $stream = Psr7\Utils::streamFor(TaskTest::LIST_TASKS_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
@@ -81,7 +81,7 @@ class TaskTest extends TestCase
 
     public function testCreateTask()
     {
-        $stream = Psr7\stream_for(TaskTest::TASK_JSON);
+        $stream = Psr7\Utils::streamFor(TaskTest::TASK_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
@@ -115,7 +115,7 @@ class TaskTest extends TestCase
 
     public function testRetrieveTask()
     {
-        $stream = Psr7\stream_for(TaskTest::TASK_JSON);
+        $stream = Psr7\Utils::streamFor(TaskTest::TASK_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "00000000-0000-0000-0000-000000000000";
@@ -140,7 +140,7 @@ class TaskTest extends TestCase
 
     public function testRetrieveAlternativeJsonTask()
     {
-        $stream = Psr7\stream_for(TaskTest::TASK_ALTERNATIVE_JSON);
+        $stream = Psr7\Utils::streamFor(TaskTest::TASK_ALTERNATIVE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "00000000-1111-2222-3333-000000000000";
@@ -158,7 +158,7 @@ class TaskTest extends TestCase
 
     public function testUpdateTask()
     {
-        $stream = Psr7\stream_for(TaskTest::UPDATED_TASK_JSON);
+        $stream = Psr7\Utils::streamFor(TaskTest::UPDATED_TASK_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "00000000-0000-0000-0000-000000000000";
@@ -189,7 +189,7 @@ class TaskTest extends TestCase
 
     public function testDeleteTask()
     {
-        $stream = Psr7\stream_for("{}");
+        $stream = Psr7\Utils::streamFor("{}");
         list($cmClient, $mockClient) = $this->getMockClient(0, [204], $stream);
 
         $uuid = "00000000-0000-0000-0000-000000000000";

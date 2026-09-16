@@ -303,7 +303,7 @@ class CustomerTest extends TestCase
 
     public function testRetrieveCustomer()
     {
-        $stream = Psr7\stream_for(CustomerTest::RETRIEVE_CUSTOMER_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerTest::RETRIEVE_CUSTOMER_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'cus_de305d54-75b4-431b-adb2-eb6b9e546012';
@@ -322,7 +322,7 @@ class CustomerTest extends TestCase
 
     public function testCreateCustomer()
     {
-        $stream = Psr7\stream_for(CustomerTest::CREATE_CUSTOMER_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerTest::CREATE_CUSTOMER_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Customer::create(
@@ -350,7 +350,7 @@ class CustomerTest extends TestCase
 
     public function testSearchCustomer()
     {
-        $stream = Psr7\stream_for(CustomerTest::SEARCH_CUSTOMER_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerTest::SEARCH_CUSTOMER_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $email = "bob@examplecompany.com";
@@ -370,7 +370,7 @@ class CustomerTest extends TestCase
 
     public function testMergeCustomers()
     {
-        $stream = Psr7\stream_for('{}');
+        $stream = Psr7\Utils::streamFor('{}');
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $from_customer_uuid = "cus_de305d54-75b4-431b-adb2-eb6b9e546012";
@@ -389,7 +389,7 @@ class CustomerTest extends TestCase
 
     public function testUnmergeCustomers()
     {
-        $stream = Psr7\stream_for('{}');
+        $stream = Psr7\Utils::streamFor('{}');
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer_uuid = "cus_cd9e5f29-6299-40e5-b343-0bd1ed228b4f";
@@ -410,7 +410,7 @@ class CustomerTest extends TestCase
 
     public function testConnectSubscriptions()
     {
-        $stream = Psr7\stream_for('{}');
+        $stream = Psr7\Utils::streamFor('{}');
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Customer::connectSubscriptions(
@@ -439,7 +439,7 @@ class CustomerTest extends TestCase
 
     public function testDisconnectSubscriptions()
     {
-        $stream = Psr7\stream_for('{}');
+        $stream = Psr7\Utils::streamFor('{}');
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Customer::disconnectSubscriptions(
@@ -468,7 +468,7 @@ class CustomerTest extends TestCase
 
     public function testFindByExternalId()
     {
-        $stream = Psr7\stream_for(CustomerTest::SEARCH_CUSTOMER_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerTest::SEARCH_CUSTOMER_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Customer::findByExternalId("34916129", $cmClient);
@@ -483,7 +483,7 @@ class CustomerTest extends TestCase
 
     public function testListCustomersContacts()
     {
-        $stream = Psr7\stream_for(CustomerTest::LIST_CONTACTS_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerTest::LIST_CONTACTS_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "cus_00000000-0000-0000-0000-000000000000";
@@ -502,7 +502,7 @@ class CustomerTest extends TestCase
 
     public function testCreateCustomersContact()
     {
-        $stream = Psr7\stream_for(CustomerTest::CONTACT_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerTest::CONTACT_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "cus_00000000-0000-0000-0000-000000000000";
@@ -538,7 +538,7 @@ class CustomerTest extends TestCase
 
     public function testListCustomerNotes()
     {
-        $stream = Psr7\stream_for(CustomerTest::LIST_NOTES_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerTest::LIST_NOTES_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "cus_00000000-0000-0000-0000-000000000000";
@@ -557,7 +557,7 @@ class CustomerTest extends TestCase
 
     public function testCreateNote()
     {
-        $stream = Psr7\stream_for(CustomerTest::NOTE_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerTest::NOTE_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = "cus_00000000-0000-0000-0000-000000000000";
@@ -583,7 +583,7 @@ class CustomerTest extends TestCase
 
     public function testListOpportunities()
     {
-        $stream = Psr7\stream_for(CustomerTest::LIST_OPPORTUNITIES_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerTest::LIST_OPPORTUNITIES_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
@@ -602,7 +602,7 @@ class CustomerTest extends TestCase
 
     public function testCreateOpportunity()
     {
-        $stream = Psr7\stream_for(CustomerTest::OPPORTUNITY_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerTest::OPPORTUNITY_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
@@ -649,7 +649,7 @@ class CustomerTest extends TestCase
 
     public function testListTasks()
     {
-        $stream = Psr7\stream_for(CustomerTest::LIST_TASKS_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerTest::LIST_TASKS_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
@@ -668,7 +668,7 @@ class CustomerTest extends TestCase
 
     public function testCreateTask()
     {
-        $stream = Psr7\stream_for(CustomerTest::TASK_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerTest::TASK_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
@@ -702,7 +702,7 @@ class CustomerTest extends TestCase
     public function testRetrieveAttributes()
     {
         $attributesJson = '{"tags": ["important", "Prio1"], "custom": {"channel": "Facebook", "age": 25}}';
-        $stream = Psr7\stream_for($attributesJson);
+        $stream = Psr7\Utils::streamFor($attributesJson);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
@@ -719,7 +719,7 @@ class CustomerTest extends TestCase
     public function testAddTagsByEmail()
     {
         $tagsJson = '{"tags": ["important", "Prio1"]}';
-        $stream = Psr7\stream_for($tagsJson);
+        $stream = Psr7\Utils::streamFor($tagsJson);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Customer::addTagsByEmail('test@example.com', ['important', 'Prio1'], $cmClient);
@@ -739,7 +739,7 @@ class CustomerTest extends TestCase
     public function testAddCustomAttributesByEmail()
     {
         $customJson = '{"custom": [{"type": "String", "key": "channel", "value": "Facebook"}]}';
-        $stream = Psr7\stream_for($customJson);
+        $stream = Psr7\Utils::streamFor($customJson);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $custom = [['type' => 'String', 'key' => 'channel', 'value' => 'Facebook']];

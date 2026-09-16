@@ -34,7 +34,7 @@ class CustomerSubscriptionTest extends TestCase
 
     public function testAll()
     {
-        $stream = Psr7\stream_for(CustomerSubscriptionTest::ALL_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerSubscriptionTest::ALL_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Subscription::all(['customer_uuid'=>'cus_0fe70ccc-8e23-11eb-a532-031f31dc363e'], $cmClient);
@@ -55,7 +55,7 @@ class CustomerSubscriptionTest extends TestCase
 
     public function testAllDeprecatedPagination()
     {
-        $stream = Psr7\stream_for(CustomerSubscriptionTest::ALL_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerSubscriptionTest::ALL_JSON);
         list($cmClient, $mockClient) = $this->getMockClientException(
           0, [200], $stream, [\ChartMogul\Exceptions\DeprecatedParameterException::class]
         );

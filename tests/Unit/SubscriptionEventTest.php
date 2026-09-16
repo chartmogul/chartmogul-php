@@ -188,7 +188,7 @@ class SubscriptionEventTest extends TestCase
 
     public function testUpdateSubscriptionEventWithWrappedParams()
     {
-        $stream = Psr7\stream_for(SubscriptionEventTest::UPDATE_SUBSCRIPTION_EVENT);
+        $stream = Psr7\Utils::streamFor(SubscriptionEventTest::UPDATE_SUBSCRIPTION_EVENT);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = SubscriptionEvent::updateWithParams(
@@ -221,7 +221,7 @@ class SubscriptionEventTest extends TestCase
 
     public function testAllSubscriptionEvents()
     {
-        $stream = Psr7\stream_for(SubscriptionEventTest::ALL_SUBSCRIPTION_EVENT_JSON);
+        $stream = Psr7\Utils::streamFor(SubscriptionEventTest::ALL_SUBSCRIPTION_EVENT_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = SubscriptionEvent::all([], $cmClient);
@@ -243,7 +243,7 @@ class SubscriptionEventTest extends TestCase
 
     public function testAllSubscriptionEventsNewPagination()
     {
-        $stream = Psr7\stream_for(
+        $stream = Psr7\Utils::streamFor(
             SubscriptionEventTest::ALL_SUBSCRIPTION_EVENT_NEW_PAGINATION_JSON
         );
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
@@ -257,7 +257,7 @@ class SubscriptionEventTest extends TestCase
 
     public function testCreateSubscriptionEvent()
     {
-        $stream = Psr7\stream_for(SubscriptionEventTest::RETRIEVE_SUBSCRIPTION_EVENT);
+        $stream = Psr7\Utils::streamFor(SubscriptionEventTest::RETRIEVE_SUBSCRIPTION_EVENT);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer_external_id = 'scus_023';
@@ -290,7 +290,7 @@ class SubscriptionEventTest extends TestCase
 
     public function testUpdateSubscriptionEventWithId()
     {
-        $stream = Psr7\stream_for(SubscriptionEventTest::UPDATE_SUBSCRIPTION_EVENT);
+        $stream = Psr7\Utils::streamFor(SubscriptionEventTest::UPDATE_SUBSCRIPTION_EVENT);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $id = 73966836;
@@ -319,7 +319,7 @@ class SubscriptionEventTest extends TestCase
 
     public function testUpdateSubscriptionEventWithDataSourceUuidAndExternalId()
     {
-        $stream = Psr7\stream_for(SubscriptionEventTest::UPDATE_SUBSCRIPTION_EVENT);
+        $stream = Psr7\Utils::streamFor(SubscriptionEventTest::UPDATE_SUBSCRIPTION_EVENT);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $data_source_uuid = "ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba";
@@ -391,7 +391,7 @@ class SubscriptionEventTest extends TestCase
 
     public function testDisableSubscriptionEvent()
     {
-        $stream = Psr7\stream_for(SubscriptionEventTest::DISABLE_SUBSCRIPTION_EVENT);
+        $stream = Psr7\Utils::streamFor(SubscriptionEventTest::DISABLE_SUBSCRIPTION_EVENT);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $id = 73966836;
@@ -436,7 +436,7 @@ class SubscriptionEventTest extends TestCase
 
     public function testDisable()
     {
-        $stream = Psr7\stream_for(self::RETRIEVE_SUBSCRIPTION_EVENT);
+        $stream = Psr7\Utils::streamFor(self::RETRIEVE_SUBSCRIPTION_EVENT);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $id = 73966836;
