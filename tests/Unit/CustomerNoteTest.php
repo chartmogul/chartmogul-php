@@ -149,4 +149,80 @@ class CustomerNoteTest extends TestCase
 
         $this->assertEquals("{}", $result);
     }
+
+    public function testListNotesIsDeprecated()
+    {
+        $stream = Psr7\Utils::streamFor(CustomerNoteTest::LIST_NOTES_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $this->assertDeprecation(
+            'CustomerNote::all() is deprecated. Use EntityNote::all() instead.',
+            function () use ($cmClient) {
+                CustomerNote::all(["customer_uuid" => "cus_00000000-0000-0000-0000-000000000000"], $cmClient);
+            }
+        );
+    }
+
+    public function testCreateNoteIsDeprecated()
+    {
+        $stream = Psr7\Utils::streamFor(CustomerNoteTest::NOTE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $this->assertDeprecation(
+            'CustomerNote::create() is deprecated. Use EntityNote::create() instead.',
+            function () use ($cmClient) {
+                CustomerNote::create(
+                    [
+                    "customer_uuid" => "cus_00000000-0000-0000-0000-000000000000",
+                    "type" => "note",
+                    "text" => "This is a note",
+                    ], $cmClient
+                );
+            }
+        );
+    }
+
+    public function testRetrieveNoteIsDeprecated()
+    {
+        $stream = Psr7\Utils::streamFor(CustomerNoteTest::NOTE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $this->assertDeprecation(
+            'CustomerNote::retrieve() is deprecated. Use EntityNote::retrieve() instead.',
+            function () use ($cmClient) {
+                CustomerNote::retrieve("note_00000000-0000-0000-0000-000000000000", $cmClient);
+            }
+        );
+    }
+
+    public function testUpdateNoteIsDeprecated()
+    {
+        $stream = Psr7\Utils::streamFor(CustomerNoteTest::UPDATED_NOTE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $this->assertDeprecation(
+            'CustomerNote::update() is deprecated. Use EntityNote::update() instead.',
+            function () use ($cmClient) {
+                CustomerNote::update(
+                    ["note_uuid" => "note_00000000-0000-0000-0000-000000000000"],
+                    ["text" => "This is a new note"],
+                    $cmClient
+                );
+            }
+        );
+    }
+
+    public function testDeleteNoteIsDeprecated()
+    {
+        $stream = Psr7\Utils::streamFor("{}");
+        list($cmClient, $mockClient) = $this->getMockClient(0, [204], $stream);
+        $note = new CustomerNote(["uuid" => "note_00000000-0000-0000-0000-000000000000"], $cmClient);
+
+        $this->assertDeprecation(
+            'CustomerNote->destroy() is deprecated. Use EntityNote->destroy() instead.',
+            function () use ($note) {
+                $note->destroy();
+            }
+        );
+    }
 }

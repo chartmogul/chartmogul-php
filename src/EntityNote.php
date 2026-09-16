@@ -8,7 +8,6 @@ use ChartMogul\Service\CreateTrait;
 use ChartMogul\Service\UpdateTrait;
 use ChartMogul\Service\DestroyTrait;
 use ChartMogul\Service\GetTrait;
-use ChartMogul\Http\ClientInterface;
 use ChartMogul\Service\FromArrayTrait;
 
 /**
@@ -16,14 +15,15 @@ use ChartMogul\Service\FromArrayTrait;
  * @property-read string|null $customer_uuid
  * @property-read string|null $associated_object
  * @property-read string|null $associated_object_uuid
- * @property-read string $task_details
- * @property-read string $assignee
- * @property-read string $due_date
- * @property-read string|null $completed_at
+ * @property-read string $type
+ * @property-read string $text
+ * @property-read integer $call_duration
+ * @property-read string $author
+ * @property-read string|null $author_email
  * @property-read string $created_at
  * @property-read string $updated_at
  */
-class Task extends AbstractResource
+class EntityNote extends AbstractResource
 {
     use AllTrait;
     use CreateTrait;
@@ -35,12 +35,12 @@ class Task extends AbstractResource
     /**
      * @ignore
      */
-    public const RESOURCE_NAME = 'Task';
+    public const RESOURCE_NAME = 'EntityNote';
     /**
      * @ignore
      */
-    public const RESOURCE_PATH = '/v1/tasks';
-    public const RESOURCE_ID = 'uuid';
+    public const RESOURCE_PATH = '/v1/notes';
+    public const RESOURCE_ID = 'note_uuid';
     public const ROOT_KEY = 'entries';
 
     protected $uuid;
@@ -48,18 +48,11 @@ class Task extends AbstractResource
     protected $associated_object;
     protected $associated_object_uuid;
     protected $associated_object_identifier;
-    protected $task_details;
-    protected $assignee;
-    protected $due_date;
-    protected $completed_at;
+    protected $type;
+    protected $text;
+    protected $call_duration;
+    protected $author;
+    protected $author_email;
     protected $created_at;
     protected $updated_at;
-
-    public function __construct(array $attr = [], ?ClientInterface $client = null)
-    {
-        if (isset($attr['task_uuid'])) {
-            $attr['uuid'] = $attr['task_uuid'];
-        }
-        parent::__construct($attr, $client);
-    }
 }

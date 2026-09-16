@@ -470,7 +470,27 @@ $new_customer = $customer->createContact([
 ]);
 ```
 
-**List Customer Notes from a customer**
+**List Entity Notes for a customer**
+```php
+$customer = ChartMogul\Customer::retrieve($uuid);
+$notes = $customer->entityNotes([
+  'cursor' => 'aabbccdd...'
+]);
+```
+
+**Create an Entity Note for a customer**
+```php
+$customer = ChartMogul\Customer::retrieve($uuid);
+$new_note = $customer->createEntityNote([
+  'type' => 'note',
+  'text' => 'This is a note'
+]);
+```
+
+**List Customer Notes from a customer (Deprecated)**
+
+**Note:** `$customer->notes()` and `$customer->createNote()` are deprecated and emit an `E_USER_DEPRECATED` warning. Use `$customer->entityNotes()` and `$customer->createEntityNote()` instead.
+
 ```php
 $customer = ChartMogul\Customer::retrieve($uuid);
 $customer_notes = $customer->notes([
@@ -478,7 +498,7 @@ $customer_notes = $customer->notes([
 ]);
 ```
 
-**Create a Customer Note from a customer**
+**Create a Customer Note from a customer (Deprecated)**
 ```php
 $customer = ChartMogul\Customer::retrieve($uuid);
 $new_customer_note = $customer->createNote([
@@ -535,6 +555,8 @@ $new_task = $customer->createTask([
 
 ### Customer Notes
 
+**Note:** `ChartMogul\CustomerNote` (the `/v1/customer_notes` API) is deprecated and every method emits an `E_USER_DEPRECATED` warning. Use `ChartMogul\EntityNote` (the `/v1/notes` API, see [Entity Notes](#entity-notes)) instead. The behaviour and endpoint of `CustomerNote` are unchanged.
+
 **List Customer Notes**
 ```php
 $customer_notes = ChartMogul\CustomerNote::all([
@@ -546,7 +568,7 @@ $customer_notes = ChartMogul\CustomerNote::all([
 **Create a Customer Note**
 ```php
 $customer_note = ChartMogul\CustomerNote::create([
-    'customer_uuid': $uuid,
+    'customer_uuid' => $uuid,
     'type' => 'note',
     'text' => 'This is a note'
 ])
@@ -559,7 +581,9 @@ $customer_note = ChartMogul\CustomerNote::retrieve($note_uuid)
 
 **Update a Customer Note**
 ```php
-$updated_customer_note = ChartMogul\CustomerNote::update($note_uuid, [
+$updated_customer_note = ChartMogul\CustomerNote::update([
+    'note_uuid' => $note_uuid
+], [
   'text' => 'This is a new note'
 ]);
 ```
@@ -570,12 +594,78 @@ $customer_note = ChartMogul\CustomerNote::retrieve($note_uuid)
 $customer_note->destroy();
 ```
 
+### Entity Notes
+
+Entity notes can be attached to a customer or to a contact. Each note exposes `customer_uuid` (`null` for contact notes) and, where available, `associated_object` (`customer` or `contact`) and `associated_object_uuid`.
+
+**List Entity Notes**
+```php
+$notes = ChartMogul\EntityNote::all([
+    'customer_uuid' => $customer_uuid, // or 'contact_uuid' => $contact_uuid
+    'type' => 'note',                  // 'note' or 'call'
+    'author_email' => 'john@example.com',
+    'per_page' => 50,
+    'cursor' => 'aabbccdd...'
+]);
+```
+
+**Create an Entity Note for a customer**
+```php
+$note = ChartMogul\EntityNote::create([
+    'customer_uuid' => $customer_uuid,
+    'type' => 'note',
+    'author_email' => 'john@example.com',
+    'text' => 'This is a note'
+]);
+```
+
+**Create an Entity Note for a contact**
+```php
+$note = ChartMogul\EntityNote::create([
+    'associated_object_identifier' => [
+        'associated_object' => 'contact',
+        'method' => 'uuid',
+        'value' => $contact_uuid
+    ],
+    'type' => 'call',
+    'call_duration' => 120,
+    'text' => 'Call with the contact'
+]);
+```
+
+**Get an Entity Note**
+```php
+$note = ChartMogul\EntityNote::retrieve($note_uuid);
+```
+
+**Update an Entity Note**
+```php
+$updated_note = ChartMogul\EntityNote::update([
+    'note_uuid' => $note_uuid
+], [
+    'text' => 'This is a new note'
+]);
+```
+
+If the request contains nothing to update, the API responds with `304 Not Modified` and an empty `EntityNote` (all properties `null`) is returned.
+
+**Delete an Entity Note**
+```php
+$note = ChartMogul\EntityNote::retrieve($note_uuid);
+$note->destroy();
+```
+
 ### Contacts
 
 **List Contacts**
 
 ```php
-$contacts = ChartMogul\Contacts::all([
+$contacts = ChartMogul\Contact::all([
+  'customer_uuid' => $customer_uuid,
+  'data_source_uuid' => $data_source_uuid,
+  'email' => 'adam@example.com',
+  'customer_external_id' => 'customer_001',
+  'external_id' => 'contact_001',
   'cursor' => 'aabbccdd...'
 ]);
 ```
@@ -588,8 +678,12 @@ $new_contact = ChartMogul\Contact::create([
   "data_source_uuid" => "ds_00000000-0000-0000-0000-000000000000",
   "first_name" => "Adam",
   "last_name" => "Smith",
+  "email" => "adam@example.com",
+  "last_active_at" => "2025-01-01T00:00:00Z",
 ]);
 ```
+
+`customer_uuid` and `data_source_uuid` are optional, so a contact can be created without a customer. In responses `customer_uuid` and `data_source_uuid` may be `null`, and `last_active_at` is returned as `last_seen`.
 
 **Get a Contact**
 
@@ -610,7 +704,8 @@ $contact->destroy();
 $updated_contact = ChartMogul\Contact::update([
     'contact_uuid' => $uuid
         ], [
-    'first_name' => 'New Name'
+    'first_name' => 'New Name',
+    'last_active_at' => '2025-01-01T00:00:00Z'
 ]);
 ```
 
@@ -619,6 +714,47 @@ $updated_contact = ChartMogul\Contact::update([
 ```php
 $merged_contact = ChartMogul\Contact::merge($into_contact_uuid, $from_contact_uuid);
 ```
+
+**List Tasks for a contact**
+
+```php
+$contact = ChartMogul\Contact::retrieve($uuid);
+$tasks = $contact->tasks([
+  'cursor' => 'aabbccdd...'
+]);
+```
+
+**Create a Task for a contact**
+
+```php
+$contact = ChartMogul\Contact::retrieve($uuid);
+$new_task = $contact->createTask([
+  'assignee' => 'customer@example.com',
+  'task_details' => 'Call the contact back.',
+  'due_date' => '2025-04-30T00:00:00Z',
+]);
+```
+
+**List Entity Notes for a contact**
+
+```php
+$contact = ChartMogul\Contact::retrieve($uuid);
+$notes = $contact->entityNotes([
+  'cursor' => 'aabbccdd...'
+]);
+```
+
+**Create an Entity Note for a contact**
+
+```php
+$contact = ChartMogul\Contact::retrieve($uuid);
+$new_note = $contact->createEntityNote([
+  'type' => 'note',
+  'text' => 'This is a contact note'
+]);
+```
+
+The contact helpers send `associated_object_identifier` for the contact unless the data already contains `customer_uuid` or `associated_object_identifier`.
 
 ### Opportunities
 
@@ -674,7 +810,11 @@ $opportunity->destroy();
 **List Tasks**
 ```php
 $tasks = ChartMogul\Task::all([
-    'customer_uuid' => $customer_uuid,
+    'customer_uuid' => $customer_uuid, // or 'contact_uuid' => $contact_uuid
+    'assignee' => 'customer@example.com',
+    'due_date_on_or_after' => '2025-04-01T00:00:00Z',
+    'due_date_on_or_before' => '2025-04-30T00:00:00Z',
+    'completed' => false,
     'cursor' => 'aabbccdd...'
 ])
 ```
@@ -690,6 +830,22 @@ $task = ChartMogul\Task::create([
 ])
 ```
 
+**Create a Task for a contact**
+```php
+$task = ChartMogul\Task::create([
+    'associated_object_identifier' => [
+        'associated_object' => 'contact',
+        'method' => 'uuid',
+        'value' => $contact_uuid
+    ],
+    'task_details' => 'Call the contact back.',
+    'assignee' => 'customer@example.com',
+    'due_date' => '2025-04-30T00:00:00Z',
+])
+```
+
+Tasks expose `customer_uuid` (`null` for contact tasks) and, where available, `associated_object` (`customer` or `contact`) and `associated_object_uuid`.
+
 **Get a Task**
 ```php
 $task = ChartMogul\Task::retrieve($task_uuid)
@@ -697,10 +853,14 @@ $task = ChartMogul\Task::retrieve($task_uuid)
 
 **Update a Task**
 ```php
-$updated_task = ChartMogul\Task::update($task_uuid, [
+$updated_task = ChartMogul\Task::update([
+    'uuid' => $task_uuid
+], [
   'task_details' => 'This is some other task details text.'
 ]);
 ```
+
+If the request contains nothing to update, the API responds with `304 Not Modified` and an empty `Task` (all properties `null`) is returned.
 
 **Delete a Task**
 ```php
@@ -1264,6 +1424,8 @@ The library throws following Exceptions:
 - `ChartMogul\Exceptions\NotFoundException`
 - `ChartMogul\Exceptions\ResourceInvalidException`
 - `ChartMogul\Exceptions\SchemaInvalidException`
+
+A `304 Not Modified` response (returned by update calls that contain nothing to change) does not throw; the call returns an empty resource object instead.
 
 The following table describes the public methods of the error object.
 

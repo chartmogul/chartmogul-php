@@ -560,9 +560,14 @@ class Customer extends AbstractResource
      *
      * @param  array $options
      * @return CollectionWithCursor
+     * @deprecated Use Customer->entityNotes() instead
      */
     public function notes(array $options = [])
     {
+        @trigger_error(
+            'Customer->notes() is deprecated. Use Customer->entityNotes() instead.',
+            E_USER_DEPRECATED
+        );
         $client = $this->getClient();
         $result = $client->send("/v1/customer_notes", "GET", [$options, "customer_uuid" => $this->uuid]);
 
@@ -574,14 +579,51 @@ class Customer extends AbstractResource
      *
      * @param  array $data
      * @return CustomerNote
+     * @deprecated Use Customer->createEntityNote() instead
      */
     public function createNote(array $data = [])
     {
+        @trigger_error(
+            'Customer->createNote() is deprecated. Use Customer->createEntityNote() instead.',
+            E_USER_DEPRECATED
+        );
         $client = $this->getClient();
         $data["customer_uuid"] = $this->uuid;
         $result = $client->send("/v1/customer_notes", "POST", $data);
 
         return new CustomerNote($result, $client);
+    }
+
+    /**
+     * Find all entity notes for a customer.
+     *
+     * @param  array $options
+     * @return CollectionWithCursor
+     */
+    public function entityNotes(array $options = [])
+    {
+        $client = $this->getClient();
+        $options["customer_uuid"] = $this->uuid;
+        $result = $client->send("/v1/notes", "GET", $options);
+
+        return EntityNote::fromArray($result, $client);
+    }
+
+    /**
+     * Creates an entity note for a customer.
+     *
+     * @param  array $data
+     * @return EntityNote
+     */
+    public function createEntityNote(array $data = [])
+    {
+        $client = $this->getClient();
+        if (!isset($data["customer_uuid"]) && !isset($data["associated_object_identifier"])) {
+            $data["customer_uuid"] = $this->uuid;
+        }
+        $result = $client->send("/v1/notes", "POST", $data);
+
+        return new EntityNote($result, $client);
     }
 
     /**
@@ -622,7 +664,8 @@ class Customer extends AbstractResource
     public function tasks(array $options = [])
     {
         $client = $this->getClient();
-        $result = $client->send("/v1/tasks", "GET", [$options, "customer_uuid" => $this->uuid]);
+        $options["customer_uuid"] = $this->uuid;
+        $result = $client->send("/v1/tasks", "GET", $options);
 
         return Task::fromArray($result, $client);
     }
