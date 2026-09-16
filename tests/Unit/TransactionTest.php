@@ -24,7 +24,7 @@ class TransactionTest extends TestCase
 
     public function testRetrieveByExternalId()
     {
-        $stream = Psr7\stream_for(self::TRANSACTION_JSON);
+        $stream = Psr7\Utils::streamFor(self::TRANSACTION_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Transaction::retrieveByExternalId(
@@ -46,7 +46,7 @@ class TransactionTest extends TestCase
 
     public function testUpdateByExternalId()
     {
-        $stream = Psr7\stream_for(self::TRANSACTION_JSON);
+        $stream = Psr7\Utils::streamFor(self::TRANSACTION_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Transaction::updateByExternalId(
@@ -91,7 +91,7 @@ class TransactionTest extends TestCase
 
     public function testToggleDisabledByExternalId()
     {
-        $stream = Psr7\stream_for(self::TRANSACTION_JSON);
+        $stream = Psr7\Utils::streamFor(self::TRANSACTION_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Transaction::toggleDisabledByExternalId(
@@ -116,7 +116,7 @@ class TransactionTest extends TestCase
 
     public function testRetrieveByUuid()
     {
-        $stream = Psr7\stream_for(self::TRANSACTION_JSON);
+        $stream = Psr7\Utils::streamFor(self::TRANSACTION_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'tr_0e4de894-83c3-44d8-b406-2b0f89e67fda';
@@ -132,7 +132,7 @@ class TransactionTest extends TestCase
 
     public function testUpdateByUuid()
     {
-        $stream = Psr7\stream_for(self::TRANSACTION_JSON);
+        $stream = Psr7\Utils::streamFor(self::TRANSACTION_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'tr_0e4de894-83c3-44d8-b406-2b0f89e67fda';
@@ -167,7 +167,7 @@ class TransactionTest extends TestCase
 
     public function testToggleDisabledByUuid()
     {
-        $stream = Psr7\stream_for(self::TRANSACTION_JSON);
+        $stream = Psr7\Utils::streamFor(self::TRANSACTION_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'tr_0e4de894-83c3-44d8-b406-2b0f89e67fda';
@@ -185,7 +185,7 @@ class TransactionTest extends TestCase
 
     public function testReEnableByUuid()
     {
-        $stream = Psr7\stream_for(self::TRANSACTION_JSON);
+        $stream = Psr7\Utils::streamFor(self::TRANSACTION_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $uuid = 'tr_0e4de894-83c3-44d8-b406-2b0f89e67fda';

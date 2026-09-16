@@ -22,7 +22,7 @@ class CustomerArrayAttributesTest extends TestCase
 
     public function testAddCustomAttributesWithArray()
     {
-        $stream = Psr7\stream_for(self::CUSTOM_ATTRIBUTES_RESPONSE);
+        $stream = Psr7\Utils::streamFor(self::CUSTOM_ATTRIBUTES_RESPONSE);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer = new Customer(['uuid' => 'cus_test'], $cmClient);
@@ -51,7 +51,7 @@ class CustomerArrayAttributesTest extends TestCase
 
     public function testAddCustomAttributesWithIndividualArgs()
     {
-        $stream = Psr7\stream_for(self::CUSTOM_ATTRIBUTES_RESPONSE);
+        $stream = Psr7\Utils::streamFor(self::CUSTOM_ATTRIBUTES_RESPONSE);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer = new Customer(['uuid' => 'cus_test'], $cmClient);
@@ -72,7 +72,7 @@ class CustomerArrayAttributesTest extends TestCase
 
     public function testAddTagsWithArray()
     {
-        $stream = Psr7\stream_for(self::TAGS_RESPONSE);
+        $stream = Psr7\Utils::streamFor(self::TAGS_RESPONSE);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer = new Customer(['uuid' => 'cus_test'], $cmClient);
@@ -97,7 +97,7 @@ class CustomerArrayAttributesTest extends TestCase
 
     public function testAddTagsWithIndividualArgs()
     {
-        $stream = Psr7\stream_for(self::TAGS_RESPONSE);
+        $stream = Psr7\Utils::streamFor(self::TAGS_RESPONSE);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer = new Customer(['uuid' => 'cus_test'], $cmClient);
@@ -115,7 +115,7 @@ class CustomerArrayAttributesTest extends TestCase
 
     public function testRemoveCustomAttributesWithArray()
     {
-        $stream = Psr7\stream_for(self::CUSTOM_ATTRIBUTES_RESPONSE);
+        $stream = Psr7\Utils::streamFor(self::CUSTOM_ATTRIBUTES_RESPONSE);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer = new Customer(['uuid' => 'cus_test'], $cmClient);
@@ -140,7 +140,7 @@ class CustomerArrayAttributesTest extends TestCase
 
     public function testRemoveTagsWithArray()
     {
-        $stream = Psr7\stream_for(self::TAGS_RESPONSE);
+        $stream = Psr7\Utils::streamFor(self::TAGS_RESPONSE);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer = new Customer(['uuid' => 'cus_test'], $cmClient);
@@ -162,7 +162,7 @@ class CustomerArrayAttributesTest extends TestCase
 
     public function testUpdateCustomAttributesWithSingleAttributeObject()
     {
-        $stream = Psr7\stream_for(self::CUSTOM_ATTRIBUTES_RESPONSE);
+        $stream = Psr7\Utils::streamFor(self::CUSTOM_ATTRIBUTES_RESPONSE);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer = new Customer(['uuid' => 'cus_test'], $cmClient);
@@ -182,7 +182,7 @@ class CustomerArrayAttributesTest extends TestCase
 
     public function testUpdateCustomAttributesWithArrayOfAttributes()
     {
-        $stream = Psr7\stream_for(self::CUSTOM_ATTRIBUTES_RESPONSE);
+        $stream = Psr7\Utils::streamFor(self::CUSTOM_ATTRIBUTES_RESPONSE);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer = new Customer(['uuid' => 'cus_test'], $cmClient);
@@ -210,7 +210,7 @@ class CustomerArrayAttributesTest extends TestCase
 
     public function testUpdateCustomAttributesWithNumericKeys()
     {
-        $stream = Psr7\stream_for(self::CUSTOM_ATTRIBUTES_RESPONSE);
+        $stream = Psr7\Utils::streamFor(self::CUSTOM_ATTRIBUTES_RESPONSE);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer = new Customer(['uuid' => 'cus_test'], $cmClient);
@@ -231,7 +231,7 @@ class CustomerArrayAttributesTest extends TestCase
      */
     public function testCustomerTicketScenario()
     {
-        $stream = Psr7\stream_for(self::CUSTOM_ATTRIBUTES_RESPONSE);
+        $stream = Psr7\Utils::streamFor(self::CUSTOM_ATTRIBUTES_RESPONSE);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $customer = new Customer(['uuid' => 'cus_test'], $cmClient);

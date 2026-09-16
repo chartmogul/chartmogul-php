@@ -46,7 +46,7 @@ class ActivitiesExportTest extends TestCase
 
     public function testActivitiesExportCreation()
     {
-        $stream = Psr7\stream_for(ActivitiesExportTest::POST_JSON);
+        $stream = Psr7\Utils::streamFor(ActivitiesExportTest::POST_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = ActivitiesExport::create(['type' => 'contraction', 'start-date' => '2020-01-01', 'end-date' => '2020-12-31'], $cmClient);
@@ -65,7 +65,7 @@ class ActivitiesExportTest extends TestCase
 
     public function testActivitiesExportRetrieval()
     {
-        $stream = Psr7\stream_for(ActivitiesExportTest::GET_JSON);
+        $stream = Psr7\Utils::streamFor(ActivitiesExportTest::GET_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $id = '7f554dba-4a41-4cb2-9790-2045e4c3a5b1';

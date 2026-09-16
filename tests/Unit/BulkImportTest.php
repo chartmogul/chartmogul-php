@@ -16,7 +16,7 @@ class BulkImportTest extends TestCase
 
     public function testCreate()
     {
-        $stream = Psr7\stream_for(self::BULK_IMPORT_JSON);
+        $stream = Psr7\Utils::streamFor(self::BULK_IMPORT_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $dsUuid = 'ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba';
@@ -31,7 +31,7 @@ class BulkImportTest extends TestCase
 
     public function testRetrieve()
     {
-        $stream = Psr7\stream_for(self::BULK_IMPORT_JSON);
+        $stream = Psr7\Utils::streamFor(self::BULK_IMPORT_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $dsUuid = 'ds_1fm3eaac-62d0-31ec-clf4-4bf0mbe81aba';

@@ -53,7 +53,7 @@ class CustomerActivityTest extends TestCase
 
     public function testAll()
     {
-        $stream = Psr7\stream_for(CustomerActivityTest::ALL_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerActivityTest::ALL_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Activity::all(['customer_uuid'=>'cus_0fe70ccc-8e23-11eb-a532-031f31dc363e'], $cmClient);
@@ -69,7 +69,7 @@ class CustomerActivityTest extends TestCase
 
     public function testAllNewPagination()
     {
-        $stream = Psr7\stream_for(CustomerActivityTest::ALL_NEW_PAGINATION_JSON);
+        $stream = Psr7\Utils::streamFor(CustomerActivityTest::ALL_NEW_PAGINATION_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Activity::all(['customer_uuid'=>'cus_0fe70ccc-8e23-11eb-a532-031f31dc363e'], $cmClient);

@@ -64,7 +64,7 @@ class MetricsTest extends TestCase
 
     public function testAll()
     {
-        $stream = Psr7\stream_for(MetricsTest::ALL_JSON);
+        $stream = Psr7\Utils::streamFor(MetricsTest::ALL_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Metrics::all(["interval" => "month"], $cmClient);
@@ -82,7 +82,7 @@ class MetricsTest extends TestCase
     public function testLtv()
     {
 
-        $stream = Psr7\stream_for(MetricsTest::LTV_JSON);
+        $stream = Psr7\Utils::streamFor(MetricsTest::LTV_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Metrics::ltv(

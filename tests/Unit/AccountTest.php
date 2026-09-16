@@ -20,7 +20,7 @@ class AccountTest extends TestCase
 
     public function testRetrieveAccount()
     {
-        $stream = Psr7\stream_for(AccountTest::RETRIEVE_ACCOUNT);
+        $stream = Psr7\Utils::streamFor(AccountTest::RETRIEVE_ACCOUNT);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Account::retrieve($cmClient);
@@ -41,7 +41,7 @@ class AccountTest extends TestCase
 
     public function testRetrieveAccountWithIncludeParams()
     {
-        $stream = Psr7\stream_for(AccountTest::RETRIEVE_ACCOUNT);
+        $stream = Psr7\Utils::streamFor(AccountTest::RETRIEVE_ACCOUNT);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = Account::retrieve($cmClient, [

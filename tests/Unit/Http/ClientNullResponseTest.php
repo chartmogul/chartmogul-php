@@ -10,7 +10,7 @@ class ClientNullResponseTest extends TestCase
 {
     public function testSendWithValidResponse()
     {
-        $stream = \GuzzleHttp\Psr7\stream_for('{"test": "data"}');
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor('{"test": "data"}');
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
 
         $result = $cmClient->send('/test', 'GET');
