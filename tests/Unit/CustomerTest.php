@@ -5,6 +5,7 @@ use ChartMogul\Http\Client;
 use ChartMogul\Customer;
 use ChartMogul\Contact;
 use ChartMogul\CustomerNote;
+use ChartMogul\EntityNote;
 use ChartMogul\Resource\Collection;
 use ChartMogul\Exceptions\ChartMogulException;
 use ChartMogul\Opportunity;
@@ -581,6 +582,107 @@ class CustomerTest extends TestCase
         $this->assertEquals("note_00000000-0000-0000-0000-000000000000", $result->uuid);
     }
 
+    public function testListCustomerNotesIsDeprecated()
+    {
+        $stream = Psr7\Utils::streamFor(CustomerTest::LIST_NOTES_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+        $customer = new Customer(["uuid" => "cus_00000000-0000-0000-0000-000000000000"], $cmClient);
+
+        $this->assertDeprecation(
+            'Customer->notes() is deprecated. Use Customer->entityNotes() instead.',
+            function () use ($customer) {
+                $customer->notes();
+            }
+        );
+    }
+
+    public function testCreateNoteIsDeprecated()
+    {
+        $stream = Psr7\Utils::streamFor(CustomerTest::NOTE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+        $customer = new Customer(["uuid" => "cus_00000000-0000-0000-0000-000000000000"], $cmClient);
+
+        $this->assertDeprecation(
+            'Customer->createNote() is deprecated. Use Customer->createEntityNote() instead.',
+            function () use ($customer) {
+                $customer->createNote(["type" => "note", "text" => "This is a note"]);
+            }
+        );
+    }
+
+    public function testListEntityNotes()
+    {
+        $stream = Psr7\Utils::streamFor(CustomerTest::LIST_NOTES_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = "cus_00000000-0000-0000-0000-000000000000";
+
+        $result = (new Customer(["uuid" => $uuid], $cmClient))->entityNotes(["cursor" => "cursor=="]);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("GET", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/notes", $uri->getPath());
+        $this->assertEquals("cursor=cursor%3D%3D&customer_uuid=".$uuid, $uri->getQuery());
+
+        $this->assertTrue($result[0] instanceof EntityNote);
+        $this->assertEquals("cursor==", $result->cursor);
+        $this->assertEquals(true, $result->has_more);
+    }
+
+    public function testCreateEntityNote()
+    {
+        $stream = Psr7\Utils::streamFor(CustomerTest::NOTE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = "cus_00000000-0000-0000-0000-000000000000";
+
+        $result = (new Customer(["uuid" => $uuid], $cmClient))->createEntityNote(
+          [
+            "type" => "note",
+            "author_email" => "john@example.com",
+            "text" => "This is a note",
+          ]
+        );
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("POST", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/notes", $uri->getPath());
+        $requestBody = (string) $request->getBody();
+        $this->assertEquals('{"type":"note","author_email":"john@example.com","text":"This is a note","customer_uuid":"cus_00000000-0000-0000-0000-000000000000"}', $requestBody);
+
+        $this->assertTrue($result instanceof EntityNote);
+        $this->assertEquals("note_00000000-0000-0000-0000-000000000000", $result->uuid);
+    }
+
+    public function testCreateEntityNoteRespectsCallerIdentifier()
+    {
+        $stream = Psr7\Utils::streamFor(CustomerTest::NOTE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $uuid = "cus_00000000-0000-0000-0000-000000000000";
+        $identifier = [
+            "associated_object" => "customer",
+            "method" => "uuid",
+            "value" => $uuid,
+        ];
+
+        (new Customer(["uuid" => $uuid], $cmClient))->createEntityNote(
+          [
+            "associated_object_identifier" => $identifier,
+            "type" => "note",
+            "text" => "This is a note",
+          ]
+        );
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals(
+            '{"associated_object_identifier":{"associated_object":"customer","method":"uuid","value":"'.$uuid.'"},"type":"note","text":"This is a note"}',
+            (string) $request->getBody()
+        );
+    }
+
     public function testListOpportunities()
     {
         $stream = Psr7\Utils::streamFor(CustomerTest::LIST_OPPORTUNITIES_JSON);
@@ -664,6 +766,19 @@ class CustomerTest extends TestCase
         $this->assertTrue($result[0] instanceof Task);
         $this->assertEquals("cursor==", $result->cursor);
         $this->assertEquals(true, $result->has_more);
+    }
+
+    public function testListTasksPassesOptions()
+    {
+        $stream = Psr7\Utils::streamFor(CustomerTest::LIST_TASKS_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
+
+        (new Customer(["uuid" => $customer_uuid], $cmClient))->tasks(["cursor" => "cursor==", "completed" => false]);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("cursor=cursor%3D%3D&completed=0&customer_uuid=".$customer_uuid, $request->getUri()->getQuery());
     }
 
     public function testCreateTask()

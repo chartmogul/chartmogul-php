@@ -42,6 +42,23 @@ class TestCase extends \PHPUnit\Framework\TestCase
         return [$mock, $mockClient];
     }
 
+    protected function assertDeprecation(string $expectedMessage, callable $callback)
+    {
+        $captured = [];
+        set_error_handler(function ($errno, $errstr) use (&$captured) {
+            $captured[] = [$errno, $errstr];
+            return true;
+        }, E_USER_DEPRECATED);
+
+        try {
+            $callback();
+        } finally {
+            restore_error_handler();
+        }
+
+        $this->assertContains([E_USER_DEPRECATED, $expectedMessage], $captured);
+    }
+
     protected function getMockClientException($retries, $statuses, $stream = null, $exceptions = [])
     {
         foreach($exceptions as $exception) {

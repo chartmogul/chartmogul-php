@@ -60,6 +60,19 @@ class TaskTest extends TestCase
       "updated_at": "2025-04-01T12:00:00.000Z"
     }';
 
+    const CONTACT_TASK_JSON = '{
+      "task_uuid": "00000000-0000-0000-0000-000000000002",
+      "customer_uuid": null,
+      "associated_object": "contact",
+      "associated_object_uuid": "con_00000000-0000-0000-0000-000000000000",
+      "task_details": "Call the contact back.",
+      "assignee": "customer@example.com",
+      "due_date": "2025-04-30T00:00:00Z",
+      "completed_at": null,
+      "created_at": "2025-04-01T12:00:00.000Z",
+      "updated_at": "2025-04-01T12:00:00.000Z"
+    }';
+
     public function testListTasks()
     {
         $stream = Psr7\Utils::streamFor(TaskTest::LIST_TASKS_JSON);
@@ -202,5 +215,95 @@ class TaskTest extends TestCase
         $this->assertEquals("/v1/tasks/".$uuid, $uri->getPath());
 
         $this->assertEquals("{}", $result);
+    }
+
+    public function testListTasksWithFilters()
+    {
+        $stream = Psr7\Utils::streamFor(TaskTest::LIST_TASKS_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $contact_uuid = "con_00000000-0000-0000-0000-000000000000";
+
+        Task::all(
+            [
+            "contact_uuid" => $contact_uuid,
+            "assignee" => "customer@example.com",
+            "due_date_on_or_after" => "2025-04-01T00:00:00Z",
+            "due_date_on_or_before" => "2025-04-30T00:00:00Z",
+            "completed" => false,
+            ], $cmClient
+        );
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("/v1/tasks", $request->getUri()->getPath());
+        parse_str($request->getUri()->getQuery(), $query);
+        $this->assertEquals($contact_uuid, $query["contact_uuid"]);
+        $this->assertEquals("customer@example.com", $query["assignee"]);
+        $this->assertEquals("2025-04-01T00:00:00Z", $query["due_date_on_or_after"]);
+        $this->assertEquals("2025-04-30T00:00:00Z", $query["due_date_on_or_before"]);
+        $this->assertSame("0", $query["completed"]);
+    }
+
+    public function testCreateTaskWithAssociatedObjectIdentifier()
+    {
+        $stream = Psr7\Utils::streamFor(TaskTest::CONTACT_TASK_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $contact_uuid = "con_00000000-0000-0000-0000-000000000000";
+        $identifier = [
+            "associated_object" => "contact",
+            "method" => "uuid",
+            "value" => $contact_uuid,
+        ];
+
+        $result = Task::create(
+            [
+            "associated_object_identifier" => $identifier,
+            "task_details" => "Call the contact back.",
+            "assignee" => "customer@example.com",
+            "due_date" => "2025-04-30T00:00:00Z",
+            ], $cmClient
+        );
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("POST", $request->getMethod());
+        $this->assertEquals("/v1/tasks", $request->getUri()->getPath());
+        $body = json_decode((string) $request->getBody(), true);
+        $this->assertEquals(
+            [
+            "associated_object_identifier" => $identifier,
+            "task_details" => "Call the contact back.",
+            "assignee" => "customer@example.com",
+            "due_date" => "2025-04-30T00:00:00Z",
+            ], $body
+        );
+
+        $this->assertTrue($result instanceof Task);
+        $this->assertEquals("00000000-0000-0000-0000-000000000002", $result->uuid);
+        $this->assertNull($result->customer_uuid);
+        $this->assertEquals("contact", $result->associated_object);
+        $this->assertEquals($contact_uuid, $result->associated_object_uuid);
+        $this->assertEquals("Call the contact back.", $result->task_details);
+        $this->assertNull($result->completed_at);
+    }
+
+    public function testUpdateTaskNotModified()
+    {
+        list($cmClient, $mockClient) = $this->getMockClient(0, [304]);
+
+        $uuid = "00000000-0000-0000-0000-000000000000";
+
+        $result = Task::update(
+            ["uuid" => $uuid],
+            ["task_details" => "This is some task details text."],
+            $cmClient
+        );
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("PATCH", $request->getMethod());
+        $this->assertEquals("/v1/tasks/".$uuid, $request->getUri()->getPath());
+        $this->assertTrue($result instanceof Task);
+        $this->assertNull($result->uuid);
+        $this->assertNull($result->task_details);
     }
 }
