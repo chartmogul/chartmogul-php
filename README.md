@@ -683,7 +683,7 @@ $new_contact = ChartMogul\Contact::create([
 ]);
 ```
 
-`customer_uuid` and `data_source_uuid` are optional, so a contact can be created without a customer. In responses `customer_uuid` and `data_source_uuid` may be `null`. `last_seen` can be set on create and update and is returned in responses.
+`customer_uuid` and `data_source_uuid` are optional, so a contact can be created without a customer. In responses `customer_uuid` and `data_source_uuid` may be `null`.
 
 **Get a Contact**
 
