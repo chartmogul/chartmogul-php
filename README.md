@@ -679,11 +679,11 @@ $new_contact = ChartMogul\Contact::create([
   "first_name" => "Adam",
   "last_name" => "Smith",
   "email" => "adam@example.com",
-  "last_active_at" => "2025-01-01T00:00:00Z",
+  "last_seen" => "2025-01-01T00:00:00Z",
 ]);
 ```
 
-`customer_uuid` and `data_source_uuid` are optional, so a contact can be created without a customer. In responses `customer_uuid` and `data_source_uuid` may be `null`, and `last_active_at` is returned as `last_seen`.
+`customer_uuid` and `data_source_uuid` are optional, so a contact can be created without a customer. In responses `customer_uuid` and `data_source_uuid` may be `null`. `last_seen` can be set on create and update and is returned in responses.
 
 **Get a Contact**
 
@@ -705,7 +705,7 @@ $updated_contact = ChartMogul\Contact::update([
     'contact_uuid' => $uuid
         ], [
     'first_name' => 'New Name',
-    'last_active_at' => '2025-01-01T00:00:00Z'
+    'last_seen' => '2025-01-01T00:00:00Z'
 ]);
 ```
 

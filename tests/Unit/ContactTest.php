@@ -423,7 +423,7 @@ class ContactTest extends TestCase
             "first_name" => "Adam",
             "last_name" => "Smith",
             "email" => "adam@example.com",
-            "last_active_at" => "2025-01-01T00:00:00Z",
+            "last_seen" => "2025-01-01T00:00:00Z",
             ], $cmClient
         );
         $request = $mockClient->getRequests()[0];
@@ -436,7 +436,7 @@ class ContactTest extends TestCase
             "first_name" => "Adam",
             "last_name" => "Smith",
             "email" => "adam@example.com",
-            "last_active_at" => "2025-01-01T00:00:00Z",
+            "last_seen" => "2025-01-01T00:00:00Z",
             ], $body
         );
 
@@ -447,7 +447,7 @@ class ContactTest extends TestCase
         $this->assertEquals("2025-01-01T00:00:00.000Z", $result->last_seen);
     }
 
-    public function testUpdateContactLastActiveAt()
+    public function testUpdateContactLastSeen()
     {
         $stream = Psr7\Utils::streamFor(ContactTest::STANDALONE_CONTACT_JSON);
         list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
@@ -456,14 +456,14 @@ class ContactTest extends TestCase
 
         $result = Contact::update(
             ["contact_uuid" => $uuid],
-            ["last_active_at" => "2025-01-01T00:00:00Z"],
+            ["last_seen" => "2025-01-01T00:00:00Z"],
             $cmClient
         );
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals("PATCH", $request->getMethod());
         $this->assertEquals("/v1/contacts/".$uuid, $request->getUri()->getPath());
-        $this->assertEquals('{"last_active_at":"2025-01-01T00:00:00Z"}', (string) $request->getBody());
+        $this->assertEquals('{"last_seen":"2025-01-01T00:00:00Z"}', (string) $request->getBody());
 
         $this->assertTrue($result instanceof Contact);
         $this->assertEquals("2025-01-01T00:00:00.000Z", $result->last_seen);

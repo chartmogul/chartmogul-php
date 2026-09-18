@@ -27,7 +27,6 @@ use ChartMogul\Service\FromArrayTrait;
  * @property-read string $phone
  * @property-read string $linked_in
  * @property-read string $twitter
- * @property-read string|null $last_active_at
  * @property-read string|null $last_seen
  * @property-read string $custom
  */
@@ -65,7 +64,6 @@ class Contact extends AbstractResource
     protected $phone;
     protected $linked_in;
     protected $twitter;
-    protected $last_active_at;
     protected $last_seen;
     protected $custom;
 
