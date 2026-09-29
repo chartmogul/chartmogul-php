@@ -29,6 +29,8 @@ use ChartMogul\Service\GetTrait;
  * @property-read string $billing_system_type
  * @property-read string $currency
  * @property-read string $currency_sign
+ * @property-read array $overrides
+ * @property-read array $historical_values
  */
 class Customer extends AbstractResource
 {
@@ -64,8 +66,10 @@ class Customer extends AbstractResource
     protected $customer_since;
     protected $email;
     protected $external_id;
+    protected $historical_values;
     protected $mrr;
     protected $name;
+    protected $overrides;
     protected $owner;
     protected $status;
 
@@ -446,14 +450,80 @@ class Customer extends AbstractResource
     /**
      * Retrieve a customer's tags and custom attributes.
      *
+     * @param  array $query Optional query parameters, e.g. ['with_overrides' => 'true', 'attributes_with_history' => 'custom.channel']
      * @return array
      */
-    public function retrieveAttributes()
+    public function retrieveAttributes(array $query = [])
     {
         $result = $this->getClient()
-            ->send('/v1/customers/' . $this->uuid . '/attributes', 'GET');
+            ->send('/v1/customers/' . $this->uuid . '/attributes', 'GET', $query);
 
         $this->attributes = $result;
+        return $result;
+    }
+
+    /**
+     * Add Custom Attributes to a Customer, with optional overrides
+     *
+     * @param  array $custom    Attribute objects, e.g. [['type' => 'String', 'key' => 'channel', 'value' => 'Facebook']]
+     * @param  array $overrides Boolean flags, e.g. ['custom' => ['channel' => true]]
+     * @return array The full response, including the `overrides` object
+     */
+    public function addCustomAttributesWithOverrides(array $custom, array $overrides = [])
+    {
+        return $this->sendCustomAttributesPayload('POST', $this->customAttributesPayload($custom, $overrides));
+    }
+
+    /**
+     * Update Custom Attributes of a Customer, with optional overrides
+     *
+     * @param  array $custom    Attribute values keyed by name, e.g. ['channel' => 'Twitter']
+     * @param  array $overrides Boolean flags, e.g. ['custom' => ['channel' => true]]
+     * @return array The full response, including the `overrides` object
+     */
+    public function updateCustomAttributesWithOverrides(array $custom, array $overrides = [])
+    {
+        return $this->sendCustomAttributesPayload('PUT', $this->customAttributesPayload($custom, $overrides));
+    }
+
+    /**
+     * Remove Custom Attributes from a Customer, with optional overrides
+     *
+     * @param  array $custom    Attribute names, e.g. ['age']
+     * @param  array $overrides Boolean flags, e.g. ['custom' => ['age' => false]]
+     * @return array The full response, including the `overrides` object and `message`
+     */
+    public function removeCustomAttributesWithOverrides(array $custom, array $overrides = [])
+    {
+        return $this->sendCustomAttributesPayload('DELETE', $this->customAttributesPayload($custom, $overrides));
+    }
+
+    /**
+     * @param  array $custom
+     * @param  array $overrides
+     * @return array
+     */
+    private function customAttributesPayload(array $custom, array $overrides)
+    {
+        $payload = ['custom' => $custom];
+        if ($overrides !== []) {
+            $payload['overrides'] = $overrides;
+        }
+
+        return $payload;
+    }
+
+    /**
+     * @param  string $method
+     * @param  array  $payload
+     * @return array
+     */
+    private function sendCustomAttributesPayload($method, array $payload)
+    {
+        $result = $this->getClient()
+            ->send('/v1/customers/'.$this->uuid.'/attributes/custom', $method, $payload);
+
+        $this->attributes['custom'] = $result['custom'];
         return $result;
     }
 
@@ -482,17 +552,23 @@ class Customer extends AbstractResource
      * @param  string               $email
      * @param  array                $custom
      * @param  ClientInterface|null $client
+     * @param  array                $overrides Optional boolean flags, e.g. ['custom' => ['channel' => true]]
      * @return array
      */
-    public static function addCustomAttributesByEmail(string $email, array $custom, ?ClientInterface $client = null)
+    public static function addCustomAttributesByEmail(string $email, array $custom, ?ClientInterface $client = null, array $overrides = [])
     {
+        $data = [
+            'email' => $email,
+            'custom' => $custom,
+        ];
+        if ($overrides !== []) {
+            $data['overrides'] = $overrides;
+        }
+
         return (new static([], $client))
             ->getClient()
             ->setResourceKey(static::RESOURCE_NAME)
-            ->send('/v1/customers/attributes/custom', 'POST', [
-                'email' => $email,
-                'custom' => $custom,
-            ]);
+            ->send('/v1/customers/attributes/custom', 'POST', $data);
     }
 
     /**
