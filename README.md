@@ -217,7 +217,7 @@ ChartMogul\Customer::merge([
 ChartMogul\Customer::merge([
     'external_id' => $cus1->external_id,
     'data_source_uuid' => $ds->uuid
-        ], [
+], [
     'external_id' => $cus2->external_id,
     'data_source_uuid' => $ds->uuid
 ]);
@@ -239,7 +239,7 @@ ChartMogul\Customer::unmerge(
 ```php
 $result = ChartMogul\Customer::update([
     'customer_uuid' => $cus1->uuid
-        ], [
+], [
     'name' => 'New Name'
 ]);
 ```
@@ -664,7 +664,7 @@ $contact->destroy();
 ```php
 $updated_contact = ChartMogul\Contact::update([
     'contact_uuid' => $uuid
-        ], [
+], [
     'first_name' => 'New Name'
 ]);
 ```
@@ -676,7 +676,7 @@ Setting a field's flag to `true` overrides it with the value written by the requ
 ```php
 $updated_contact = ChartMogul\Contact::update([
     'contact_uuid' => $uuid
-        ], [
+], [
     'title' => 'CTO',
     'overrides' => ['title' => true]
 ]);
