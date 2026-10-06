@@ -66,7 +66,14 @@ class CustomerOverridesTest extends TestCase
     const ATTRIBUTES_WITH_OVERRIDES_JSON = '{
         "tags": ["vip"],
         "custom": { "salesRep": "Gabi" },
-        "overrides": { "custom": { "salesRep": true } }
+        "overrides": { "custom": { "salesRep": true } },
+        "historical_values": {
+            "custom": {
+                "salesRep": [
+                    { "value": "Gabi", "update_performed_at": null, "update_performed_by": null, "initial": true }
+                ]
+            }
+        }
     }';
 
     const BY_EMAIL_WITH_OVERRIDES_JSON = '{
@@ -168,6 +175,38 @@ class CustomerOverridesTest extends TestCase
         $this->assertEquals('with_overrides=true', $request->getUri()->getQuery());
 
         $this->assertEquals(['custom' => ['salesRep' => true]], $result['overrides']);
+
+        $expectedResponse = json_decode(self::ATTRIBUTES_WITH_OVERRIDES_JSON, true);
+        $this->assertEquals($expectedResponse, $result);
+        $this->assertEquals(
+            ['tags' => ['vip'], 'custom' => ['salesRep' => 'Gabi']],
+            $customer->attributes
+        );
+        $this->assertEquals(
+            ['attributes' => ['custom' => ['salesRep' => true]]],
+            $customer->overrides
+        );
+        $this->assertEquals(
+            ['attributes' => $expectedResponse['historical_values']],
+            $customer->historical_values
+        );
+    }
+
+    public function testRetrieveAttributesWithoutQueryLeavesOverridesAlone()
+    {
+        $stream = Psr7\Utils::streamFor('{"tags": ["vip"], "custom": { "salesRep": "Gabi" }}');
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $customer = new Customer(
+            [
+            'uuid' => 'cus_test',
+            'overrides' => ['company' => true]
+            ], $cmClient
+        );
+        $customer->retrieveAttributes();
+
+        $this->assertEquals(['tags' => ['vip'], 'custom' => ['salesRep' => 'Gabi']], $customer->attributes);
+        $this->assertEquals(['company' => true], $customer->overrides);
     }
 
     public function testAddCustomAttributesWithOverrides()
