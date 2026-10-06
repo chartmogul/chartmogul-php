@@ -189,6 +189,15 @@ $cus->destroy();
 ChartMogul\Customer::retrieve($uuid);
 ```
 
+**Get a Customer with Overrides and Historical Values**
+
+```php
+ChartMogul\Customer::retrieve($uuid, null, [
+    'with_overrides' => 'true',
+    'attributes_with_history' => 'company,custom.channel'
+]);
+```
+
 **Search for Customers**
 
 ```php
@@ -208,7 +217,7 @@ ChartMogul\Customer::merge([
 ChartMogul\Customer::merge([
     'external_id' => $cus1->external_id,
     'data_source_uuid' => $ds->uuid
-        ], [
+], [
     'external_id' => $cus2->external_id,
     'data_source_uuid' => $ds->uuid
 ]);
@@ -230,7 +239,7 @@ ChartMogul\Customer::unmerge(
 ```php
 $result = ChartMogul\Customer::update([
     'customer_uuid' => $cus1->uuid
-        ], [
+], [
     'name' => 'New Name'
 ]);
 ```
@@ -450,6 +459,43 @@ $attributesToRemove = [
 $tags = $customer->removeCustomAttributes($attributesToRemove);
 ```
 
+**Send Custom Attribute Overrides**
+
+Setting an attribute's flag to `true` overrides it with the value written by the request, protecting it from later updates; `false` removes an existing override. The `WithOverrides` methods return the whole response, including the `overrides` object.
+
+```php
+$customer = ChartMogul\Customer::retrieve($cus->uuid);
+
+$result = $customer->addCustomAttributesWithOverrides(
+    [['type' => 'String', 'key' => 'channel', 'value' => 'Facebook']],
+    ['custom' => ['channel' => true]]
+);
+
+$result = $customer->updateCustomAttributesWithOverrides(
+    ['channel' => 'Twitter'],
+    ['custom' => ['channel' => true]]
+);
+
+$result = $customer->removeCustomAttributesWithOverrides(
+    ['age'],
+    ['custom' => ['age' => false]]
+);
+
+ChartMogul\Customer::addCustomAttributesByEmail(
+    'adam@smith.com',
+    [['type' => 'String', 'key' => 'channel', 'value' => 'Facebook']],
+    null,
+    ['custom' => ['channel' => true]]
+);
+```
+
+**Retrieve a Customer's Attributes with Overrides**
+
+```php
+$customer = ChartMogul\Customer::retrieve($cus->uuid);
+$attributes = $customer->retrieveAttributes(['with_overrides' => 'true']);
+```
+
 **List Contacts from a customer**
 
 ```php
@@ -597,6 +643,15 @@ $new_contact = ChartMogul\Contact::create([
 $contact = ChartMogul\Contact::retrieve($uuid);
 ```
 
+**Get a Contact with Overrides and Historical Values**
+
+```php
+$contact = ChartMogul\Contact::retrieve($uuid, null, [
+    'with_overrides' => 'true',
+    'attributes_with_history' => 'title,phone'
+]);
+```
+
 **Delete A Contact**
 
 ```php
@@ -609,8 +664,21 @@ $contact->destroy();
 ```php
 $updated_contact = ChartMogul\Contact::update([
     'contact_uuid' => $uuid
-        ], [
+], [
     'first_name' => 'New Name'
+]);
+```
+
+**Update a Contact with Overrides**
+
+Setting a field's flag to `true` overrides it with the value written by the request, protecting it from later updates; `false` removes an existing override. Write responses always include the contact's current `overrides`.
+
+```php
+$updated_contact = ChartMogul\Contact::update([
+    'contact_uuid' => $uuid
+], [
+    'title' => 'CTO',
+    'overrides' => ['title' => true]
 ]);
 ```
 
