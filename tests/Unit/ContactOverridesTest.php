@@ -32,7 +32,7 @@ class ContactOverridesTest extends TestCase
     public function testCreateContactWithOverrides()
     {
         $stream = Psr7\Utils::streamFor(self::CONTACT_WITH_OVERRIDES_JSON);
-        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [201], $stream);
 
         $result = Contact::create(
             [
