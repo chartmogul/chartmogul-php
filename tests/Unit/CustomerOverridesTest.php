@@ -58,6 +58,11 @@ class CustomerOverridesTest extends TestCase
         "message": "Custom attributes deleted from customer"
     }';
 
+    const DELETE_LAST_ATTRIBUTE_JSON = '{
+        "overrides": {},
+        "message": "Custom attributes deleted from customer"
+    }';
+
     const ATTRIBUTES_WITH_OVERRIDES_JSON = '{
         "tags": ["vip"],
         "custom": { "salesRep": "Gabi" },
@@ -78,7 +83,7 @@ class CustomerOverridesTest extends TestCase
     public function testCreateCustomerWithOverrides()
     {
         $stream = Psr7\Utils::streamFor(self::CUSTOMER_WITH_OVERRIDES_JSON);
-        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [201], $stream);
 
         $overrides = [
             'company' => true,
@@ -226,7 +231,7 @@ class CustomerOverridesTest extends TestCase
     public function testRemoveCustomAttributesWithOverrides()
     {
         $stream = Psr7\Utils::streamFor(self::DELETE_ATTRIBUTES_WITH_OVERRIDES_JSON);
-        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [202], $stream);
 
         $customer = new Customer(['uuid' => 'cus_test'], $cmClient);
         $custom = ['age'];
@@ -242,6 +247,68 @@ class CustomerOverridesTest extends TestCase
         );
 
         $this->assertEquals([], $result['overrides']);
+        $this->assertEquals('Custom attributes deleted from customer', $result['message']);
+    }
+
+    public function testWriteSyncsOverridesAttributesFromResponse()
+    {
+        $stream = Psr7\Utils::streamFor(self::CUSTOM_ATTRIBUTES_WITH_OVERRIDES_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $customer = new Customer(
+            [
+            'uuid' => 'cus_test',
+            'overrides' => [
+                'company' => true,
+                'attributes' => ['custom' => ['salesRep' => true]]
+            ]
+            ], $cmClient
+        );
+
+        $customer->updateCustomAttributesWithOverrides(
+            ['channel' => 'Facebook'],
+            ['custom' => ['channel' => true]]
+        );
+
+        $this->assertEquals(
+            [
+                'company' => true,
+                'attributes' => ['custom' => ['channel' => true]]
+            ],
+            $customer->overrides
+        );
+    }
+
+    public function testRemoveClearsOverridesAttributesWhenNoneLeft()
+    {
+        $stream = Psr7\Utils::streamFor(self::DELETE_ATTRIBUTES_WITH_OVERRIDES_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [202], $stream);
+
+        $customer = new Customer(
+            [
+            'uuid' => 'cus_test',
+            'overrides' => [
+                'company' => true,
+                'attributes' => ['custom' => ['age' => true]]
+            ]
+            ], $cmClient
+        );
+
+        $customer->removeCustomAttributesWithOverrides(['age'], ['custom' => ['age' => false]]);
+
+        $this->assertEquals(['company' => true], $customer->overrides);
+    }
+
+    public function testRemoveLastAttributeOmitsCustomKey()
+    {
+        $stream = Psr7\Utils::streamFor(self::DELETE_LAST_ATTRIBUTE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [202], $stream);
+
+        $customer = new Customer(['uuid' => 'cus_test'], $cmClient);
+
+        $result = $customer->removeCustomAttributesWithOverrides(['age']);
+
+        $this->assertEquals([], $customer->customAttributes());
         $this->assertEquals('Custom attributes deleted from customer', $result['message']);
     }
 
@@ -287,7 +354,7 @@ class CustomerOverridesTest extends TestCase
     public function testRemoveCustomAttributesKeepsEnvelopeShapedArrayInput()
     {
         $stream = Psr7\Utils::streamFor(self::DELETE_ATTRIBUTES_WITH_OVERRIDES_JSON);
-        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [202], $stream);
 
         $customer = new Customer(['uuid' => 'cus_test'], $cmClient);
         $input = [

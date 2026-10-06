@@ -523,7 +523,15 @@ class Customer extends AbstractResource
         $result = $this->getClient()
             ->send('/v1/customers/'.$this->uuid.'/attributes/custom', $method, $payload);
 
-        $this->attributes['custom'] = $result['custom'];
+        // `custom` is absent when a DELETE removes the last custom attribute.
+        $this->attributes['custom'] = $result['custom'] ?? [];
+        // The response's `overrides` holds the customer's current custom
+        // attribute pins, in the shape overrides['attributes'] uses.
+        if ($result['overrides'] === []) {
+            unset($this->overrides['attributes']);
+        } else {
+            $this->overrides['attributes'] = $result['overrides'];
+        }
         return $result;
     }
 
