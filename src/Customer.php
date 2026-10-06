@@ -458,7 +458,15 @@ class Customer extends AbstractResource
         $result = $this->getClient()
             ->send('/v1/customers/' . $this->uuid . '/attributes', 'GET', $query);
 
-        $this->attributes = $result;
+        // `overrides` and `historical_values` are not attributes; they live on
+        // the customer, where namespaces nest under an `attributes` wrapper.
+        $this->attributes = array_diff_key($result, ['overrides' => null, 'historical_values' => null]);
+        if (array_key_exists('overrides', $result)) {
+            $this->syncCustomAttributeOverrides($result['overrides']);
+        }
+        if (array_key_exists('historical_values', $result)) {
+            $this->historical_values['attributes'] = $result['historical_values'];
+        }
         return $result;
     }
 
@@ -525,14 +533,24 @@ class Customer extends AbstractResource
 
         // `custom` is absent when a DELETE removes the last custom attribute.
         $this->attributes['custom'] = $result['custom'] ?? [];
-        // The response's `overrides` holds the customer's current custom
-        // attribute pins, in the shape overrides['attributes'] uses.
-        if ($result['overrides'] === []) {
+        $this->syncCustomAttributeOverrides($result['overrides']);
+        return $result;
+    }
+
+    /**
+     * The custom attribute endpoints return the customer's current custom
+     * attribute pins, in the shape overrides['attributes'] uses.
+     *
+     * @param  array $overrides
+     * @return void
+     */
+    private function syncCustomAttributeOverrides(array $overrides)
+    {
+        if ($overrides === []) {
             unset($this->overrides['attributes']);
         } else {
-            $this->overrides['attributes'] = $result['overrides'];
+            $this->overrides['attributes'] = $overrides;
         }
-        return $result;
     }
 
     /**
