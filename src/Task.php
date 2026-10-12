@@ -13,7 +13,9 @@ use ChartMogul\Service\FromArrayTrait;
 
 /**
  * @property-read string $uuid
- * @property-read string $customer_uuid
+ * @property-read string|null $customer_uuid
+ * @property-read string|null $associated_object
+ * @property-read string|null $associated_object_uuid
  * @property-read string $task_details
  * @property-read string $assignee
  * @property-read string $due_date
@@ -43,6 +45,9 @@ class Task extends AbstractResource
 
     protected $uuid;
     protected $customer_uuid;
+    protected $associated_object;
+    protected $associated_object_uuid;
+    protected $associated_object_identifier;
     protected $task_details;
     protected $assignee;
     protected $due_date;

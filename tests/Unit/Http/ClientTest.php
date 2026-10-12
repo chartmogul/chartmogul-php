@@ -68,6 +68,17 @@ class ClientTest extends TestCase
         $this->assertEquals($data, ['result' => 'json']);
     }
 
+    public function testHandleResponseNotModified()
+    {
+        $mock = $this->getMockBuilder(Client::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods([])
+            ->getMock();
+
+        $res = new Response(304, [], '');
+        $this->assertSame([], $mock->handleResponse($res));
+    }
+
     public static function provider()
     {
         return array(

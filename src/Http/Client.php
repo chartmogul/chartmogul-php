@@ -242,6 +242,7 @@ class Client implements ClientInterface
             case 202:
                 break;
             case 204: // HTTP No Content
+            case 304: // HTTP Not Modified
                 return [];
             default:
                 throw new \ChartMogul\Exceptions\ChartMogulException(
