@@ -364,6 +364,34 @@ class CustomerOverridesTest extends TestCase
         $this->assertEquals([], $customer->customAttributes());
     }
 
+    public function testFailedWriteDoesNotSyncState()
+    {
+        $stream = Psr7\Utils::streamFor(
+            '{"error_details": [{"param": "overrides[custom][channel]", "code": "invalid", "message": "must be a boolean"}]}'
+        );
+        list($cmClient, $mockClient) = $this->getMockClient(0, [422], $stream);
+
+        $customer = new Customer(
+            [
+            'uuid' => 'cus_test',
+            'attributes' => ['custom' => ['channel' => 'Facebook']],
+            'overrides' => ['attributes' => ['custom' => ['channel' => true]]]
+            ], $cmClient
+        );
+
+        try {
+            $customer->updateCustomAttributesWithOverrides(
+                ['channel' => 'Twitter'],
+                ['custom' => ['channel' => 'yes']]
+            );
+            $this->fail('Expected SchemaInvalidException');
+        } catch (\ChartMogul\Exceptions\SchemaInvalidException $e) {
+        }
+
+        $this->assertEquals(['custom' => ['channel' => 'Facebook']], $customer->attributes);
+        $this->assertEquals(['attributes' => ['custom' => ['channel' => true]]], $customer->overrides);
+    }
+
     public function testUpdateCustomAttributesKeepsAttributesNamedCustomAndOverrides()
     {
         $stream = Psr7\Utils::streamFor(self::CUSTOM_ATTRIBUTES_WITH_OVERRIDES_JSON);
