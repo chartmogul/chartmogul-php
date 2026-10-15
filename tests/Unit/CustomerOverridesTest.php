@@ -113,6 +113,25 @@ class CustomerOverridesTest extends TestCase
         $this->assertEquals($overrides, $result->overrides);
     }
 
+    public function testCreateCustomerWithoutOverridesOmitsKeys()
+    {
+        $stream = Psr7\Utils::streamFor('{"uuid": "cus_00000000-0000-0000-0000-000000000000"}');
+        list($cmClient, $mockClient) = $this->getMockClient(0, [201], $stream);
+
+        Customer::create(
+            [
+            'data_source_uuid' => 'ds_00000000-0000-0000-0000-000000000000',
+            'external_id' => 'cus_0001',
+            'company' => 'Example Company'
+            ], $cmClient
+        );
+        $request = $mockClient->getRequests()[0];
+
+        $requestBody = json_decode((string) $request->getBody(), true);
+        $this->assertArrayNotHasKey('overrides', $requestBody);
+        $this->assertArrayNotHasKey('historical_values', $requestBody);
+    }
+
     public function testUpdateCustomerWithOverrides()
     {
         $stream = Psr7\Utils::streamFor(self::CUSTOMER_WITH_OVERRIDES_JSON);

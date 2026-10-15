@@ -51,6 +51,25 @@ class ContactOverridesTest extends TestCase
         $this->assertEquals(['title' => true], $result->overrides);
     }
 
+    public function testCreateContactWithoutOverridesOmitsKeys()
+    {
+        $stream = Psr7\Utils::streamFor('{"uuid": "con_00000000-0000-0000-0000-000000000000"}');
+        list($cmClient, $mockClient) = $this->getMockClient(0, [201], $stream);
+
+        Contact::create(
+            [
+            'customer_uuid' => 'cus_00000000-0000-0000-0000-000000000000',
+            'data_source_uuid' => 'ds_00000000-0000-0000-0000-000000000000',
+            'title' => 'CEO'
+            ], $cmClient
+        );
+        $request = $mockClient->getRequests()[0];
+
+        $requestBody = json_decode((string) $request->getBody(), true);
+        $this->assertArrayNotHasKey('overrides', $requestBody);
+        $this->assertArrayNotHasKey('historical_values', $requestBody);
+    }
+
     public function testCreateContactFromCustomerWithOverrides()
     {
         $stream = Psr7\Utils::streamFor(self::CONTACT_WITH_OVERRIDES_JSON);
