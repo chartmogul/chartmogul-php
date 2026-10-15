@@ -309,12 +309,14 @@ class CustomerOverridesTest extends TestCase
         $request = $mockClient->getRequests()[0];
 
         $this->assertEquals('PUT', $request->getMethod());
+        $this->assertEquals('/v1/customers/cus_test/attributes/custom', $request->getUri()->getPath());
         $this->assertEquals(
             ['custom' => $custom, 'overrides' => $overrides],
             json_decode((string) $request->getBody(), true)
         );
 
         $this->assertEquals($overrides, $result['overrides']);
+        $this->assertEquals(['channel' => 'Facebook'], $customer->customAttributes());
     }
 
     public function testRemoveCustomAttributesWithOverrides()
@@ -337,6 +339,25 @@ class CustomerOverridesTest extends TestCase
 
         $this->assertEquals([], $result['overrides']);
         $this->assertEquals('Custom attributes deleted from customer', $result['message']);
+        $this->assertEquals(['channel' => 'Facebook'], $customer->customAttributes());
+    }
+
+    public function testRemoveKeepsOverriddenAttributeAndReportsIt()
+    {
+        $stream = Psr7\Utils::streamFor(json_encode([
+            'custom' => ['age' => 8],
+            'overrides' => ['custom' => ['age' => true]],
+            'message' => 'Custom attributes deleted from customer, except overridden: age'
+        ]));
+        list($cmClient, $mockClient) = $this->getMockClient(0, [202], $stream);
+
+        $customer = new Customer(['uuid' => 'cus_test'], $cmClient);
+
+        $result = $customer->removeCustomAttributesWithOverrides(['age']);
+
+        $this->assertEquals('Custom attributes deleted from customer, except overridden: age', $result['message']);
+        $this->assertEquals(['age' => 8], $customer->customAttributes());
+        $this->assertEquals(['attributes' => ['custom' => ['age' => true]]], $customer->overrides);
     }
 
     public function testWriteSyncsOverridesAttributesFromResponse()
