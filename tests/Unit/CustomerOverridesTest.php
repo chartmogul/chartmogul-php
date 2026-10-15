@@ -351,6 +351,19 @@ class CustomerOverridesTest extends TestCase
         $this->assertEquals('Custom attributes deleted from customer', $result['message']);
     }
 
+    public function testLegacyRemoveLastAttributeOmitsCustomKey()
+    {
+        $stream = Psr7\Utils::streamFor(self::DELETE_LAST_ATTRIBUTE_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [202], $stream);
+
+        $customer = new Customer(['uuid' => 'cus_test'], $cmClient);
+
+        $result = $customer->removeCustomAttributes([['age']]);
+
+        $this->assertEquals([], $result);
+        $this->assertEquals([], $customer->customAttributes());
+    }
+
     public function testUpdateCustomAttributesKeepsAttributesNamedCustomAndOverrides()
     {
         $stream = Psr7\Utils::streamFor(self::CUSTOM_ATTRIBUTES_WITH_OVERRIDES_JSON);

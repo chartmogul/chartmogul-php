@@ -381,8 +381,9 @@ class Customer extends AbstractResource
                 ]
             );
 
-        $this->attributes['custom'] = $result['custom'];
-        return $result['custom'];
+        // `custom` is absent when a DELETE removes the last custom attribute.
+        $this->attributes['custom'] = $result['custom'] ?? [];
+        return $this->attributes['custom'];
     }
 
     /**
