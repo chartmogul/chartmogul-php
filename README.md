@@ -463,9 +463,19 @@ $tags = $customer->removeCustomAttributes($attributesToRemove);
 
 Setting an attribute's flag to `true` overrides it with the value written by the request, protecting it from later updates; `false` removes an existing override. The `WithOverrides` methods return the whole response, including the `overrides` object.
 
+An override is only accepted for an attribute that already exists on the account and has history tracking enabled; otherwise the call returns a 422 (`not_found` / `not_trackable`), before anything is written. A brand-new key therefore takes two steps:
+
 ```php
 $customer = ChartMogul\Customer::retrieve($cus->uuid);
 
+// New key: add it first, then override it
+$customer->addCustomAttributes(['type' => 'String', 'key' => 'channel', 'value' => 'Facebook']);
+$result = $customer->updateCustomAttributesWithOverrides(
+    ['channel' => 'Facebook'],
+    ['custom' => ['channel' => true]]
+);
+
+// A key the account already knows can be written and overridden in one call
 $result = $customer->addCustomAttributesWithOverrides(
     [['type' => 'String', 'key' => 'channel', 'value' => 'Facebook']],
     ['custom' => ['channel' => true]]
