@@ -461,7 +461,11 @@ $tags = $customer->removeCustomAttributes($attributesToRemove);
 
 **Send Custom Attribute Overrides**
 
-Setting an attribute's flag to `true` overrides its value with what the request writes. While overridden, the attribute is protected from data-source syncs and from API writes that don't carry a flag for it — those are skipped silently and the response returns the overridden value; a remove keeps the attribute and the response `message` names it. To change an overridden value, send the write with the flag again: `true` keeps the override at the new value, `false` removes it. Setting a flag to `false` removes an existing override and restores the most recent value from the edit history (on a create it does nothing). The `WithOverrides` methods return the whole response, including the `overrides` object.
+Setting an attribute's flag to `true` overrides its value with what the request writes. While overridden, the attribute is protected from data-source syncs and from API writes that don't carry a flag for it — those are skipped silently and the response returns the overridden value; a remove keeps the attribute and the response `message` names it.
+
+To change an overridden value, send the write with the flag again: `true` keeps the override at the new value, `false` removes it. Setting a flag to `false` removes an existing override and restores the most recent value from the edit history (on a create it does nothing).
+
+The `WithOverrides` methods return the whole response, including the `overrides` object. On these endpoints (and `retrieveAttributes`) it has namespaces at the top level, e.g. `['custom' => ['channel' => true]]` — there is no `attributes` wrapper in `$result['overrides']`. Customer responses and `addCustomAttributesByEmail` entries use the wrapped shape instead (`['company' => true, 'attributes' => ['custom' => [...]]]`), and the SDK keeps the customer object in that shape by syncing each call's `overrides` into `$customer->overrides['attributes']`.
 
 An override is only accepted for an attribute that already exists on the account and has history tracking enabled; otherwise the call returns a 422 (`not_found` / `not_trackable`), before anything is written. A brand-new key therefore takes two steps:
 
@@ -491,6 +495,9 @@ $result = $customer->removeCustomAttributesWithOverrides(
     ['custom' => ['age' => false]]
 );
 
+// The by-email request takes the same direct shape, but each returned entry
+// carries customer-shaped overrides (['attributes' => ['custom' => [...]]]),
+// unlike the calls above
 ChartMogul\Customer::addCustomAttributesByEmail(
     'adam@smith.com',
     [['type' => 'String', 'key' => 'channel', 'value' => 'Facebook']],
