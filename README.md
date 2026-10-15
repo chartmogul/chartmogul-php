@@ -189,6 +189,15 @@ $cus->destroy();
 ChartMogul\Customer::retrieve($uuid);
 ```
 
+**Get a Customer with Overrides and Historical Values**
+
+```php
+ChartMogul\Customer::retrieve($uuid, null, [
+    'with_overrides' => true,
+    'attributes_with_history' => 'company,custom.channel'
+]);
+```
+
 **Search for Customers**
 
 ```php
@@ -208,7 +217,7 @@ ChartMogul\Customer::merge([
 ChartMogul\Customer::merge([
     'external_id' => $cus1->external_id,
     'data_source_uuid' => $ds->uuid
-        ], [
+], [
     'external_id' => $cus2->external_id,
     'data_source_uuid' => $ds->uuid
 ]);
@@ -230,7 +239,7 @@ ChartMogul\Customer::unmerge(
 ```php
 $result = ChartMogul\Customer::update([
     'customer_uuid' => $cus1->uuid
-        ], [
+], [
     'name' => 'New Name'
 ]);
 ```
@@ -448,6 +457,65 @@ $attributesToRemove = [
     ['key' => 'channel']
 ];
 $tags = $customer->removeCustomAttributes($attributesToRemove);
+```
+
+**Send Custom Attribute Overrides**
+
+Setting an attribute's flag to `true` overrides its value with what the request writes. While overridden, the attribute is protected from data-source syncs and from API writes that don't carry a flag for it — those are skipped silently and the response returns the overridden value; a remove keeps the attribute and the response `message` names it.
+
+To change an overridden value, send the write with the flag again: `true` keeps the override at the new value, `false` removes it. Setting a flag to `false` removes an existing override and restores the most recent value from the edit history (on a create it does nothing).
+
+The `WithOverrides` methods return the whole response, including the `overrides` object. On these endpoints (and `retrieveAttributes`) it has namespaces at the top level, e.g. `['custom' => ['channel' => true]]` — there is no `attributes` wrapper in `$result['overrides']`. Customer responses and `addCustomAttributesByEmail` entries use the wrapped shape instead (`['company' => true, 'attributes' => ['custom' => [...]]]`), and the SDK keeps the customer object in that shape by syncing each call's `overrides` into `$customer->overrides['attributes']`.
+
+An override is only accepted for an attribute that already exists on the account and has history tracking enabled; otherwise the call returns a 422 (`not_found` / `not_trackable`), before anything is written. A brand-new key therefore takes two steps:
+
+```php
+$customer = ChartMogul\Customer::retrieve($cus->uuid);
+
+// New key: add it first, then override it
+$customer->addCustomAttributes(['type' => 'String', 'key' => 'channel', 'value' => 'Facebook']);
+$result = $customer->updateCustomAttributesWithOverrides(
+    ['channel' => 'Facebook'],
+    ['custom' => ['channel' => true]]
+);
+
+// A key the account already knows can be written and overridden in one call
+$result = $customer->addCustomAttributesWithOverrides(
+    [['type' => 'String', 'key' => 'channel', 'value' => 'Facebook']],
+    ['custom' => ['channel' => true]]
+);
+
+$result = $customer->updateCustomAttributesWithOverrides(
+    ['channel' => 'Twitter'],
+    ['custom' => ['channel' => true]]
+);
+
+$result = $customer->removeCustomAttributesWithOverrides(
+    ['age'],
+    ['custom' => ['age' => false]]
+);
+
+// The by-email request takes the same direct shape, but each returned entry
+// carries customer-shaped overrides (['attributes' => ['custom' => [...]]]),
+// unlike the calls above
+ChartMogul\Customer::addCustomAttributesByEmail(
+    'adam@smith.com',
+    [['type' => 'String', 'key' => 'channel', 'value' => 'Facebook']],
+    null,
+    ['custom' => ['channel' => true]]
+);
+```
+
+**Retrieve a Customer's Attributes with Overrides**
+
+The two query params are independent. Unlike `Customer::retrieve`, `attributes_with_history` here accepts only custom attribute names (`custom.<key>`, case-sensitive); a bare field name like `company` returns a 422. History entries come back newest first.
+
+```php
+$customer = ChartMogul\Customer::retrieve($cus->uuid);
+$attributes = $customer->retrieveAttributes([
+    'with_overrides' => true,
+    'attributes_with_history' => 'custom.channel'
+]);
 ```
 
 **List Contacts from a customer**
@@ -691,6 +759,15 @@ $new_contact = ChartMogul\Contact::create([
 $contact = ChartMogul\Contact::retrieve($uuid);
 ```
 
+**Get a Contact with Overrides and Historical Values**
+
+```php
+$contact = ChartMogul\Contact::retrieve($uuid, null, [
+    'with_overrides' => true,
+    'attributes_with_history' => 'title,phone'
+]);
+```
+
 **Delete A Contact**
 
 ```php
@@ -703,9 +780,22 @@ $contact->destroy();
 ```php
 $updated_contact = ChartMogul\Contact::update([
     'contact_uuid' => $uuid
-        ], [
+], [
     'first_name' => 'New Name',
     'last_seen' => '2025-01-01T00:00:00Z'
+]);
+```
+
+**Update a Contact with Overrides**
+
+Contact overrides follow the same rules as customer overrides: an overridden field is protected from data-source syncs and from API writes that don't carry its flag (a later `Contact::update` without the flag is reverted), and `false` removes the override, restoring the most recent edit-history value. Contact custom attribute overrides are not yet implemented by the API — a custom attribute key in contact `overrides` is rejected as `not_overridable`. Write responses always include the contact's current `overrides`; `$customer->createContact([...])` accepts `overrides` the same way.
+
+```php
+$updated_contact = ChartMogul\Contact::update([
+    'contact_uuid' => $uuid
+], [
+    'title' => 'CTO',
+    'overrides' => ['title' => true]
 ]);
 ```
 

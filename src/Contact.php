@@ -29,6 +29,8 @@ use ChartMogul\Service\FromArrayTrait;
  * @property-read string $twitter
  * @property-read string|null $last_seen
  * @property-read string $custom
+ * @property-read array|null $overrides
+ * @property-read array|null $historical_values
  */
 class Contact extends AbstractResource
 {
@@ -66,6 +68,8 @@ class Contact extends AbstractResource
     protected $twitter;
     protected $last_seen;
     protected $custom;
+    protected $overrides;
+    protected $historical_values;
 
     /**
      * Merge Contacts
