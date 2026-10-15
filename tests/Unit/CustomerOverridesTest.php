@@ -35,7 +35,7 @@ class CustomerOverridesTest extends TestCase
         },
         "historical_values": {
             "company": [
-                { "value": "Example Company", "update_performed_at": "2026-09-01T10:00:00Z", "update_performed_by": "sylvia@example.com", "initial": false }
+                { "value": "Example Company", "update_performed_at": "2026-09-01T10:00:00Z", "update_performed_by": "API", "initial": false }
             ],
             "attributes": {
                 "custom": {
@@ -156,7 +156,7 @@ class CustomerOverridesTest extends TestCase
         $entry = $result->historical_values['company'][0];
         $this->assertEquals('Example Company', $entry['value']);
         $this->assertEquals('2026-09-01T10:00:00Z', $entry['update_performed_at']);
-        $this->assertEquals('sylvia@example.com', $entry['update_performed_by']);
+        $this->assertEquals('API', $entry['update_performed_by']);
         $this->assertFalse($entry['initial']);
         $this->assertArrayHasKey('salesRep', $result->historical_values['attributes']['custom']);
     }

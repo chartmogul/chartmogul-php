@@ -23,7 +23,7 @@ class ContactOverridesTest extends TestCase
       "overrides": { "title": true },
       "historical_values": {
         "title": [
-          { "value": "CEO", "update_performed_at": "2026-09-01T10:00:00Z", "update_performed_by": "sylvia@example.com", "initial": false },
+          { "value": "CEO", "update_performed_at": "2026-09-01T10:00:00Z", "update_performed_by": "API", "initial": false },
           { "value": "CTO", "update_performed_at": null, "update_performed_by": null, "initial": true }
         ]
       }
