@@ -219,13 +219,44 @@ class CustomerOverridesTest extends TestCase
         $customer = new Customer(
             [
             'uuid' => 'cus_test',
-            'overrides' => ['company' => true]
+            'overrides' => ['company' => true],
+            'historical_values' => ['company' => []]
             ], $cmClient
         );
         $customer->retrieveAttributes();
 
         $this->assertEquals(['tags' => ['vip'], 'custom' => ['salesRep' => 'Gabi']], $customer->attributes);
         $this->assertEquals(['company' => true], $customer->overrides);
+        $this->assertEquals(['company' => []], $customer->historical_values);
+    }
+
+    public function testRetrieveAttributesWithHistoryOnlyLeavesOverridesAlone()
+    {
+        $historicalValues = [
+            'custom' => [
+                'salesRep' => [
+                    ['value' => 'Gabi', 'update_performed_at' => null, 'update_performed_by' => null, 'initial' => true]
+                ]
+            ]
+        ];
+        $stream = Psr7\Utils::streamFor(json_encode([
+            'tags' => [],
+            'custom' => ['salesRep' => 'Gabi'],
+            'historical_values' => $historicalValues
+        ]));
+        list($cmClient, $mockClient) = $this->getMockClient(0, [200], $stream);
+
+        $customer = new Customer(
+            [
+            'uuid' => 'cus_test',
+            'overrides' => ['company' => true]
+            ], $cmClient
+        );
+        $customer->retrieveAttributes(['attributes_with_history' => 'custom.salesRep']);
+
+        $this->assertEquals(['company' => true], $customer->overrides);
+        $this->assertEquals(['attributes' => $historicalValues], $customer->historical_values);
+        $this->assertEquals(['tags' => [], 'custom' => ['salesRep' => 'Gabi']], $customer->attributes);
     }
 
     public function testAddCustomAttributesWithOverrides()
