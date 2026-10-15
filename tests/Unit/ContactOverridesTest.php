@@ -51,6 +51,32 @@ class ContactOverridesTest extends TestCase
         $this->assertEquals(['title' => true], $result->overrides);
     }
 
+    public function testCreateContactFromCustomerWithOverrides()
+    {
+        $stream = Psr7\Utils::streamFor(self::CONTACT_WITH_OVERRIDES_JSON);
+        list($cmClient, $mockClient) = $this->getMockClient(0, [201], $stream);
+
+        $customer = new \ChartMogul\Customer(['uuid' => 'cus_00000000-0000-0000-0000-000000000000'], $cmClient);
+        $result = $customer->createContact(
+            [
+            'data_source_uuid' => 'ds_00000000-0000-0000-0000-000000000000',
+            'title' => 'CEO',
+            'overrides' => ['title' => true]
+            ]
+        );
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals(
+            '/v1/customers/cus_00000000-0000-0000-0000-000000000000/contacts',
+            $request->getUri()->getPath()
+        );
+        $requestBody = json_decode((string) $request->getBody(), true);
+        $this->assertEquals(['title' => true], $requestBody['overrides']);
+
+        $this->assertEquals(['title' => true], $result->overrides);
+    }
+
     public function testUpdateContactWithOverrides()
     {
         $stream = Psr7\Utils::streamFor(self::CONTACT_WITH_OVERRIDES_JSON);

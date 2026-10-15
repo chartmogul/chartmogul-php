@@ -788,7 +788,7 @@ $updated_contact = ChartMogul\Contact::update([
 
 **Update a Contact with Overrides**
 
-Setting a field's flag to `true` overrides it with the value written by the request, protecting it from later updates; `false` removes an existing override. Write responses always include the contact's current `overrides`.
+Contact overrides follow the same rules as customer overrides: an overridden field is protected from data-source syncs and from API writes that don't carry its flag (a later `Contact::update` without the flag is reverted), and `false` removes the override, restoring the most recent edit-history value. Contact custom attribute overrides are not yet implemented by the API — a custom attribute key in contact `overrides` is rejected as `not_overridable`. Write responses always include the contact's current `overrides`; `$customer->createContact([...])` accepts `overrides` the same way.
 
 ```php
 $updated_contact = ChartMogul\Contact::update([
