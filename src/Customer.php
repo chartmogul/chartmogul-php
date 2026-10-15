@@ -29,8 +29,8 @@ use ChartMogul\Service\GetTrait;
  * @property-read string $billing_system_type
  * @property-read string $currency
  * @property-read string $currency_sign
- * @property-read array $overrides
- * @property-read array $historical_values
+ * @property-read array|null $overrides
+ * @property-read array|null $historical_values
  */
 class Customer extends AbstractResource
 {
