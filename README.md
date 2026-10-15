@@ -193,7 +193,7 @@ ChartMogul\Customer::retrieve($uuid);
 
 ```php
 ChartMogul\Customer::retrieve($uuid, null, [
-    'with_overrides' => 'true',
+    'with_overrides' => true,
     'attributes_with_history' => 'company,custom.channel'
 ]);
 ```
@@ -513,7 +513,7 @@ The two query params are independent. Unlike `Customer::retrieve`, `attributes_w
 ```php
 $customer = ChartMogul\Customer::retrieve($cus->uuid);
 $attributes = $customer->retrieveAttributes([
-    'with_overrides' => 'true',
+    'with_overrides' => true,
     'attributes_with_history' => 'custom.channel'
 ]);
 ```
@@ -763,7 +763,7 @@ $contact = ChartMogul\Contact::retrieve($uuid);
 
 ```php
 $contact = ChartMogul\Contact::retrieve($uuid, null, [
-    'with_overrides' => 'true',
+    'with_overrides' => true,
     'attributes_with_history' => 'title,phone'
 ]);
 ```

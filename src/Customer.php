@@ -451,7 +451,7 @@ class Customer extends AbstractResource
     /**
      * Retrieve a customer's tags and custom attributes.
      *
-     * @param  array $query Optional query parameters, e.g. ['with_overrides' => 'true', 'attributes_with_history' => 'custom.channel']
+     * @param  array $query Optional query parameters, e.g. ['with_overrides' => true, 'attributes_with_history' => 'custom.channel'] (booleans and the strings 'true'/'false' both work)
      * @return array
      */
     public function retrieveAttributes(array $query = [])
