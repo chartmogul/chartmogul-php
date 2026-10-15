@@ -508,9 +508,14 @@ ChartMogul\Customer::addCustomAttributesByEmail(
 
 **Retrieve a Customer's Attributes with Overrides**
 
+The two query params are independent. Unlike `Customer::retrieve`, `attributes_with_history` here accepts only custom attribute names (`custom.<key>`, case-sensitive); a bare field name like `company` returns a 422. History entries come back newest first.
+
 ```php
 $customer = ChartMogul\Customer::retrieve($cus->uuid);
-$attributes = $customer->retrieveAttributes(['with_overrides' => 'true']);
+$attributes = $customer->retrieveAttributes([
+    'with_overrides' => 'true',
+    'attributes_with_history' => 'custom.channel'
+]);
 ```
 
 **List Contacts from a customer**
