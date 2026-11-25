@@ -906,7 +906,7 @@ class CustomerTest extends TestCase
         $this->assertEquals("DELETE", $request->getMethod());
         $uri = $request->getUri();
         $this->assertEquals("/v1/customers/".$customer_uuid, $uri->getPath());
-        $this->assertEquals("exclude=1", $uri->getQuery());
+        $this->assertEquals("exclude=true", $uri->getQuery());
         $this->assertTrue($result);
     }
 }

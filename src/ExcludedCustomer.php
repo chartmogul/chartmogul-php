@@ -8,7 +8,6 @@ use ChartMogul\Service\AllTrait;
 
 /**
  * An excluded data source customer. The same customer_uuid can appear once per data source.
- * ExcludedCustomer::reinclude() returns only `customer_uuid` and `status`.
  *
  * @property-read string $customer_uuid
  * @property-read string $data_source_uuid
@@ -16,7 +15,6 @@ use ChartMogul\Service\AllTrait;
  * @property-read string $name
  * @property-read string $email
  * @property-read string $excluded_at
- * @property-read string $status `reimporting` or `manual_reimport_required`
  */
 class ExcludedCustomer extends AbstractResource
 {
@@ -39,14 +37,13 @@ class ExcludedCustomer extends AbstractResource
     protected $name;
     protected $email;
     protected $excluded_at;
-    protected $status;
 
     /**
      * Remove a customer from the exclude list so it can be imported again.
      *
      * @param  string               $customerUUID
      * @param  ClientInterface|null $client
-     * @return ExcludedCustomer
+     * @return ReincludedCustomer
      */
     public static function reinclude(string $customerUUID, ?ClientInterface $client = null)
     {
@@ -55,6 +52,6 @@ class ExcludedCustomer extends AbstractResource
             ->setResourceKey(static::RESOURCE_NAME)
             ->send(static::RESOURCE_PATH.'/'.$customerUUID, 'DELETE');
 
-        return new static($response, $client);
+        return new ReincludedCustomer($response);
     }
 }

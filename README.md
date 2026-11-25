@@ -653,7 +653,7 @@ $excluded_customers->has_more;
 
 **Re-include an Excluded Customer**
 
-Removes the customer from the exclude list. Throws `ChartMogul\Exceptions\NotFoundException` if the customer isn't excluded.
+Removes the customer from the exclude list and returns a `ChartMogul\ReincludedCustomer`. Throws `ChartMogul\Exceptions\NotFoundException` if the customer isn't excluded.
 
 ```php
 $result = ChartMogul\ExcludedCustomer::reinclude($customer_uuid);

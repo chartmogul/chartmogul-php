@@ -2,6 +2,8 @@
 namespace ChartMogul\Tests;
 
 use ChartMogul\ExcludedCustomer;
+use ChartMogul\ReincludedCustomer;
+use ChartMogul\Exceptions\NotFoundException;
 use GuzzleHttp\Psr7;
 
 class ExcludedCustomerTest extends TestCase
@@ -74,8 +76,26 @@ class ExcludedCustomerTest extends TestCase
         $this->assertEquals("DELETE", $request->getMethod());
         $this->assertEquals("/v1/excluded_customers/".$customer_uuid, $request->getUri()->getPath());
 
-        $this->assertTrue($result instanceof ExcludedCustomer);
+        $this->assertTrue($result instanceof ReincludedCustomer);
         $this->assertEquals($customer_uuid, $result->customer_uuid);
         $this->assertEquals("reimporting", $result->status);
+    }
+
+    public function testReincludeCustomerThatIsNotExcluded()
+    {
+        $stream = Psr7\Utils::streamFor('{"code": 404, "message": "Excluded customer \\"cus_00000000-0000-0000-0000-000000000000\\" does not exist", "param": "customer_uuid"}');
+        list($cmClient, $mockClient) = $this->getMockClient(0, [404], $stream);
+
+        $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
+
+        try {
+            ExcludedCustomer::reinclude($customer_uuid, $cmClient);
+            $this->fail("Expected NotFoundException");
+        } catch (NotFoundException $e) {
+            $this->assertEquals(404, $e->getStatusCode());
+        }
+        $request = $mockClient->getRequests()[0];
+        $this->assertEquals("DELETE", $request->getMethod());
+        $this->assertEquals("/v1/excluded_customers/".$customer_uuid, $request->getUri()->getPath());
     }
 }

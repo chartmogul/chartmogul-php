@@ -115,7 +115,10 @@ class Customer extends AbstractResource
      */
     public function destroy(array $options = [])
     {
-        $query = http_build_query($options);
+        // http_build_query would send booleans as 1/0; send true/false like the other SDKs.
+        $query = http_build_query(array_map(function ($value) {
+            return is_bool($value) ? ($value ? 'true' : 'false') : $value;
+        }, $options));
         $this->getClient()
             ->setResourceKey(static::RESOURCE_NAME)
             ->send(static::RESOURCE_PATH.'/'.$this->uuid.($query ? '?'.$query : ''), 'DELETE');
