@@ -9,7 +9,6 @@ use ChartMogul\Http\ClientInterface;
 use ChartMogul\Service\UpdateTrait;
 use ChartMogul\Service\CreateTrait;
 use ChartMogul\Service\AllTrait;
-use ChartMogul\Service\DestroyTrait;
 use ChartMogul\Service\GetTrait;
 
 /**
@@ -37,7 +36,6 @@ class Customer extends AbstractResource
     use CreateTrait;
     use AllTrait;
     use GetTrait;
-    use DestroyTrait;
     use UpdateTrait;
 
     /**
@@ -107,6 +105,24 @@ class Customer extends AbstractResource
     public function customAttributes()
     {
         return $this->attributes['custom'];
+    }
+
+    /**
+     * Delete a Customer
+     *
+     * @param  array $options Optional, e.g. ['exclude' => true] to also add the customer to the account's exclude list so it isn't re-imported
+     * @return boolean
+     */
+    public function destroy(array $options = [])
+    {
+        // http_build_query would send booleans as 1/0; send true/false like the other SDKs.
+        $query = http_build_query(array_map(function ($value) {
+            return is_bool($value) ? ($value ? 'true' : 'false') : $value;
+        }, $options));
+        $this->getClient()
+            ->setResourceKey(static::RESOURCE_NAME)
+            ->send(static::RESOURCE_PATH.'/'.$this->uuid.($query ? '?'.$query : ''), 'DELETE');
+        return true;
     }
 
     /**

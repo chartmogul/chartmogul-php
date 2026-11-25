@@ -874,4 +874,39 @@ class CustomerTest extends TestCase
         $this->assertEquals('channel', $result['custom'][0]['key']);
         $this->assertEquals('Facebook', $result['custom'][0]['value']);
     }
+
+    public function testDestroyCustomer()
+    {
+        $stream = Psr7\Utils::streamFor('{"message": "Customer deleted"}');
+        list($cmClient, $mockClient) = $this->getMockClient(0, [202], $stream);
+
+        $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
+
+        $result = (new Customer(["uuid" => $customer_uuid], $cmClient))->destroy();
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("DELETE", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/customers/".$customer_uuid, $uri->getPath());
+        $this->assertEquals("", $uri->getQuery());
+        $this->assertEquals("", (string) $request->getBody());
+        $this->assertTrue($result);
+    }
+
+    public function testDestroyCustomerWithExclude()
+    {
+        $stream = Psr7\Utils::streamFor('{"message": "Customer deleted"}');
+        list($cmClient, $mockClient) = $this->getMockClient(0, [202], $stream);
+
+        $customer_uuid = "cus_00000000-0000-0000-0000-000000000000";
+
+        $result = (new Customer(["uuid" => $customer_uuid], $cmClient))->destroy(["exclude" => true]);
+        $request = $mockClient->getRequests()[0];
+
+        $this->assertEquals("DELETE", $request->getMethod());
+        $uri = $request->getUri();
+        $this->assertEquals("/v1/customers/".$customer_uuid, $uri->getPath());
+        $this->assertEquals("exclude=true", $uri->getQuery());
+        $this->assertTrue($result);
+    }
 }
