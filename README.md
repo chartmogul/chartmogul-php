@@ -183,6 +183,12 @@ $cus = ChartMogul\Customer::all()->last();
 $cus->destroy();
 ```
 
+To also add the customer to the account's exclude list so it isn't re-imported, pass `exclude`. It is ignored when the account doesn't have the exclude customers feature enabled.
+
+```php
+$cus->destroy(['exclude' => true]);
+```
+
 **Get a Customer**
 
 ```php
@@ -619,6 +625,40 @@ $new_task = $customer->createTask([
   'due_date' => '2025-04-30T00:00:00Z',
   'completed_at' => '2025-04-20T00:00:00Z',
 ]);
+```
+
+### Excluded Customers
+
+These endpoints respond with `404 Not Found` (`ChartMogul\Exceptions\NotFoundException`) when the account doesn't have the exclude customers feature enabled.
+
+**List Excluded Customers**
+
+Newest first. Each entry is one excluded data source customer, so the same `customer_uuid` can appear once per data source.
+
+```php
+$excluded_customers = ChartMogul\ExcludedCustomer::all([
+    'per_page' => 50,
+    'cursor' => 'aabbccdd...'
+]);
+
+foreach ($excluded_customers as $excluded_customer) {
+    echo $excluded_customer->customer_uuid, $excluded_customer->data_source_uuid,
+        $excluded_customer->external_id, $excluded_customer->name,
+        $excluded_customer->email, $excluded_customer->excluded_at;
+}
+
+$excluded_customers->cursor;
+$excluded_customers->has_more;
+```
+
+**Re-include an Excluded Customer**
+
+Removes the customer from the exclude list. Throws `ChartMogul\Exceptions\NotFoundException` if the customer isn't excluded.
+
+```php
+$result = ChartMogul\ExcludedCustomer::reinclude($customer_uuid);
+$result->customer_uuid;
+$result->status; // 'reimporting' or 'manual_reimport_required'
 ```
 
 ### Customer Notes
